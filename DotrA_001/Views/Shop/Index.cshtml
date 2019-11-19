@@ -1,0 +1,25 @@
+﻿<section class="ftco-section bg-light">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 col-lg-10 order-md-last">
+                @*圖片*@
+                @Html.Partial("Single_Product")
+                @*分頁選擇*@
+                @Html.Partial("PageSelection")
+            </div>
+
+            <div class="col-md-4 col-lg-2">
+                <div class="sidebar">
+                    <div class="sidebar-box-2">
+                        @*Categories 分類查詢*@
+                        @Html.Partial("Categories")
+                    </div>
+                    <div class="sidebar-box-2">
+                        @*PriceRange 價格範圍*@
+                        @Html.Partial("PriceRange")
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
