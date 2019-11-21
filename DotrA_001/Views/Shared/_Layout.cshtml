@@ -4,21 +4,27 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - 我的 ASP.NET 應用程式</title>
+    <title>@ViewBag.Title</title>
     @Styles.Render("~/Content/css")
+    @Styles.Render("~/Assets/css")
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body class="goto-here">
     @Html.Partial("_navbar")
 
+    @*@Html.Partial("_Topimage")*@
 
     @RenderBody()
 
 
     @Html.Partial("_footer")
 
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
+
+    @*@Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")*@
+    @Scripts.Render("~/Assets/jquery")
+    @Scripts.Render("~/Assets/js")
     @RenderSection("scripts", required: false)
+    @RenderSection("endJS", required: false)
 </body>
 </html>
