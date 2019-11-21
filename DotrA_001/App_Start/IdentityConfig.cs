@@ -49,11 +49,11 @@ namespace DotrA_001
             // 設定密碼的驗證邏輯
             manager.PasswordValidator = new PasswordValidator
             {
-                RequiredLength = 6,
+                RequiredLength = 6,//密碼長度
                 RequireNonLetterOrDigit = false,
                 RequireDigit = true,
-                RequireLowercase = true,
-                RequireUppercase = true,
+                RequireLowercase = true, //小寫字母
+                RequireUppercase = true, //大寫字母
             };
 
             // 設定使用者鎖定詳細資料
