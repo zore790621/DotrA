@@ -1,10 +1,10 @@
 ﻿@model IEnumerable<DotrA_001.Models.Member>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Home Minishop - Free Bootstrap 4 Template by Colorlib";
 }
 
-<h2>Index</h2>
+<h2>會員專區</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
@@ -54,7 +54,7 @@
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.MemberID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.MemberID }) |
+            @*@Html.ActionLink("Details", "Details", new { id=item.MemberID }) |*@
             @Html.ActionLink("Delete", "Delete", new { id=item.MemberID })
         </td>
     </tr>
