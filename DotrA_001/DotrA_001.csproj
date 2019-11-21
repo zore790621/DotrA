@@ -148,12 +148,17 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\TestCartController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Cart.cs" />
+    <Compile Include="Models\CartProduct.cs" />
     <Compile Include="Models\ConnectionDotrADb.cs" />
     <Compile Include="Models\DotrADbEntities.cs" />
     <Compile Include="Models\DotrADb.cs" />
+    <Compile Include="Models\HandleCart.cs" />
+    <Compile Include="Models\Justfortest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -346,6 +351,8 @@
     <Content Include="Scripts\popper-utils.js.map" />
     <Content Include="Views\Shared\_navbar.cshtml" />
     <Content Include="Views\Shared\_footer.cshtml" />
+    <Content Include="Views\TestCart\GetCart.cshtml" />
+    <Content Include="Views\Shared\_cartpartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
