@@ -147,6 +147,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ShopController.cs" />
     <Compile Include="Controllers\ShoppingCarController.cs" />
@@ -417,6 +418,7 @@
     <Content Include="Views\ShoppingCar\Index.cshtml" />
     <Content Include="Views\ShoppingCar\PrductCheckoutView.cshtml" />
     <Content Include="Views\ShoppingCar\PrductCheckButton.cshtml" />
+    <Content Include="Views\Account\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
