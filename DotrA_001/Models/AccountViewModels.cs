@@ -48,6 +48,7 @@ namespace WebApplication2.Models
 
     public class LoginViewModel
     {
+        //使用電子郵件改由暱稱登入
         [Required]
         //[Display(Name = "電子郵件")]
         //[EmailAddress]

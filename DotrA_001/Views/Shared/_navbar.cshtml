@@ -40,7 +40,7 @@
 
                     <ul class="nav navbar-nav navbar-right" style="color:black">
                         <li>
-                            @Html.ActionLink("您好 " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { @class = "nav-link", id ="LoginHi", title = "Manage" })
+                            @Html.ActionLink("HiHi " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { @class = "nav-link", id ="LoginHi", title = "Manage" })
                         </li>
                         <li><a href="javascript:document.getElementById('logoutForm').submit()" style="color:black">登出</a></li>
                     </ul>
