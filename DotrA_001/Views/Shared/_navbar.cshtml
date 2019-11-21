@@ -11,7 +11,7 @@
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">CATALOG</a>
                     <div class="dropdown-menu" aria-labelledby="dropdown04">
-                        @Html.ActionLink("Shop", "Shop", "Catalog", null, new { @class = "dropdown-item" })
+                        @Html.ActionLink("Shop", "Index", "Shop", null, new { @class = "dropdown-item" })
                         @Html.ActionLink("Single Product", "ProductSingle", "Catalog", null, new { @class = "dropdown-item" })
                         @Html.ActionLink("Cart", "Cart", "Catalog", null, new { @class = "dropdown-item" })
                         @Html.ActionLink("Checkout", "Checkout", "Catalog", null, new { @class = "dropdown-item" })
@@ -21,8 +21,18 @@
                 <li class="nav-item">@Html.ActionLink("Blog", "Blog", "Home", null, new { @class = "nav-link" })</li>
                 <li class="nav-item">@Html.ActionLink("Contact", "Contact", "Home", null, new { @class = "nav-link" })</li>
                 <li class="nav-item cta cta-colored">
+                    @*@Html.ActionLink("cartpartial","cartpartial","index",null,new { @class="nav-link"})*@
                     <a href="cart.html" class="nav-link"><span class="icon-shopping_cart"></span>[0]</a>
                 </li>
+                @*<li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">CATALOG</a>
+                    <div class="dropdown-menu" aria-labelledby="dropdown04">
+                        @Html.ActionLink("Shop", "Shop", "Catalog", null, new { @class = "dropdown-item" })
+                        @Html.ActionLink("Single Product", "ProductSingle", "Catalog", null, new { @class = "dropdown-item" })
+                        @Html.ActionLink("Cart", "Cart", "Catalog", null, new { @class = "dropdown-item" })
+                        @Html.ActionLink("Checkout", "Checkout", "Catalog", null, new { @class = "dropdown-item" })
+                    </div>
+                </li>*@
             </ul>
         </div>
     </div>

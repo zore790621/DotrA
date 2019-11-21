@@ -13,5 +13,13 @@ namespace DotrA_001.Controllers
         {
             return View();
         }
+        public ActionResult PrductCheckoutView()
+        {
+            return View();
+        }
+        public ActionResult PrductCheckButton()
+        {
+            return View();
+        }
     }
 }

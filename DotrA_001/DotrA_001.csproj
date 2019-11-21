@@ -415,6 +415,8 @@
     <Content Include="Views\Shop\Categories.cshtml" />
     <Content Include="Views\Shop\PriceRange.cshtml" />
     <Content Include="Views\ShoppingCar\Index.cshtml" />
+    <Content Include="Views\ShoppingCar\PrductCheckoutView.cshtml" />
+    <Content Include="Views\ShoppingCar\PrductCheckButton.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
