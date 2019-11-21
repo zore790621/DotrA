@@ -36,7 +36,7 @@ namespace DotrA_001.Controllers
                    }
                    );
             }
-            //每當你重載頁面，商品數量多+一個(session儲存的緣故)
+            //每當你重載頁面，假如購物車已經有商品，商品數量多+一個(session儲存的緣故)
             else
             {
                 foreach (var i in cart.CartProducts)

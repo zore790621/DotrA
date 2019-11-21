@@ -1,18 +1,14 @@
-﻿@{ 
+﻿@{
     var viewcart = DotrA_001.Models.HandleCart.GetCurrentCart();
 
-}}
-
-
-
-<a id="cartdn" class="dropdown-toggle" data-toggle="dropdown">@string.Format($"共{viewcart.TotalAmount}元({viewcart.count})")
-    <span class="caret"></span></a>
-<ul class="dropdown-menu" role="menu" aria-labelledby="cartdn">
+}
+<a id="cartdn" class="nav-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    @string.Format($"共{viewcart.TotalAmount}元") 
+</a>
+<div class="dropdown-menu" aria-labelledby="cartdn">
     @foreach (var item in viewcart)
-    { 
-    <li><a>@item.ProductName<span>@item.ProductPrice 元 X @item.ProductQuantity</span></a></li>
+    {
+        <a class="dropdown-item">@item.ProductName<span>@item.ProductPrice 元 X @item.ProductQuantity</span></a>
     }
-    <li class="divider"></li>
-    <li><a class="btn  text-center" href="#">付錢了拉</a></li>
-
-</ul>
+    <a class="dropdown-item">付錢了拉</a>
+</div>
