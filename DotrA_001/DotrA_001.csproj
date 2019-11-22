@@ -178,6 +178,8 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+<<<<<<< HEAD
+<<<<<<< HEAD
     <Compile Include="Controllers\TestCartController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -189,10 +191,13 @@
     <Compile Include="Models\DotrADb.cs" />
     <Compile Include="Models\HandleCart.cs" />
     <Compile Include="Models\Justfortest.cs" />
+=======
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MembersController.cs" />
+=======
     <Compile Include="Controllers\ShopController.cs" />
     <Compile Include="Controllers\ShoppingCarController.cs" />
+>>>>>>> origin/ShoppingCar_view
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -204,6 +209,7 @@
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Member.cs" />
     <Compile Include="Models\MemberContext.cs" />
+>>>>>>> origin/Member
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -457,8 +463,11 @@
     <Content Include="Scripts\popper-utils.js.map" />
     <Content Include="Views\Shared\_navbar.cshtml" />
     <Content Include="Views\Shared\_footer.cshtml" />
+<<<<<<< HEAD
+<<<<<<< HEAD
     <Content Include="Views\TestCart\GetCart.cshtml" />
     <Content Include="Views\Shared\_cartpartial.cshtml" />
+=======
     <Content Include="Views\Members\Create.cshtml" />
     <Content Include="Views\Members\Delete.cshtml" />
     <Content Include="Views\Members\Details.cshtml" />
@@ -483,6 +492,8 @@
     <Content Include="Views\Account\SendCode.cshtml" />
     <Content Include="Views\Account\VerifyCode.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+>>>>>>> origin/Member
+=======
     <Content Include="Views\Shop\Single_Product.cshtml" />
     <Content Include="Views\Shop\Index.cshtml" />
     <Content Include="Views\Shared\_Topimage.cshtml" />
@@ -493,6 +504,7 @@
     <Content Include="Views\ShoppingCar\PrductCheckoutView.cshtml" />
     <Content Include="Views\ShoppingCar\PrductCheckButton.cshtml" />
     <Content Include="Views\Account\Index.cshtml" />
+>>>>>>> origin/ShoppingCar_view
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
