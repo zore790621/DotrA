@@ -26,7 +26,7 @@
     <UseGlobalApplicationHostFile />
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
-    <TypeScriptToolsVersion>3.6</TypeScriptToolsVersion>
+    <TypeScriptToolsVersion>Latest</TypeScriptToolsVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -36,6 +36,19 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <TypeScriptTarget>ES5</TypeScriptTarget>
+    <TypeScriptJSXEmit>React</TypeScriptJSXEmit>
+    <TypeScriptModuleKind />
+    <TypeScriptCompileOnSaveEnabled>True</TypeScriptCompileOnSaveEnabled>
+    <TypeScriptNoImplicitAny>False</TypeScriptNoImplicitAny>
+    <TypeScriptRemoveComments>False</TypeScriptRemoveComments>
+    <TypeScriptOutFile />
+    <TypeScriptOutDir />
+    <TypeScriptGeneratesDeclarations>False</TypeScriptGeneratesDeclarations>
+    <TypeScriptNoEmitOnError>True</TypeScriptNoEmitOnError>
+    <TypeScriptSourceMap>True</TypeScriptSourceMap>
+    <TypeScriptMapRoot />
+    <TypeScriptSourceRoot />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -178,40 +191,35 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-<<<<<<< HEAD
-<<<<<<< HEAD
-    <Compile Include="Controllers\TestCartController.cs" />
+    <Compile Include="Controllers\CartTest\TestCartController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\Cart.cs" />
-    <Compile Include="Models\CartProduct.cs" />
-    <Compile Include="Models\ConnectionDotrADb.cs" />
-    <Compile Include="Models\DotrADbEntities.cs" />
-    <Compile Include="Models\DotrADb.cs" />
-    <Compile Include="Models\HandleCart.cs" />
-    <Compile Include="Models\Justfortest.cs" />
-=======
+    <Compile Include="Models\Admin.cs" />
+    <Compile Include="Models\CartTest\Cart.cs" />
+    <Compile Include="Models\CartTest\CartProduct.cs" />
+    <Compile Include="Models\CartTest\HandleCart.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MembersController.cs" />
-=======
     <Compile Include="Controllers\ShopController.cs" />
     <Compile Include="Controllers\ShoppingCarController.cs" />
->>>>>>> origin/ShoppingCar_view
-    <Compile Include="Global.asax.cs">
-      <DependentUpon>Global.asax</DependentUpon>
-    </Compile>
-    <Compile Include="Models\AccountViewModels.cs" />
-    <Compile Include="Models\ConnectionDotrADb.cs" />
-    <Compile Include="Models\DotrADbEntities.cs" />
-    <Compile Include="Models\DotrADb.cs" />
+    <Compile Include="Models\Category.cs" />
+    <Compile Include="Models\Order.cs" />
+    <Compile Include="Models\OrderDetail.cs" />
+    <Compile Include="Models\Payment.cs" />
+    <Compile Include="Models\Product.cs" />
+    <Compile Include="Models\Shipper.cs" />
+    <Compile Include="Models\Supplier.cs" />
+    <Compile Include="Models\ViewModels\AccountViewModels.cs" />
+    <Compile Include="Models\ConnectionStringTest\ConnectionDotrADb.cs" />
+    <Compile Include="Models\ConnectionStringTest\DotrADbEntities.cs" />
+    <Compile Include="Models\DotrADbContext.cs" />
     <Compile Include="Models\IdentityModels.cs" />
-    <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\ViewModels\ManageViewModels.cs" />
     <Compile Include="Models\Member.cs" />
-    <Compile Include="Models\MemberContext.cs" />
->>>>>>> origin/Member
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="Models\StringEncrypt.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Assets\css\animate.css" />
@@ -463,11 +471,6 @@
     <Content Include="Scripts\popper-utils.js.map" />
     <Content Include="Views\Shared\_navbar.cshtml" />
     <Content Include="Views\Shared\_footer.cshtml" />
-<<<<<<< HEAD
-<<<<<<< HEAD
-    <Content Include="Views\TestCart\GetCart.cshtml" />
-    <Content Include="Views\Shared\_cartpartial.cshtml" />
-=======
     <Content Include="Views\Members\Create.cshtml" />
     <Content Include="Views\Members\Delete.cshtml" />
     <Content Include="Views\Members\Details.cshtml" />
@@ -492,8 +495,6 @@
     <Content Include="Views\Account\SendCode.cshtml" />
     <Content Include="Views\Account\VerifyCode.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
->>>>>>> origin/Member
-=======
     <Content Include="Views\Shop\Single_Product.cshtml" />
     <Content Include="Views\Shop\Index.cshtml" />
     <Content Include="Views\Shared\_Topimage.cshtml" />
@@ -504,7 +505,6 @@
     <Content Include="Views\ShoppingCar\PrductCheckoutView.cshtml" />
     <Content Include="Views\ShoppingCar\PrductCheckButton.cshtml" />
     <Content Include="Views\Account\Index.cshtml" />
->>>>>>> origin/ShoppingCar_view
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

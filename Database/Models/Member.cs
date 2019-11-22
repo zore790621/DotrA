@@ -4,15 +4,19 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity.Spatial;
 
-namespace DotrA_001.Models
+namespace Database.Models
 {
     public partial class Member
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Member()
+        {
+            Orders = new HashSet<Order>();
+        }
         [Display(Name = "會員編號")]
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
         public int MemberID { get; set; }
-        
+
         [Display(Name = "帳號")]
         [Required]
         [StringLength(20)]
@@ -44,6 +48,7 @@ namespace DotrA_001.Models
         [StringLength(20)]
         public string Phone { get; set; }
 
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Order> Orders { get; set; }
     }
 }

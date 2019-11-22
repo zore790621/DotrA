@@ -12,7 +12,7 @@ namespace DotrA_001.Controllers
 {
     public class MembersController : Controller
     {
-        private MemberContext db = new MemberContext();
+        private DotrADbContext db = new DotrADbContext();
 
         // GET: Members
         public ActionResult Index()
@@ -50,6 +50,7 @@ namespace DotrA_001.Controllers
         {
             if (ModelState.IsValid)
             {
+
                 db.Members.Add(member);
                 db.SaveChanges();
                 return RedirectToAction("Index");

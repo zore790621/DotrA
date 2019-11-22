@@ -7,7 +7,6 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using DotrA_001.Models;
-using WebApplication2.Models;
 
 namespace DotrA_001.Controllers
 {

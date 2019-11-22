@@ -1,6 +1,7 @@
 ﻿using System.Data.Entity;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using ConnectionKey;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 
@@ -20,9 +21,9 @@ namespace DotrA_001.Models
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
-        public ApplicationDbContext()
-            : base("DefaultConnection", throwIfV1Schema: false)
+        public ApplicationDbContext() : base("name=DotrADb", throwIfV1Schema: false)
         {
+            Database.Connection.ConnectionString = Parameters.ConnectionString;
         }
 
         public static ApplicationDbContext Create()

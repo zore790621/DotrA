@@ -21,56 +21,28 @@
                 <li class="nav-item">@Html.ActionLink("About", "About", "Home", null, new { @class = "nav-link" })</li>
                 <li class="nav-item">@Html.ActionLink("Blog", "Blog", "Home", null, new { @class = "nav-link" })</li>
                 <li class="nav-item">@Html.ActionLink("Contact", "Contact", "Home", null, new { @class = "nav-link" })</li>
-<<<<<<< HEAD
-                <li class="nav-item">
-                    <a class="nav-link"><span class="icon-shopping_cart">@Html.Partial("_cartpartial")</span></a>
-=======
-                <li class="nav-item">@Html.ActionLink("Register", "Register", "Account", null, new { @class = "nav-link glyphicon glyphicon-user" })</li>
-                <li class="nav-item">@Html.ActionLink("Login", "Login", "Account", null, new { @class = "nav-link" })</li>
-                @*<li>
-                        @Html.ActionLink("您好 " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
-                    </li>
-                    <li><a href="javascript:document.getElementById('logoutForm').submit()">登出</a></li>*@
-                <li class="nav-item cta cta-colored">
-                    @*@Html.ActionLink("cartpartial","cartpartial","index",null,new { @class="nav-link"})*@
-                    <a href="cart.html" class="nav-link"><span class="icon-shopping_cart"></span>[0]</a>
->>>>>>> origin/Member
-                </li>
-<<<<<<< HEAD
-
-=======
-                @*<li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">CATALOG</a>
-                    <div class="dropdown-menu" aria-labelledby="dropdown04">
-                        @Html.ActionLink("Shop", "Shop", "Catalog", null, new { @class = "dropdown-item" })
-                        @Html.ActionLink("Single Product", "ProductSingle", "Catalog", null, new { @class = "dropdown-item" })
-                        @Html.ActionLink("Cart", "Cart", "Catalog", null, new { @class = "dropdown-item" })
-                        @Html.ActionLink("Checkout", "Checkout", "Catalog", null, new { @class = "dropdown-item" })
-                    </div>
-                </li>*@
->>>>>>> origin/ShoppingCar_view
-            </ul>
-            @if (Request.IsAuthenticated)
-            {
-                using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = " nav-link navbar-right" }))
+                @if (Request.IsAuthenticated)
                 {
-                    @Html.AntiForgeryToken()
-
-                    <ul class="nav navbar-nav navbar-right" style="color:black">
-                        <li>
-                            @Html.ActionLink("HiHi " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { @class = "nav-link", id ="LoginHi", title = "Manage" })
+                    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = " nav-link navbar-right" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        <li class="nav-link">
+                            @Html.ActionLink("HiHi " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { @class = "nav-link", id = "LoginHi", title = "Manage" })
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link">
+                                <span class="icon-shopping_cart">@Html.Partial("_cartpartial")</span>
+                            </a>
                         </li>
                         <li><a href="javascript:document.getElementById('logoutForm').submit()" style="color:black">登出</a></li>
-                    </ul>
+                    }
                 }
-            }
-            else
-            {
-                <ul class="nav navbar-nav navbar-right">
-                    <li>@Html.ActionLink("註冊", "Register", "Account", routeValues: null, htmlAttributes: new { @class = "nav-link", id = "registerLink" })</li>
-                    <li>@Html.ActionLink("登入", "Login", "Account", routeValues: null, htmlAttributes: new { @class = "nav-link", id = "loginLink" })</li>
-                </ul>
-            }
+                else
+                {
+                    <li class="nav-item">@Html.ActionLink("註冊", "Register", "Account", routeValues: null, htmlAttributes: new { @class = "nav-link", id = "registerLink" })</li>
+                    <li class="nav-item">@Html.ActionLink("登入", "Login", "Account", routeValues: null, htmlAttributes: new { @class = "nav-link", id = "loginLink" })</li>
+                }
+            </ul>
         </div>
     </div>
 </nav>
