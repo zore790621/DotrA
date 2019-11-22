@@ -1,4 +1,5 @@
 ﻿using System;
+<<<<<<< HEAD
 using System.Globalization;
 using System.Linq;
 using System.Security.Claims;
@@ -483,5 +484,21 @@ namespace DotrA_001.Controllers
             }
         }
         #endregion
+=======
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.Mvc;
+
+namespace DotrA_001.Controllers
+{
+    public class AccountController : Controller
+    {
+        // GET: Account
+        public ActionResult Index()
+        {
+            return View();
+        }
+>>>>>>> origin/ShoppingCar_view
     }
 }
