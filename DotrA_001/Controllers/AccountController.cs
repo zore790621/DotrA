@@ -83,7 +83,7 @@ namespace DotrA_001.Controllers
                 case SignInStatus.LockedOut:
                     return View("Lockout");
                 case SignInStatus.RequiresVerification:
-                    return RedirectToAction("SendCode", new { ReturnUrl = returnUrl, RememberMe = model.RememberMe });
+                    return RedirectToAction("SendCode", new NewClass(returnUrl, model.RememberMe));
                 case SignInStatus.Failure:
                 default:
                     ModelState.AddModelError("", "登入嘗試失試。");
@@ -315,7 +315,7 @@ namespace DotrA_001.Controllers
             {
                 return View("Error");
             }
-            return RedirectToAction("VerifyCode", new { Provider = model.SelectedProvider, ReturnUrl = model.ReturnUrl, RememberMe = model.RememberMe });
+            return RedirectToAction("VerifyCode", new { Provider = model.SelectedProvider, model.ReturnUrl, model.RememberMe });
         }
 
         //
@@ -482,5 +482,32 @@ namespace DotrA_001.Controllers
             }
         }
         #endregion
+    }
+
+    internal class NewClass
+    {
+        public string ReturnUrl { get; }
+        public bool RememberMe { get; }
+
+        public NewClass(string returnUrl, bool rememberMe)
+        {
+            ReturnUrl = returnUrl;
+            RememberMe = rememberMe;
+        }
+
+        public override bool Equals(object obj)
+        {
+            return obj is NewClass other &&
+                   ReturnUrl == other.ReturnUrl &&
+                   RememberMe == other.RememberMe;
+        }
+
+        public override int GetHashCode()
+        {
+            var hashCode = 1115147200;
+            hashCode = hashCode * -1521134295 + System.Collections.Generic.EqualityComparer<string>.Default.GetHashCode(ReturnUrl);
+            hashCode = hashCode * -1521134295 + RememberMe.GetHashCode();
+            return hashCode;
+        }
     }
 }
