@@ -16,7 +16,7 @@ namespace BackEndSystem
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "BackEnd", action = "LogIn", id = UrlParameter.Optional }
+                defaults: new { controller = "LogIn", action = "LogIn", id = UrlParameter.Optional }
             );
         }
     }

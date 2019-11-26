@@ -20,11 +20,15 @@ namespace BackEndSystem
                         "~/Scripts/modernizr-*"));
 
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
-                      "~/Scripts/bootstrap.js"));
+                      "~/Scripts/bootstrap.min.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Content/bootstrap.css",
-                      "~/Content/site.css"));
+                "~/Content/normalize.css",
+                      "~/Content/bootstrap.min.css",
+                      "~/Content/cs-skin-elastic.css",
+                      "~/Content/style.css"
+                      ));
+            //BundleTable.EnableOptimizations = true;
         }
     }
 }

@@ -14,17 +14,29 @@ namespace BackEndSystem.Controllers
             return View();
         }
 
-        public ActionResult About()
+        public ActionResult Member()
         {
-            ViewBag.Message = "Your application description page.";
 
             return View();
         }
 
-        public ActionResult Contact()
+        public ActionResult ProductList()
         {
-            ViewBag.Message = "Your contact page.";
+            return View();
+        }
 
+        public ActionResult AddProduct()
+        {
+            return View();
+        }
+
+        public ActionResult Storage()
+        {
+            return View();
+        }
+
+        public ActionResult OrderList()
+        {
             return View();
         }
     }

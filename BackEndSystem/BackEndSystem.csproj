@@ -120,7 +120,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Controllers\BackEndController.cs" />
+    <Compile Include="Controllers\LogInController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -131,16 +131,30 @@
   <ItemGroup>
     <Content Include="assets\css\cs-skin-elastic.css" />
     <Content Include="assets\css\style.css" />
+    <Content Include="assets\images\dinosaur.jpg" />
+    <Content Include="assets\images\littledinosaur.jpg" />
+    <Content Include="Content\cs-skin-elastic.css" />
+    <Content Include="Content\normalize.min.css" />
+    <Content Include="Content\style.css" />
+    <Content Include="assets\images\admin.jpg" />
+    <Content Include="assets\images\apple-touch-icon.ico" />
+    <Content Include="assets\images\apple-touch-icon.png" />
+    <Content Include="assets\images\avatar\1.jpg" />
+    <Content Include="assets\images\avatar\2.jpg" />
+    <Content Include="assets\images\avatar\3.jpg" />
+    <Content Include="assets\images\avatar\4.jpg" />
+    <Content Include="assets\images\avatar\5.jpg" />
+    <Content Include="assets\images\avatar\6.jpg" />
+    <Content Include="assets\images\avatar\64-1.jpg" />
+    <Content Include="assets\images\avatar\64-2.jpg" />
     <Content Include="assets\images\logo.png" />
+    <Content Include="assets\images\logo2.png" />
     <Content Include="assets\js\main.js" />
-    <Content Include="Content\bootstrap-theme.css" />
-    <Content Include="Content\bootstrap-theme.min.css" />
-    <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
-    <Content Include="Content\Site.css" />
+    <Content Include="htmlPages\order.html" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
@@ -165,11 +179,17 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
+    <Content Include="Views\Home\Member.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\_LogInLayout.cshtml" />
-    <Content Include="Views\BackEnd\LogIn.cshtml" />
+    <Content Include="Views\LogIn\LogIn.cshtml" />
+    <Content Include="Views\Shared\_navbar.cshtml" />
+    <Content Include="Views\Shared\_header.cshtml" />
+    <Content Include="Views\Home\ProductList.cshtml" />
+    <Content Include="Views\Home\AddProduct.cshtml" />
+    <Content Include="Views\Home\Storage.cshtml" />
+    <Content Include="Views\Home\OrderList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -180,9 +200,6 @@
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Content\bootstrap.min.css.map" />
-    <Content Include="Content\bootstrap.css.map" />
-    <Content Include="Content\bootstrap-theme.min.css.map" />
-    <Content Include="Content\bootstrap-theme.css.map" />
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.3.1.min.map" />
