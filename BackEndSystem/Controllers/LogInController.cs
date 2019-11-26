@@ -22,7 +22,7 @@ namespace DotrA_001.Controllers
             return View();
         }
 
-        [HttpPost,AllowAnonymous, ValidateAntiForgeryToken]
+        [HttpPost,AllowAnonymous, ValidateAntiForgeryToken, AntiForgeryErrorHandler]
         public ActionResult LogIn(LogInRequest data)
         {
             if (data.AdminAccount == "admin" && data.AdminPW == "admin")
@@ -31,7 +31,7 @@ namespace DotrA_001.Controllers
                 version: 1,
                 name: data.AdminAccount, //可以放使用者Id
                 issueDate: DateTime.UtcNow,//現在UTC時間
-                expiration: DateTime.UtcNow.AddMinutes(30),//Cookie有效時間=現在時間往後+30分鐘
+                expiration: DateTime.UtcNow.AddHours(1),//Cookie有效時間=現在時間往後+1小時
                 isPersistent: true,// 是否要記住我 true or false
                 userData: data.AdminAccount, //可以放使用者角色名稱
                 cookiePath: FormsAuthentication.FormsCookiePath);
