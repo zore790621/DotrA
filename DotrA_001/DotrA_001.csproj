@@ -196,6 +196,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Admin.cs" />
+    <Compile Include="Models\BackEnd\Platform.cs" />
     <Compile Include="Models\CartTest\Cart.cs" />
     <Compile Include="Models\CartTest\CartProduct.cs" />
     <Compile Include="Models\CartTest\HandleCart.cs" />

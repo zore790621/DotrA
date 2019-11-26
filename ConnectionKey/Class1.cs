@@ -100,6 +100,6 @@ namespace ConnectionKey
     }
     public class Parameters
     {
-        public static readonly string ConnectionString = "data source=.;initial catalog=BizDb;integrated security=True;MultipleActiveResultSets=True;App=EntityFramework";
+        public static readonly string ConnectionString = "data source=.;initial catalog=DotrA;integrated security=True;MultipleActiveResultSets=True;App=EntityFramework";
     }
 }

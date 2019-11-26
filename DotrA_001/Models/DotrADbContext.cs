@@ -7,7 +7,7 @@ using ConnectionKey;
 using System.IO;
 using Microsoft.AspNet.Identity.EntityFramework;
 
-namespace DotrA_001.Models
+namespace DotrA_001_Clone.Models
 {
     public partial class DotrADbContext : DbContext
     {

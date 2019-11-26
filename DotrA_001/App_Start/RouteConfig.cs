@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
 
-namespace DotrA_001
+namespace DotrA_001_Clone
 {
     public class RouteConfig
     {
