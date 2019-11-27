@@ -17,17 +17,24 @@
 
                 <!-- 數據總覽-->
                 <li class="menu-item-has-children dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-th"></i>商品管理</a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon ti-package"></i>商品管理</a>
                     <ul class="sub-menu children dropdown-menu">
-                        <li><i class="menu-icon fa fa-th"></i><a href="@Url.Action("ProductList", "Home")">商品列表</a></li>
-                        <li><i class="menu-icon fa fa-th"></i><a href="@Url.Action("AddProduct", "Home")">新增商品</a></li>
-                        <li><i class="menu-icon fa fa-th"></i><a href="@Url.Action("Storage", "Home")">庫存列表</a></li>
+                        <li><i class="menu-icon fa fa-table"></i><a href="@Url.Action("ProductList", "Home")">商品列表</a></li>
+                        <li><i class="menu-icon ti-plus"></i><a href="@Url.Action("AddProduct", "Home")">新增商品</a></li>
+                        <li><i class="menu-icon fa fa-table"></i><a href="@Url.Action("Storage", "Home")">庫存列表</a></li>
                     </ul>
                 </li>
                 <li class="menu-item-has-children dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-tasks"></i>訂單管理</a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon ti-clipboard"></i>訂單管理</a>
                     <ul class="sub-menu children dropdown-menu">
-                        <li><i class="menu-icon fa fa-fort-awesome"></i><a href="@Url.Action("OrderList", "Home")">訂單列表</a></li>
+                        <li><i class="menu-icon fa fa-table"></i><a href="@Url.Action("OrderList", "Home")">訂單列表</a></li>
+                    </ul>
+                </li>
+
+                <li class="menu-item-has-children dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-user"></i>會員管理</a>
+                    <ul class="sub-menu children dropdown-menu">
+                        <li><i class="menu-icon fa fa-table"></i><a href="@Url.Action("Index", "Members")">會員列表</a></li>
                     </ul>
                 </li>
             </ul>
