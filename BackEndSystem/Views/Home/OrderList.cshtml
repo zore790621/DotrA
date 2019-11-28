@@ -1,0 +1,96 @@
+﻿<div class="content">
+    <div class="animated fadeIn">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <strong class="card-title">訂單管理</strong>
+                        <button type="button" class="btn btn-outline-info" data-toggle="modal"
+                                data-target="#exampleModal" id="create">
+                            新增
+                        </button>
+                        <!-- <button id="create" type="button" class="btn btn-outline-info">新增</button> -->
+                        <!-- 參考1014storage2 -->
+                    </div>
+                    <div class="card-body">
+                        <table id="bootstrap-data-table" class="table table-striped table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>狀態</th>
+                                    <th>訂單編號</th>
+                                    <th>訂單日期</th>
+                                    <th>客戶名稱</th>
+                                    <th>物流方式</th>
+                                    <th>付款方式</th>
+                                    <th>物流編號</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <button id="Buttonexport" type="button" class="btn btn-primary"
+                                                data-dismiss="modal">
+                                            修改
+                                        </button>
+                                        <button type="button" class="btn btn-danger"
+                                                data-dismiss="modal">
+                                            刪除
+                                        </button>
+
+                                    </td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div><!-- .animated -->
+            </div><!-- .content -->
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <!-- 隱藏表格 -->
+            <div class="modal-header">
+                <h4 class="modal-title"> 新增</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div>
+                    <label>姓名:</label>
+                    <input type="text" value="" id="name" name="count" class="form-control">
+                </div>
+                <div>
+                    <label>生日:</label>
+                    <input type="text" value="" id="birthday" name="count" class="form-control">
+                </div>
+                <div>
+                    <label>電話:</label>
+                    <input type="text" value="" id="phone" name="count" class="form-control">
+                </div>
+                <div>
+                    <label>信箱:</label>
+                    <input type="text" value="" id="mail" name="count" class="form-control">
+                </div>
+                <div>
+                    <label>地址:</label>
+                    <input type="text" value="" id="address" name="count" class="form-control">
+                </div>
+                <div>
+                    <label>分類</label>
+                    <input type="text" value="" id="tag" name="count" class="form-control ">
+                </div>
+                <button type="button" class="btn btn-primary" id='add'>儲存</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+

@@ -1,0 +1,60 @@
+﻿@model IEnumerable<BackEndSystem.Models.Member>
+<div class="content">
+    <div class="animated fadeIn">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <strong class="card-title">會員管理</strong>
+                    </div>
+                    <div class="card-body">
+                        <p>
+                            @Html.ActionLink("新增會員", "Create")
+                        </p>
+                        <table id="bootstrap-data-table" class="table table-striped table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>帳號</th>
+                                    <th>姓名</th>
+                                    <th>E-mail</th>
+                                    <th>地址</th>
+                                    <th>電話</th>
+                                    @*<th></th>*@
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var m in Model)
+                                {
+                                    <tr>
+                                        <td>@Html.DisplayFor(x => m.MemberID)</td>
+                                        <td>@Html.DisplayFor(x => m.MemberAccount)</td>
+                                        <td>@Html.DisplayFor(x => m.Name)</td>
+                                        <td>@Html.DisplayFor(x => m.Email)</td>
+                                        <td>@Html.DisplayFor(x => m.Address)</td>
+                                        <td>@Html.DisplayFor(x => m.Phone)</td>
+                                        @*<td>
+                                            @Html.ActionLink("Edit", "Edit", new { id = m.MemberID }) |
+                                            @Html.ActionLink("Details", "Details", new { id = m.MemberID }) |
+                                            @Html.ActionLink("Delete", "Delete", new { id = m.MemberID })
+                                        </td>*@
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div><!-- .animated -->
+</div><!-- .content -->
+
+@section scripts{
+    @Scripts.Render("~/bundles/datatable")
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#bootstrap-data-table-export').DataTable();
+        });
+    </script>
+
+}
