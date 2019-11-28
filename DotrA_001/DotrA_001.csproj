@@ -148,17 +148,16 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\TestCartController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Cart.cs" />
     <Compile Include="Models\CartProduct.cs" />
-    <Compile Include="Models\ConnectionDotrADb.cs" />
-    <Compile Include="Models\DotrADbEntities.cs" />
-    <Compile Include="Models\DotrADb.cs" />
     <Compile Include="Models\HandleCart.cs" />
     <Compile Include="Models\Justfortest.cs" />
+    <Compile Include="Models\ViewModel\ProductViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -202,6 +201,10 @@
     <Content Include="Content\bootstrap-datepicker.standalone.css.map" />
     <Content Include="Content\bootstrap-datepicker.css.map" />
     <None Include="Properties\PublishProfiles\DotrA - Web Deploy.pubxml" />
+    <Content Include="Jpg\cat1.jpg" />
+    <Content Include="Jpg\cat2.jpg" />
+    <Content Include="Jpg\cat3.jpg" />
+    <Content Include="Jpg\cat4.jpg" />
     <Content Include="Scripts\bootstrap-datepicker.js" />
     <Content Include="Scripts\bootstrap-datepicker.min.js" />
     <Content Include="Scripts\bootstrap.bundle.js" />
@@ -228,6 +231,8 @@
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery.magnific-popup.js" />
     <Content Include="Scripts\jquery.magnific-popup.min.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
@@ -351,11 +356,12 @@
     <Content Include="Scripts\popper-utils.js.map" />
     <Content Include="Views\Shared\_navbar.cshtml" />
     <Content Include="Views\Shared\_footer.cshtml" />
-    <Content Include="Views\TestCart\GetCart.cshtml" />
     <Content Include="Views\Shared\_cartpartial.cshtml" />
+    <Content Include="Views\Product\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\TestCart\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -370,6 +376,10 @@
     <ProjectReference Include="..\ConnectionKey\ConnectionKey.csproj">
       <Project>{e2db1790-3042-43e8-b8ed-09023540dc2d}</Project>
       <Name>ConnectionKey</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DotrADatabase\DotrADatabase.csproj">
+      <Project>{4daeb987-b58f-4ed0-9b5f-138e4582a184}</Project>
+      <Name>DotrADatabase</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

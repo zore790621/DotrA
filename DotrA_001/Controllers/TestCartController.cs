@@ -44,7 +44,7 @@ namespace DotrA_001.Controllers
                     i.ProductQuantity++;
                 }
             }
-            return Content(string.Format($"目前金額為{cart.TotalAmount}元"));
+          return Content(string.Format($"目前金額為{cart.TotalAmount}元"));
         }
         public ActionResult Index()
         {

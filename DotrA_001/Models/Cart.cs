@@ -14,6 +14,7 @@ namespace DotrA_001.Models
         {
             this.CartProducts = new List<CartProduct>();
         }
+        //儲存購物車商品
         public List<CartProduct> CartProducts;
 
 
@@ -21,8 +22,7 @@ namespace DotrA_001.Models
         public int count {
             get {
                 return this.CartProducts.Count;
-            }
-        
+            }      
         }
 
 
@@ -38,6 +38,7 @@ namespace DotrA_001.Models
                 return totalamount;
             }
         }
+
 
         public IEnumerator<CartProduct> GetEnumerator()
         {
