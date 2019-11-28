@@ -20,7 +20,7 @@ namespace BackEndSystem
 
             bundles.Add(new ScriptBundle("~/bundles/datatable").Include(
                 "~/assets/js/data-table/datatables.min.js",
-                "~/assets/js/data-table/dataTables.bootstrap.min.js",
+                "~/assets/js/data-table/dataTables.bootstrap4.min.js",
                 "~/assets/js/data-table/dataTables.buttons.min.js",
                 "~/assets/js/data-table/buttons.bootstrap.min.js",
                 "~/assets/js/data-table/jszip.min.js",
