@@ -98,4 +98,8 @@ namespace ConnectionKey
             return "";
         }
     }
+    public class Parameters
+    {
+        public static readonly string ConnectionString = "data source=.;initial catalog=DotrA;integrated security=True;MultipleActiveResultSets=True;App=EntityFramework";
+    }
 }
