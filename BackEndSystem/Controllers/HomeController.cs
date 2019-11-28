@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BackEndSystem.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -14,11 +15,13 @@ namespace BackEndSystem.Controllers
             return View();
         }
 
-        public ActionResult Member()
-        {
+        //public ActionResult Member()
+        //{
+        //    DotrAContext context = new DotrAContext();
+        //    var member = context.Members.ToList();
 
-            return View();
-        }
+        //    return View(member);
+        //}
 
         public ActionResult ProductList()
         {
