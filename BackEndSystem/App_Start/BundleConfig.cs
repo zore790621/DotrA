@@ -19,6 +19,7 @@ namespace BackEndSystem
                         "~/Scripts/jquery-{version}.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/datatable").Include(
+                 "~/Scripts/jquery.min.js",
                 "~/assets/js/data-table/datatables.min.js",
                 "~/assets/js/data-table/dataTables.bootstrap4.min.js",
                 "~/assets/js/data-table/dataTables.buttons.min.js",
@@ -30,6 +31,7 @@ namespace BackEndSystem
                 "~/assets/js/datatables-init.js",
                 "~/assets/js/data-table/buttons.colVis.min.js",
                 "~/assets/js/init/datatables-init.js"
+              
                  ));
 
 
