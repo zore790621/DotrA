@@ -42,3 +42,21 @@
         </div>
     </div>
 </div>
+
+
+@section scripts{
+    @Scripts.Render("~/bundles/datatable")
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#bootstrap-data-table-export').DataTable();
+
+            $("#cancel").click(function (e) {
+
+                $(".htesxt").html("");
+
+            });
+        });
+
+    </script>
+
+}
