@@ -16,7 +16,7 @@ namespace DotrA_001.Models
         [Display(Name = "密碼")]
         [DataType(DataType.Password)]
         [Required(ErrorMessage = "必填欄位")]
-        [StringLength(20)]
+        //[StringLength(20)]
         public string Password { get; set; }
         [Display(Name = "姓名")]
         [Required(ErrorMessage = "必填欄位")]
@@ -35,5 +35,7 @@ namespace DotrA_001.Models
         [Required(ErrorMessage = "必填欄位")]
         [StringLength(20)]
         public string Phone { get; set; }
+        public string HashCode { get; set; }//hash加密
+
     }
 }

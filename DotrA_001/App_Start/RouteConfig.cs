@@ -16,7 +16,7 @@ namespace DotrA_001
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Members", action = "Login", id = UrlParameter.Optional }
+                defaults: new { controller = "Members", action = "Register", id = UrlParameter.Optional }
             );
         }
     }
