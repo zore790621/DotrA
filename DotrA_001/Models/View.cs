@@ -5,7 +5,9 @@ using System.Web;
 
 namespace DotrA_001.Models
 {
-    public class Product
+    public class View
     {
+        public Members Member { get; set; }
+        public IEnumerable<Product> Products { get; set; }
     }
 }

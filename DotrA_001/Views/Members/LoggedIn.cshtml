@@ -1,0 +1,22 @@
+﻿@{
+    ViewBag.Title = "LoggedIn";
+    Layout = "~/Views/Shared/_LayoutRegistration.cshtml";
+}
+<section class="ftco-section bg-light">
+    @if (Session["MemberID"] != null)
+    {
+        <div class="jumbotron">
+            <h4 class="text-danger text-center">HiHi!! @Session["MemberAccount"].ToString()</h4>
+        </div>
+        <div class="text-center">
+            <a class="btn btn-primary btn-lg" href="@Url.Action("Index","Home")"
+               role="button">Back To Home</a>
+        </div>
+    }
+</section>
+@section topCss{
+    @*<link href="~/Assets/css/customStyle.css" rel="stylesheet" />*@
+
+}
+@section endJS{
+}

@@ -1,4 +1,9 @@
-﻿@*圖片放置區域*@
+﻿@model DotrA_001.Models.Members
+
+@{
+    //var userid = Model.MemberID;
+}
+
 <div class="row">
     <div class="col-sm-12 col-md-12 col-lg-4 ftco-animate d-flex fadeInUp ftco-animated">
         <div class="product d-flex flex-column">
@@ -30,7 +35,7 @@
 
                     @*購物車ActionLink*@
                     @*@Html.ActionLink("Buy now", "index", "ShoppingCar", null, new { @class = "buy-now text-center py-2 ion-ios-cart ml-1" })*@
-                    <a href="@Url.Action( "index","ShoppingCar")" class="buy-now text-center py-2">Buy now<span><i class="ion-ios-cart ml-1"></i></span></a>
+                    <a href="@Url.Action( "index","ShoppingCar" ,new { id = Model.MemberID })" class="buy-now text-center py-2">Buy now<span><i class="ion-ios-cart ml-1"></i></span></a>
                 </p>
             </div>
         </div>

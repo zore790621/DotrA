@@ -1,7 +1,7 @@
 ﻿using System.Web;
 using System.Web.Mvc;
 
-namespace DotrA_001_Clone
+namespace DotrA_001
 {
     public class FilterConfig
     {

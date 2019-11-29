@@ -1,4 +1,5 @@
-﻿
+﻿@model Members
+
 @Html.Partial("_Topimage")
 <section class="ftco-section ftco-cart">
     <div class="container">
@@ -9,3 +10,26 @@
         @Html.Partial("PrductCheckButton")
     </div>
 </section>
+@section endJS{
+    <script>
+        //console.log($('.mousedown'));
+        $(function () {
+            $('#mousedown').click(function () {
+                let btn = $('#myDIV').css('display');
+                if (btn === 'none') {
+                    $('#mymousedown-ion').removeClass();
+                    $('#mymousedown-ion').addClass('ion-ios-arrow-up');
+                    $('#mymousedown-wheel').css('-webkit-animation', '1.6s ease infinite wheel-up-down');
+                    $('#mymousedown-wheel').css('animation', '1.6s ease infinite wheel-up-down');
+                    $('#myDIV').css('display', 'block');
+                } else {
+                    $('#mymousedown-ion').removeClass();
+                    $('#mymousedown-ion').addClass('ion-ios-arrow-down');
+                    $('#mymousedown-wheel').css('-webkit-animation', '1.6s ease infinite wheel-up-down1');
+                    $('#mymousedown-wheel').css('animation', '1.6s ease infinite wheel-up-down1');
+                    $('#myDIV').css('display', 'none');
+                }
+            });
+        });
+    </script>
+}
