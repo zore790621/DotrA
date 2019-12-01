@@ -31,7 +31,7 @@ namespace DotrA_001.Helper
             HashAlgorithm algorithm = HashAlgorithm.Create("SHA1");
             byte[] inArray = algorithm.ComputeHash(dst);
             //return Convert.ToBase64String(inArray);    
-            return EncodePasswordMd5(Convert.ToBase64String(inArray));
+            return SHA256Hash(Convert.ToBase64String(inArray));
         }
         public static string EncodePasswordMd5(string pass) //Encrypt using MD5    
         {
@@ -76,6 +76,12 @@ namespace DotrA_001.Helper
             {
                 throw new Exception("Error in base64Decode" + ex.Message);
             }
+        }
+        public static string SHA256Hash(string value)//Encrypt using SHA256
+        {
+            return Convert.ToBase64String(
+                SHA256.Create() .ComputeHash(Encoding.UTF8.GetBytes(value))
+                );
         }
     }
 }

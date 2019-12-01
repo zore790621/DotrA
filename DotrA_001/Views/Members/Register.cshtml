@@ -10,15 +10,15 @@
     {
         @Html.AntiForgeryToken()
         <div class="container">
-            <div class="form-horizontal">
+            <div class="form-horizontal text-center">
                 @if (ViewBag.Message != null)
                 {
                     <div class="form-group">
-                        <div class="jumbotron text-center text-danger">
+                        <div class="jumbotron text-danger">
                             <h3 class="text-danger"><i>@ViewBag.Message</i></h3>
-                            <a class="btn btn-primary btn-lg" href="@Url.Action("Login","Members")"
+                            <a class="btn " href="@Url.Action("Login","Members")"
                                role="button">Click To Login</a>
-                            <a class="btn btn-primary btn-lg" href="@Url.Action("Index","Home")"
+                            <a class="btn " href="@Url.Action("Index","Home")"
                                role="button">Back To Home</a>
                         </div>
                     </div>
@@ -27,71 +27,72 @@
                 <hr />
                 @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                 <div class="form-group">
-                    @Html.LabelFor(model => model.MemberAccount, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.EditorFor(model => model.MemberAccount, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.LabelFor(model => model.MemberAccount, htmlAttributes: new { @class = "control-label" })
+                    <div class=" ">
+                        @Html.EditorFor(model => model.MemberAccount, new { htmlAttributes = new { @class = "form-control", @placeholder = "請輸入帳號" } })
                         @Html.ValidationMessageFor(model => model.MemberAccount, "", new { @class = "text-danger" })
+                        @Html.ValidationMessage("AccountExist", new { @class = "text-danger" })
                     </div>
                 </div>
 
                 <div class="form-group">
-                    @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label" })
+                    <div class=" ">
+                        @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control", @placeholder = "請輸入密碼" } })
                         @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
                     </div>
                 </div>
 
                 <div class="form-group">
-                    @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label" })
+                    <div class=" ">
+                        @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control", @placeholder = "請輸入姓名" } })
                         @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
                     </div>
                 </div>
 
                 <div class="form-group">
-                    @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label" })
+                    <div class=" ">
+                        @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control", @placeholder = "請輸入Email" } })
                         @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                        @Html.ValidationMessage("EmailExist", new { @class = "text-danger" })
                     </div>
                 </div>
 
                 <div class="form-group">
-                    @Html.LabelFor(model => model.Address, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.EditorFor(model => model.Address, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.LabelFor(model => model.Address, htmlAttributes: new { @class = "control-label" })
+                    <div class=" ">
+                        @Html.EditorFor(model => model.Address, new { htmlAttributes = new { @class = "form-control", @placeholder = "請輸入地址" } })
                         @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
                     </div>
                 </div>
 
                 <div class="form-group">
-                    @Html.LabelFor(model => model.Phone, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.EditorFor(model => model.Phone, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.LabelFor(model => model.Phone, htmlAttributes: new { @class = "control-label" })
+                    <div class="">
+                        @Html.EditorFor(model => model.Phone, new { htmlAttributes = new { @class = "form-control", @placeholder = "請輸入電話" } })
                         @Html.ValidationMessageFor(model => model.Phone, "", new { @class = "text-danger" })
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <div class="col-md-offset-2 col-md-10">
-                        <input type="submit" value="Register" class="btn btn-outline-success" />
+                    <div class="">
+                        <input type="submit" value="Register" class="btn " />
                     </div>
                 </div>
             </div>
             <div class="text-center">
-                <a class="btn btn-primary btn-lg" href="@Url.Action("Login","Members")"
+                <a class="btn " href="@Url.Action("Login","Members")"
                    role="button">Click To Login</a>
-                <a class="btn btn-primary btn-lg" href="@Url.Action("Index","Home")"
+                <a class="btn " href="@Url.Action("Index","Home")"
                    role="button">Back To Home</a>
             </div>
         </div>
     }
 </section>
 @section topCss{
-    @*<link href="~/Assets/css/customStyle.css" rel="stylesheet" />*@
-
+<link href="~/Assets/css/RegisterStyle.css" rel="stylesheet" />
 }
 @section endJS{
 }

@@ -10,8 +10,10 @@ using System.Web.Security;
 using DotrA_001.Models;
 using System.Security.Cryptography;
 using System.Text;
-using Scrypt;
 using DotrA_001.Helper;
+using DotrA_001.Models.ViewModels;
+using System.Net.Mail;
+using System.Web.Helpers;
 
 namespace DotrA_001.Controllers
 {
@@ -24,7 +26,7 @@ namespace DotrA_001.Controllers
         {
             return View(db.Members.ToList());
         }
-        #region Register system
+        #region Register註冊
         // GET: Members/Register
         [AllowAnonymous]//在執行Action時,略過驗證/授權的處理
         public ActionResult Register()
@@ -32,82 +34,142 @@ namespace DotrA_001.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult Register(Member member)
+        public ActionResult Register([Bind(Exclude = "EmailVerified,ActivationCode")]Member member)
         {
-            //ScryptEncoder encoder = new ScryptEncoder();
+            string message = "";
             if (ModelState.IsValid)
             {
-                //using (DotrADbContext db = new DotrADbContext())
-                //{ }
-                //檢查帳號是否已經存在
-                var registerAccount = (from m in db.Members
-                                    where m.MemberAccount.Equals(member.MemberAccount)
-                                    select m).SingleOrDefault();
-                if (registerAccount != null)
+                #region //檢查信箱是否已經存在
+                var isExist = IsEmailExist(member.Email);
+                if (isExist)
                 {
-                    ViewBag.Message = "此帳號已經存在，請更換帳號!!";
+                    ModelState.AddModelError("EmailExist", "Email已經存在請更換!! This Email already exist");
                     return View();
                 }
-                //hash加密
+                #endregion
+                #region //檢查帳號是否已經存在
+                var registerAccount = (from m in db.Members
+                                       where m.MemberAccount.Equals(member.MemberAccount)
+                                       select m).SingleOrDefault();
+                if (registerAccount != null)
+                {
+                    ModelState.AddModelError("AccountExist", "此帳號已經存在，請更換帳號!! This Account already registered.");
+                    //ViewBag.Message = "此帳號已經存在，請更換帳號!!";
+                    return View();
+                }
+                #endregion
+                #region //產生 Activation Code 
+                member.ActivationCode = Guid.NewGuid();
+                //var keyNew = hash.GeneratePassword(10);
+                #endregion
+                #region //hash 加密
                 var keyNew = hash.GeneratePassword(10);
                 member.HashCode = keyNew;
                 var password = hash.EncodePassword(member.Password, keyNew);
                 member.Password = password;
+                #endregion
+                member.EmailVerified = false;//註冊時將Email認證設為false
 
                 db.Members.Add(member);
                 db.SaveChanges();
-             
+                #region //Send Email to Account
+                SendVerificationLinkEmail(member.Email, member.ActivationCode.ToString());
+                message = "Registration successfully done. Account activation link " +
+                    " has been sent to your email : " + member.Email; /*"恭喜!!  " + member.MemberAccount + "  已成功註冊"*/
+                #endregion
+
                 ModelState.Clear();//清除 (包含錯誤訊息與模型繫結的資料都會被清空)
-                ViewBag.Message = "恭喜!!  " + member.MemberAccount + "  已成功註冊";
+                ViewBag.Message = message;
                 //return RedirectToAction("Login");
             }
             return View();
         }
         #endregion
-        #region Login system
+        #region 驗證帳號
+        [HttpGet]
+        public ActionResult VerifyAccount(string id)
+        {
+            bool Status = false;
+
+            db.Configuration.ValidateOnSaveEnabled = false; // This line I have added here to avoid 
+                                                            // Confirm password does not match issue on save changes
+            var v = db.Members.Where(x => x.ActivationCode == new Guid(id)).FirstOrDefault();
+            if (v != null)
+            {
+                v.EmailVerified = true;
+                db.SaveChanges();
+                Status = true;
+            }
+            else
+            {
+                ViewBag.Message = "Invalid Request";
+            }
+
+            ViewBag.Status = Status;
+            return View();
+        }
+        #endregion
+        #region Login登入/登出
         // GET: Members/Login
         public ActionResult Login()
         {
             return View();
         }
         [HttpPost]
-        public ActionResult Login(Member member)
+        //[ValidateAntiForgeryToken]
+        public ActionResult Login(Member member, LoginVM login)
         {
-            //using (DotrADbContext db = new DotrADbContext())
-            //{ }
             //var user = db.Members.Where(x => x.MemberAccount == member.MemberAccount && x.Password == member.Password).FirstOrDefault();
-            var user = (from s in db.Members 
-                        where s.MemberAccount == member.MemberAccount
+            var user = (from s in db.Members
+                        where s.MemberAccount == member.MemberAccount || s.Password == member.Password
                         select s).FirstOrDefault();
             if (user != null)
-            {   //為所提供的使用者名稱建立驗證票證，並將該票證加入至回應的Cookie,或加入至URL
-                FormsAuthentication.SetAuthCookie(member.MemberAccount, false);// createPersistentCookie:false(不要記住我)
-                Session["MemberID"] = user.MemberID.ToString();
-                Session["MemberAccount"] = user.MemberAccount.ToString();
-                
+            {
+                if (!user.EmailVerified)
+                {
+                    ViewBag.Message = "Please verify your email first 請先到信箱啟動驗證";
+                    return View();
+                }
+                #region 驗證票證
+                //為所提供的使用者名稱建立驗證票證，並將該票證加入至回應的Cookie,或加入至URL
+                //FormsAuthentication.SetAuthCookie(member.MemberAccount, false);// createPersistentCookie:false(不要記住我)
+                //Session["MemberID"] = user.MemberID.ToString();
+                //Session["MemberAccount"] = user.MemberAccount.ToString();
+
+                int timeout = login.RememberMe ? 525600 : 20; // 525600 min = 1 year
+                var ticket = new FormsAuthenticationTicket(login.MemberAccount, login.RememberMe, timeout);
+                string encrypted = FormsAuthentication.Encrypt(ticket);
+                var cookie = new HttpCookie(FormsAuthentication.FormsCookieName, encrypted);
+                cookie.Expires = DateTime.Now.AddMinutes(timeout);
+                cookie.HttpOnly = true;
+                Response.Cookies.Add(cookie);
+                #endregion
+
+
                 //hash解密
                 var HCode = user.HashCode;
                 var encodingPasswordString = hash.EncodePassword(member.Password, HCode);
+
                 //Check Login Detail MemberAccount Or Password    
                 var Account = (from s in db.Members
-                               where (s.MemberAccount == member.MemberAccount || s.MemberID == member.MemberID) && s.Password.Equals(encodingPasswordString) 
+                               where (s.MemberAccount == member.MemberAccount || s.MemberID == member.MemberID) && s.Password.Equals(encodingPasswordString)
                                select s).FirstOrDefault();
                 if (Account != null)
                 {
                     return RedirectToAction("LoggedIn");
                     //return RedirectToAction("Index", "Members");
                 }
-                else
-                {
-                    ModelState.AddModelError("", " 帳號或密碼輸入錯誤.");
-                }
+                ViewBag.Message = "帳號或密碼輸入錯誤!! Invallid Account or Password.";
+                return View();
             }
-            
+
+            ViewBag.Message = "帳號或密碼輸入錯誤!! Invallid Account or Password.";
+            //ModelState.AddModelError("", "帳號或密碼輸入錯誤!!")
             return View();
         }
         public ActionResult LoggedIn()
         {
-            if (Session["MemberID"] != null)
+            if (Request.IsAuthenticated)
             {
                 return View();
             }
@@ -120,7 +182,156 @@ namespace DotrA_001.Controllers
         {
             FormsAuthentication.SignOut();//登出,移除身份驗證資料cookie 
             //Session.Abandon();//清除伺服器記憶體中的 Session  
-            return RedirectToAction("Login");
+            return RedirectToAction("Login", "Members");
+        }
+        #endregion
+        #region 判斷Email是存在
+        [NonAction]
+        public bool IsEmailExist(string email)
+        {
+            var v = db.Members.Where(a => a.Email == email).FirstOrDefault();
+            return v != null;
+        }
+        #endregion
+        #region 寄送認證信 SendVerificationLinkEmail
+        [NonAction]
+        public void SendVerificationLinkEmail(string Email, string activationCode, string emailFor = "VerifyAccount")
+        {
+            var verifyUrl = "/Members/" + emailFor + "/" + activationCode;
+            var link = Request.Url.AbsoluteUri.Replace(Request.Url.PathAndQuery, verifyUrl);
+
+            var fromEmail = new MailAddress("chjh8250@gmail.com", "MiniShop");
+            var toEmail = new MailAddress(Email);
+            var fromEmailPassword = "vkxwwsltygwmjcdy"; // Replace with actual password
+
+            string subject = "";
+            string body = "";
+            if (emailFor == "VerifyAccount")
+            {
+                subject = "Your account is successfully created!";
+                body = "<br/><br/>We are excited to tell you that your MiniShop account is" +
+                    " successfully created. Please click on the below link to verify your account" +
+                    " <br/><br/><a href='" + link + "'>" + link + "</a> ";
+
+            }
+            else if (emailFor == "ResetPassword")
+            {
+                subject = "Reset Password";
+                body = "Hi,<br/><br/>We got request for reset your account password. Please click on the below link to reset your password" +
+                    "<br/><br/><a href=" + link + ">Reset Password link</a>";
+            }
+
+
+            var smtp = new SmtpClient
+            {
+                Host = "smtp.gmail.com",
+                Port = 587,
+                EnableSsl = true,
+                DeliveryMethod = SmtpDeliveryMethod.Network,
+                UseDefaultCredentials = false,
+                Credentials = new NetworkCredential(fromEmail.Address, fromEmailPassword)
+            };
+
+            using (var message = new MailMessage(fromEmail, toEmail)
+            {
+                Subject = subject,
+                Body = body,
+                IsBodyHtml = true
+            })
+                smtp.Send(message);
+        }
+        #endregion
+        #region 忘記密碼
+        public ActionResult ForgotPassword()
+        {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult ForgotPassword(string Email)
+        {
+            //Verify Email ID
+            //Generate Reset password link 
+            //Send Email 
+            string message = "";
+            bool status = false;
+
+            var account = db.Members.Where(x => x.Email == Email).FirstOrDefault();
+            if (account != null)
+            {
+                //Send email for reset password
+                string resetCode = Guid.NewGuid().ToString();
+                SendVerificationLinkEmail(account.Email, resetCode, "ResetPassword");
+                account.ResetPasswordCode = resetCode;
+                //This line I have added here to avoid confirm password not match issue , as we had added a confirm password property 
+                //in our model class in part 1
+                db.Configuration.ValidateOnSaveEnabled = false;
+                db.SaveChanges();
+                message = "Reset password link has been sent to your Email.";
+            }
+            else
+            {
+                message = "Account not found";
+            }
+
+            ViewBag.Message = message;
+            return View();
+        }
+        #endregion
+        #region 重設密碼
+        public ActionResult ResetPassword(string id)
+        {
+            //Verify the reset password link
+            //Find account associated with this link
+            //redirect to reset password page
+            if (string.IsNullOrWhiteSpace(id))
+            {
+                return HttpNotFound();
+            }
+
+            var user = db.Members.Where(a => a.ResetPasswordCode == id).FirstOrDefault();
+            if (user != null)
+            {
+                ResetPasswordVM model = new ResetPasswordVM();
+                model.ResetCode = id;
+                return View(model);
+            }
+            else
+            {
+                return HttpNotFound();
+            }
+
+        }
+
+        [HttpPost]
+        public ActionResult ResetPassword(ResetPasswordVM model)
+        {
+            var message = "";
+            if (ModelState.IsValid)
+            {
+                using (DotrADbContext db = new DotrADbContext())
+                {
+                    var user = db.Members.Where(x => x.ResetPasswordCode == model.ResetCode).FirstOrDefault();
+                    if (user != null)
+                    {
+                        var keyNew = hash.GeneratePassword(10);
+                        user.HashCode = keyNew;
+                        var password = hash.EncodePassword(model.NewPassword, keyNew);
+                        user.Password = password;
+
+                        user.ResetPasswordCode = "";
+                        db.Configuration.ValidateOnSaveEnabled = false;
+                        db.SaveChanges();
+                        message = "New password updated successfully";
+                    }
+                }
+
+            }
+            else
+            {
+                message = "Something invalid";
+            }
+            ViewBag.Message = message;
+            return View();
         }
         #endregion
         #region CRUD
@@ -174,7 +385,7 @@ namespace DotrA_001.Controllers
         // 詳細資訊，請參閱 https://go.microsoft.com/fwlink/?LinkId=317598。
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "MemberID,MemberAccount,Password,Name,Email,Address,Phone")] Member member)
+        public ActionResult Edit([Bind(Exclude = "EmailVerified")] Member member)
         {
             if (ModelState.IsValid)
             {
@@ -186,7 +397,7 @@ namespace DotrA_001.Controllers
         }
 
         // GET: Members/Delete/5
-        public ActionResult Delete(int? id)
+        public ActionResult Delete([Bind(Exclude = "EmailVerified")]int? id)
         {
             if (id == null)
             {
@@ -203,7 +414,7 @@ namespace DotrA_001.Controllers
         // POST: Members/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
+        public ActionResult DeleteConfirmed([Bind(Exclude = "EmailVerified")]int id)
         {
             Member member = db.Members.Find(id);
             db.Members.Remove(member);

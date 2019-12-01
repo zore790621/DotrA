@@ -23,7 +23,7 @@ namespace DotrA_001.Models
         [StringLength(50)]
         public string Name { get; set; }
         [Display(Name = "信箱")]
-        //[DataType(DataType.EmailAddress)]
+        [DataType(DataType.EmailAddress)]
         [Required(ErrorMessage = "必填欄位")]
         [StringLength(50)]
         public string Email { get; set; }
@@ -36,6 +36,8 @@ namespace DotrA_001.Models
         [StringLength(20)]
         public string Phone { get; set; }
         public string HashCode { get; set; }//hash加密
-
+        public bool EmailVerified { get; set; }
+        public Guid ActivationCode { get; set; }
+        public string ResetPasswordCode { get; set; }
     }
 }
