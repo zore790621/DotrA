@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace DotrA_001_Clone.Models.BackEnd
+namespace DotrA_001.Models.BackEnd
 {
     public class Platform
     {

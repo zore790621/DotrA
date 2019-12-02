@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity.Spatial;
 
-namespace DotrA_001_Clone.Models
+namespace DotrA_001.Models
 {
     public partial class Member
     {
@@ -43,7 +43,5 @@ namespace DotrA_001_Clone.Models
         [RegularExpression(@"^\d{4}\-?\d{3}\-?\d{3}$", ErrorMessage = "需為09xx-xxx-xxx格式")]
         [StringLength(20)]
         public string Phone { get; set; }
-
-        public virtual ICollection<Order> Orders { get; set; }
     }
 }

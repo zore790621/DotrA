@@ -5,10 +5,10 @@ using Microsoft.Owin;
 using Microsoft.Owin.Security.Cookies;
 //using Microsoft.Owin.Security.Google;
 using Owin;
-using DotrA_001_Clone.Models;
+using DotrA_001.Models;
 using Microsoft.Owin.Security;
 
-namespace DotrA_001_Clone
+namespace DotrA_001
 {
     public partial class Startup
     {

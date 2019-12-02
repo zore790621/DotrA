@@ -1,4 +1,4 @@
-﻿@model DotrA_001.Models.Members
+﻿@model Member
 
 <div class="row justify-content-center">
     <div class="col col-lg-10 col-md-10 mt-5 cart-wrap ftco-animate">
@@ -67,9 +67,10 @@
                                 </div>
                                 <div class="w-100"></div>
                                 <div class="col-md-12">
-                                    <div class="form-group">
+                                    <div class="form-group ">
                                         <label for="streetaddress">Email_電子信箱</label>
-                                        <input type="text" class="form-control" placeholder="Email" value="@Model.Email">
+                                        <br/>
+                                        <input type="text" class="no-border" placeholder="Email" value="@Model.Email">
                                     </div>
                                 </div>
 
@@ -77,14 +78,16 @@
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label for="towncity">居住地址</label>
-                                        <input type="text" class="form-control" placeholder="Address" value="@Model.Address">
+                                        <br />
+                                        <input type="text" class="no-border" placeholder="Address" value="@Model.Address">
                                     </div>
                                 </div>
                                 <div class="w-100"></div>
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label for="phone">電話</label>
-                                        <input type="text" class="form-control" placeholder="Phone" value="@Model.Phone">
+                                        <br />
+                                        <input type="text" class="no-border" placeholder="Phone" value="@Model.Phone">
                                     </div>
                                 </div>
                             </div>

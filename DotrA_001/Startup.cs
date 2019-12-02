@@ -1,8 +1,8 @@
 ﻿using Microsoft.Owin;
 using Owin;
 
-[assembly: OwinStartupAttribute(typeof(DotrA_001_Clone.Startup))]
-namespace DotrA_001_Clone
+[assembly: OwinStartupAttribute(typeof(DotrA_001.Startup))]
+namespace DotrA_001
 {
     public partial class Startup
     {

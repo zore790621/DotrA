@@ -6,9 +6,9 @@ using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
-using DotrA_001_Clone.Models;
+using DotrA_001.Models;
 
-namespace DotrA_001_Clone.Controllers
+namespace DotrA_001.Controllers
 {
     [Authorize]
     public class ManageController : Controller

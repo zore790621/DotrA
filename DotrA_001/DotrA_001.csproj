@@ -195,7 +195,6 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\Admin.cs" />
     <Compile Include="Models\BackEnd\Platform.cs" />
     <Compile Include="Models\CartTest\Cart.cs" />
     <Compile Include="Models\CartTest\CartProduct.cs" />
@@ -204,17 +203,12 @@
     <Compile Include="Controllers\MembersController.cs" />
     <Compile Include="Controllers\ShopController.cs" />
     <Compile Include="Controllers\ShoppingCarController.cs" />
-    <Compile Include="Models\Category.cs" />
-    <Compile Include="Models\Order.cs" />
-    <Compile Include="Models\OrderDetail.cs" />
-    <Compile Include="Models\Payment.cs" />
-    <Compile Include="Models\Product.cs" />
-    <Compile Include="Models\Shipper.cs" />
-    <Compile Include="Models\Supplier.cs" />
+    <Compile Include="Models\CategoryView.cs" />
+    <Compile Include="Models\ProductView.cs" />
+    <Compile Include="Models\ShopView.cs" />
+    <Compile Include="Models\SupplierView.cs" />
     <Compile Include="Models\ViewModels\AccountViewModels.cs" />
     <Compile Include="Models\ConnectionStringTest\ConnectionDotrADb.cs" />
-    <Compile Include="Models\ConnectionStringTest\DotrADbEntities.cs" />
-    <Compile Include="Models\DotrADbContext.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ViewModels\ManageViewModels.cs" />
     <Compile Include="Models\Member.cs" />
@@ -506,6 +500,12 @@
     <Content Include="Views\ShoppingCar\PrductCheckoutView.cshtml" />
     <Content Include="Views\ShoppingCar\PrductCheckButton.cshtml" />
     <Content Include="Views\Account\Index.cshtml" />
+    <Content Include="Views\Members\LoggedIn.cshtml" />
+    <Content Include="Views\Members\Login.cshtml" />
+    <Content Include="Views\Members\Register.cshtml" />
+    <Content Include="Views\Shared\_cartpartial.cshtml" />
+    <Content Include="Views\Shared\_LayoutRegistration.cshtml" />
+    <Content Include="Views\ShoppingCar\DroedownAccount.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -524,6 +524,10 @@
     <ProjectReference Include="..\ConnectionKey\ConnectionKey.csproj">
       <Project>{e2db1790-3042-43e8-b8ed-09023540dc2d}</Project>
       <Name>ConnectionKey</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Database\Database.csproj">
+      <Project>{49263ba8-4c5e-4975-9abe-04fca1920986}</Project>
+      <Name>Database</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

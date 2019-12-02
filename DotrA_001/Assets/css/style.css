@@ -10964,48 +10964,7 @@ h1, h2, h3, h4, h5,
 .hero-wrap.hero-bread {
   padding: 12em 0;
 }
-/*ÁôÂÃªºDIV*/
-#myDIV {
-    width: 100%;
-    text-align: center;
-    background-color: blanchedalmond;
-    margin-top: 3px;
-}
 
-/*¦V¤U*/
-.mousedown {
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: 70px;
-    z-index: 99;
-}
-
-.mousedown-icon {
-    width: 60px;
-    height: 60px;
-    border: 1px solid rgba(46, 199, 199, 0.70);
-    border-radius: 50%;
-    background: #fff;
-    cursor: pointer;
-    position: relative;
-    text-align: center;
-    margin: 0 auto;
-    display: block;
-}
-
-.mousedown-wheel {
-    height: 30px;
-    margin: 2px auto 0;
-    display: block;
-    width: 30px;
-    background: transparent;
-    border-radius: 50%;
-    -webkit-animation: 1.6s ease infinite wheel-up-down1;
-    animation: 1.6s ease infinite wheel-up-down1;
-    color: #000000;
-    font-size: 20px;
-}
 
 @-webkit-keyframes wheel-up-down1 {
     100% {

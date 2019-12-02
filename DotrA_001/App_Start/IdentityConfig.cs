@@ -6,9 +6,9 @@ using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security;
-using DotrA_001_Clone.Models;
+using DotrA_001.Models;
 
-namespace DotrA_001_Clone
+namespace DotrA_001
 {
     public class EmailService : IIdentityMessageService
     {

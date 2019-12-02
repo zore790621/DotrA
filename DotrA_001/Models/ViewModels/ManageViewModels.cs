@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNet.Identity;
 using Microsoft.Owin.Security;
 
-namespace DotrA_001_Clone.Models
+namespace DotrA_001.Models
 {
     public class IndexViewModel
     {

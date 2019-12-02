@@ -7,13 +7,13 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
-using DotrA_001.Models;
+using Database.Models;
 
 namespace DotrA_001.Controllers
 {
     public class MembersController : Controller
     {
-        private tttttttContext db = new tttttttContext();
+        private DotrADb db = new DotrADb();
 
         // GET: Members
         public ActionResult Index()
@@ -28,7 +28,7 @@ namespace DotrA_001.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Members members = db.Members.Find(id);
+            Member members = db.Members.Find(id);
             if (members == null)
             {
                 return HttpNotFound();
@@ -43,7 +43,7 @@ namespace DotrA_001.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult Register(Members member)
+        public ActionResult Register(Member member)
         {
             if (ModelState.IsValid)
             {
@@ -71,7 +71,7 @@ namespace DotrA_001.Controllers
         // 詳細資訊，請參閱 https://go.microsoft.com/fwlink/?LinkId=317598。
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "MemberID,MemberAccount,Password,Name,Email,Address,Phone")] Members members)
+        public ActionResult Create([Bind(Include = "MemberID,MemberAccount,Password,Name,Email,Address,Phone")] Member members)
         {
             if (ModelState.IsValid)
             {
@@ -90,7 +90,7 @@ namespace DotrA_001.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Members members = db.Members.Find(id);
+            Member members = db.Members.Find(id);
             if (members == null)
             {
                 return HttpNotFound();
@@ -103,7 +103,7 @@ namespace DotrA_001.Controllers
         // 詳細資訊，請參閱 https://go.microsoft.com/fwlink/?LinkId=317598。
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "MemberID,MemberAccount,Password,Name,Email,Address,Phone")] Members members)
+        public ActionResult Edit([Bind(Include = "MemberID,MemberAccount,Password,Name,Email,Address,Phone")] Member members)
         {
             if (ModelState.IsValid)
             {
@@ -121,7 +121,7 @@ namespace DotrA_001.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Members members = db.Members.Find(id);
+            Member members = db.Members.Find(id);
             if (members == null)
             {
                 return HttpNotFound();
@@ -134,7 +134,7 @@ namespace DotrA_001.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Members members = db.Members.Find(id);
+            Member members = db.Members.Find(id);
             db.Members.Remove(members);
             db.SaveChanges();
             return RedirectToAction("Index");
@@ -153,7 +153,7 @@ namespace DotrA_001.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult Login(Members member)
+        public ActionResult Login(Member member)
         {
 
 

@@ -1,9 +1,10 @@
-﻿@model DotrA_001.Models.Members
+﻿@model DotrA_001.Models.Member
 
 @{
     ViewBag.Title = "Login";
-    Layout = "~/Views/Shared/_LayoutRegistration.cshtml";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
+
 
 <section class="ftco-section bg-light">
 
@@ -17,7 +18,7 @@
                 @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                 <div class="form-group">
                     @Html.LabelFor(model => model.MemberAccount, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
+                    <div class="col-md-12">
                         @Html.EditorFor(model => model.MemberAccount, new { htmlAttributes = new { @class = "form-control" } })
                         @Html.ValidationMessageFor(model => model.MemberAccount, "", new { @class = "text-danger" })
                     </div>
@@ -25,13 +26,13 @@
 
                 <div class="form-group">
                     @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
+                    <div class="col-md-12">
                         @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control" } })
                         @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
                     </div>
                 </div>
                 <div class="form-group">
-                    <div class="col-md-offset-2 col-md-10">
+                    <div class="col-md-offset-2 col-md-12">
                         <input type="submit" value="Login" class="btn btn btn-outline-success" />
                     </div>
                 </div>
@@ -46,8 +47,37 @@
     }
 </section>
 @section topCss{
-    @*<link href="~/Assets/css/customStyle.css" rel="stylesheet" />*@
-
+    <style>
+         
+         h4{
+             text-align:center;
+         }
+         .form-group{
+             text-align:center;
+         }
+         /*輸入欄位CSS*/
+         .form-control{
+             border:0;
+             background:none;
+             display:block;
+             margin:20px auto;
+             text-align:center;
+             border:2px solid #3498db;
+             padding :14px 10px;
+             width:240px;
+             outline:none;
+             color:aqua;
+             border-radius:24px;
+             transition:0.25s;
+         }
+         .form-control:focus{
+             width:320px;
+             border-color:#2ecc71;
+         }
+         .btn{
+             cursor:pointer
+         }
+    </style>
 }
 @section endJS{
 }
