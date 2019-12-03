@@ -31,7 +31,7 @@
                 <li class="nav-item cta cta-colored">
                     <a href="cart.html" class="nav-link"><span class="icon-shopping_cart"></span>[0]</a>
                 </li>
-                @if (Request.IsAuthenticated)//是否通過驗證 //User.Identity.IsAuthenticated
+                @if (User.Identity.IsAuthenticated)//是否通過驗證 //User.Identity.IsAuthenticated、Request.IsAuthenticated
                 {                                                        //User.Identity.Name 可擷取目前登入的使用者帳戶資訊
                     <li class="nav-item">@Html.ActionLink("HiHi!!Dear " + @User.Identity.Name, "Index", "Home",null, htmlAttributes: new { @class = "nav-link" })</li>
                     <li class="nav-item">@Html.ActionLink("Logout", "Logout", "Members",null, new { @class = "nav-link" })</li>

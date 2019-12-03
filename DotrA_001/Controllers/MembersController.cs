@@ -22,6 +22,7 @@ namespace DotrA_001.Controllers
         private DotrADbContext db = new DotrADbContext();
 
         // GET: Members
+        [Authorize(Users ="admin")]//必須有授權 認證才能進入
         public ActionResult Index()
         {
             return View(db.Members.ToList());
@@ -74,8 +75,8 @@ namespace DotrA_001.Controllers
                 db.SaveChanges();
                 #region //Send Email to Account
                 SendVerificationLinkEmail(member.Email, member.ActivationCode.ToString());
-                message = "Registration successfully done. Account activation link " +
-                    " has been sent to your email : " + member.Email; /*"恭喜!!  " + member.MemberAccount + "  已成功註冊"*/
+                message = "註冊成功，帳號啟用連結已寄到您的信箱. Registration successfully done. Account activation link " +
+                    " has been sent to your Email : " + member.Email; /*"恭喜!!  " + member.MemberAccount + "  已成功註冊"*/
                 #endregion
 
                 ModelState.Clear();//清除 (包含錯誤訊息與模型繫結的資料都會被清空)
@@ -102,7 +103,7 @@ namespace DotrA_001.Controllers
             }
             else
             {
-                ViewBag.Message = "Invalid Request";
+                ViewBag.Message = "無效的操作。Invalid Request.";
             }
 
             ViewBag.Status = Status;
@@ -116,46 +117,44 @@ namespace DotrA_001.Controllers
             return View();
         }
         [HttpPost]
-        //[ValidateAntiForgeryToken]
+        [ValidateAntiForgeryToken]
         public ActionResult Login(Member member, LoginVM login)
         {
-            //var user = db.Members.Where(x => x.MemberAccount == member.MemberAccount && x.Password == member.Password).FirstOrDefault();
-            var user = (from s in db.Members
-                        where s.MemberAccount == member.MemberAccount || s.Password == member.Password
-                        select s).FirstOrDefault();
+
+            //var user = db.Members.Where(x => x.MemberAccount == member.MemberAccount && x.Password == member.Password).FirstOrDefault();//密碼未加密規則
+            //var user = (from s in db.Members where s.MemberAccount == login.MemberAccount select s).FirstOrDefault();
+            var user = db.Members.Where(x => x.MemberAccount == login.MemberAccount).FirstOrDefault();
             if (user != null)
             {
                 if (!user.EmailVerified)
                 {
-                    ViewBag.Message = "Please verify your email first 請先到信箱啟動驗證";
+                    ViewBag.Message = "請先到信箱啟動驗證. Please verify your email first.";
                     return View();
                 }
-                #region 驗證票證
-                //為所提供的使用者名稱建立驗證票證，並將該票證加入至回應的Cookie,或加入至URL
-                //FormsAuthentication.SetAuthCookie(member.MemberAccount, false);// createPersistentCookie:false(不要記住我)
-                //Session["MemberID"] = user.MemberID.ToString();
-                //Session["MemberAccount"] = user.MemberAccount.ToString();
-
-                int timeout = login.RememberMe ? 525600 : 20; // 525600 min = 1 year
-                var ticket = new FormsAuthenticationTicket(login.MemberAccount, login.RememberMe, timeout);
-                string encrypted = FormsAuthentication.Encrypt(ticket);
-                var cookie = new HttpCookie(FormsAuthentication.FormsCookieName, encrypted);
-                cookie.Expires = DateTime.Now.AddMinutes(timeout);
-                cookie.HttpOnly = true;
-                Response.Cookies.Add(cookie);
-                #endregion
-
-
-                //hash解密
+                
+                //hash加密
                 var HCode = user.HashCode;
-                var encodingPasswordString = hash.EncodePassword(member.Password, HCode);
+                var encodingPasswordString = hash.EncodePassword(login.Password, HCode);
 
-                //Check Login Detail MemberAccount Or Password    
-                var Account = (from s in db.Members
-                               where (s.MemberAccount == member.MemberAccount || s.MemberID == member.MemberID) && s.Password.Equals(encodingPasswordString)
-                               select s).FirstOrDefault();
+                //Check Login Detail MemberAccount and Password    
+                //var Account = (from s in db.Members where (s.MemberAccount == login.MemberAccount  && s.Password.Equals(encodingPasswordString)) select s).FirstOrDefault();
+                var Account = db.Members.Where(x => x.MemberAccount == login.MemberAccount && x.Password.Equals(encodingPasswordString)).FirstOrDefault();
                 if (Account != null)
                 {
+                    #region 驗證票證
+                    //為所提供的使用者名稱建立驗證票證，並將該票證加入至回應的Cookie,或加入至URL
+                    //FormsAuthentication.SetAuthCookie(member.MemberAccount, false);// createPersistentCookie:false(不要記住我)
+                    //Session["MemberID"] = user.MemberID.ToString();
+                    //Session["MemberAccount"] = user.MemberAccount.ToString();
+
+                    int timeout = login.RememberMe ? 525600 : 20; // 525600 min = 1 year
+                    var ticket = new FormsAuthenticationTicket(login.MemberAccount, login.RememberMe, timeout);
+                    string encrypted = FormsAuthentication.Encrypt(ticket);
+                    var cookie = new HttpCookie(FormsAuthentication.FormsCookieName, encrypted);
+                    cookie.Expires = DateTime.Now.AddMinutes(timeout);
+                    cookie.HttpOnly = true;
+                    Response.Cookies.Add(cookie);
+                    #endregion
                     return RedirectToAction("LoggedIn");
                     //return RedirectToAction("Index", "Members");
                 }
@@ -169,7 +168,7 @@ namespace DotrA_001.Controllers
         }
         public ActionResult LoggedIn()
         {
-            if (Request.IsAuthenticated)
+            if (User.Identity.IsAuthenticated)
             {
                 return View();
             }
@@ -189,8 +188,8 @@ namespace DotrA_001.Controllers
         [NonAction]
         public bool IsEmailExist(string email)
         {
-            var v = db.Members.Where(a => a.Email == email).FirstOrDefault();
-            return v != null;
+            var isExist = db.Members.Where(x => x.Email == email).FirstOrDefault();
+            return isExist != null;
         }
         #endregion
         #region 寄送認證信 SendVerificationLinkEmail
@@ -200,15 +199,15 @@ namespace DotrA_001.Controllers
             var verifyUrl = "/Members/" + emailFor + "/" + activationCode;
             var link = Request.Url.AbsoluteUri.Replace(Request.Url.PathAndQuery, verifyUrl);
 
-            var fromEmail = new MailAddress("chjh8250@gmail.com", "MiniShop");
+            var fromEmail = new MailAddress("minishopbs@gmail.com", "MiniShop");
             var toEmail = new MailAddress(Email);
-            var fromEmailPassword = "vkxwwsltygwmjcdy"; // Replace with actual password
+            var fromEmailPassword = "edaybsazwbmogabr"; // Replace with actual password
 
             string subject = "";
             string body = "";
             if (emailFor == "VerifyAccount")
             {
-                subject = "Your account is successfully created!";
+                subject = "您的會員帳號已成功建立! Your account is successfully created!";
                 body = "<br/><br/>We are excited to tell you that your MiniShop account is" +
                     " successfully created. Please click on the below link to verify your account" +
                     " <br/><br/><a href='" + link + "'>" + link + "</a> ";
@@ -216,7 +215,7 @@ namespace DotrA_001.Controllers
             }
             else if (emailFor == "ResetPassword")
             {
-                subject = "Reset Password";
+                subject = "重設密碼! Reset Password!";
                 body = "Hi,<br/><br/>We got request for reset your account password. Please click on the below link to reset your password" +
                     "<br/><br/><a href=" + link + ">Reset Password link</a>";
             }
@@ -266,11 +265,11 @@ namespace DotrA_001.Controllers
                 //in our model class in part 1
                 db.Configuration.ValidateOnSaveEnabled = false;
                 db.SaveChanges();
-                message = "Reset password link has been sent to your Email.";
+                message = "重設密碼連結已寄到您的信箱. Reset password link has been sent to your Email.";
             }
             else
             {
-                message = "Account not found";
+                message = "此帳號不存在. Account not found.";
             }
 
             ViewBag.Message = message;
@@ -321,14 +320,14 @@ namespace DotrA_001.Controllers
                         user.ResetPasswordCode = "";
                         db.Configuration.ValidateOnSaveEnabled = false;
                         db.SaveChanges();
-                        message = "New password updated successfully";
+                        message = "新密碼已成功更新. New password updated successfully.";
                     }
                 }
 
             }
             else
             {
-                message = "Something invalid";
+                message = "無效的操作. Something invalid.";
             }
             ViewBag.Message = message;
             return View();
