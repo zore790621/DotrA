@@ -1,13 +1,13 @@
 ﻿@model ShopView
 
+
 @{
-    
+
 }
 
 <div class="row">
     @foreach (var item in Model.Product)
     {
-
         <div class="col-sm-12 col-md-12 col-lg-4 ftco-animate d-flex fadeInUp ftco-animated">
             <div class="product d-flex flex-column">
                 <a href="#" class="img-prod">
@@ -38,7 +38,7 @@
 
                         @*購物車ActionLink*@
                         @*@Html.ActionLink("Buy now", "index", "ShoppingCar", null, new { @class = "buy-now text-center py-2 ion-ios-cart ml-1" })*@
-                        <a href="@Url.Action( "index","ShoppingCar" ,new { Id  = 1 })" class="buy-now text-center py-2">Buy now<span><i class="ion-ios-cart ml-1"></i></span></a>
+                        <a href="@Url.Action( "index","ShoppingCar" ,new { UID  = 1, productid = item.ProductID})" class="buy-now text-center py-2">Buy now<span><i class="ion-ios-cart ml-1"></i></span></a>
                     </p>
                 </div>
             </div>

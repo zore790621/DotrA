@@ -12,13 +12,13 @@ namespace DotrA_001.Controllers
     {
         private DotrADb db = new DotrADb();
         // GET: ShoppingCar
-        public ActionResult Index(int? id)
+        public ActionResult Index(int? UID, int productid)
         {
-            if (id == null)
+            if (UID == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Member members = db.Members.Find(id);
+            Member members = db.Members.Find(UID);
             DotrA_001.Models.Member member = new DotrA_001.Models.Member()
             {
                 MemberID = members.MemberID,

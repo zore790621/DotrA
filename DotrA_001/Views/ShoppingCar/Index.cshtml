@@ -1,5 +1,8 @@
 ﻿@model Member
 
+@{
+
+}
 @Html.Partial("_Topimage")
 <section class="ftco-section ftco-cart">
     <div class="container">
@@ -54,15 +57,49 @@
             color: #000000;
             font-size: 20px;
         }
-        h3{
-            font-family: 'Dancing Script', cursive;
+
+        @@-webkit-keyframes wheel-up-down1 {
+            100% {
+                margin-top: 25px;
+                opacity: 1;
+            }
+
+            30% {
+                opacity: 1;
+            }
+
+            0% {
+                margin-top: 0px;
+                opacity: 0;
+            }
         }
-        label{
+
+        @@keyframes wheel-up-down1 {
+            100% {
+                margin-top: 25px;
+                opacity: 1;
+            }
+
+            30% {
+                opacity: 1;
+            }
+
+            0% {
+                margin-top: 0px;
+                opacity: 0;
+            }
+        }
+        /*會員修改*/
+        h3 {
             font-family: 'Dancing Script', cursive;
         }
 
-        .no-border{
-            text-align:center;
+        label {
+            font-family: 'Dancing Script', cursive;
+        }
+
+        .no-border {
+            text-align: center;
             background: none;
             border: none !important;
             outline: none;
@@ -71,16 +108,84 @@
             padding: 10px 6px;
             font-size: 14px;
             margin-bottom: 40px;
-            width:240px;
-            transition:0.25s;
-        }
-        .no-border:focus{
-            width:300px;
-            color:#EA2027;
+            width: 240px;
+            transition: 0.25s;
         }
 
-        tablewidth{
-            width:100% !important;  
+            .no-border:focus {
+                width: 300px;
+                color: #EA2027;
+            }
+
+        tablewidth {
+            width: 100% !important;
+        }
+        /*table改成DIV+CSS*/
+        .css-table {
+            display: table;
+            width: 100%;
+        }
+
+        .td img {
+            width: 100px;
+            height: 100px;
+        }
+
+        .td a {
+            background-color: #f39c12;
+        }
+
+            .td a:hover {
+                background-size: 50px;
+                background-color: #e74c3c;
+            }
+
+        /*.ion-ios-close {
+            font-size: 50px;
+        }*/
+
+
+        .css-table .thead {
+            display: table-header-group;
+            background-color: #ecf0f1;
+            text-align: center;
+        }
+
+        .css-table .tbody {
+            display: table-row-group;
+            text-align: center;
+        }
+
+        .css-table .tr {
+            display: table-row;
+        }
+
+        .css-table .th, .css-table .td {
+            display: table-cell;
+        }
+
+        .td:nth-child(1) {
+            width: 5%;
+        }
+
+        .td:nth-child(2) {
+            width: 15%;
+        }
+
+        .td:nth-child(3) {
+            width: 40%;
+        }
+
+        .td:nth-child(4) {
+            width: 10%;
+        }
+
+        .td:nth-child(5) {
+            width: 20%;
+        }
+
+        .td:nth-child(6) {
+            width: 10%;
         }
     </style>
 }

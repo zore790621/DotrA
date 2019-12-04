@@ -1,0 +1,46 @@
+﻿/*input動畫*/
+@-webkit-keyframes Glow {
+    0% {
+        border-color: #EA2027;
+    }
+
+    10% {
+        border-color: #EE5A24;
+    }
+
+    20% {
+        border-color: #FFC312;
+    }
+
+    30% {
+        border-color: #C4E538;
+    }
+
+    40% {
+        border-color: #009432;
+    }
+
+    50% {
+        border-color: #0652DD;
+    }
+
+    60% {
+        border-color: #12CBC4;
+    }
+
+    70% {
+        border-color: #FDA7DF;
+    }
+
+    80% {
+        border-color: #9980FA;
+    }
+
+    90% {
+        border-color: #B53471;
+    }
+
+    100% {
+        border-color: #6F1E51;
+    }
+}

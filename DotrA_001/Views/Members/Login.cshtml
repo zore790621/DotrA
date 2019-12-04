@@ -48,35 +48,42 @@
 </section>
 @section topCss{
     <style>
-         
-         h4{
-             text-align:center;
-         }
-         .form-group{
-             text-align:center;
-         }
-         /*輸入欄位CSS*/
-         .form-control{
-             border:0;
-             background:none;
-             display:block;
-             margin:20px auto;
-             text-align:center;
-             border:2px solid #3498db;
-             padding :14px 10px;
-             width:240px;
-             outline:none;
-             color:aqua;
-             border-radius:24px;
-             transition:0.25s;
-         }
-         .form-control:focus{
-             width:320px;
-             border-color:#2ecc71;
-         }
-         .btn{
-             cursor:pointer
-         }
+
+        h4 {
+            text-align: center;
+        }
+
+        .form-group {
+            text-align: center;
+        }
+        /*輸入欄位CSS*/
+        .form-control {
+            border: 0;
+            background: none;
+            display: block;
+            margin: 20px auto;
+            text-align: center;
+            border: 1px solid #3498db;
+            padding: 14px 10px;
+            width: 240px;
+            outline: none;
+            color: aqua;
+            border-radius: 24px;
+            transition: 0.25s;
+        }
+
+            .form-control:focus {
+                width: 320px;
+                border: 3px solid;
+                animation-name: Glow;
+                animation-duration: 6s;
+                animation-iteration-count: infinite;
+                /*animation-direction: alternate;*/
+            }
+
+        .btn {
+            cursor: pointer
+        }
     </style>
 }
 @section endJS{

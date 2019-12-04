@@ -72,6 +72,7 @@ namespace DotrA_001.Controllers
                 Logins = await UserManager.GetLoginsAsync(userId),
                 BrowserRemembered = await AuthenticationManager.TwoFactorBrowserRememberedAsync(userId)
             };
+            ViewBag.uid= User.Identity.GetUserId();
             return View(model);
         }
 

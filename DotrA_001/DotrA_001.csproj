@@ -222,6 +222,7 @@
     <Content Include="Assets\css\bootstrap-datepicker.css" />
     <Content Include="Assets\css\bootstrap.min.css" />
     <Content Include="Assets\css\flaticon.css" />
+    <Content Include="Assets\css\Glow.css" />
     <Content Include="Assets\css\icomoon.css" />
     <Content Include="Assets\css\ionicons.min.css" />
     <Content Include="Assets\css\jquery.timepicker.css" />
