@@ -2,6 +2,8 @@
 
 @{
     ViewBag.Title = "Index";
+
+
 }
 
 
@@ -57,8 +59,10 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Description)
             </td>
+            @*//去呼叫testcart的GETCART方法來加入購物車(假的)*@
             <td>
-                @Ajax.ActionLink("加到購物車", "GetCart", "TestCart", new AjaxOptions { OnFailure = "fail", OnSuccess = "succ" })
+
+                @Ajax.ActionLink(linkText: "加到購物車", actionName: "AddtoCart", controllerName: "Cart",routeValues: new { id = item.ProductID }, ajaxOptions: new AjaxOptions { OnFailure = "fail", OnSuccess = "succ", HttpMethod = "GET" })
             </td>
         </tr>
     }
@@ -67,8 +71,9 @@
 @section scripts{
     <script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
     <script>
+        //假如成功的話
         function succ() {
-            alert('success');
+            alert('加入購物車成功');
             location.reload();
         }
         function fail() {

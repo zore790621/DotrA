@@ -3,6 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using DotrA_001.Models;
+using DotrADatabase.Models;
 
 namespace DotrA_001.Models
 {
@@ -10,12 +12,13 @@ namespace DotrA_001.Models
     [Serializable]
     public class Cart:IEnumerable<CartProduct>
     {
+        //private DotrADbContext db = new DotrADbContext();
         public Cart()
         {
             this.CartProducts = new List<CartProduct>();
         }
         //儲存購物車商品
-        public List<CartProduct> CartProducts;
+        public  List<CartProduct> CartProducts;
 
 
         //計算商品總數
@@ -24,7 +27,43 @@ namespace DotrA_001.Models
                 return this.CartProducts.Count;
             }      
         }
+        public bool AddProduct(int ProductId)
+        {
 
+            //取得商品詳細資料
+            var currentitem = this.CartProducts.Where(s => s.ProductId == ProductId).Select (s=>s).FirstOrDefault() ;
+            if (currentitem == default(CartProduct))
+            {
+                using (DotrADbContext db = new DotrADbContext())
+                {
+                    var product = (from s in db.Products
+                                   where s.ProductID == ProductId
+                                   select s).FirstOrDefault();
+                    if (product != default(Product))
+                    {
+                        this.AddProduct(product);
+                    }
+                }
+
+            }
+            else { 
+            currentitem.ProductQuantity++;
+            }
+            return true;
+        }
+        public bool AddProduct(Product product)
+        {
+            var item = new Models.CartProduct()
+            {
+                ProductId = product.ProductID,
+                ProductName = product.ProductName,
+                ProductPrice = product.UnitPrice,
+                ProductQuantity = 1
+
+            };
+            this.CartProducts.Add(item);
+            return true;
+        }
 
         //此次購買總價
         public decimal TotalAmount
@@ -38,6 +77,11 @@ namespace DotrA_001.Models
                 return totalamount;
             }
         }
+         
+
+
+
+
 
 
         public IEnumerator<CartProduct> GetEnumerator()

@@ -5,6 +5,7 @@ using System.Web;
 
 namespace DotrA_001.Models
 {
+    [Serializable]
     public class CartProduct
     {
         public int ProductId { get; set; }
