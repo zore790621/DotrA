@@ -27,6 +27,7 @@ namespace DotrA_001.Models
                 return this.CartProducts.Count;
             }      
         }
+        //使用ProductID新增一筆商品資料
         public bool AddProduct(int ProductId)
         {
 
@@ -51,6 +52,7 @@ namespace DotrA_001.Models
             }
             return true;
         }
+        //新增一筆商品資料(使用Product物件)
         public bool AddProduct(Product product)
         {
             var item = new Models.CartProduct()

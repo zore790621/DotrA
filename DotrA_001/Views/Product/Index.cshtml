@@ -59,7 +59,7 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Description)
             </td>
-            @*//去呼叫testcart的GETCART方法來加入購物車(假的)*@
+            @*呼叫CartController裡的AddtoCart方法*@
             <td>
 
                 @Ajax.ActionLink(linkText: "加到購物車", actionName: "AddtoCart", controllerName: "Cart",routeValues: new { id = item.ProductID }, ajaxOptions: new AjaxOptions { OnFailure = "fail", OnSuccess = "succ", HttpMethod = "GET" })
