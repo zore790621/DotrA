@@ -241,6 +241,7 @@
     <Content Include="Assets\fonts\ionicons\css\ionicons.min.css" />
     <Content Include="Assets\fonts\ionicons\fonts\ionicons.svg" />
     <Content Include="Assets\fonts\open-iconic\open-iconic.svg" />
+    <Content Include="Assets\imsges\bg_6.jpg" />
     <Content Include="Assets\imsges\image1.jpg" />
     <Content Include="Assets\imsges\img1.png" />
     <Content Include="Assets\js\aos.js" />

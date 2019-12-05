@@ -22,19 +22,20 @@ namespace DotrA_001.Controllers
         private DotrADbContext db = new DotrADbContext();
 
         // GET: Members
-        [Authorize(Users ="admin")]//必須有授權 認證才能進入
+        [Authorize(Users ="admin")]//必須有授權/認證才能進入
         public ActionResult Index()
         {
             return View(db.Members.ToList());
         }
-        #region Register註冊
+        #region 註冊 Register
         // GET: Members/Register
-        [AllowAnonymous]//在執行Action時,略過驗證/授權的處理
+        //[AllowAnonymous]//在執行Action時,略過驗證/授權的處理
         public ActionResult Register()
         {
             return View();
         }
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Register([Bind(Exclude = "EmailVerified,ActivationCode")]Member member)
         {
             string message = "";
@@ -49,9 +50,8 @@ namespace DotrA_001.Controllers
                 }
                 #endregion
                 #region //檢查帳號是否已經存在
-                var registerAccount = (from m in db.Members
-                                       where m.MemberAccount.Equals(member.MemberAccount)
-                                       select m).SingleOrDefault();
+                //var registerAccount = (from m in db.Members where m.MemberAccount.Equals(member.MemberAccount) select m).SingleOrDefault();
+                var registerAccount = db.Members.Where(x => x.MemberAccount.Equals(member.MemberAccount)).SingleOrDefault();
                 if (registerAccount != null)
                 {
                     ModelState.AddModelError("AccountExist", "此帳號已經存在，請更換帳號!! This Account already registered.");
@@ -73,9 +73,9 @@ namespace DotrA_001.Controllers
 
                 db.Members.Add(member);
                 db.SaveChanges();
-                #region //Send Email to Account
-                SendVerificationLinkEmail(member.Email, member.ActivationCode.ToString());
-                message = "註冊成功，帳號啟用連結已寄到您的信箱. Registration successfully done. Account activation link " +
+                #region //寄送帳號啟用信 Send Email to Account
+                SendVerifyOrResetEmail(member.Email, member.ActivationCode.ToString());
+                message = "註冊成功，驗證帳號連結已寄到您的信箱. Registration successfully done. Account activation link " +
                     " has been sent to your Email : " + member.Email; /*"恭喜!!  " + member.MemberAccount + "  已成功註冊"*/
                 #endregion
 
@@ -86,7 +86,7 @@ namespace DotrA_001.Controllers
             return View();
         }
         #endregion
-        #region 驗證帳號
+        #region 驗證帳號 VerifyAccount
         [HttpGet]
         public ActionResult VerifyAccount(string id)
         {
@@ -110,7 +110,7 @@ namespace DotrA_001.Controllers
             return View();
         }
         #endregion
-        #region Login登入/登出
+        #region 登入Login/登出Logout
         // GET: Members/Login
         public ActionResult Login()
         {
@@ -184,7 +184,7 @@ namespace DotrA_001.Controllers
             return RedirectToAction("Login", "Members");
         }
         #endregion
-        #region 判斷Email是存在
+        #region 判斷Email存在 IsEmailExist
         [NonAction]
         public bool IsEmailExist(string email)
         {
@@ -192,9 +192,9 @@ namespace DotrA_001.Controllers
             return isExist != null;
         }
         #endregion
-        #region 寄送認證信 SendVerificationLinkEmail
+        #region 寄送驗證Email/重設密碼Email SendVerificationLinkEmailorSendResetPasswordLinkEmail
         [NonAction]
-        public void SendVerificationLinkEmail(string Email, string activationCode, string emailFor = "VerifyAccount")
+        public void SendVerifyOrResetEmail(string Email, string activationCode, string emailFor = "VerifyAccount")
         {
             var verifyUrl = "/Members/" + emailFor + "/" + activationCode;
             var link = Request.Url.AbsoluteUri.Replace(Request.Url.PathAndQuery, verifyUrl);
@@ -208,16 +208,18 @@ namespace DotrA_001.Controllers
             if (emailFor == "VerifyAccount")
             {
                 subject = "您的會員帳號已成功建立! Your account is successfully created!";
-                body = "<br/><br/>We are excited to tell you that your MiniShop account is" +
+                body = "親愛的會員您好，很高興告訴您，您的MiniShop帳號已成功建立，請點擊下方連結進行帳號驗證.<br/><br/>" +
+                    "Hi,<br/><br/>We are excited to tell you that your MiniShop account is" +
                     " successfully created. Please click on the below link to verify your account" +
-                    " <br/><br/><a href='" + link + "'>" + link + "</a> ";
+                    " <br/><br/><a href=" + link + ">請點此驗證帳號. Account activation link</a> ";
 
             }
             else if (emailFor == "ResetPassword")
             {
                 subject = "重設密碼! Reset Password!";
-                body = "Hi,<br/><br/>We got request for reset your account password. Please click on the below link to reset your password" +
-                    "<br/><br/><a href=" + link + ">Reset Password link</a>";
+                body = "親愛的會員您好,我們收到您重設密碼的請求，請點擊下方連結重設密碼.<br/><br/>" +
+                    "Hi,<br/><br/>We got request for reset your account password. Please click on the below link to reset your password" +
+                    "<br/><br/><a href=" + link + ">請點此重設密碼. Reset Password link</a>";
             }
 
 
@@ -240,7 +242,7 @@ namespace DotrA_001.Controllers
                 smtp.Send(message);
         }
         #endregion
-        #region 忘記密碼
+        #region 忘記密碼 ForgotPassword
         public ActionResult ForgotPassword()
         {
             return View();
@@ -259,7 +261,7 @@ namespace DotrA_001.Controllers
             {
                 //Send email for reset password
                 string resetCode = Guid.NewGuid().ToString();
-                SendVerificationLinkEmail(account.Email, resetCode, "ResetPassword");
+                SendVerifyOrResetEmail(account.Email, resetCode, "ResetPassword");
                 account.ResetPasswordCode = resetCode;
                 //This line I have added here to avoid confirm password not match issue , as we had added a confirm password property 
                 //in our model class in part 1
@@ -276,7 +278,7 @@ namespace DotrA_001.Controllers
             return View();
         }
         #endregion
-        #region 重設密碼
+        #region 重設密碼 ResetPassword
         public ActionResult ResetPassword(string id)
         {
             //Verify the reset password link
@@ -302,6 +304,7 @@ namespace DotrA_001.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult ResetPassword(ResetPasswordVM model)
         {
             var message = "";

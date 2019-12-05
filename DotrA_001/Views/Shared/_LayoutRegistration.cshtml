@@ -4,13 +4,8 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>@ViewBag.Title</title>
-    @*<link rel="stylesheet" href="@Url.Content("~/Content/open-iconic-bootstrap.min.css")">
-        )  ">
-
-        <link rel="stylesheet" href="@Url.Content("~/Content/style.css") ">
-    *@
     <style type="text/css">
-        div {
+        .text-center {
             font-family: 'Microsoft JhengHei' !important;
             font-weight: 900;
         }
@@ -24,18 +19,17 @@
     <link href="~/Assets/css/ionicons.min.css" rel="stylesheet" /> @*下方按鈕回到頂端*@
     @*<link href="~/Assets/css/jquery.timepicker.css" rel="stylesheet" />*@
     @*<link href="~/Assets/css/magnific-popup.css" rel="stylesheet" />*@
-    <link href="~/Assets/css/owl.carousel.min.css" rel="stylesheet" />
+    @*<link href="~/Assets/css/owl.carousel.min.css" rel="stylesheet" />*@
     <link href="~/Assets/css/owl.theme.default.min.css" rel="stylesheet" />
     <link href="~/Assets/css/style.css" rel="stylesheet" />
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
-    @Styles.Render("~/Content/font-awesome")
     @RenderSection("topCSS", required: false)
     @RenderSection("topJS", required: false)
 </head>
 <body class="goto-here">
     @Html.Partial("_navbar")
-    <div class="hero-wrap hero-bread" style="background-image: url('../../Assets/images/bg_6.jpg');">
+    <div class="hero-wrap hero-bread" style="background-image:url(../../Assets/imsges/bg_6.jpg)">
         <div class="container">
             <div class="row no-gutters slider-text align-items-center justify-content-center">
                 <div class="col-md-9 ftco-animate text-center">

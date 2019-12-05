@@ -28,7 +28,7 @@
     text-align: center;
     border: 2px solid #3498db;
     padding: 14px 10px;
-    width: 300px;
+    width: 200px;
     outline: none;
     color: white;
     border-radius: 24px;
@@ -36,7 +36,7 @@
 }
 
     .form-group input[type = "text"]:focus, .form-group input[type = "password"]:focus, .form-group input[type = "email"]:focus {
-        width: 480px;
+        width: 280px;
         border-color: #2ecc71;
     }
 
@@ -74,9 +74,10 @@
     background-image: linear-gradient(to left,#FDA7DF,#9980FA,#FDA7DF);
 }
 
-.btn:hover {
-    background-position: right;
-}
+    .btn:hover {
+        background-position: right;
+        color: #fff;
+    }
 
 /*.btn1 {
     background-image: linear-gradient(to left,#FFC312,#EE5A24,#FFC312);//¾ï¬õ

@@ -68,14 +68,15 @@
     text-transform: uppercase;
     border-radius: 6px;
     cursor: pointer;
-    color: #fff;
+    color: #ffffff;
     background-size: 200%;
-    transition: 0.6s;
+    transition: 1s;
     background-image: linear-gradient(to left,#12CBC4,#0652DD,#12CBC4);
 }
 
     .btn:hover {
         background-position: right;
+        color: #ffffff;
     }
 
 
