@@ -123,9 +123,10 @@ namespace DotrA_001.Controllers
 
             //var user = db.Members.Where(x => x.MemberAccount == member.MemberAccount && x.Password == member.Password).FirstOrDefault();//密碼未加密規則
             //var user = (from s in db.Members where s.MemberAccount == login.MemberAccount select s).FirstOrDefault();
-            var user = db.Members.Where(x => x.MemberAccount == login.MemberAccount).FirstOrDefault();
+            var user = db.Members.Where(x => x.MemberAccount == login.MemberAccount && x.Password!=null).FirstOrDefault();
             if (user != null)
             {
+       
                 if (!user.EmailVerified)
                 {
                     ViewBag.Message = "請先到信箱啟動驗證. Please verify your email first.";

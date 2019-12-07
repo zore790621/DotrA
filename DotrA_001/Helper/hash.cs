@@ -23,6 +23,10 @@ namespace DotrA_001.Helper
         }
         public static string EncodePassword(string password, string salt) //encrypt password    
         {
+            if(string.IsNullOrEmpty(password))//防呆 沒輸入密碼
+            {
+                return "";
+            }
             byte[] bytes = Encoding.Unicode.GetBytes(password);
             byte[] src = Encoding.Unicode.GetBytes(salt);
             byte[] dst = new byte[src.Length + bytes.Length];
