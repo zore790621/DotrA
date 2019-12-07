@@ -5,7 +5,7 @@ using System.Linq;
 using System.Web;
 using ConnectionKey;
 
-namespace DotrA_001_Clone.Models
+namespace DotrA_001.Models
 {
     public class ConnectionDotrADb
     {

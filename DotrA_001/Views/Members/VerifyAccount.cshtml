@@ -1,0 +1,35 @@
+﻿
+@{
+    ViewBag.Title = "VerifyAccount";
+    Layout = "~/Views/Shared/_LayoutRegistration.cshtml";
+}
+<section class="ftco-section bg-light">
+    <h2 class="text-center">VerifyAccount</h2>
+
+    @if (ViewBag.Status != null && Convert.ToBoolean(ViewBag.Status))
+    {
+        <div class="text-center">
+            <div class="alert alert-success">
+                <strong>驗證成功!</strong>您的帳號已成功啟用.
+                <br />
+                <strong>Success!</strong> Your account has been activated successfully.
+                <br />
+                <a class="btn " href="@Url.Action("Login","Members")"
+                   role="button">Click To Login</a>
+                @*<a class="btn " href="@Url.Action("SendVerifyOrResetEmail","Members")"
+        role="button">Click To Login</a>*@
+            </div>
+        </div>
+    }
+    else
+    {
+        <div class="text-center">
+            <div class="alert alert-danger">
+                <strong>Error!</strong> @ViewBag.Message
+            </div>
+        </div>
+    }
+</section>
+@section topCss{
+    <link href="~/Assets/css/VerifyAccount.css" rel="stylesheet" />
+}

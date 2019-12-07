@@ -1,6 +1,6 @@
 ﻿using System.Configuration;
 
-namespace DotrA_001_Clone.Models
+namespace DotrA_001.Models
 {
     public partial class DotrADb
     {

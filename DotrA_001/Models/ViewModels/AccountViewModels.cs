@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace DotrA_001_Clone.Models
+namespace DotrA_001.Models
 {
     public class ExternalLoginConfirmationViewModel
     {
