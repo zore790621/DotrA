@@ -1,11 +1,11 @@
 ﻿@model DotrA_001.Models.Member
 
 @{
-    ViewBag.Title = "Home Minishop - Free Bootstrap 4 Template by Colorlib";
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <h2>Edit</h2>
-
 
 @using (Html.BeginForm())
 {
@@ -76,7 +76,3 @@
 <div>
     @Html.ActionLink("Back to List", "Index")
 </div>
-
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}

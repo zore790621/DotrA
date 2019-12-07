@@ -9,7 +9,7 @@ namespace Database.Models
 {
     public partial class DotrADb : DbContext
     {
-        public DotrADb() : base("name=DotrA")
+        public DotrADb() : base("name=DotrADb")
         {
             Database.Connection.ConnectionString = Parameters.ConnectionString;
             AppDomain.CurrentDomain.SetData("DataDirectory", Directory.GetCurrentDirectory());

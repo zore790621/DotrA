@@ -210,6 +210,7 @@
     <Content Include="Assets\css\bootstrap-datepicker.css" />
     <Content Include="Assets\css\bootstrap.min.css" />
     <Content Include="Assets\css\flaticon.css" />
+    <Content Include="Assets\css\Glow.css" />
     <Content Include="Assets\css\icomoon.css" />
     <Content Include="Assets\css\ionicons.min.css" />
     <Content Include="Assets\css\jquery.timepicker.css" />
@@ -488,6 +489,10 @@
     <Content Include="Views\Members\VerifyAccount.cshtml" />
     <Content Include="Views\Members\ForgotPassword.cshtml" />
     <Content Include="Views\Members\ResetPassword.cshtml" />
+
+    <Content Include="Views\Shared\_cartpartial.cshtml" />
+
+    <Content Include="Views\ShoppingCar\DroedownAccount.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -506,6 +511,10 @@
     <ProjectReference Include="..\ConnectionKey\ConnectionKey.csproj">
       <Project>{e2db1790-3042-43e8-b8ed-09023540dc2d}</Project>
       <Name>ConnectionKey</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Database\Database.csproj">
+      <Project>{49263ba8-4c5e-4975-9abe-04fca1920986}</Project>
+      <Name>Database</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

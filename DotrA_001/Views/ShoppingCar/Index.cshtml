@@ -1,4 +1,8 @@
-﻿
+﻿@model Member
+
+@{
+
+}
 @Html.Partial("_Topimage")
 <section class="ftco-section ftco-cart">
     <div class="container">
@@ -9,3 +13,202 @@
         @Html.Partial("PrductCheckButton")
     </div>
 </section>
+@section topCSS{
+    <style>
+        /*隱藏的DIV*/
+        #myDIV {
+            width: 100%;
+            text-align: center;
+            background-color: #ecf0f1;
+            margin-top: 3px;
+        }
+
+        /*向下*/
+        .mousedown {
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 70px;
+            z-index: 99;
+        }
+
+        .mousedown-icon {
+            width: 60px;
+            height: 60px;
+            border: 1px solid rgba(46, 199, 199, 0.70);
+            border-radius: 50%;
+            background: #fff;
+            cursor: pointer;
+            position: relative;
+            text-align: center;
+            margin: 0 auto;
+            display: block;
+        }
+
+        .mousedown-wheel {
+            height: 30px;
+            margin: 2px auto 0;
+            display: block;
+            width: 30px;
+            background: transparent;
+            border-radius: 50%;
+            -webkit-animation: 1.6s ease infinite wheel-up-down1;
+            animation: 1.6s ease infinite wheel-up-down1;
+            color: #000000;
+            font-size: 20px;
+        }
+
+        @@-webkit-keyframes wheel-up-down1 {
+            100% {
+                margin-top: 25px;
+                opacity: 1;
+            }
+
+            30% {
+                opacity: 1;
+            }
+
+            0% {
+                margin-top: 0px;
+                opacity: 0;
+            }
+        }
+
+        @@keyframes wheel-up-down1 {
+            100% {
+                margin-top: 25px;
+                opacity: 1;
+            }
+
+            30% {
+                opacity: 1;
+            }
+
+            0% {
+                margin-top: 0px;
+                opacity: 0;
+            }
+        }
+        /*會員修改*/
+        h3 {
+            font-family: 'Dancing Script', cursive;
+        }
+
+        label {
+            font-family: 'Dancing Script', cursive;
+        }
+
+        .no-border {
+            text-align: center;
+            background: none;
+            border: none !important;
+            outline: none;
+            border-bottom: 1px solid !important;
+            color: #888;
+            padding: 10px 6px;
+            font-size: 14px;
+            margin-bottom: 40px;
+            width: 240px;
+            transition: 0.25s;
+        }
+
+            .no-border:focus {
+                width: 300px;
+                color: #EA2027;
+            }
+
+        tablewidth {
+            width: 100% !important;
+        }
+        /*table改成DIV+CSS*/
+        .css-table {
+            display: table;
+            width: 100%;
+        }
+
+        .td img {
+            width: 100px;
+            height: 100px;
+        }
+
+        .td a {
+            background-color: #f39c12;
+        }
+
+            .td a:hover {
+                background-size: 50px;
+                background-color: #e74c3c;
+            }
+
+        /*.ion-ios-close {
+            font-size: 50px;
+        }*/
+
+
+        .css-table .thead {
+            display: table-header-group;
+            background-color: #ecf0f1;
+            text-align: center;
+        }
+
+        .css-table .tbody {
+            display: table-row-group;
+            text-align: center;
+        }
+
+        .css-table .tr {
+            display: table-row;
+        }
+
+        .css-table .th, .css-table .td {
+            display: table-cell;
+        }
+
+        .td:nth-child(1) {
+            width: 5%;
+        }
+
+        .td:nth-child(2) {
+            width: 15%;
+        }
+
+        .td:nth-child(3) {
+            width: 40%;
+        }
+
+        .td:nth-child(4) {
+            width: 10%;
+        }
+
+        .td:nth-child(5) {
+            width: 20%;
+        }
+
+        .td:nth-child(6) {
+            width: 10%;
+        }
+    </style>
+}
+@section endJS{
+    <script>
+        //console.log($('.mousedown'));
+        $(function () {
+            $('#mousedown').click(function () {
+                let btn = $('#myDIV').css('display');
+                if (btn === 'none') {
+                    $('#mymousedown-ion').removeClass();
+                    $('#mymousedown-ion').addClass('ion-ios-arrow-up');
+                    $('#mymousedown-wheel').css('-webkit-animation', '1.6s ease infinite wheel-up-down');
+                    $('#mymousedown-wheel').css('animation', '1.6s ease infinite wheel-up-down');
+                    $('#myDIV').css('display', 'block');
+                } else {
+                    $('#mymousedown-ion').removeClass();
+                    $('#mymousedown-ion').addClass('ion-ios-arrow-down');
+                    $('#mymousedown-wheel').css('-webkit-animation', '1.6s ease infinite wheel-up-down1');
+                    $('#mymousedown-wheel').css('animation', '1.6s ease infinite wheel-up-down1');
+                    $('#myDIV').css('display', 'none');
+                }
+            });
+        });
+    </script>
+}
