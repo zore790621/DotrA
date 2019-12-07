@@ -1,11 +1,11 @@
-﻿using DotrA_001_Clone.Models;
+﻿using DotrA_001.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace DotrA_001_Clone.Controllers
+namespace DotrA_001.Controllers
 {
     public class TestCartController : Controller
     {

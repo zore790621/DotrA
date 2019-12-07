@@ -100,6 +100,6 @@ namespace ConnectionKey
     }
     public class Parameters
     {
-        public static readonly string ConnectionString = "data source=.;initial catalog=DotrA;integrated security=True;MultipleActiveResultSets=True;App=EntityFramework";
+        public static readonly string ConnectionString = "Server=tcp:dotra.database.windows.net,1433;Initial Catalog=DotrA;Persist Security Info=False;User ID=bstpe2019;Password=tp6a4c06XP79;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30; ";
     }
 }

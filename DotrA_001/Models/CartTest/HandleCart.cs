@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Web.Services;
 
-namespace DotrA_001_Clone.Models
+namespace DotrA_001.Models
 {
     public static class HandleCart
     {

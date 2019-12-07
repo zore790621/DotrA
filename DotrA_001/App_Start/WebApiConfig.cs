@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
 
-namespace DotrA_001_Clone
+namespace DotrA_001
 {
     public static class WebApiConfig
     {

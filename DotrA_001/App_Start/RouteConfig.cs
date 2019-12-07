@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
 
-namespace DotrA_001_Clone
+namespace DotrA_001
 {
     public class RouteConfig
     {
@@ -16,7 +16,7 @@ namespace DotrA_001_Clone
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
+                defaults: new { controller = "Members", action = "Login", id = UrlParameter.Optional }
             );
         }
     }
