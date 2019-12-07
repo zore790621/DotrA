@@ -6,6 +6,7 @@ using System.Web;
 using System.Web.Mvc;
 using Database.Models;
 using DotrA_001.Models;
+using DotrADb = Database.Models.DotrADb;
 
 namespace DotrA_001.Controllers
 {
