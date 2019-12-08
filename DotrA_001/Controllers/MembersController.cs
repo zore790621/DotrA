@@ -434,6 +434,12 @@ namespace DotrA_001.Controllers
             base.Dispose(disposing);
         }
         #endregion
+        #region LoginModal
+        //public ActionResult LoginModal()
+        //{
+        //    return PartialView("LoginModal");
+        //}
+        #endregion
     }
 }
 

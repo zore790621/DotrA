@@ -1,5 +1,4 @@
-﻿@model DotrA_001.Models.ViewModels.LoginVM
-<nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
+﻿<nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
     <div class="container">
         @Html.ActionLink("Minishop", "Index", "Home", null, new { @class = "navbar-brand" })
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav"
@@ -24,7 +23,7 @@
                 @if (User.Identity.IsAuthenticated)
                 //是否通過驗證 //User.Identity.IsAuthenticated、Request.IsAuthenticated
                 {                                                        //User.Identity.Name 可擷取目前登入的使用者帳戶資訊
-                    <li class="nav-item">@Html.ActionLink("HiHi!!Dear " + @User.Identity.Name, "Index", "Home", null, htmlAttributes: new { @class = "nav-link" })</li>
+                    <li class="nav-item">@Html.ActionLink("HiHi!! " + @User.Identity.Name, "Index", "Home", null, htmlAttributes: new { @class = "nav-link" })</li>
                     <li class="nav-item">@Html.ActionLink("Logout", "Logout", "Members", null, new { @class = "nav-link" })</li>
                 }
                 else
@@ -34,7 +33,7 @@
                         <div class="dropdown-menu " aria-labelledby="dropdown04">
                             <a class="dropdown-item " href="@Url.Action("Register","Members")">Register</a>
                             <a class="dropdown-item " href="@Url.Action("Login","Members")">Login</a>
-                            <a class="dropdown-item " href="#" data-toggle="modal" data-target="#exampleModalLong">Test Login</a>
+                            <a class="dropdown-item " href="#" data-toggle="modal" data-target="#LoginModal">Modal Login</a>
 
                         </div>
                     </li>
@@ -42,91 +41,29 @@
                 <li class="nav-item cta cta-colored">
                     <a href="cart.html" class="nav-link"><span class="icon-shopping_cart"></span>[0]</a>
                 </li>
-
             </ul>
-            @*@if (Request.IsAuthenticated)
-                {
-                    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = " nav-link navbar-right" }))
-                    {
-                        @Html.AntiForgeryToken()
-
-                        <ul class="nav navbar-nav navbar-right" style="color:black">
-                            <li><i class="fas fa-users"></i>
-                                @Html.ActionLink("HiHi " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { @class = "nav-link", id ="LoginHi", title = "Manage" })
-                            </li>
-                            <li><a href="javascript:document.getElementById('logoutForm').submit()" style="color:black">登出</a></li>
-                        </ul>
-                    }
-                }*@
-            @*else
-                {
-                    <ul class="nav navbar-nav navbar-right">
-                        <li>@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { @class = "nav-link", id = "registerLink" })</li>
-                        <li>@Html.ActionLink("Login", "Login", "Account", routeValues: null, htmlAttributes: new { @class = "nav-link", id = "loginLink" })</li>
-                    </ul>
-                }*@
         </div>
     </div>
 </nav>
 <!-- Modal -->
-<div class="modal" id="exampleModalLong" tabindex="-1" role="dialog">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">會員登入</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    @using (Html.BeginForm("Login","Members"))
-                    {
-                        @Html.AntiForgeryToken()
-                        <div class="container">
-                            <div class="form-horizontal text-center">
-                                <form class="box">
-                                    <h5 class="text-danger"><i>@ViewBag.Message</i></h5>
-                                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                                    <div class="form-group ">
-                                        @Html.LabelFor(model => model.MemberAccount, htmlAttributes: new { @class = "control-label " })
-                                        <div class="">
-                                            @Html.EditorFor(model => model.MemberAccount, new { htmlAttributes = new { @class = "form-control ", @placeholder = "請輸入帳號" } })
-                                            @Html.ValidationMessageFor(model => model.MemberAccount, "", new { @class = "text-danger" })
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group">
-                                        @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label " })
-                                        <div class="">
-                                            @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control", @placeholder = "請輸入密碼" } })
-                                            @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        @Html.LabelFor(model => model.RememberMe, htmlAttributes: new { @class = "control-label " })
-                                        <div class="">
-                                            <div class="">
-                                                @Html.EditorFor(model => model.RememberMe)
-                                                @Html.ValidationMessageFor(model => model.RememberMe, "", new { @class = "text-danger" })
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <input type="submit" value="Login" class="btn" />
-                                        <a class="btn " href="@Url.Action("ForgotPassword","Members")"
-                                           role="button">Forgot Password</a>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    }
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    @*<button type="button" class="btn btn-primary">Save changes</button>*@
-                </div>
-            </div>
-        </div>
+<div class="modal" id="LoginModal" tabindex="-1" role="dialog">
+           <div class="modal-dialog" role="document">
+               <div class="modal-content">
+                   <div class="modal-header">
+                       <h5 class="modal-title">會員登入</h5>
+                       <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                           <span aria-hidden="true">&times;</span>
+                       </button>
+                   </div>
+                   <div class="modal-body">
+                       @{Html.RenderPartial("LoginModal",new DotrA_001.Models.ViewModels.LoginVM());}
+                   </div>
+                   <div class="modal-footer">
+                       <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                       @*<button type="button" class="btn btn-primary">Save changes</button>*@
+                   </div>
+               </div>
+           </div>
     </div>
 @section topCss{
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css">
