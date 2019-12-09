@@ -11,7 +11,7 @@
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">CATALOG</a>
                     <div class="dropdown-menu" aria-labelledby="dropdown04">
-                        @Html.ActionLink("Shop", "Shop", "Catalog", null, new { @class = "dropdown-item" })
+                        @Html.ActionLink("Shop", "Index", "Shop", new { id = Session["MemberID"] }, new { @class = "dropdown-item" })
                         @Html.ActionLink("Single Product", "ProductSingle", "Catalog", null, new { @class = "dropdown-item" })
                         @Html.ActionLink("Cart", "Cart", "Catalog", null, new { @class = "dropdown-item" })
                         @Html.ActionLink("Checkout", "Checkout", "Catalog", null, new { @class = "dropdown-item" })
