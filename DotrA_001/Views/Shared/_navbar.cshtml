@@ -68,14 +68,7 @@
             </div>
         </div>
     </div>
-}
-
-@section topCss{
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css">
-
-}
-@section endJS{
-    @if (TempData["Message"] != null)
+    if (TempData["Message"] != null)
     {
         <script type="text/javascript">
             $('#LoginModal').modal('show');

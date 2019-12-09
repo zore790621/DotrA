@@ -161,14 +161,14 @@ namespace DotrA_001.Controllers
                 }
 
                 TempData["Message"] = "帳號或密碼輸入錯誤!! Invallid Account or Password.";
-                //return Redirect(Request.UrlReferrer.ToString());
-                return View();
+                return Redirect(Request.UrlReferrer.ToString());
+                //return View();
             }
 
             TempData["Message"] = "帳號或密碼輸入錯誤!! Invallid Account or Password.";
-            ////ModelState.AddModelError("", "帳號或密碼輸入錯誤!!");
+            return Redirect(Request.UrlReferrer.ToString());
             //ViewBag.Message = "帳號或密碼輸入錯誤!! Invallid Account or Password.";
-            return View();
+            //return View();
         }
         public ActionResult LoggedIn()
         {
