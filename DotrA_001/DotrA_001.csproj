@@ -199,7 +199,6 @@
     <Compile Include="Models\ProductView.cs" />
     <Compile Include="Models\ShopView.cs" />
     <Compile Include="Models\SupplierView.cs" />
-    <Compile Include="Models\ViewModels\AccountViewModels.cs" />
     <Compile Include="Models\ConnectionStringTest\ConnectionDotrADb.cs" />
     <Compile Include="Models\ConnectionStringTest\DotrADbEntities.cs" />
     <Compile Include="Models\ViewModels\LoginVM.cs" />
