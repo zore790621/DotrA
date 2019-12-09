@@ -282,7 +282,6 @@
     <Content Include="Views\Shared\_navbar.cshtml" />
     <Content Include="Views\Shared\_header.cshtml" />
     <Content Include="Views\Home\ProductList.cshtml" />
-    <Content Include="Views\Home\AddProduct.cshtml" />
     <Content Include="Views\Home\Storage.cshtml" />
     <Content Include="Views\Home\OrderList.cshtml" />
     <Content Include="Views\Members\Create.cshtml" />
