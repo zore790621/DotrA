@@ -10281,8 +10281,8 @@ button.bg-dark:focus {
 }
 
 .text-center {
-    margin:15px;
-  text-align: center !important;
+    margin: 15px;
+    text-align: center !important;
 }
 
 @media (min-width: 576px) {
