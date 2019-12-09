@@ -236,6 +236,7 @@
     <Content Include="Assets\imsges\bg_6.jpg" />
     <Content Include="Assets\imsges\image1.jpg" />
     <Content Include="Assets\imsges\img1.png" />
+    <Content Include="Assets\imsges\logo.png" />
     <Content Include="Assets\js\aos.js" />
     <Content Include="Assets\js\bootstrap-datepicker.js" />
     <Content Include="Assets\js\bootstrap.min.js" />
