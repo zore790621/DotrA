@@ -1,0 +1,80 @@
+﻿@section topCSS {
+    <style>
+        .productp {
+            width: 200px;
+            height: 200px;
+        }
+    </style>
+}
+<div class="breadcrumbs">
+    <div class="breadcrumbs-inner">
+        <div class="row m-0">
+            <div class="col-sm-4">
+                <div class="page-header float-left">
+                    <div class="page-title">
+                        <h1>商品目錄</h1>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-8">
+                <div class="page-header float-right">
+                    <div class="page-title"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="content">
+    <div class="animated fadeIn">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <strong class="card-title">產品明細</strong>
+                        <button class="search-trigger"><i class="fa fa-search"></i></button>
+                        <div class="form-inline">
+                            <form class="search-form"></form>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <table id="bootstrap-data-table" class="table table-striped table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>商品圖片</th>
+                                    <th>商品名稱</th>
+                                    <th>商品編號</th>
+                                    <th>商品種類</th>
+                                    <th>庫存數量</th>
+                                    <th>產品進價</th>
+                                    <th>銷售價格</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <img src="~/assets/images/dinosaur.jpg" class="productp">
+                                    </td>
+                                    <td>PROM 恐龍枕</td>
+                                    <td>EHM1001</td>
+                                    <td>旅行商品</td>
+                                    <td>100</td>
+                                    <td>$699 </td>
+                                    <td>$524</td>
+                                </tr>
+                                <tr>
+                                    <td><img src="~/assets/images/littledinosaur.jpg" class="productp"></td>
+                                    <td>小怪獸眼罩</td>
+                                    <td>EHM1002</td>
+                                    <td>旅行商品</td>
+                                    <td>300</td>
+                                    <td>$479 </td>
+                                    <td>$359</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

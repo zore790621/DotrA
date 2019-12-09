@@ -1,0 +1,20 @@
+﻿<aside id="left-panel" class="left-panel">
+    <nav class="navbar navbar-expand-sm navbar-default">
+        <div id="main-menu" class="main-menu collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+                <li class="active">
+                    <a href="@Url.Action("Index", "Home")"><i class="menu-icon fa fa-laptop"></i>後臺管理系統 </a>
+                </li>
+                <li class="menu-title">商品管理</li>
+                <li><a href="@Url.Action("index", "Categories")"><i class="menu-icon fa fa-table"></i>類型管理</a></li>
+                <li><a href="@Url.Action("index", "Suppliers")"><i class="menu-icon ti-plus"></i>供應商管理</a></li>
+                <li><a href="@Url.Action("index", "Products")"><i class="menu-icon ti-package"></i>產品管理</a></li>
+                <li class="menu-title">訂單管理</li>
+                <li><a href="@Url.Action("OrderList", "Home")"><i class="menu-icon ti-clipboard"></i>訂單列表</a></li>
+                <li class="menu-title">會員管理</li>
+                <li><a href="@Url.Action("Index", "Members")"><i class="menu-icon fa fa-user"></i>會員列表</a></li>
+            </ul>
+        </div><!-- /.navbar-collapse -->
+    </nav>
+</aside>
+

@@ -1,0 +1,118 @@
+﻿@model IEnumerable<BackEndSystem.Models.Products>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create","AddProduct")
+</p>
+<div class="content">
+    <div class="animated fadeIn">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <strong class="card-title">產品管理</strong>
+                    </div>
+                    <div class="card-body">
+                        <table id="bootstrap-data-table" class="table table-striped table-bordered">
+                            <tr>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Categories.CategoryName)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Suppliers.CompanyName)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.ProductName)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.UnitPrice)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Picture)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Description)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Quantity)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.SalesPrice)
+                                </th>
+                                <th></th>
+                            </tr>
+
+                            @foreach (var item in Model)
+                            {
+                        <tr onclick="location.href = '@Url.Action("Details", "Products", new { id = item.ProductID })'">
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Categories.CategoryName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Suppliers.CompanyName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.ProductName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.UnitPrice)
+                            </td>
+                            <td>                       
+                                @if (item.Picture != null)
+                                {
+                                    if (item.Picture.Substring(item.Picture.Length - 3, 3) == "jpg")
+                                    {
+                                        <img src="@Url.Content("~/Photo/Product/" + item.Picture)" alt="Alternate Text" style="width:100px;height:100px;" />
+                                    }
+                                    else
+                                    {
+                                        <video width="300" height="300" controls>
+                                            <source src="@Url.Content("~/Photo/Product/" + item.Picture)" type=video/mp4 />
+                                        </video>
+                                    }
+                                }
+                                else
+                                {
+                                    <img src="@Url.Content("~/Photos/1574835328175.jpg")" alt="Alternate Text" style="width:30px;height:30px;" />
+                                }
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Description)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Quantity)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.SalesPrice)
+                            </td>
+                            <td>
+                                @Html.ActionLink("Edit", "Edit", new { id = item.ProductID }, new { @class = "btn-btn-primary" }) |
+                                @Html.ActionLink("Delete", "Delete", new { id = item.ProductID }, new { @class = "btn-btn-danger" })
+                            </td>
+                        </tr>
+                            }
+
+                        </table>
+                    </div><!-- .animated -->
+                </div><!-- .content -->
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    @Scripts.Render("~/bundles/datatable")
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#bootstrap-data-table-export').DataTable();
+            $("#cancel").click(function (e) {
+                $(".htesxt").html("");
+            });
+        });
+    </script>
+}

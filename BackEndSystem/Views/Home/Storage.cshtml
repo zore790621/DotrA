@@ -1,0 +1,62 @@
+﻿<div class="content">
+    <div class="animated fadeIn">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <strong class="card-title">庫存管理</strong>
+                    </div>
+                    <div class="card-body">
+                        <table id="bootstrap-data-table" class="table table-striped table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>狀態</th>
+                                    <th>名稱</th>
+                                    <th>總庫存</th>
+                                    <th>已銷售</th>
+                                    <th>備註</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <button id="Buttonexport" type="button" class="btn btn-primary"
+                                                data-dismiss="modal">
+                                            修改
+                                        </button>
+                                        <button type="button" class="btn btn-danger" data-dismiss="modal"
+                                                id="cancel">
+                                            刪除
+                                        </button>
+                                    </td>
+                                    <td class="htesxt">PROM 恐龍頸枕</td>
+                                    <td class="htesxt">30</td>
+                                    <td class="htesxt">20</td>
+                                    <td class="htesxt"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div><!-- .animated -->
+            </div><!-- .content -->
+        </div>
+    </div>
+</div>
+
+
+@section scripts{
+    @Scripts.Render("~/bundles/datatable")
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#bootstrap-data-table-export').DataTable();
+
+            $("#cancel").click(function (e) {
+
+                $(".htesxt").html("");
+
+            });
+        });
+
+    </script>
+
+}

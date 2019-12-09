@@ -1,0 +1,133 @@
+﻿
+using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Data.Entity;
+using System.Linq;
+using System.Net;
+using System.Web;
+using System.Web.Mvc;
+using BackEndSystem.Attributes;
+using BackEndSystem.Models;
+
+namespace BackEndSystem.Controllers
+{
+    [Authorize]
+    public class MembersController : Controller
+    {
+        private DotrAContext db = new DotrAContext();
+
+        // GET: Members
+        public ActionResult Index()
+        {
+            return View(db.Members.ToList());
+        }
+
+        // GET: Members/Details/5
+        public ActionResult Details(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Members member = db.Members.Find(id);
+            if (member == null)
+            {
+                return HttpNotFound();
+            }
+            return View(member);
+        }
+        [Redirect(Users ="Admin")]
+        // GET: Members/Create
+        public ActionResult Create()
+        {
+            return View();
+        }
+
+        // POST: Members/Create
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Create([Bind(Include = "MemberID,MemberAccount,Password,Name,Email,Address,Phone")] Members member)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Members.Add(member);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+
+            return View(member);
+        }
+
+        // GET: Members/Edit/5
+        [Redirect(Users = "Admin")]
+        public ActionResult Edit(int? id)
+        {
+            //if(User.IsInRole(admin))
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Members member = db.Members.Find(id);
+            if (member == null)
+            {
+                return HttpNotFound();
+            }
+            return View(member);
+        }
+        [Authorize(Users = "admin")]
+        // POST: Members/Edit/5
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit([Bind(Include = "MemberID,MemberAccount,Password,Name,Email,Address,Phone")] Members member)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Entry(member).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            return View(member);
+        }
+
+        // GET: Members/Delete/5
+        [Redirect(Users = "Admin")]
+        public ActionResult Delete(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Members member = db.Members.Find(id);
+            if (member == null)
+            {
+                return HttpNotFound();
+            }
+            return View(member);
+        }
+
+        // POST: Members/Delete/5
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteConfirmed(int id)
+        {
+            Members member = db.Members.Find(id);
+            db.Members.Remove(member);
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                db.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+    }
+}
