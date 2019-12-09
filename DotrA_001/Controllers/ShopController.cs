@@ -40,6 +40,7 @@ namespace DotrA_001.Controllers
                     CategoryName = ca.CategoryName
                 };
             AllList.Category = cat.ToList();
+
             var Sup =
                 from su in db.Suppliers
                 select new SupplierView

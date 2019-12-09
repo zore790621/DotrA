@@ -1,11 +1,11 @@
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Data.Entity.Spatial;
-
 namespace Database.Models
 {
+    using System;
+    using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
+    using System.Data.Entity.Spatial;
+
     public partial class Product
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -14,6 +14,7 @@ namespace Database.Models
             OrderDetails = new HashSet<OrderDetail>();
         }
 
+        [Key]
         public int ProductID { get; set; }
 
         [Required]
@@ -32,6 +33,10 @@ namespace Database.Models
 
         [StringLength(200)]
         public string Description { get; set; }
+
+        public int Quantity { get; set; }
+
+        public int SalesPrice { get; set; }
 
         public virtual Category Category { get; set; }
 

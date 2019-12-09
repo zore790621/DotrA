@@ -1,20 +1,18 @@
-using System;
-using System.Data.Entity;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.IO;
-using ConnectionKey;
-
 namespace Database.Models
 {
+    using System;
+    using System.Data.Entity;
+    using System.ComponentModel.DataAnnotations.Schema;
+    using System.Linq;
+
     public partial class DotrADb : DbContext
     {
         public DotrADb() : base("name=DotrADb")
         {
-            Database.Connection.ConnectionString = Parameters.ConnectionString;
-            AppDomain.CurrentDomain.SetData("DataDirectory", Directory.GetCurrentDirectory());
+            Database.Connection.ConnectionString = ConnectionKey.Parameters.ConnectionString;
         }
 
+        public virtual DbSet<Admin> Admins { get; set; }
         public virtual DbSet<Category> Categories { get; set; }
         public virtual DbSet<Member> Members { get; set; }
         public virtual DbSet<OrderDetail> OrderDetails { get; set; }
@@ -23,10 +21,17 @@ namespace Database.Models
         public virtual DbSet<Product> Products { get; set; }
         public virtual DbSet<Shipper> Shippers { get; set; }
         public virtual DbSet<Supplier> Suppliers { get; set; }
-        public virtual DbSet<Admin> Admins { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<Admin>()
+                .Property(e => e.AdminAccount)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<Admin>()
+                .Property(e => e.AdminPW)
+                .IsUnicode(false);
+
             modelBuilder.Entity<Category>()
                 .HasMany(e => e.Products)
                 .WithRequired(e => e.Category)
@@ -46,6 +51,10 @@ namespace Database.Models
 
             modelBuilder.Entity<Member>()
                 .Property(e => e.Phone)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<Member>()
+                .Property(e => e.HashCode)
                 .IsUnicode(false);
 
             modelBuilder.Entity<Member>()
@@ -100,14 +109,6 @@ namespace Database.Models
                 .HasMany(e => e.Products)
                 .WithRequired(e => e.Supplier)
                 .WillCascadeOnDelete(false);
-
-            modelBuilder.Entity<Admin>()
-                .Property(e => e.AdminAccount)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<Admin>()
-                .Property(e => e.AdminPW)
-                .IsUnicode(false);
         }
     }
 }
