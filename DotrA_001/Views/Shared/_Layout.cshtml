@@ -8,6 +8,8 @@
     <title>@ViewBag.Title</title>
     @Styles.Render("~/Content/css")
     @Styles.Render("~/Assets/css")
+    @Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/bootstrap")
     @Scripts.Render("~/bundles/modernizr")
     @RenderSection("topCSS", required: false)
     @RenderSection("topJS", required: false)
@@ -20,6 +22,7 @@
 
     @RenderBody()
 
+    @Html.Partial("_footer")
 
     @Html.Partial("_footer")
     <div id="ftco-loader" class="show fullscreen">
@@ -36,8 +39,7 @@
         </svg>
     </div>
 
-    @*@Scripts.Render("~/bundles/jquery")
-        @Scripts.Render("~/bundles/bootstrap")*@
+   
     @Scripts.Render("~/Assets/jquery")
     @Scripts.Render("~/Assets/js")
     @RenderSection("scripts", required: false)

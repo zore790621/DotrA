@@ -27,7 +27,7 @@ namespace DotrA_001.Controllers
         {
             return View(db.Members.ToList());
         }
-        #region 註冊 Register
+        #region ===註冊 Register===
         // GET: Members/Register
         //[AllowAnonymous]//在執行Action時,略過驗證/授權的處理
         public ActionResult Register()
@@ -86,7 +86,7 @@ namespace DotrA_001.Controllers
             return View();
         }
         #endregion
-        #region 驗證帳號 VerifyAccount
+        #region ===驗證帳號 VerifyAccount===
         [HttpGet]
         public ActionResult VerifyAccount(string id)
         {
@@ -110,7 +110,7 @@ namespace DotrA_001.Controllers
             return View();
         }
         #endregion
-        #region 登入Login/登出Logout
+        #region ===登入Login/登出Logout===
         // GET: Members/Login
         public ActionResult Login()
         {
@@ -142,7 +142,7 @@ namespace DotrA_001.Controllers
                 var Account = db.Members.Where(x => x.MemberAccount == login.MemberAccount && x.Password.Equals(encodingPasswordString)).FirstOrDefault();
                 if (Account != null)
                 {
-                    #region 驗證票證
+                    #region ===驗證票證===
                     //為所提供的使用者名稱建立驗證票證，並將該票證加入至回應的Cookie,或加入至URL
                     //FormsAuthentication.SetAuthCookie(member.MemberAccount, false);// createPersistentCookie:false(不要記住我)
                     //Session["MemberID"] = user.MemberID.ToString();
@@ -156,16 +156,19 @@ namespace DotrA_001.Controllers
                     cookie.HttpOnly = true;
                     Response.Cookies.Add(cookie);
                     #endregion
-                    return RedirectToAction("LoggedIn");
+                    return RedirectToAction("Index","Home");
                     //return RedirectToAction("Index", "Members");
                 }
-                ViewBag.Message = "帳號或密碼輸入錯誤!! Invallid Account or Password.";
-                return View();
+
+                TempData["Message"] = "帳號或密碼輸入錯誤!! Invallid Account or Password.";
+                return Redirect(Request.UrlReferrer.ToString());
+                //return View();
             }
 
-            ViewBag.Message = "帳號或密碼輸入錯誤!! Invallid Account or Password.";
-            //ModelState.AddModelError("", "帳號或密碼輸入錯誤!!")
-            return View();
+            TempData["Message"] = "帳號或密碼輸入錯誤!! Invallid Account or Password.";
+            return Redirect(Request.UrlReferrer.ToString());
+            //ViewBag.Message = "帳號或密碼輸入錯誤!! Invallid Account or Password.";
+            //return View();
         }
         public ActionResult LoggedIn()
         {
@@ -182,10 +185,10 @@ namespace DotrA_001.Controllers
         {
             FormsAuthentication.SignOut();//登出,移除身份驗證資料cookie 
             //Session.Abandon();//清除伺服器記憶體中的 Session  
-            return RedirectToAction("Login", "Members");
+            return RedirectToAction("Index", "Home");
         }
         #endregion
-        #region 判斷Email存在 IsEmailExist
+        #region ===判斷Email存在 IsEmailExist===
         [NonAction]
         public bool IsEmailExist(string email)
         {
@@ -193,7 +196,7 @@ namespace DotrA_001.Controllers
             return isExist != null;
         }
         #endregion
-        #region 寄送驗證Email/重設密碼Email SendVerificationLinkEmailorSendResetPasswordLinkEmail
+        #region ===寄送驗證Email/重設密碼Email SendVerificationLinkEmailorSendResetPasswordLinkEmail===
         [NonAction]
         public void SendVerifyOrResetEmail(string Email, string activationCode, string emailFor = "VerifyAccount")
         {
@@ -243,7 +246,7 @@ namespace DotrA_001.Controllers
                 smtp.Send(message);
         }
         #endregion
-        #region 忘記密碼 ForgotPassword
+        #region ===忘記密碼 ForgotPassword===
         public ActionResult ForgotPassword()
         {
             return View();
@@ -279,7 +282,7 @@ namespace DotrA_001.Controllers
             return View();
         }
         #endregion
-        #region 重設密碼 ResetPassword
+        #region ===重設密碼 ResetPassword===
         public ActionResult ResetPassword(string id)
         {
             //Verify the reset password link
@@ -337,7 +340,7 @@ namespace DotrA_001.Controllers
             return View();
         }
         #endregion
-        #region CRUD
+        #region ===CRUD===
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -433,6 +436,12 @@ namespace DotrA_001.Controllers
             }
             base.Dispose(disposing);
         }
+        #endregion
+        #region ===LoginModal===
+        //public ActionResult LoginModal()
+        //{
+        //    return PartialView("LoginModal");
+        //}
         #endregion
     }
 }
