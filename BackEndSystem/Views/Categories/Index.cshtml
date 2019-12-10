@@ -12,8 +12,10 @@
                         <table id="bootstrap-data-table" class="table table-striped table-bordered">
 
                             <p>
-                                @Html.ActionLink("新增類型", "Create",new {@class="btn btn-default"})
+                                @Html.ActionLink("新增類型", "Create", new { @class = "btn btn-default" })
                             </p>
+
+                            <thead>
                             <tr>
                                 <th>
                                     @Html.DisplayNameFor(model => model.CategoryName)
@@ -23,25 +25,27 @@
                                 </th>
                                 <th></th>
                             </tr>
+                            </thead>
 
-                            @foreach (var item in Model)
-                            {
-                                <tr>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.CategoryName)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.Picture)
-                                    </td>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.CategoryName)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Picture)
+                                        </td>
 
 
-                                    <td>
-                                        @Html.ActionLink("Edit", "Edit", new { id = item.CategoryID }, new { @class = "btn btn-primary" })
-                                        @Html.ActionLink("Delete", "Delete", new { id = item.CategoryID }, new { @class = "btn btn-danger" })
-                                    </td>
-                                </tr>
-                            }
-                        </table>
+                                        <td>
+                                            @Html.ActionLink("Edit", "Edit", new { id = item.CategoryID }, new { @class = "btn btn-primary" })
+                                            @Html.ActionLink("Delete", "Delete", new { id = item.CategoryID }, new { @class = "btn btn-danger" })
+                                        </td>
+                                    </tr>
+                                }</tbody>
+                         </table>
                     </div>
                 </div><!-- .animated -->
             </div><!-- .content -->
