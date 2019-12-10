@@ -8,14 +8,14 @@
                         <strong class="card-title">會員管理</strong>
                     </div>
                     <div class="card-body">
-                        @if (User.Identity.Name == "admin")
+                        @*@if (User.Identity.Name == "admin")
                         {
                             <p>
                                 @Html.ActionLink("新增會員", "Create")
                             </p>
-                        }
+                        }*@
                         <table id="bootstrap-data-table" class="table table-striped table-bordered">
-                            <thead>
+                            <thead>.
                                 <tr>
                                     <th>@Html.DisplayNameFor(m => m.MemberID)</th>
                                     <th>@Html.DisplayNameFor(m => m.MemberAccount)</th>
@@ -66,16 +66,14 @@
     @Scripts.Render("~/bundles/datatable")
     <script type="text/javascript">
         $(document).ready(function () {
-            $('#bootstrap-data-table-export').DataTable();
-        });
-
-
-        $('tr').click(function () {
+               $('tr').click(function () {
             if ('@User.Identity.Name' == 'admin') {
                 location.href = "@Url.Action("Edit", "Members")/" + $(this).attr('id');
             }
-            
         })
+        });
+
+     
     </script>
 
 }

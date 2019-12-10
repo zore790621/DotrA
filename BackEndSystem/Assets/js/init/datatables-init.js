@@ -1,53 +1,28 @@
-(function ($) {
-    //    "use strict";
-
-
-    /*  Data Table
-    -------------*/
-
-
-
-
+﻿$(document).ready(function () {
     $('#bootstrap-data-table').DataTable({
-        lengthMenu: [[10, 20, 50, -1], [10, 20, 50, "All"]],
+        language: {
+            "decimal": "",
+            "emptyTable": "無資料...",
+            "info": "顯示第 _START_ 至 _END_ 項結果，共 _TOTAL_ 項",
+            "infoEmpty": "顯示第 0 至 0 項結果，共 0 項",
+            "infoFiltered": "(從 _MAX_ 項結果中過濾)",
+            "infoPostFix": "",
+            "thousands": ",",
+            "lengthMenu": "顯示 _MENU_ 項結果",
+            "loadingRecords": "載入中...",
+            "processing": "處理中...",
+            "zeroRecords": "沒有符合的結果",
+            "search": "搜尋:",
+            "paginate": {
+                "first": "第一頁",
+                "previous": "上一頁",
+                "next": "下一頁",
+                "last": "最後一頁"
+            },
+            "aria": {
+                "sortAscending": ": 升冪排列",
+                "sortDescending": ": 降冪排列"
+            }
+        }
     });
-
-
-
-    $('#bootstrap-data-table-export').DataTable({
-        dom: 'lBfrtip',
-        lengthMenu: [[10, 25, 50, -1], [10, 25, 50, "All"]],
-        buttons: [
-            'copy', 'csv', 'excel', 'pdf', 'print'
-        ]
-    });
-	
-	$('#row-select').DataTable( {
-			initComplete: function () {
-				this.api().columns().every( function () {
-					var column = this;
-					var select = $('<select class="form-control"><option value=""></option></select>')
-						.appendTo( $(column.footer()).empty() )
-						.on( 'change', function () {
-							var val = $.fn.dataTable.util.escapeRegex(
-								$(this).val()
-							);
-	 
-							column
-								.search( val ? '^'+val+'$' : '', true, false )
-								.draw();
-						} );
-	 
-					column.data().unique().sort().each( function ( d, j ) {
-						select.append( '<option value="'+d+'">'+d+'</option>' )
-					} );
-				} );
-			}
-		} );
-
-
-
-
-
-
-})(jQuery);
+});
