@@ -4,7 +4,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://fonts.googleapis.com/css?family=Dancing+Script&display=swap" rel="stylesheet">
+    @*<link href="https://fonts.googleapis.com/css?family=Dancing+Script&display=swap" rel="stylesheet">*@
     <style type="text/css">
         .text-center {
             font-family: 'Microsoft JhengHei' !important;
@@ -76,7 +76,6 @@
 
     @Html.Partial("_footer")
 
-    @Html.Partial("_footer")
     <div id="ftco-loader" class="show fullscreen">
         @*<svg class="circular" width="48px" height="48px">
                 <circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee" />
@@ -91,7 +90,7 @@
         </svg>
     </div>
 
-
+    @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/Assets/js")
     @RenderSection("scripts", required: false)
     @RenderSection("endCSS", required: false)

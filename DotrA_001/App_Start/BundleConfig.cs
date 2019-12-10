@@ -50,7 +50,7 @@ namespace DotrA_001
             bundles.Add(new ScriptBundle("~/Assets/js").Include(
                 "~/Assets/js/jquery-migrate-3.0.1.min.js",
                 "~/Assets/js/popper.min.js",
-                "~/Assets/js/bootstrap.min.js",
+                //"~/Assets/js/bootstrap.min.js",
                 "~/Assets/js/jquery.easing.1.3.js",
                 "~/Assets/js/jquery.waypoints.min.js",
                 "~/Assets/js/jquery.stellar.min.js",

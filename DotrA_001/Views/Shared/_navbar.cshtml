@@ -20,7 +20,7 @@
                 }
                 else
                 {
-                    <li class="nav-item dropdown active">
+                    <li class="nav-item dropdown ">
                         <a class="nav-link dropdown-toggle" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-users"></i>Register/Login</a>
                         <div class="dropdown-menu " aria-labelledby="dropdown04">
                             <a class="dropdown-item " href="@Url.Action("Register","Members")">Register</a>
@@ -50,7 +50,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <h5 class="text-danger"><i>@TempData["Message"]</i></h5>
+                    <h7 class="text-danger"><i>@TempData["Message"]</i></h7>
                     @{Html.RenderPartial("LoginModal", new DotrA_001.Models.ViewModels.LoginVM());}
                 </div>
                 <div class="modal-footer justify-content-center">
