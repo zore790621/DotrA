@@ -86,7 +86,7 @@
                         <div class="form-group">
                             <div class="col-md-offset-2 col-md-10">
                                 <input type="submit" value="儲存" class="btn btn-outline-danger" />                               
-                                 @Html.ActionLink("返回列表","Index", "Products", new { @class = "btn btn-outline-primary" })
+                                 @Html.ActionLink("返回列表","Index", "Products", new { @class = "btn btn-outline-primary" }) @*修改products 那一欄因為多加了後面new物件所以,products那一欄要改成路由得直*@
                             </div>
                         </div>                
                     </div>
