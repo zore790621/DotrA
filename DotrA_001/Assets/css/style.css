@@ -10281,7 +10281,7 @@ button.bg-dark:focus {
 }
 
 .text-center {
-    margin: 15px;
+    /*margin: 15px;*/
     text-align: center !important;
 }
 
