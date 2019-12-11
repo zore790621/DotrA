@@ -46,15 +46,15 @@ namespace BackEndSystem
             //bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
             //          "~/Scripts/bootstrap.min.js"));
 
-            bundles.Add(new StyleBundle("~/Content/css").Include(
-                "~/Content/normalize.css",
-                      "~/Content/bootstrap.min.css",
-                      "~/Content/css/all.css",
+            bundles.Add(new StyleBundle("~/Contents").Include(
+                      "~/Content/bootstrap.css",
+                        "~/Content/normalize.css",
+                      "~/Content/all.css",
                       "~/Content/themify-icons.css",
                       "~/Content/cs-skin-elastic.css",
                       "~/Content/style.css"
                       ));
-            //BundleTable.EnableOptimizations = true;
+            BundleTable.EnableOptimizations = false;
         }
     }
 }
