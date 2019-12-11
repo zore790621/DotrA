@@ -6,6 +6,7 @@ using System.Web;
 using System.Web.Mvc;
 using Database.Models;
 using DotrA_001.Models;
+using PagedList;
 using DotrADb = Database.Models.DotrADb;
 
 namespace DotrA_001.Controllers
@@ -15,11 +16,16 @@ namespace DotrA_001.Controllers
         private DotrADb db = new DotrADb();
 
         // GET: Shop
-        public ActionResult Index()
+        public ActionResult Index(int page, int? CID, int? PID)
         {
+            //string.IsNullOrEmpty("");
             ShopView AllList = new ShopView();
+            bool IsInt_PID = (PID is null);
+            int isInt_PID_Val = PID.GetValueOrDefault();
+
             var pro =
                 from pr in db.Products
+                where (IsInt_PID || pr.ProductID == isInt_PID_Val)
                 select new ProductView
                 {
                     CategoryID = pr.CategoryID,
@@ -31,6 +37,7 @@ namespace DotrA_001.Controllers
                     UnitPrice = pr.UnitPrice
                 };
             AllList.Product = pro.ToList();
+
             var cat =
                 from ca in db.Categories
                 select new CategoryView
@@ -51,6 +58,10 @@ namespace DotrA_001.Controllers
                     CompanyAddress = su.CompanyAddress
                 };
             AllList.Supplier = Sup.ToList();
+
+            //分頁的內容AllList.Product.ToPagedList(page, 幾個物件)
+            ViewBag.MyPageList = AllList.Product.ToPagedList(page, 9);
+
             return View(AllList);
         }
     }

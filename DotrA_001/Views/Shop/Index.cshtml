@@ -1,7 +1,10 @@
 ﻿@model ShopView
+    @*宣告給VIEW使用pagedlist*@
+@using PagedList;
 
-@{ 
-
+@{
+    //從Viewbag使用IPagedList<T>
+    IPagedList<ProductView> myPageList = (IPagedList<ProductView>)ViewBag.MyPageList;
 }
 
 @Html.Partial("_Topimage")
@@ -11,9 +14,11 @@
         <div class="row">
             <div class="col-md-8 col-lg-10 order-md-last">
                 @*圖片*@
-                @Html.Partial("Single_Product", Model)
+                @*給PartialView使用此Model*@
+                @Html.Partial("Single_Product", myPageList)
                 @*分頁選擇*@
-                @Html.Partial("PageSelection" ,Model.Product)
+                @*給PartialView使用此Model*@
+                @Html.Partial("PageSelection", myPageList)
             </div>
 
             <div class="col-md-4 col-lg-2">
@@ -22,12 +27,20 @@
                         @*Categories 分類查詢*@
                         @Html.Partial("Categories", Model)
                     </div>
-                    <div class="sidebar-box-2">
-                        @*PriceRange 價格範圍*@
+                    @*<div class="sidebar-box-2">
+                        PriceRange 價格範圍
                         @Html.Partial("PriceRange")
-                    </div>
+                    </div>*@
                 </div>
             </div>
         </div>
     </div>
 </section>
+@section topCSS{
+    <style>
+        .pagination{
+            position: absolute;
+            left: 50%;
+        }
+    </style>
+    }
