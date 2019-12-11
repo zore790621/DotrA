@@ -9,7 +9,6 @@ namespace BackEndSystem
         public static void RegisterBundles(BundleCollection bundles)
         {
             bundles.Add(new ScriptBundle("~/bundles/mainjs").Include(
-              "~/Scripts/jquery-3.3.1.js",
                  "~/Scripts/popper.min.js",
                  "~/Scripts/bootstrap.min.js",
                  "~/Scripts/jquery.matchHeight.min.js",
@@ -19,7 +18,6 @@ namespace BackEndSystem
                         "~/Scripts/jquery-{version}.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/datatable").Include(
-                 "~/Scripts/jquery-3.3.1.js",
                 "~/assets/js/data-table/datatables.min.js",
                 "~/assets/js/data-table/dataTables.bootstrap4.min.js",
                 "~/assets/js/data-table/dataTables.buttons.min.js",
