@@ -9,6 +9,8 @@ namespace BackEndSystem.Models
     public partial class OrderDetails
     {
         [Key]
+        public long ID { get; set; }
+
         public int OrderID { get; set; }
 
         public int ProductID { get; set; }

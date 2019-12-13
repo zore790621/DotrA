@@ -66,10 +66,6 @@ namespace BackEndSystem.Models
                 .Property(e => e.RecipientPhone)
                 .IsUnicode(false);
 
-            modelBuilder.Entity<Orders>()
-                .HasOptional(e => e.OrderDetails)
-                .WithRequired(e => e.Orders);
-
             modelBuilder.Entity<Payment>()
                 .Property(e => e.PaymentMethod)
                 .IsUnicode(false);

@@ -27,9 +27,13 @@ namespace BackEndSystem.Models
         [StringLength(50)]
         public string RecipientAddress { get; set; }
 
+        public int PaymentID { get; set; }
+
+        public DateTime OrderDate { get; set; }
+
         public virtual Members Members { get; set; }
 
-        public virtual OrderDetails OrderDetails { get; set; }
+        public virtual IEnumerable<OrderDetails> OrderDetails { get; set; }
 
         public virtual Shippers Shippers { get; set; }
     }
