@@ -13,7 +13,6 @@
                         <table id="bootstrap-data-table" class="table table-striped table-bordered">
                             <thead>
                                 <tr>
-                                    <th>@Html.DisplayNameFor(m => m.OrderID)</th>
                                     <th>@Html.DisplayNameFor(m => m.OrderDate)</th>
                                     <th>@Html.DisplayNameFor(m => m.MemberName)</th>
                                     <th>@Html.DisplayNameFor(m => m.ShipperName)</th>
@@ -24,14 +23,12 @@
                             <tbody>
                                 @foreach (var m in Model)
                                 {
-                                    <tr id="@m.MemberID">
-                                        <td>@Html.DisplayFor(x => m.OrderID)</td>
+                                    <tr id="@m.OrderID">
                                         <td>@Html.DisplayFor(x => m.OrderDate)</td>
                                         <td>@Html.DisplayFor(x => m.MemberName)</td>
                                         <td>@Html.DisplayFor(x => m.ShipperName)</td>
                                         <td>@Html.DisplayFor(x => m.TotalPrice)</td>
                                         <td>@Html.DisplayFor(x => m.PaymentMethod)</td>
-
                                     </tr>
                                 }
                             </tbody>
@@ -42,3 +39,15 @@
         </div>
     </div><!-- .animated -->
 </div><!-- .content -->
+@section scripts{
+
+    @Scripts.Render("~/bundles/datatable")
+
+    <script type="text/javascript">
+        @*$(document).ready(function () {
+               $('tr').click(function () {
+                location.href = "@Url.Action("Details", "Order")/" + $(this).attr('id');
+        })
+        });*@
+    </script>
+}

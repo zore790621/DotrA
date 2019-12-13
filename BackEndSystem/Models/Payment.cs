@@ -12,7 +12,7 @@ namespace BackEndSystem.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Payment()
         {
-            OrderDetails = new HashSet<OrderDetails>();
+            Orders = new HashSet<Orders>();
         }
 
         public int PaymentID { get; set; }
@@ -22,6 +22,6 @@ namespace BackEndSystem.Models
         public string PaymentMethod { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<OrderDetails> OrderDetails { get; set; }
+        public virtual ICollection<Orders> Orders { get; set; }
     }
 }

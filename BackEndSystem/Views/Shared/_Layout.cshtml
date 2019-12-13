@@ -10,6 +10,7 @@
     <link rel="shortcut icon" href="~/assets/images/apple-touch-icon.ico">
 
     @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/modernizr")
     @RenderSection("topCSS", required: false)
     @RenderSection("topJS", required: false)
@@ -17,6 +18,7 @@
 
 </head>
 <body>
+
     <!-- Left Panel -->
     @Html.Partial("_navbar")
     <!-- /#left-panel -->
@@ -27,11 +29,7 @@
         <div class="clearfix"></div>
     </div>
     <!-- /#right-panel -->
-
-
     @Scripts.Render("~/bundles/mainjs")
-    @Scripts.Render("~/bundles/jquery")
-
     @RenderSection("scripts", required: false)
     @RenderSection("endCSS", required: false)
     @RenderSection("endJS", required: false)

@@ -67,7 +67,7 @@
     @Scripts.Render("~/bundles/datatable")
 
     <script type="text/javascript">
-        $(document).ready(function () {
+        jQuery(document).ready(function () {
                $('tr').click(function () {
             if ('@User.Identity.Name' == 'admin') {
                 location.href = "@Url.Action("Edit", "Members")/" + $(this).attr('id');

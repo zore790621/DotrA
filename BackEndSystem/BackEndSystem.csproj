@@ -138,21 +138,21 @@
     <Compile Include="Controllers\LogInController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MembersController.cs" />
-    <Compile Include="Controllers\OrderController.cs" />
+    <Compile Include="Controllers\OrdersController.cs" />
     <Compile Include="Controllers\ProductsController.cs" />
     <Compile Include="Controllers\SuppliersController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Attributes\AntiForgeryErrorHandlerAttribute.cs" />
+    <Compile Include="Models\OrderDetails.cs" />
+    <Compile Include="Models\Orders.cs" />
     <Compile Include="Models\ViewModel\AddPro.cs" />
     <Compile Include="Models\Admin.cs" />
     <Compile Include="Models\Categories.cs" />
     <Compile Include="Models\DotrAContext.cs" />
     <Compile Include="Models\LogInRequest.cs" />
     <Compile Include="Models\Members.cs" />
-    <Compile Include="Models\OrderDetails.cs" />
-    <Compile Include="Models\Orders.cs" />
     <Compile Include="Models\Payment.cs" />
     <Compile Include="Models\Products.cs" />
     <Compile Include="Models\Shippers.cs" />

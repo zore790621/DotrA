@@ -1,4 +1,4 @@
-﻿$(document).ready(function () {
+﻿jQuery(document).ready(function () {
     $('#bootstrap-data-table').DataTable({
         language: {
             "decimal": "",

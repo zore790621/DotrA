@@ -8,6 +8,12 @@ namespace BackEndSystem.Models
 
     public partial class Orders
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Orders()
+        {
+            OrderDetails = new HashSet<OrderDetails>();
+        }
+
         [Key]
         public int OrderID { get; set; }
 
@@ -33,7 +39,10 @@ namespace BackEndSystem.Models
 
         public virtual Members Members { get; set; }
 
-        public virtual IEnumerable<OrderDetails> OrderDetails { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<OrderDetails> OrderDetails { get; set; }
+
+        public virtual Payment Payment { get; set; }
 
         public virtual Shippers Shippers { get; set; }
     }

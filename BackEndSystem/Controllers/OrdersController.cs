@@ -8,7 +8,7 @@ using System.Web.Mvc;
 
 namespace BackEndSystem.Controllers
 {
-    public class OrderController : Controller
+    public class OrdersController : Controller
     {
         // GET: Orders
         public ActionResult Index()
@@ -20,7 +20,8 @@ namespace BackEndSystem.Controllers
                 MemberName = x.Members.Name,
                 OrderDate = x.OrderDate,
                 TotalPrice = x.OrderDetails.Sum(y => y.SubTotal),
-                ShipperName = x.Shippers.ShipperName
+                ShipperName = x.Shippers.ShipperName,
+                PaymentMethod = x.Payment.PaymentMethod
             }).ToList();
             return View(models);
         }
