@@ -54,12 +54,16 @@ namespace BackEndSystem.Models
                 .IsUnicode(false);
 
             modelBuilder.Entity<Members>()
+                .Property(e => e.HashCode)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<Members>()
                 .HasMany(e => e.Orders)
                 .WithRequired(e => e.Members)
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<OrderDetails>()
-                .Property(e => e.TotalPrice)
+                .Property(e => e.SubTotal)
                 .HasPrecision(19, 4);
 
             modelBuilder.Entity<Orders>()
@@ -67,15 +71,16 @@ namespace BackEndSystem.Models
                 .IsUnicode(false);
 
             modelBuilder.Entity<Orders>()
-                .HasOptional(e => e.OrderDetails)
-                .WithRequired(e => e.Orders);
+                .HasMany(e => e.OrderDetails)
+                .WithRequired(e => e.Orders)
+                .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<Payment>()
                 .Property(e => e.PaymentMethod)
                 .IsUnicode(false);
 
             modelBuilder.Entity<Payment>()
-                .HasMany(e => e.OrderDetails)
+                .HasMany(e => e.Orders)
                 .WithRequired(e => e.Payment)
                 .WillCascadeOnDelete(false);
 

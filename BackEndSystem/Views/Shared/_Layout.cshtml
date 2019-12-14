@@ -8,8 +8,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="apple-touch-icon" href="~/assets/images/apple-touch-icon.png">
     <link rel="shortcut icon" href="~/assets/images/apple-touch-icon.ico">
-    
-    @Styles.Render("~/Contents")
+
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/modernizr")
     @RenderSection("topCSS", required: false)
     @RenderSection("topJS", required: false)
@@ -17,6 +18,7 @@
 
 </head>
 <body>
+
     <!-- Left Panel -->
     @Html.Partial("_navbar")
     <!-- /#left-panel -->
@@ -27,8 +29,6 @@
         <div class="clearfix"></div>
     </div>
     <!-- /#right-panel -->
-
-
     @Scripts.Render("~/bundles/mainjs")
     @RenderSection("scripts", required: false)
     @RenderSection("endCSS", required: false)

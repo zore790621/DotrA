@@ -1,0 +1,55 @@
+﻿@model IEnumerable<BackEndSystem.Models.ViewModel.OrderIndex>
+
+<div class="content">
+    <div class="animated fadeIn">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <strong class="card-title">訂單列表</strong>
+                    </div>
+                    <div class="card-body">
+
+                        <table id="bootstrap-data-table" class="table table-striped table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>@Html.DisplayNameFor(m => m.OrderID)</th>
+                                    <th>@Html.DisplayNameFor(m => m.MemberName)</th>
+                                    <th>@Html.DisplayNameFor(m => m.ShipperName)</th>
+                                    <th>@Html.DisplayNameFor(m => m.TotalPrice)</th>
+                                    <th>@Html.DisplayNameFor(m => m.PaymentMethod)</th>
+                                    <th>@Html.DisplayNameFor(m => m.OrderDate)</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var m in Model)
+                                {
+                                <tr onclick="location.href = '@Url.Action("Details", "Orders", new { id = m.OrderID })'">
+                                    <td>@Html.DisplayFor(x => m.OrderID)</td>
+                                    <td>@Html.DisplayFor(x => m.MemberName)</td>
+                                    <td>@Html.DisplayFor(x => m.ShipperName)</td>
+                                    <td>@Html.DisplayFor(x => m.TotalPrice)</td>
+                                    <td>@Html.DisplayFor(x => m.PaymentMethod)</td>
+                                    <td>@Html.DisplayFor(x => m.OrderDate)</td>
+                                </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div><!-- .animated -->
+</div><!-- .content -->
+@section scripts{
+
+    @Scripts.Render("~/bundles/datatable")
+
+    <script type="text/javascript">
+        @*$(document).ready(function () {
+               $('tr').click(function () {
+                location.href = "@Url.Action("Details", "Order")/" + $(this).attr('id');
+        })
+        });*@
+    </script>
+}

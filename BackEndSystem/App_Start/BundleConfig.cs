@@ -8,19 +8,18 @@ namespace BackEndSystem
         // For more information on bundling, visit https://go.microsoft.com/fwlink/?LinkId=301862
         public static void RegisterBundles(BundleCollection bundles)
         {
+
+            bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
+                        "~/Scripts/jquery-{version}.js"));
+
             bundles.Add(new ScriptBundle("~/bundles/mainjs").Include(
-                "~/Scripts/jquery.min.js",
                  "~/Scripts/popper.min.js",
                  "~/Scripts/bootstrap.min.js",
                  "~/Scripts/jquery.matchHeight.min.js",
                  "~/assets/js/main.js"));
 
-            bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
-                        "~/Scripts/jquery-{version}.js"));
-
             bundles.Add(new ScriptBundle("~/bundles/datatable").Include(
-                 "~/Scripts/jquery.min.js",
-                "~/assets/js/data-table/datatables.min.js",
+            "~/assets/js/data-table/datatables.min.js",
                 "~/assets/js/data-table/dataTables.bootstrap4.min.js",
                 "~/assets/js/data-table/dataTables.buttons.min.js",
                 "~/assets/js/data-table/buttons.bootstrap.min.js",
@@ -28,10 +27,8 @@ namespace BackEndSystem
                 "~/assets/js/data-table/vfs_fonts.js",
                 "~/assets/js/data-table/buttons.html5.min.js",
                 "~/assets/js/data-table/buttons.print.min.js",
-                "~/assets/js/datatables-init.js",
                 "~/assets/js/data-table/buttons.colVis.min.js",
                 "~/assets/js/init/datatables-init.js"
-              
                  ));
 
 
