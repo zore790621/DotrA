@@ -17,7 +17,7 @@
                             <div class="stat-content">
                                 <div class="text-left dib">
                                     <div class="stat-text">$<span class="count">@Model.GetTotal()</span></div>
-                                    <div class="stat-heading">總數據</div>
+                                    <div class="stat-heading">總金額</div>
                                 </div>
                             </div>
                         </div>
@@ -81,3 +81,52 @@
         </div>
     </div>
 </div>
+
+
+@*order*@
+<div class="orders">
+    <div class="row">
+        <div class="col-xl-12">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="box-title">Orders </h4>
+                </div>
+                <div class="card-body--">
+                    <div class="table-stats order-table ov-h">
+                        <table class="table ">
+                            <thead>
+                                <tr>
+                                    <th class="serial">#</th>
+                                    <th class="avatar">Avatar</th>
+                                    <th>ID</th>
+                                    <th>Name</th>
+                                    <th>Product</th>
+                                    <th>Quantity</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="serial">3.</td>
+                                    <td class="avatar">
+                                        <div class="round-img">
+                                            <a href="#"><img class="rounded-circle" src="images/avatar/3.jpg" alt=""></a>
+                                        </div>
+                                    </td>
+                                    <td> #5467 </td>
+                                    <td>  <span class="name">Catherine Dixon</span> </td>
+                                    <td> <span class="product">SSD</span> </td>
+                                    <td><span class="count">250</span></td>
+                                    <td>
+                                        <span class="badge badge-complete">Complete</span>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div> <!-- /.table-stats -->
+                </div>
+            </div> <!-- /.card -->
+        </div>  <!-- /.col-lg-8 -->
+    </div>
+    </div>
+<!-- /.orders -->

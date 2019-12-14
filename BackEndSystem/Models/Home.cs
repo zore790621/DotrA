@@ -16,5 +16,9 @@ namespace BackEndSystem.Models
         {
             return Prototal + Cattotal + Ordertotal + Selltotal;
         }
+
+    
+
+
     }
 }
