@@ -41,7 +41,7 @@ namespace BackEndSystem.Controllers
                 OrderProducts = o.OrderDetails.Select(x => new OrderProductVM
                 {
                     Discount = x.Discount,
-                    UnitPrice = x.Products.UnitPrice,
+                    SalesPrice = x.Products.SalesPrice,
                     ProductName = x.Products.ProductName,
                     Quantity = x.Quantity,
                     SubTotal = x.SubTotal

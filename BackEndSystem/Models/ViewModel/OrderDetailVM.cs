@@ -29,8 +29,10 @@ namespace BackEndSystem.Models.ViewModel
         [Display(Name = "折扣")]
         public float? Discount { get; set; }
         [Display(Name = "小計")]
+        [DisplayFormat(DataFormatString = "{0:C}")]
         public decimal SubTotal { get; set; }
-
-        public decimal UnitPrice { get; set; }
+        [Display(Name = "單價")]
+        [DisplayFormat(DataFormatString = "{0:C}")]
+        public int SalesPrice { get; set; }
     }
 }

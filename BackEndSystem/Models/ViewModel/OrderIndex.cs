@@ -12,6 +12,7 @@ namespace BackEndSystem.Models.ViewModel
         public int OrderID { get; set; }
 
         [Display(Name = "訂單日期")]
+        [DisplayFormat(DataFormatString = "{0:F}")]
         public DateTime OrderDate { get; set; }
 
         [Display(Name = "會員名稱")]
@@ -21,6 +22,7 @@ namespace BackEndSystem.Models.ViewModel
         public string ShipperName { get; set; }
 
         [Display(Name = "消費總金額")]
+        [DisplayFormat(DataFormatString = "{0:C}")]
         public decimal TotalPrice { get; set; }
 
         [Display(Name = "付款方式")]
