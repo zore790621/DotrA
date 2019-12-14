@@ -15,7 +15,13 @@ namespace BackEndSystem.Models.ViewModel
         [Required]
         [StringLength(20)]
         public string PName { get; set; }
+
+        [Display(Name = "供應商")]
+        [Required]
         public int SupplierID { get; set; }
+
+        [Display(Name = "產品種類")]
+        [Required]
         public int CategoryID { get; set; }
 
         [Display(Name = "產品進價")]

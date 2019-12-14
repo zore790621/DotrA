@@ -17,11 +17,13 @@ namespace BackEndSystem.Models
         [Key]
         public int CategoryID { get; set; }
 
+        [Display(Name ="產品種類")]
         [Required]
         [StringLength(10)]
         public string CategoryName { get; set; }
 
         [StringLength(50)]
+        [Display(Name = "種類描述")]
         public string Picture { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
