@@ -1,4 +1,6 @@
 ﻿using BackEndSystem.Models;
+using BackEndSystem.Models.ViewModel;
+using Database.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +13,7 @@ namespace BackEndSystem.Controllers
     [Authorize]
     public class LogInController : Controller
     {
-        private DotrAContext db = new DotrAContext();
+        private DotrADb db = new DotrADb();
         // GET: BackEnd
         public ActionResult Index()
         {
@@ -30,7 +32,7 @@ namespace BackEndSystem.Controllers
             string account = HttpUtility.HtmlEncode(data.AdminAccount);
             string password = HttpUtility.HtmlEncode(data.AdminPW);
 
-            var user = db.Admin.FirstOrDefault(x => x.AdminAccount == account && x.AdminPW == password);
+            var user = db.Admins.FirstOrDefault(x => x.AdminAccount == account && x.AdminPW == password);
             if ( user != null)
             {
                 var ticket = new FormsAuthenticationTicket(

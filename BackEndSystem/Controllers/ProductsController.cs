@@ -6,18 +6,18 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using BackEndSystem.Models;
+using Database.Models;
 
 namespace BackEndSystem.Controllers
 {
     public class ProductsController : Controller
     {
-        private DotrAContext db = new DotrAContext();
+        private DotrADb db = new DotrADb();
 
         // GET: Products
         public ActionResult Index()
         {
-            var products = db.Products.Include(p => p.Categories).Include(p => p.Suppliers);
+            var products = db.Products.Include(p => p.Category).Include(p => p.Supplier);
             return View(products.ToList());
         }
 
@@ -28,7 +28,7 @@ namespace BackEndSystem.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Products products = db.Products.Find(id);
+            Product products = db.Products.Find(id);
             if (products == null)
             {
                 return HttpNotFound();
@@ -49,7 +49,7 @@ namespace BackEndSystem.Controllers
         // 詳細資訊，請參閱 https://go.microsoft.com/fwlink/?LinkId=317598。
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ProductID,ProductName,SupplierID,CategoryID,UnitPrice,Picture,Description,Quantity,SalesPrice")] Products products)
+        public ActionResult Create([Bind(Include = "ProductID,ProductName,SupplierID,CategoryID,UnitPrice,Picture,Description,Quantity,SalesPrice")] Product products)
         {
             if (ModelState.IsValid)
             {
@@ -70,7 +70,7 @@ namespace BackEndSystem.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Products products = db.Products.Find(id);
+            Product products = db.Products.Find(id);
             if (products == null)
             {
                 return HttpNotFound();
@@ -85,7 +85,7 @@ namespace BackEndSystem.Controllers
         // 詳細資訊，請參閱 https://go.microsoft.com/fwlink/?LinkId=317598。
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ProductID,ProductName,SupplierID,CategoryID,UnitPrice,Picture,Description,Quantity,SalesPrice")] Products products)
+        public ActionResult Edit([Bind(Include = "ProductID,ProductName,SupplierID,CategoryID,UnitPrice,Picture,Description,Quantity,SalesPrice")] Product products)
         {
             if (ModelState.IsValid)
             {
@@ -105,7 +105,7 @@ namespace BackEndSystem.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Products products = db.Products.Find(id);
+            Product products = db.Products.Find(id);
             if (products == null)
             {
                 return HttpNotFound();
@@ -118,7 +118,7 @@ namespace BackEndSystem.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Products products = db.Products.Find(id);
+            Product products = db.Products.Find(id);
             db.Products.Remove(products);
             db.SaveChanges();
             return RedirectToAction("Index");

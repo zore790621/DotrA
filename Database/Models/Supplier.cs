@@ -15,14 +15,15 @@ namespace Database.Models
         }
 
         public int SupplierID { get; set; }
-
+        [Display(Name = "廠商名稱")]
         [Required]
         [StringLength(50)]
         public string CompanyName { get; set; }
-
+        [Display(Name = "聯絡電話")]
         [StringLength(50)]
         public string CampanyPhone { get; set; }
 
+        [Display(Name = "聯絡地址")]
         [StringLength(20)]
         public string CompanyAddress { get; set; }
 

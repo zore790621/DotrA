@@ -6,13 +6,13 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using BackEndSystem.Models;
+using Database.Models;
 
 namespace BackEndSystem.Controllers
 {
     public class SuppliersController : Controller
     {
-        private DotrAContext db = new DotrAContext();
+        private DotrADb db = new DotrADb();
 
         // GET: Suppliers
         public ActionResult Index()
@@ -27,7 +27,7 @@ namespace BackEndSystem.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Suppliers suppliers = db.Suppliers.Find(id);
+            Supplier suppliers = db.Suppliers.Find(id);
             if (suppliers == null)
             {
                 return HttpNotFound();
@@ -46,7 +46,7 @@ namespace BackEndSystem.Controllers
         // 詳細資訊，請參閱 https://go.microsoft.com/fwlink/?LinkId=317598。
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "SupplierID,CompanyName,CampanyPhone,CompanyAddress")] Suppliers suppliers)
+        public ActionResult Create([Bind(Include = "SupplierID,CompanyName,CampanyPhone,CompanyAddress")] Supplier suppliers)
         {
             if (ModelState.IsValid)
             {
@@ -65,7 +65,7 @@ namespace BackEndSystem.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Suppliers suppliers = db.Suppliers.Find(id);
+            Supplier suppliers = db.Suppliers.Find(id);
             if (suppliers == null)
             {
                 return HttpNotFound();
@@ -78,7 +78,7 @@ namespace BackEndSystem.Controllers
         // 詳細資訊，請參閱 https://go.microsoft.com/fwlink/?LinkId=317598。
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "SupplierID,CompanyName,CampanyPhone,CompanyAddress")] Suppliers suppliers)
+        public ActionResult Edit([Bind(Include = "SupplierID,CompanyName,CampanyPhone,CompanyAddress")] Supplier suppliers)
         {
             if (ModelState.IsValid)
             {
@@ -96,7 +96,7 @@ namespace BackEndSystem.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Suppliers suppliers = db.Suppliers.Find(id);
+            Supplier suppliers = db.Suppliers.Find(id);
             if (suppliers == null)
             {
                 return HttpNotFound();
@@ -109,7 +109,7 @@ namespace BackEndSystem.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Suppliers suppliers = db.Suppliers.Find(id);
+            Supplier suppliers = db.Suppliers.Find(id);
             db.Suppliers.Remove(suppliers);
             db.SaveChanges();
             return RedirectToAction("Index");

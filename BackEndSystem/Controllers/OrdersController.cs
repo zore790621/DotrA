@@ -1,5 +1,4 @@
 ﻿using BackEndSystem.Attributes;
-using BackEndSystem.Models;
 using BackEndSystem.Models.ViewModel;
 using System;
 using System.Collections.Generic;
@@ -7,12 +6,13 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using Database.Models;
 
 namespace BackEndSystem.Controllers
 {
     public class OrdersController : Controller
     {
-        DotrAContext db = new DotrAContext();
+        DotrADb db = new DotrADb();
         // GET: Orders
         public ActionResult Index()
         {
@@ -20,10 +20,10 @@ namespace BackEndSystem.Controllers
             var models = db.Orders.Select(x => new OrderIndex()
             {
                 OrderID = x.OrderID,
-                MemberName = x.Members.Name,
+                MemberName = x.Member.Name,
                 OrderDate = x.OrderDate,
                 TotalPrice = x.OrderDetails.Sum(y => y.SubTotal),
-                ShipperName = x.Shippers.ShipperName,
+                ShipperName = x.Shipper.ShipperName,
                 PaymentMethod = x.Payment.PaymentMethod
             }).ToList();
             return View(models);
@@ -35,15 +35,15 @@ namespace BackEndSystem.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Orders o = db.Orders.Find(id);
+            Order o = db.Orders.Find(id);
             OrderDetailVM vm = new OrderDetailVM()
             {
                 OrderID = o.OrderID,
                 OrderProducts = o.OrderDetails.Select(x => new OrderProductVM
                 {
                     Discount = x.Discount,
-                    SalesPrice = x.Products.SalesPrice,
-                    ProductName = x.Products.ProductName,
+                    SalesPrice = x.Product.SalesPrice,
+                    ProductName = x.Product.ProductName,
                     Quantity = x.Quantity,
                     SubTotal = x.SubTotal
                 }),
@@ -66,15 +66,15 @@ namespace BackEndSystem.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Orders o = db.Orders.Find(id);
+            Order o = db.Orders.Find(id);
             OrderDetailVM vm = new OrderDetailVM()
             {
                 OrderID = o.OrderID,
                 OrderProducts = o.OrderDetails.Select(x => new OrderProductVM
                 {
                     Discount = x.Discount,
-                    SalesPrice = x.Products.SalesPrice,
-                    ProductName = x.Products.ProductName,
+                    SalesPrice = x.Product.SalesPrice,
+                    ProductName = x.Product.ProductName,
                     Quantity = x.Quantity,
                     SubTotal = x.SubTotal
                 }),
@@ -94,7 +94,7 @@ namespace BackEndSystem.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Orders o = db.Orders.Find(id);
+            Order o = db.Orders.Find(id);
             var od = db.OrderDetails.Where(x => x.OrderID == id);
             foreach (var d in od)
             {

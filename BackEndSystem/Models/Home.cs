@@ -11,11 +11,5 @@ namespace BackEndSystem.Models
         public int Cattotal { get; set; }
         public int Ordertotal { get; set; }
         public decimal Selltotal { get; set; }
-
-  
-
-    
-
-
     }
 }

@@ -132,7 +132,6 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AddProductController.cs" />
-    <Compile Include="Controllers\AdminsController.cs" />
     <Compile Include="Controllers\CategoriesController.cs" />
     <Compile Include="Attributes\RedirectAttribute.cs" />
     <Compile Include="Controllers\LogInController.cs" />
@@ -145,19 +144,9 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Attributes\AntiForgeryErrorHandlerAttribute.cs" />
-    <Compile Include="Models\OrderDetails.cs" />
-    <Compile Include="Models\Orders.cs" />
     <Compile Include="Models\Home.cs" />
     <Compile Include="Models\ViewModel\AddPro.cs" />
-    <Compile Include="Models\Admin.cs" />
-    <Compile Include="Models\Categories.cs" />
-    <Compile Include="Models\DotrAContext.cs" />
-    <Compile Include="Models\LogInRequest.cs" />
-    <Compile Include="Models\Members.cs" />
-    <Compile Include="Models\Payment.cs" />
-    <Compile Include="Models\Products.cs" />
-    <Compile Include="Models\Shippers.cs" />
-    <Compile Include="Models\Suppliers.cs" />
+    <Compile Include="Models\ViewModel\LogInRequest.cs" />
     <Compile Include="Models\ViewModel\MemberIndex.cs" />
     <Compile Include="Models\ViewModel\OrderDetailVM.cs" />
     <Compile Include="Models\ViewModel\OrderIndex.cs" />
@@ -301,11 +290,6 @@
     <Content Include="Scripts\popper.js.map" />
     <Content Include="Scripts\popper-utils.min.js.map" />
     <Content Include="Scripts\popper-utils.js.map" />
-    <Content Include="Views\Admins\Create.cshtml" />
-    <Content Include="Views\Admins\Delete.cshtml" />
-    <Content Include="Views\Admins\Details.cshtml" />
-    <Content Include="Views\Admins\Edit.cshtml" />
-    <Content Include="Views\Admins\Index.cshtml" />
     <Content Include="Views\Categories\Create.cshtml" />
     <Content Include="Views\Categories\Delete.cshtml" />
     <Content Include="Views\Categories\Details.cshtml" />
@@ -340,6 +324,12 @@
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="Scripts\index.d.ts" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Database\Database.csproj">
+      <Project>{49263ba8-4c5e-4975-9abe-04fca1920986}</Project>
+      <Name>Database</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -7,7 +7,8 @@ namespace Database.Models
 
     public partial class DotrADb : DbContext
     {
-        public DotrADb() : base("name=DotrADb")
+        public DotrADb()
+            : base("name=DotrADb")
         {
             Database.Connection.ConnectionString = ConnectionKey.Parameters.ConnectionString;
         }
@@ -63,7 +64,7 @@ namespace Database.Models
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<OrderDetail>()
-                .Property(e => e.TotalPrice)
+                .Property(e => e.SubTotal)
                 .HasPrecision(19, 4);
 
             modelBuilder.Entity<Order>()
@@ -71,15 +72,16 @@ namespace Database.Models
                 .IsUnicode(false);
 
             modelBuilder.Entity<Order>()
-                .HasOptional(e => e.OrderDetail)
-                .WithRequired(e => e.Order);
+                .HasMany(e => e.OrderDetails)
+                .WithRequired(e => e.Order)
+                .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<Payment>()
                 .Property(e => e.PaymentMethod)
                 .IsUnicode(false);
 
             modelBuilder.Entity<Payment>()
-                .HasMany(e => e.OrderDetails)
+                .HasMany(e => e.Orders)
                 .WithRequired(e => e.Payment)
                 .WillCascadeOnDelete(false);
 

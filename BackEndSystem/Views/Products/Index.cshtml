@@ -1,4 +1,4 @@
-﻿@model IEnumerable<BackEndSystem.Models.Products>
+﻿@model IEnumerable<Database.Models.Product>
 
 
 
@@ -23,10 +23,10 @@
 
                                 <tr>
                                     <th>
-                                        @Html.DisplayNameFor(model => model.Categories.CategoryName)
+                                        @Html.DisplayNameFor(model => model.Category.CategoryName)
                                     </th>
                                     <th>
-                                        @Html.DisplayNameFor(model => model.Suppliers.CompanyName)
+                                        @Html.DisplayNameFor(model => model.Supplier.CompanyName)
                                     </th>
                                     <th>
                                         @Html.DisplayNameFor(model => model.ProductName)
@@ -54,10 +54,10 @@
                                 {
                                     <tr onclick="location.href = '@Url.Action("Details", "Products", new { id = item.ProductID })'">
                                         <td>
-                                            @Html.DisplayFor(modelItem => item.Categories.CategoryName)
+                                            @Html.DisplayFor(modelItem => item.Category.CategoryName)
                                         </td>
                                         <td>
-                                            @Html.DisplayFor(modelItem => item.Suppliers.CompanyName)
+                                            @Html.DisplayFor(modelItem => item.Supplier.CompanyName)
                                         </td>
                                         <td>
                                             @Html.DisplayFor(modelItem => item.ProductName)

@@ -8,15 +8,15 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using BackEndSystem.Attributes;
-using BackEndSystem.Models;
 using BackEndSystem.Models.ViewModel;
+using Database.Models;
 
 namespace BackEndSystem.Controllers
 {
     [Authorize]
     public class MembersController : Controller
     {
-        private DotrAContext db = new DotrAContext();
+        private DotrADb db = new DotrADb();
 
         // GET: Members
         public ActionResult Index()
@@ -41,7 +41,7 @@ namespace BackEndSystem.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Members member = db.Members.Find(id);
+            Member member = db.Members.Find(id);
             if (member == null)
             {
                 return HttpNotFound();
@@ -60,7 +60,7 @@ namespace BackEndSystem.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "MemberID,MemberAccount,Password,Name,Email,Address,Phone")] Members member)
+        public ActionResult Create([Bind(Include = "MemberID,MemberAccount,Password,Name,Email,Address,Phone")] Member member)
         {
             if (ModelState.IsValid)
             {
@@ -81,7 +81,7 @@ namespace BackEndSystem.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Members member = db.Members.Find(id);
+            Member member = db.Members.Find(id);
 
             MemberIndex vm = new MemberIndex()
             {
@@ -109,7 +109,7 @@ namespace BackEndSystem.Controllers
         {
             if (ModelState.IsValid)
             {
-                Members member = db.Members.Find(vm.MemberID);
+                Member member = db.Members.Find(vm.MemberID);
 
                 member.MemberID = vm.MemberID;
                 member.MemberAccount = vm.MemberAccount;
@@ -134,7 +134,7 @@ namespace BackEndSystem.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Members member = db.Members.Find(id);
+            Member member = db.Members.Find(id);
             MemberIndex vm = new MemberIndex()
             {
                 MemberID = member.MemberID,
@@ -156,7 +156,7 @@ namespace BackEndSystem.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Members member = db.Members.Find(id);
+            Member member = db.Members.Find(id);
             db.Members.Remove(member);
             db.SaveChanges();
             return RedirectToAction("Index");

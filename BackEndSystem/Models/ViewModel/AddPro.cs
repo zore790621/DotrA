@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Database.Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -44,8 +45,8 @@ namespace BackEndSystem.Models.ViewModel
         [Required]
         public int PSalesPrice { get; set; }
 
-        public virtual Suppliers Suppliers { get; set; }
-        public virtual Categories Categories { get; set; }
+        public virtual Supplier Suppliers { get; set; }
+        public virtual Category Categories { get; set; }
         //測試:public virtual Categories Categories { get; set; }
     }
 }
