@@ -1,5 +1,5 @@
 ﻿jQuery(document).ready(function () {
-    $('#bootstrap-data-table').DataTable({
+    jQuery('#bootstrap-data-table').DataTable({
         language: {
             "decimal": "",
             "emptyTable": "無資料...",

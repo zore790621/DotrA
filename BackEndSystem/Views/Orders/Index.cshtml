@@ -13,6 +13,7 @@
                         <table id="bootstrap-data-table" class="table table-striped table-bordered">
                             <thead>
                                 <tr>
+                                    <th>@Html.DisplayNameFor(m => m.OrderID)</th>
                                     <th>@Html.DisplayNameFor(m => m.OrderDate)</th>
                                     <th>@Html.DisplayNameFor(m => m.MemberName)</th>
                                     <th>@Html.DisplayNameFor(m => m.ShipperName)</th>
@@ -23,13 +24,14 @@
                             <tbody>
                                 @foreach (var m in Model)
                                 {
-                                    <tr id="@m.OrderID">
-                                        <td>@Html.DisplayFor(x => m.OrderDate)</td>
-                                        <td>@Html.DisplayFor(x => m.MemberName)</td>
-                                        <td>@Html.DisplayFor(x => m.ShipperName)</td>
-                                        <td>@Html.DisplayFor(x => m.TotalPrice)</td>
-                                        <td>@Html.DisplayFor(x => m.PaymentMethod)</td>
-                                    </tr>
+                                <tr onclick="location.href = '@Url.Action("Details", "Orders", new { id = m.OrderID })'">
+                                    <td>@Html.DisplayFor(x => m.OrderID)</td>
+                                    <td>@Html.DisplayFor(x => m.OrderDate)</td>
+                                    <td>@Html.DisplayFor(x => m.MemberName)</td>
+                                    <td>@Html.DisplayFor(x => m.ShipperName)</td>
+                                    <td>@Html.DisplayFor(x => m.TotalPrice)</td>
+                                    <td>@Html.DisplayFor(x => m.PaymentMethod)</td>
+                                </tr>
                                 }
                             </tbody>
                         </table>

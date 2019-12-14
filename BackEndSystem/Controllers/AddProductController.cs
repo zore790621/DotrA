@@ -32,8 +32,6 @@ namespace BackEndSystem.Controllers
                 PQuantity=x.Quantity,
                 PSalesPrice=x.SalesPrice
 
-
-
             }).ToList();
             return View(viewModel);
         }

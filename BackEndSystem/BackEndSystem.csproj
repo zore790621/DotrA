@@ -157,6 +157,8 @@
     <Compile Include="Models\Products.cs" />
     <Compile Include="Models\Shippers.cs" />
     <Compile Include="Models\Suppliers.cs" />
+    <Compile Include="Models\ViewModel\MemberIndex.cs" />
+    <Compile Include="Models\ViewModel\OrderDetailVM.cs" />
     <Compile Include="Models\ViewModel\OrderIndex.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -321,7 +323,8 @@
     <Content Include="Views\Products\Edit.cshtml" />
     <Content Include="Views\Products\Index.cshtml" />
     <Content Include="Views\AddProduct\Create.cshtml" />
-    <Content Include="Views\Order\Index.cshtml" />
+    <Content Include="Views\Orders\Index.cshtml" />
+    <Content Include="Views\Orders\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

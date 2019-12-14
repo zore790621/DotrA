@@ -8,7 +8,7 @@ namespace BackEndSystem.Models.ViewModel
 {
     public class OrderIndex
     {
-       
+        [Display(Name = "訂單編號")]
         public int OrderID { get; set; }
 
         [Display(Name = "訂單日期")]
