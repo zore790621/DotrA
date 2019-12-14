@@ -14,20 +14,25 @@ namespace BackEndSystem.Controllers
         public ActionResult Index()
         {
             ////方法1 透過modle去傳遞
-            Home result = new Home()
-            {
-               Prototal = db.Products.Count(),
-               Cattotal = db.Categories.Count(),
-               Ordertotal = db.Orders.Count(),
-            };
+            //Home result = new Home()
+            //{
+            //   Prototal = db.Products.Count(),
+            //   Cattotal = db.Categories.Count(),
+            //   Ordertotal = db.Orders.Count(),
+            //   Selltotal=db.Orders.Where(x=>x.OrderDate.Month==DateTime.Now.Month).Sum(x=>x.OrderDetails.Sum(y => y.SubTotal))
+            //};
+
+
 
             //方法2 透過ViewBag去傳遞
             ViewBag.ProCount = db.Products.Count();
             ViewBag.CatCount = db.Categories.Count();
             ViewBag.OrdCount = db.Orders.Count();
-             
+            ViewBag.Selltotal = db.Orders.Where(x => x.OrderDate.Month == DateTime.Now.Month).Sum(x => x.OrderDetails.Sum(y => y.SubTotal));
 
-            return View(result);
+
+
+            return View();
         }
 
         //public ActionResult Member()
