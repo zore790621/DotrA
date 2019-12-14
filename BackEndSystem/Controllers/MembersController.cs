@@ -9,6 +9,7 @@ using System.Web;
 using System.Web.Mvc;
 using BackEndSystem.Attributes;
 using BackEndSystem.Models;
+using BackEndSystem.Models.ViewModel;
 
 namespace BackEndSystem.Controllers
 {
@@ -20,7 +21,17 @@ namespace BackEndSystem.Controllers
         // GET: Members
         public ActionResult Index()
         {
-            return View(db.Members.ToList());
+            var models = db.Members.Select(x => new MemberIndex()
+            {
+                MemberID = x.MemberID,
+                MemberAccount = x.MemberAccount,
+                MemberName = x.Name,
+                Email = x.Email,
+                Address = x.Address,
+                Phone = x.Phone
+            }).ToList();
+
+            return View(models);
         }
 
         // GET: Members/Details/5
@@ -71,11 +82,22 @@ namespace BackEndSystem.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Members member = db.Members.Find(id);
+
+            MemberIndex vm = new MemberIndex()
+            {
+                MemberID = member.MemberID,
+                MemberAccount = member.MemberAccount,
+                MemberName = member.Name,
+                Phone = member.Phone,
+                Address = member.Address,
+                Email = member.Email
+            };
+
             if (member == null)
             {
                 return HttpNotFound();
             }
-            return View(member);
+            return View(vm);
         }
         [Authorize(Users = "admin")]
         // POST: Members/Edit/5
@@ -83,15 +105,25 @@ namespace BackEndSystem.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "MemberID,MemberAccount,Password,Name,Email,Address,Phone")] Members member)
+        public ActionResult Edit(MemberIndex vm)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(member).State = EntityState.Modified;
+                Members member = db.Members.Find(vm.MemberID);
+
+                member.MemberID = vm.MemberID;
+                member.MemberAccount = vm.MemberAccount;
+                member.Name = vm.MemberName;
+                member.Phone = vm.Phone;
+                member.Address = vm.Address;
+                member.Email = vm.Email; 
+              
+                //db.Entry(member).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
-            }
-            return View(member);
+            };
+        
+            return View(vm);
         }
 
         // GET: Members/Delete/5
@@ -103,11 +135,20 @@ namespace BackEndSystem.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Members member = db.Members.Find(id);
+            MemberIndex vm = new MemberIndex()
+            {
+                MemberID = member.MemberID,
+                MemberAccount = member.MemberAccount,
+                MemberName = member.Name,
+                Phone = member.Phone,
+                Address = member.Address,
+                Email = member.Email
+            };
             if (member == null)
             {
                 return HttpNotFound();
             }
-            return View(member);
+            return View(vm);
         }
 
         // POST: Members/Delete/5

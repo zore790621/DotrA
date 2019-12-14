@@ -15,22 +15,17 @@ namespace BackEndSystem.Models
         }
 
         [Key]
-        [Display(Name = "ID")]
         public int MemberID { get; set; }
 
         [Required]
         [StringLength(20)]
-        [Display(Name="帳號")]
         public string MemberAccount { get; set; }
 
         [Required]
-        [StringLength(20)]
-        [Display(Name = "密碼")]
         public string Password { get; set; }
 
         [Required]
         [StringLength(50)]
-        [Display(Name = "姓名")]
         public string Name { get; set; }
 
         [Required]
@@ -39,13 +34,22 @@ namespace BackEndSystem.Models
 
         [Required]
         [StringLength(50)]
-        [Display(Name = "地址")]
         public string Address { get; set; }
 
         [Required]
         [StringLength(20)]
-        [Display(Name = "電話")]
         public string Phone { get; set; }
+
+        [Required]
+        [StringLength(250)]
+        public string HashCode { get; set; }
+
+        public bool EmailVerified { get; set; }
+
+        public Guid ActivationCode { get; set; }
+
+        [StringLength(100)]
+        public string ResetPasswordCode { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Orders> Orders { get; set; }

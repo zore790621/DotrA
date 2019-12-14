@@ -28,8 +28,6 @@ namespace BackEndSystem.Models
         [Column(TypeName = "money")]
         public decimal UnitPrice { get; set; }
 
-        [Required]
-        //[StringLength(50)]
         public string Picture { get; set; }
 
         [StringLength(200)]
