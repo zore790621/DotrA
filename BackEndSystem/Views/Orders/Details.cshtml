@@ -46,8 +46,8 @@
                             {
                                 <tr>
                                     <td>@Html.DisplayFor(x => @item.ProductName)</td>
-                                    <td>@Html.DisplayFor(x=>@item.Quantity)</td>
-                                    <td>@Html.DisplayFor(x=>@item.SalesPrice)</td>
+                                    <td>@Html.DisplayFor(x => @item.Quantity)</td>
+                                    <td>@Html.DisplayFor(x => @item.SalesPrice)</td>
                                     @if (item.Discount == null)
                                     {
                                         <td>無</td>
@@ -56,17 +56,17 @@
                                     {
                                         <td>@item.Discount</td>
                                     }
-                                    <td>@Html.DisplayFor(x=>@item.SubTotal)</td>
+                                    <td>@Html.DisplayFor(x => @item.SubTotal)</td>
                                 </tr>
                             }
                         </table>
+                        @Html.ActionLink("返回列表", "Index")
+                        <button type="button" class="btn btn-secondary" onclick="location.href = '@Url.Action("Delete", "Orders", new { id = Model.OrderID})'">刪除</button>
+
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.OrderID }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+
