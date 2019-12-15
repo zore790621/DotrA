@@ -8,17 +8,17 @@ namespace DotrA_001.Models
         //需引用system.web.services
         //使用session
         [WebMethod(EnableSession = true)]
-        public static Cart GetCurrentCart()
+        public static Carttest GetCurrentCart()
         {
             if (System.Web.HttpContext.Current.Session != null)
             {
                 if (System.Web.HttpContext.Current.Session["Cart"] == null)
                 {
-                    var order = new Cart();
+                    var order = new Carttest();
                     System.Web.HttpContext.Current.Session["Cart"] = order;
                 }
 
-                return (Cart)System.Web.HttpContext.Current.Session["Cart"];
+                return (Carttest)System.Web.HttpContext.Current.Session["Cart"];
             }
 
             else

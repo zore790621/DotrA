@@ -190,10 +190,13 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\CartTest\TestCartController.cs" />
     <Compile Include="Controllers\ProductsController.cs" />
+    <Compile Include="Controllers\SanTestCartController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Helper\hash.cs" />
+    <Compile Include="Models\CartItem.cs" />
+    <Compile Include="Models\CartTestTest.cs" />
     <Compile Include="Models\CartTest\Cart.cs" />
     <Compile Include="Models\CartTest\CartProduct.cs" />
     <Compile Include="Models\CartTest\HandleCart.cs" />
@@ -201,13 +204,11 @@
     <Compile Include="Controllers\ShopController.cs" />
     <Compile Include="Controllers\ShoppingCarController.cs" />
     <Compile Include="Models\CategoryView.cs" />
-    <Compile Include="Models\DotrADbContext.cs" />
     <Compile Include="Models\Member.cs" />
+    <Compile Include="Models\Operation.cs" />
     <Compile Include="Models\ProductView.cs" />
     <Compile Include="Models\ShopView.cs" />
     <Compile Include="Models\SupplierView.cs" />
-    <Compile Include="Models\ConnectionStringTest\ConnectionDotrADb.cs" />
-    <Compile Include="Models\ConnectionStringTest\DotrADbEntities.cs" />
     <Compile Include="Models\ViewModels\LoginVM.cs" />
     <Compile Include="Models\ViewModels\ResetPasswordVM.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -516,9 +517,7 @@
     <Content Include="Views\Shop\Single_Product.cshtml" />
     <Content Include="Views\Shop\Index.cshtml" />
     <Content Include="Views\Shared\_Topimage.cshtml" />
-    <Content Include="Views\Shop\PageSelection.cshtml" />
     <Content Include="Views\Shop\Categories.cshtml" />
-    <Content Include="Views\Shop\PriceRange.cshtml" />
     <Content Include="Views\ShoppingCar\Index.cshtml" />
     <Content Include="Views\ShoppingCar\PrductCheckoutView.cshtml" />
     <Content Include="Views\ShoppingCar\PrductCheckButton.cshtml" />
@@ -529,14 +528,16 @@
     <Content Include="Views\Members\VerifyAccount.cshtml" />
     <Content Include="Views\Members\ForgotPassword.cshtml" />
     <Content Include="Views\Members\ResetPassword.cshtml" />
-    <Content Include="Views\Shared\_cartpartial.cshtml" />
     <Content Include="Views\ShoppingCar\DroedownAccount.cshtml" />
     <Content Include="Views\Shared\_LoginPop.cshtml" />
     <Content Include="Views\Shared\LoginModal.cshtml" />
+    <Content Include="Views\Shared\_CartPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Assets\jquery\" />
+    <Folder Include="Photo\Product\" />
+    <Folder Include="Views\SanTestCart\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

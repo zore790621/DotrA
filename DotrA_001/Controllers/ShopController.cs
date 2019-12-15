@@ -20,12 +20,13 @@ namespace DotrA_001.Controllers
         {
             //string.IsNullOrEmpty("");
             ShopView AllList = new ShopView();
+            //bool IsInt_PID = int.TryParse(PID.ToString(), out int result);
             bool IsInt_PID = (PID is null);
-            int isInt_PID_Val = PID.GetValueOrDefault();
+            int isint_pid_val = PID.GetValueOrDefault();
 
             var pro =
                 from pr in db.Products
-                where (IsInt_PID || pr.ProductID == isInt_PID_Val)
+                where (IsInt_PID || pr.ProductID == isint_pid_val)
                 select new ProductView
                 {
                     CategoryID = pr.CategoryID,
@@ -64,5 +65,9 @@ namespace DotrA_001.Controllers
 
             return View(AllList);
         }
+        //public PartialViewResult Single_Product(int? CID, int? PID)
+        //{
+        //    return PartialView("Single_Product");
+        //}
     }
 }
