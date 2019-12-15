@@ -118,7 +118,7 @@ namespace BackEndSystem.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Product products = db.Products.Find(id);
+            Product products = db.Products.Find(id);          
             db.Products.Remove(products);
             db.SaveChanges();
             return RedirectToAction("Index");

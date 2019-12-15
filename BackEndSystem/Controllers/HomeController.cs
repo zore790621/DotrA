@@ -30,6 +30,7 @@ namespace BackEndSystem.Controllers
             ViewBag.ProCount = db.Products.Count();
             ViewBag.CatCount = db.Categories.Count();
             ViewBag.OrdCount = db.Orders.Count();
+            ViewBag.MemCount = db.Members.Count();
             ViewBag.Selltotal = db.Orders.Where(x => x.OrderDate.Month == DateTime.Now.Month).Sum(x => x.OrderDetails.Sum(y => y.SubTotal));
 
 
