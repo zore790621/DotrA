@@ -18,6 +18,23 @@ namespace BackEndSystem.Models.ViewModel
         public string RecipientPhone { get; set; }
         [Display(Name = "收件人地址")]
         public string RecipientAddress { get; set; }
+
+        [Display(Name = "訂單日期")]
+        [DisplayFormat(DataFormatString = "{0:F}")]
+        public DateTime OrderDate { get; set; }
+
+        [Display(Name = "會員名稱")]
+        public string MemberName { get; set; }
+
+        [Display(Name = "運送管道")]
+        public string ShipperName { get; set; }
+
+        [Display(Name = "消費總金額")]
+        [DisplayFormat(DataFormatString = "{0:C}")]
+        public decimal TotalPrice { get; set; }
+
+        [Display(Name = "付款方式")]
+        public string PaymentMethod { get; set; }
     }
 
     public class OrderProductVM
