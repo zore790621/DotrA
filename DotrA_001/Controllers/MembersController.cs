@@ -7,19 +7,20 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
-using DotrA_001.Models;
+//using DotrA_001.Models;
 using System.Security.Cryptography;
 using System.Text;
 using DotrA_001.Helper;
 using DotrA_001.Models.ViewModels;
 using System.Net.Mail;
 using System.Web.Helpers;
+using Database.Models;
 
 namespace DotrA_001.Controllers
 {
     public class MembersController : Controller
     {
-        private DotrADbContext db = new DotrADbContext();
+        private DotrADb db = new DotrADb();
 
         // GET: Members
         [Authorize(Users ="admin")]//必須有授權/認證才能進入
@@ -314,7 +315,7 @@ namespace DotrA_001.Controllers
             var message = "";
             if (ModelState.IsValid)
             {
-                using (DotrADbContext db = new DotrADbContext())
+                using (DotrADb db = new DotrADb())
                 {
                     var user = db.Members.Where(x => x.ResetPasswordCode == model.ResetCode).FirstOrDefault();
                     if (user != null)

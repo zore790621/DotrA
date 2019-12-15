@@ -15,32 +15,39 @@ namespace Database.Models
         }
 
         public int MemberID { get; set; }
-
-        [Required]
+        [Display(Name = "帳號")]
+        [Required(ErrorMessage = "必填欄位")]
         [StringLength(20)]
         public string MemberAccount { get; set; }
 
-        [Required]
+        [Display(Name = "密碼")]
+        [Required(ErrorMessage = "必填欄位")]
+        [DataType(DataType.Password)]
         public string Password { get; set; }
 
-        [Required]
+        [Display(Name = "姓名")]
+        [Required(ErrorMessage = "必填欄位")]
         [StringLength(50)]
         public string Name { get; set; }
 
-        [Required]
+        [Display(Name = "信箱")]
+        [Required(ErrorMessage = "必填欄位")]
         [StringLength(50)]
+        [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
 
-        [Required]
+        [Display(Name = "地址")]
+        [Required(ErrorMessage = "必填欄位")]
         [StringLength(50)]
         public string Address { get; set; }
 
-        [Required]
+        [Display(Name = "電話")]
+        [Required(ErrorMessage = "必填欄位")]
         [StringLength(20)]
         public string Phone { get; set; }
 
-        [Required]
-        [StringLength(250)]
+        //[Required]
+        //[StringLength(250)]
         public string HashCode { get; set; }
 
         public bool EmailVerified { get; set; }
