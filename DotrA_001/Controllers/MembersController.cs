@@ -7,7 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
-using DotrA_001.Models;
+//using DotrA_001.Models;
 using System.Security.Cryptography;
 using System.Text;
 using DotrA_001.Helper;
@@ -15,7 +15,6 @@ using DotrA_001.Models.ViewModels;
 using System.Net.Mail;
 using System.Web.Helpers;
 using Database.Models;
-using Member = Database.Models.Member;
 
 namespace DotrA_001.Controllers
 {

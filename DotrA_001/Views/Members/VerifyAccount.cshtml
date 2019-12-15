@@ -1,7 +1,7 @@
 ﻿
 @{
     ViewBag.Title = "VerifyAccount";
-    Layout = "~/Views/Shared/_LayoutRegistration.cshtml";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <section class="ftco-section bg-light">
     <h2 class="text-center">VerifyAccount</h2>
@@ -15,7 +15,7 @@
                 <strong>Success!</strong> Your account has been activated successfully.
                 <br />
                 <a class="btn " href="@Url.Action("Login","Members")"
-                   role="button">Click To Login</a>
+                   role="button">Back To Home</a>
                 @*<a class="btn " href="@Url.Action("SendVerifyOrResetEmail","Members")"
         role="button">Click To Login</a>*@
             </div>

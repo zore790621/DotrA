@@ -7,11 +7,7 @@
         <div class="container">
             <div class="row no-gutters slider-text align-items-center justify-content-center">
                 <div class="col-md-9 ftco-animate text-center">
-                    <p class="breadcrumbs">
-                        <span class="mr-2"><a href="@Url.Action("Index","Home")">Home</a></span>
-                        <span>About</span>
-                    </p>
-                    <h1 class="mb-0 bread">About</h1>
+                    <h1 class="mb-0 bread">About Us</h1>
                 </div>
             </div>
         </div>
@@ -26,8 +22,10 @@
                         <span class="flaticon-bag"></span>
                     </div>
                     <div class="media-body">
-                        <h3 class="heading">Free Shipping</h3>
-                        <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+                        <h3 class="heading">免運費</h3>
+                        <p>
+                            只要消費滿$299即可享有台灣本島免運費及24小時快速到貨服務。
+                        </p>
                     </div>
                 </div>
             </div>
@@ -37,8 +35,10 @@
                         <span class="flaticon-customer-service"></span>
                     </div>
                     <div class="media-body">
-                        <h3 class="heading">Support Customer</h3>
-                        <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+                        <h3 class="heading">24小時客服</h3>
+                        <p>
+                            若您在購物過程中遇到任何問題，我們設有24小時客戶服務，歡迎隨時私訊我們!
+                        </p>
                     </div>
                 </div>
             </div>
@@ -48,8 +48,10 @@
                         <span class="flaticon-payment-security"></span>
                     </div>
                     <div class="media-body">
-                        <h3 class="heading">Secure Payments</h3>
-                        <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+                        <h3 class="heading">安全交易</h3>
+                        <p>
+                            本網站上的所有交易及活動，包括「線上購物」「會員資料登錄」等都是為網路上所有使用者而制定的。
+                        </p>
                     </div>
                 </div>
             </div>
@@ -61,20 +63,23 @@
     <div class="container">
         <div class="row">
             <div class="col-md-5 p-md-5 img img-2 d-flex justify-content-center align-items-center" style="background-image: url(../../Assets/images/about.jpg);">
-                <a href="https://vimeo.com/45830194" class="icon popup-vimeo d-flex justify-content-center align-items-center">
+                @*<a href="https://vimeo.com/45830194" class="icon popup-vimeo d-flex justify-content-center align-items-center">
                     <span class="icon-play"></span>
-                </a>
+                </a>*@
             </div>
             <div class="col-md-7 py-md-5 wrap-about pb-md-5 ftco-animate">
                 <div class="heading-section-bold mb-4 mt-md-5">
                     <div class="ml-md-0">
-                        <h2 class="mb-4">Stablished Sinced 1975</h2>
+                        <h2 class="mb-4">DotrA社群聯盟簡介</h2>
                     </div>
                 </div>
                 <div class="pb-md-5 pb-4">
-                    <p>But nothing the copy said could convince her and so it didn’t take long until a few insidious Copy Writers ambushed her, made her drunk with Longe and Parole and dragged her into their agency, where they abused her for their.</p>
-                    <p>But nothing the copy said could convince her and so it didn’t take long until a few insidious Copy Writers ambushed her.</p>
-                    <p><a href="#" class="btn btn-primary">Shop now</a></p>
+                    <p>
+                        DotrA是一個精準變現的社群平台，目前擁有200位以上的社群主（Instagram、部落客、KOL、團主），合作品牌包括零食、生活用品、3C、家電、旅遊商品等。
+                        為社群主提供多元、豐富的商品銷售，並提供相關的素材及終身免費用的下單平台，以節省社群主的人力，免去商品開發、系統開發、上架、對帳等時間,並進行社群經紀服擴大每位潛力社群主的變現效率
+                    </p>
+                    
+                    <p><a href="@Url.Action("Index","Shop")" class="btn btn-primary">Shop now</a></p>
                 </div>
             </div>
         </div>
@@ -91,8 +96,8 @@
                             <span class="flaticon-bag"></span>
                         </div>
                         <div class="text">
-                            <h3>Free Shipping</h3>
-                            <p class="mb-0">Separated they live in. A small river named Duden flows</p>
+                            <h3>免運費</h3>
+                            <p class="mb-0">只要消費滿$299即可享有台灣本島免運費及24小時快速到貨服務。</p>
                         </div>
                     </div>
                     <div class="services-2 p-4 d-flex ftco-animate">
@@ -100,8 +105,12 @@
                             <span class="flaticon-heart-box"></span>
                         </div>
                         <div class="text">
-                            <h3>Valuable Gifts</h3>
-                            <p class="mb-0">Separated they live in. A small river named Duden flows</p>
+                            <h3>
+                                禮品包裝
+                            </h3>
+                            <p class="mb-0">
+                                我們提供禮品包裝服務，只要在購買時勾選加購，您想送禮的對象便可收到您選購的精緻禮品。
+                            </p>
                         </div>
                     </div>
                     <div class="services-2 p-4 d-flex ftco-animate">
@@ -109,8 +118,8 @@
                             <span class="flaticon-payment-security"></span>
                         </div>
                         <div class="text">
-                            <h3>All Day Support</h3>
-                            <p class="mb-0">Separated they live in. A small river named Duden flows</p>
+                            <h3>安全交易</h3>
+                            <p class="mb-0">本網站上的所有交易及活動，包括「線上購物」「會員資料登錄」等都是為網路上所有使用者而制定的。</p>
                         </div>
                     </div>
                     <div class="services-2 p-4 d-flex ftco-animate">
@@ -118,103 +127,113 @@
                             <span class="flaticon-customer-service"></span>
                         </div>
                         <div class="text">
-                            <h3>All Day Support</h3>
-                            <p class="mb-0">Separated they live in. A small river named Duden flows</p>
+                            <h3>24小時客服</h3>
+                            <p class="mb-0">若您在購物過程中遇到任何問題，我們設有24小時客戶服務，歡迎隨時私訊我們!</p>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="col-lg-7">
                 <div class="heading-section ftco-animate mb-5">
-                    <h2 class="mb-4">Our satisfied customer says</h2>
-                    <p>
+                    <h2 class="mb-4">品牌介紹</h2>
+                    @*<p>
                         Far far away, behind the word mountains, far from the countries Vokalia and Consonantia,
                         there live the blind texts. Separated they live in
-                    </p>
+                    </p>*@
                 </div>
                 <div class="carousel-testimony owl-carousel">
                     <div class="item">
                         <div class="testimony-wrap">
-                            <div class="user-img mb-4" style="background-image: url(../../Assets/images/person_1.jpg)">
-                                <span class="quote d-flex align-items-center justify-content-center">
+                            <div class="user-img mb-4" style="background-image: url(../../Assets/images/person_6.png)">
+                                @*<span class="quote d-flex align-items-center justify-content-center">
                                     <i class="icon-quote-left"></i>
-                                </span>
+                                </span>*@
                             </div>
                             <div class="text">
                                 <p class="mb-4 pl-4 line">
-                                    Far far away, behind the word mountains, far from the
-                                    countries Vokalia and Consonantia, there live the blind texts.
+                                    本公司Lexington Limited 於 1989 在香港成立,
+                                    專營各類高品質矽膠製品, 為世界各國消費者提供優質的矽膠產品｡ 另外, 本公司擁有獨立的產品開發團隊, 並與美國,歐洲, 香港等地世界知名的設計公司合作, 專注於時尚, 新穎, 創新和實用的高級矽膠產品開發｡ 創建的品牌 Lexngo, Lexnfant 和 Lexliving 涵蓋戶外, 兒童, 寵物和廚具等日常用品為滿足現代人品味生活的需求｡
+
                                 </p>
-                                <p class="name">Garreth Smith</p>
-                                <span class="position">Marketing Manager</span>
+                                @*<p class="name">Lexnfant</p>*@
+                                @*<span class="position">Marketing Manager</span>*@
                             </div>
                         </div>
                     </div>
                     <div class="item">
                         <div class="testimony-wrap">
-                            <div class="user-img mb-4" style="background-image: url(../../Assets/images/person_2.jpg)">
-                                <span class="quote d-flex align-items-center justify-content-center">
+                            <div class="user-img mb-4" style="background-image: url(../../Assets/images/person_7.png)">
+                                @*<span class="quote d-flex align-items-center justify-content-center">
                                     <i class="icon-quote-left"></i>
-                                </span>
+                                </span>*@
                             </div>
                             <div class="text">
                                 <p class="mb-4 pl-4 line">
-                                    Far far away, behind the word mountains, far from the
-                                    countries Vokalia and Consonantia, there live the blind texts.
+                                    iGimmick將日常用品開發成色彩繽紛但頭的設計。iGimmick的品牌涵蓋了廣泛的產品，例如行李帶，緊湊型零食盒和杯子，餅乾模具和紙杯蛋糕展示
+                                    ，智能手機藍牙揚聲器，零花時尚腰帶，派對用具，兒童安全卡扣帶，兒童繪圖板，野餐手提箱，磁性電子備忘錄相框等。iGimmick將繼續發展並滿足每個人的需求。
                                 </p>
-                                <p class="name">Garreth Smith</p>
-                                <span class="position">Interface Designer</span>
+                                @*<p class="name">Garreth Smith</p>
+                                <span class="position">Interface Designer</span>*@
                             </div>
                         </div>
                     </div>
                     <div class="item">
                         <div class="testimony-wrap">
-                            <div class="user-img mb-4" style="background-image: url(../../Assets/images/person_3.jpg)">
-                                <span class="quote d-flex align-items-center justify-content-center">
+                            <div class="user-img mb-4" style="background-image: url(../../Assets/images/person_8.jpg)">
+                                @*<span class="quote d-flex align-items-center justify-content-center">
                                     <i class="icon-quote-left"></i>
-                                </span>
+                                </span>*@
                             </div>
                             <div class="text">
                                 <p class="mb-4 pl-4 line">
-                                    Far far away, behind the word mountains, far from the
-                                    countries Vokalia and Consonantia, there live the blind texts.
+                                    「讓我做一場小小的白日夢，我會親吻它、呵護它。」
+                                    Dreamkiss 品牌成立於2017，
+                                    跟妳分享細緻的生活居家配件與衣著。
+                                    讓妳在忙碌的日子裡，
+                                    能找到一個如棉花般輕柔、舒適的小空間，
+                                    做一場屬於自己的美夢。
+                                    Dear,
+                                    See you in your dream.
                                 </p>
-                                <p class="name">Garreth Smith</p>
-                                <span class="position">UI Designer</span>
+                                @*<p class="name">Garreth Smith</p>
+                                <span class="position">UI Designer</span>*@
                             </div>
                         </div>
                     </div>
                     <div class="item">
                         <div class="testimony-wrap">
-                            <div class="user-img mb-4" style="background-image: url(../../Assets/images/person_1.jpg)">
-                                <span class="quote d-flex align-items-center justify-content-center">
+                            <div class="user-img mb-4" style="background-image: url(../../Assets/images/person_9.jpg)">
+                                @*<span class="quote d-flex align-items-center justify-content-center">
                                     <i class="icon-quote-left"></i>
-                                </span>
+                                </span>*@
                             </div>
                             <div class="text">
                                 <p class="mb-4 pl-4 line">
-                                    Far far away, behind the word mountains, far from the
-                                    countries Vokalia and Consonantia, there live the blind texts.
+                                    旅行是一種美學。
+                                    除了與美景邂逅，還會遇見最美的自己。
+                                    m square 旅行美學
+                                    一路隨行，把美好裝進每一段記憶。
                                 </p>
-                                <p class="name">Garreth Smith</p>
-                                <span class="position">Web Developer</span>
+                                @*<p class="name">Garreth Smith</p>
+                                <span class="position">Web Developer</span>*@
                             </div>
                         </div>
                     </div>
                     <div class="item">
                         <div class="testimony-wrap">
-                            <div class="user-img mb-4" style="background-image: url(../../Assets/images/person_1.jpg)">
-                                <span class="quote d-flex align-items-center justify-content-center">
+                            <div class="user-img mb-4" style="background-image: url(../../Assets/images/person_10.png)">
+                                @*<span class="quote d-flex align-items-center justify-content-center">
                                     <i class="icon-quote-left"></i>
-                                </span>
+                                </span>*@
                             </div>
                             <div class="text">
                                 <p class="mb-4 pl-4 line">
-                                    Far far away, behind the word mountains, far from the
-                                    countries Vokalia and Consonantia, there live the blind texts.
+                                    因為愛吃從設計領域跨足爆米花界闖蕩，透過爆米花帶來歡樂和療癒，
+                                    更因為熱心公益，聘用宜蘭在地二度、單親、低收、可愛的媽媽們一同兼顧食安與美味的爆米花，
+                                    騎士精神給你最好的鼓勵(榖粒)。
                                 </p>
-                                <p class="name">Garreth Smith</p>
-                                <span class="position">System Analyst</span>
+                                @*<p class="name">Garreth Smith</p>
+                                <span class="position">System Analyst</span>*@
                             </div>
                         </div>
                     </div>
@@ -225,53 +244,53 @@
 </section>
 
 <section class="ftco-gallery">
-    <div class="container">
+    @*<div class="container">
         <div class="row justify-content-center">
             <div class="col-md-8 heading-section text-center mb-4 ftco-animate">
                 <h2 class="mb-4">Follow Us On Instagram</h2>
                 <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in</p>
             </div>
         </div>
-    </div>
+    </div>*@
     <div class="container-fluid px-0">
         <div class="row no-gutters">
             <div class="col-md-4 col-lg-2 ftco-animate">
-                <a href="images/gallery-1.jpg" class="gallery image-popup img d-flex align-items-center" style="background-image: url(../../Assets/images/gallery-1.jpg);">
+                <a href="../../Assets/images/gallery-7.jpg" class="gallery image-popup img d-flex align-items-center" style="background-image: url(../../Assets/images/gallery-7.jpg);">
                     <div class="icon mb-4 d-flex align-items-center justify-content-center">
                         <span class="icon-instagram"></span>
                     </div>
                 </a>
             </div>
             <div class="col-md-4 col-lg-2 ftco-animate">
-                <a href="images/gallery-2.jpg" class="gallery image-popup img d-flex align-items-center" style="background-image: url(../../Assets/images/gallery-2.jpg);">
+                <a href="../../Assets/images/gallery-8.jpg" class="gallery image-popup img d-flex align-items-center" style="background-image: url(../../Assets/images/gallery-8.jpg);">
                     <div class="icon mb-4 d-flex align-items-center justify-content-center">
                         <span class="icon-instagram"></span>
                     </div>
                 </a>
             </div>
             <div class="col-md-4 col-lg-2 ftco-animate">
-                <a href="images/gallery-3.jpg" class="gallery image-popup img d-flex align-items-center" style="background-image: url(../../Assets/images/gallery-3.jpg);">
+                <a href="../../Assets/images/gallery-9.jpg" class="gallery image-popup img d-flex align-items-center" style="background-image: url(../../Assets/images/gallery-9.jpg);">
                     <div class="icon mb-4 d-flex align-items-center justify-content-center">
                         <span class="icon-instagram"></span>
                     </div>
                 </a>
             </div>
             <div class="col-md-4 col-lg-2 ftco-animate">
-                <a href="images/gallery-4.jpg" class="gallery image-popup img d-flex align-items-center" style="background-image: url(../../Assets/images/gallery-4.jpg);">
+                <a href="../../Assets/images/gallery-10.png" class="gallery image-popup img d-flex align-items-center" style="background-image: url(../../Assets/images/gallery-10.png);">
                     <div class="icon mb-4 d-flex align-items-center justify-content-center">
                         <span class="icon-instagram"></span>
                     </div>
                 </a>
             </div>
             <div class="col-md-4 col-lg-2 ftco-animate">
-                <a href="images/gallery-5.jpg" class="gallery image-popup img d-flex align-items-center" style="background-image: url(../../Assets/images/gallery-5.jpg);">
+                <a href="../../Assets/images/gallery-11.jpg" class="gallery image-popup img d-flex align-items-center" style="background-image: url(../../Assets/images/gallery-11.jpg);">
                     <div class="icon mb-4 d-flex align-items-center justify-content-center">
                         <span class="icon-instagram"></span>
                     </div>
                 </a>
             </div>
             <div class="col-md-4 col-lg-2 ftco-animate">
-                <a href="images/gallery-6.jpg" class="gallery image-popup img d-flex align-items-center" style="background-image: url(../../Assets/images/gallery-6.jpg);">
+                <a href="../../Assets/images/gallery-12.png" class="gallery image-popup img d-flex align-items-center" style="background-image: url(../../Assets/images/gallery-12.png);">
                     <div class="icon mb-4 d-flex align-items-center justify-content-center">
                         <span class="icon-instagram"></span>
                     </div>
@@ -281,78 +300,3 @@
     </div>
 </section>
 
-<footer class="ftco-footer ftco-section">
-    <div class="container">
-        <div class="row">
-            <div class="mouse">
-                <a href="#" class="mouse-icon">
-                    <div class="mouse-wheel"><span class="ion-ios-arrow-up"></span></div>
-                </a>
-            </div>
-        </div>
-        <div class="row mb-5">
-            <div class="col-md">
-                <div class="ftco-footer-widget mb-4">
-                    <h2 class="ftco-heading-2">Minishop</h2>
-                    <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia.</p>
-                    <ul class="ftco-footer-social list-unstyled float-md-left float-lft mt-5">
-                        <li class="ftco-animate"><a href="#"><span class="icon-twitter"></span></a></li>
-                        <li class="ftco-animate"><a href="#"><span class="icon-facebook"></span></a></li>
-                        <li class="ftco-animate"><a href="#"><span class="icon-instagram"></span></a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="col-md">
-                <div class="ftco-footer-widget mb-4 ml-md-5">
-                    <h2 class="ftco-heading-2">Menu</h2>
-                    <ul class="list-unstyled">
-                        <li><a href="#" class="py-2 d-block">Shop</a></li>
-                        <li><a href="#" class="py-2 d-block">About</a></li>
-                        <li><a href="#" class="py-2 d-block">Journal</a></li>
-                        <li><a href="#" class="py-2 d-block">Contact Us</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="ftco-footer-widget mb-4">
-                    <h2 class="ftco-heading-2">Help</h2>
-                    <div class="d-flex">
-                        <ul class="list-unstyled mr-l-5 pr-l-3 mr-4">
-                            <li><a href="#" class="py-2 d-block">Shipping Information</a></li>
-                            <li><a href="#" class="py-2 d-block">Returns &amp; Exchange</a></li>
-                            <li><a href="#" class="py-2 d-block">Terms &amp; Conditions</a></li>
-                            <li><a href="#" class="py-2 d-block">Privacy Policy</a></li>
-                        </ul>
-                        <ul class="list-unstyled">
-                            <li><a href="#" class="py-2 d-block">FAQs</a></li>
-                            <li><a href="#" class="py-2 d-block">Contact</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md">
-                <div class="ftco-footer-widget mb-4">
-                    <h2 class="ftco-heading-2">Have a Questions?</h2>
-                    <div class="block-23 mb-3">
-                        <ul>
-                            <li><span class="icon icon-map-marker"></span><span class="text">203 Fake St. Mountain View, San Francisco, California, USA</span></li>
-                            <li><a href="#"><span class="icon icon-phone"></span><span class="text">+2 392 3929 210</span></a></li>
-                            <li><a href="#"><span class="icon icon-envelope"></span><span class="text">info@yourdomain.com</span></a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-12 text-center">
-
-                <p>
-                    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                    Copyright &copy;
-                    <script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="icon-heart color-danger" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
-                    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                </p>
-            </div>
-        </div>
-    </div>
-</footer>

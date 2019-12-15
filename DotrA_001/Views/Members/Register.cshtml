@@ -1,4 +1,4 @@
-﻿@model DotrA_001.Models.Member
+﻿@model Database.Models.Member
 
 @{
     ViewBag.Title = "Register";
@@ -8,10 +8,10 @@
         <div class="container">
             <div class="row no-gutters slider-text align-items-center justify-content-center">
                 <div class="col-md-9 ftco-animate text-center">
-                    <p class="breadcrumbs">
+                    @*<p class="breadcrumbs">
                         <span class="mr-2"><a href="@Url.Action("Index","Home")">Home</a></span>
                         <span>Registration</span>
-                    </p>
+                    </p>*@
                     <h1 class="mb-0 bread">Registration</h1>
                 </div>
             </div>
@@ -28,8 +28,8 @@
                     <div class="form-group">
                         <div class="jumbotron text-danger">
                             <h3 class="text-danger"><i>@ViewBag.Message</i></h3>
-                            <a class="btn " href="@Url.Action("Login","Members")"
-                               role="button">Click To Login</a>
+                            @*<a class="btn " href="@Url.Action("Login","Members")"
+                               role="button">Click To Login</a>*@
                             <a class="btn " href="@Url.Action("Index","Home")"
                                role="button">Back To Home</a>
                         </div>
