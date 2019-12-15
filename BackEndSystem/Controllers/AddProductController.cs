@@ -7,14 +7,14 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using BackEndSystem.Models;
 using BackEndSystem.Models.ViewModel;
+using Database.Models;
 
 namespace BackEndSystem.Controllers
 {
     public class AddProductController : Controller
     {
-        private DotrAContext db = new DotrAContext();
+        private DotrADb db = new DotrADb();
 
         // GET: AddProes
         public ActionResult Index()
@@ -92,7 +92,7 @@ namespace BackEndSystem.Controllers
             if (ModelState.IsValid)
             {
 
-                Products p = new Products();
+                Product p = new Product();
 
             
                 p.ProductName = addPro.PName;                            
@@ -180,8 +180,8 @@ namespace BackEndSystem.Controllers
         {
             if (ModelState.IsValid)
             {
-                Products p = new Products();
-                Categories c = new Categories();
+                Product p = new Product();
+                Category c = new Category();
 
                 p.ProductName = addPro.PName;
                 p.SupplierID = addPro.SupplierID;
@@ -235,7 +235,7 @@ namespace BackEndSystem.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Products p = db.Products.Find(id);
+            Product p = db.Products.Find(id);
             db.Products.Remove(p);
             //Categories c = db.Categories.Find(id);
             //db.Categories.Remove(c);

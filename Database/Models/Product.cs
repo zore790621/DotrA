@@ -14,28 +14,26 @@ namespace Database.Models
             OrderDetails = new HashSet<OrderDetail>();
         }
 
-        [Key]
         public int ProductID { get; set; }
-
+        [Display(Name = "產品名稱")]
         [Required]
         [StringLength(50)]
         public string ProductName { get; set; }
-
+        [Display(Name = "供應商")]
         public int SupplierID { get; set; }
-
+        [Display(Name = "產品種類")]
         public int CategoryID { get; set; }
-
+        [Display(Name = "產品進價")]
         [Column(TypeName = "money")]
         public decimal UnitPrice { get; set; }
-
-        [StringLength(50)]
+        [Display(Name = "產品圖片")]
         public string Picture { get; set; }
-
+        [Display(Name = "產品描述")]
         [StringLength(200)]
         public string Description { get; set; }
-
+        [Display(Name = "產品數量")]
         public int Quantity { get; set; }
-
+        [Display(Name = "銷售價格")]
         public int SalesPrice { get; set; }
 
         public virtual Category Category { get; set; }

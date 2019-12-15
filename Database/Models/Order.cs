@@ -8,6 +8,12 @@ namespace Database.Models
 
     public partial class Order
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Order()
+        {
+            OrderDetails = new HashSet<OrderDetail>();
+        }
+
         public int OrderID { get; set; }
 
         public int MemberID { get; set; }
@@ -26,9 +32,16 @@ namespace Database.Models
         [StringLength(50)]
         public string RecipientAddress { get; set; }
 
+        public int PaymentID { get; set; }
+
+        public DateTime OrderDate { get; set; }
+
         public virtual Member Member { get; set; }
 
-        public virtual OrderDetail OrderDetail { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<OrderDetail> OrderDetails { get; set; }
+
+        public virtual Payment Payment { get; set; }
 
         public virtual Shipper Shipper { get; set; }
     }

@@ -15,11 +15,11 @@ namespace Database.Models
         }
 
         public int CategoryID { get; set; }
-
+        [Display(Name = "產品種類")]
         [Required]
         [StringLength(10)]
         public string CategoryName { get; set; }
-
+        [Display(Name = "種類描述")]
         [StringLength(50)]
         public string Picture { get; set; }
 

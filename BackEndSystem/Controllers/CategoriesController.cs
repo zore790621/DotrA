@@ -6,13 +6,13 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using BackEndSystem.Models;
+using Database.Models;
 
 namespace BackEndSystem.Controllers
 {
     public class CategoriesController : Controller
     {
-        private DotrAContext db = new DotrAContext();
+        private DotrADb db = new DotrADb();
 
         // GET: Categories
         public ActionResult Index()
@@ -27,7 +27,7 @@ namespace BackEndSystem.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Categories categories = db.Categories.Find(id);
+            Category categories = db.Categories.Find(id);
             if (categories == null)
             {
                 return HttpNotFound();
@@ -46,7 +46,7 @@ namespace BackEndSystem.Controllers
         // 詳細資訊，請參閱 https://go.microsoft.com/fwlink/?LinkId=317598。
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "CategoryID,CategoryName,Picture")] Categories categories)
+        public ActionResult Create([Bind(Include = "CategoryID,CategoryName,Picture")] Category categories)
         {
             if (ModelState.IsValid)
             {
@@ -65,7 +65,7 @@ namespace BackEndSystem.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Categories categories = db.Categories.Find(id);
+            Category categories = db.Categories.Find(id);
             if (categories == null)
             {
                 return HttpNotFound();
@@ -78,7 +78,7 @@ namespace BackEndSystem.Controllers
         // 詳細資訊，請參閱 https://go.microsoft.com/fwlink/?LinkId=317598。
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "CategoryID,CategoryName,Picture")] Categories categories)
+        public ActionResult Edit([Bind(Include = "CategoryID,CategoryName,Picture")] Category categories)
         {
             if (ModelState.IsValid)
             {
@@ -96,7 +96,7 @@ namespace BackEndSystem.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Categories categories = db.Categories.Find(id);
+            Category categories = db.Categories.Find(id);
             if (categories == null)
             {
                 return HttpNotFound();
@@ -109,7 +109,7 @@ namespace BackEndSystem.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Categories categories = db.Categories.Find(id);
+            Category categories = db.Categories.Find(id);
             db.Categories.Remove(categories);
             db.SaveChanges();
             return RedirectToAction("Index");

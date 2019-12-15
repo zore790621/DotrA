@@ -1,16 +1,18 @@
-﻿using BackEndSystem.Models;
+﻿
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Database.Models;
 
 namespace BackEndSystem.Controllers
 {
     [Authorize]
     public class HomeController : Controller
     {
-        private DotrAContext db = new DotrAContext();
+    
+        private DotrADb db = new DotrADb();
         public ActionResult Index()
         {
             ////方法1 透過modle去傳遞
