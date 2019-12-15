@@ -22,12 +22,16 @@ namespace DotrA_001.Controllers
             DotrA_001.Models.Member member = new DotrA_001.Models.Member()
             {
                 MemberID = members.MemberID,
+                MemberAccount = members.MemberAccount,
                 Address = members.Address,
                 Email = members.Email,
-                MemberAccount = members.MemberAccount,
                 Name = members.Name,
                 Password = members.Password,
-                Phone = members.Phone
+                Phone = members.Phone,
+                HashCode = members.HashCode,
+                EmailVerified = members.EmailVerified,
+                ActivationCode = members.ActivationCode,
+                ResetPasswordCode = members.ResetPasswordCode
             };
             if (members == null)
             {

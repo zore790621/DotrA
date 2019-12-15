@@ -1,6 +1,5 @@
-﻿
-@using PagedList;
-
+﻿@using PagedList;
+@using PagedList.Mvc;
 @model IPagedList<ProductView>
 
 @{
@@ -13,13 +12,31 @@
         <div class="col-sm-12 col-md-12 col-lg-4 ftco-animate d-flex fadeInUp ftco-animated">
             <div class="product d-flex flex-column">
                 <a href="#" class="img-prod">
-                    <img class="img-fluid" src="~/Assets/images/img1.png" alt="Colorlib Template">
+                    <img class="img-fluid" src="@Url.Content("~/Assets/images/img1.png")" alt="Colorlib Template">
                     <div class="overlay"></div>
+                    @*@if (item.Picture != null)
+        {
+            if (item.Picture.Substring(item.Picture.Length - 3, 3) == "jpg")
+            {
+                <img src="@Url.Content("~/Photo/Product/" + item.Picture)" alt="Alternate Text" style="width:100px;height:100px;" />
+            }
+            else
+            {
+                <video width="300" height="300" controls>
+                    <source src="@Url.Content("~/Photo/Product/" + item.Picture)" type=video/mp4 />
+                </video>
+            }
+        }
+        else
+        {
+            <img src="@Url.Content("~/Photos/1574835328175.jpg")" alt="Alternate Text" style="width:30px;height:30px;" />
+        }*@
+
                 </a>
                 <div class="text py-3 pb-4 px-3">
                     <div class="d-flex">
                         <div class="cat">
-                            <span>Lifestyle</span>
+                            <span>Evaluation</span>
                         </div>
                         <div class="rating">
                             <p class="text-right mb-0">
@@ -36,14 +53,24 @@
                         <p class="price"><span>@item.UnitPrice</span></p>
                     </div>
                     <p class="bottom-area d-flex px-3">
-                        <a href="#" class="add-to-cart text-center py-2 mr-1"><span>Add to cart <i class="ion-ios-add ml-1"></i></span></a>
-
+                        <a onclick="AddToCart('@item.ProductID')" href="javascript:void(0);" role="button" class="add-to-cart text-center py-2 mr-1"><span>Add to cart <i class="ion-ios-add ml-1"></i></span></a>
+                        
                         @*購物車ActionLink*@
                         @*@Html.ActionLink("Buy now", "index", "ShoppingCar", null, new { @class = "buy-now text-center py-2 ion-ios-cart ml-1" })*@
-                        <a href="@Url.Action( "index","ShoppingCar" ,new { UID  = 1, productid = item.ProductID})" class="buy-now text-center py-2">Buy now<span><i class="ion-ios-cart ml-1"></i></span></a>
+                        <a href="@Url.Action( "index","ShoppingCar" ,new { UID  = 3, productid = item.ProductID})" class="buy-now text-center py-2">Buy now<span><i class="ion-ios-cart ml-1"></i></span></a>
                     </p>
                 </div>
             </div>
         </div>
     }
+</div>
+
+<div class="row mt-5 ">
+    <div class="col text-center">
+        <div class="block-27">
+            <ul>
+                @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
+            </ul>
+        </div>
+    </div>
 </div>

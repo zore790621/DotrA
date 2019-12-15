@@ -1,5 +1,5 @@
 ﻿@model ShopView
-    @*宣告給VIEW使用pagedlist*@
+@*宣告給VIEW使用pagedlist*@
 @using PagedList;
 
 @{
@@ -12,15 +12,6 @@
 <section class="ftco-section bg-light">
     <div class="container">
         <div class="row">
-            <div class="col-md-8 col-lg-10 order-md-last">
-                @*圖片*@
-                @*給PartialView使用此Model*@
-                @Html.Partial("Single_Product", myPageList)
-                @*分頁選擇*@
-                @*給PartialView使用此Model*@
-                @Html.Partial("PageSelection", myPageList)
-            </div>
-
             <div class="col-md-4 col-lg-2">
                 <div class="sidebar">
                     <div class="sidebar-box-2">
@@ -28,19 +19,59 @@
                         @Html.Partial("Categories", Model)
                     </div>
                     @*<div class="sidebar-box-2">
-                        PriceRange 價格範圍
-                        @Html.Partial("PriceRange")
-                    </div>*@
+                            PriceRange 價格範圍
+                            @Html.Partial("PriceRange")
+                        </div>*@
                 </div>
+            </div>
+            <div class="col-md-8 col-lg-10 order-md-last">
+                @*@Html.Action("Single_Product", "Shop")*@
+                @*圖片*@
+                @*給PartialView使用此Model*@
+                @Html.Partial("Single_Product", myPageList)
             </div>
         </div>
     </div>
 </section>
 @section topCSS{
     <style>
-        .pagination{
+        .pagination {
             position: absolute;
             left: 50%;
         }
     </style>
-    }
+}
+@section endJS{
+    @* 購物車Js *@
+    <script type="text/javascript">
+        //網頁載入完成時執行之function
+        $(document).ready(function () {
+            console.log("ready!");
+        });
+
+        //加入編號為productId的商品進購物車
+        function AddToCart(productId) {
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Action("AddToCart", "SanTestCart")',
+                data: { id: productId }
+            })
+            .done(function (msg) {
+                //將回傳的購物車頁面 填入 li#Cart
+                $('li#Cart').html(msg);
+            });
+        }
+        function RemoveFromCart(productId) {
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Action("RemoveFromCart", "SanTestCart")',
+                data: { id: productId }
+            })
+            .done(function (msg) {
+                //將回傳的購物車頁面 填入 li#Cart
+                $('li#Cart').html(msg);
+            });
+        }
+
+    </script>
+}

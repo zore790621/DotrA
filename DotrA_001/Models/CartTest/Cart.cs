@@ -8,9 +8,9 @@ namespace DotrA_001.Models
 {
     //可序列化
     [Serializable]
-    public class Cart:IEnumerable<CartProduct>
+    public class Carttest:IEnumerable<CartProduct>
     {
-        public Cart()
+        public Carttest()
         {
             this.CartProducts = new List<CartProduct>();
         }

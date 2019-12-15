@@ -24,7 +24,7 @@
                             {
                                 if (cat.CategoryID == pro.CategoryID)
                                 {
-                                    <li>@Html.ActionLink(pro.ProductName, "Seach", "test", new { CID = cat.CategoryID, PID = pro.ProductID }, null)</li>
+                                    <li>@Html.ActionLink(pro.ProductName, "Index", new { CID = cat.CategoryID, PID = pro.ProductID }, null)</li>
                                 }
                             }
                         </ul>
