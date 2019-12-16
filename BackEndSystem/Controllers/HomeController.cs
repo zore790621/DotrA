@@ -28,7 +28,7 @@ namespace BackEndSystem.Controllers
 
             //方法2 透過ViewBag去傳遞
             ViewBag.ProCount = db.Products.Count();
-            ViewBag.CatCount = db.Categories.Count();
+            ViewBag.MemCount = db.Members.Count();
             ViewBag.OrdCount = db.Orders.Count();
             ViewBag.Selltotal = db.Orders.Where(x => x.OrderDate.Month == DateTime.Now.Month).Sum(x => x.OrderDetails.Sum(y => y.SubTotal));
 
