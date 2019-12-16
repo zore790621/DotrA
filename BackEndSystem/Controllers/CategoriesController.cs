@@ -110,9 +110,13 @@ namespace BackEndSystem.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             Category categories = db.Categories.Find(id);
+           
+            //想要達到的目的：按下刪除鍵後，隱藏特定product裡面種類欄位的值
+            //var catName = categories.CategoryName;
+            //catName = null;
             db.Categories.Remove(categories);
             db.SaveChanges();
-            return RedirectToAction("Index");
+           return RedirectToAction("Index");
         }
 
         protected override void Dispose(bool disposing)

@@ -4,6 +4,7 @@
     ViewBag.Title = "Create";
 }
 
+@Html.Raw(TempData["message"])
 
 @using (Html.BeginForm("Create", "AddProduct", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
@@ -12,7 +13,7 @@
         <div class="animated fadeIn">
             <div class="row">
                 <div class="col-md-1"></div>
-                 <div class="col-md-10">
+                <div class="col-md-10">
                     <div class="card">
                         <div class="card-header">
                             <strong>新增商品</strong>
@@ -78,17 +79,20 @@
                         <div class="form-group">
                             @Html.LabelFor(model => model.Picture, htmlAttributes: new { @class = "control-label col-md-2" })
                             <div class="col-md-10">
-                                <label class="btn btn-light"><input type="file" name="Picture" /></label>
-                                @Html.ValidationMessageFor(model => model.Picture, "", new { @class = "text-danger" })                             
+                                @*<label class="btn btn-light"><input type="file" name="Picture" /></label>*@
+                                <div class="multi">
+                                    <input type="file" name="Picture" id="file" multiple="multiple"/>
+                                </div>
+                                @Html.ValidationMessageFor(model => model.Picture, "", new { @class = "text-danger" })
                             </div>
                         </div>
 
                         <div class="form-group">
                             <div class="col-md-offset-2 col-md-10">
-                                <input type="submit" value="儲存" class="btn btn-outline-danger" />                               
-                                 @Html.ActionLink("返回列表","Index","Products",null, new { @class = "btn btn-outline-primary" }) @*修改products 那一欄因為多加了後面new物件所以,products那一欄要改成路由得直*@
+                                <input type="submit" value="儲存" class="btn btn-outline-danger" id="button"/>
+                                @Html.ActionLink("返回列表", "Index", "Products", null, new { @class = "btn btn-outline-primary" }) @*修改products 那一欄因為多加了後面new物件所以,products那一欄要改成路由得直*@
                             </div>
-                        </div>                
+                        </div>
                     </div>
                 </div>
             </div>
@@ -97,4 +101,15 @@
 }
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
-}
+
+    <script>
+        $(document).ready(function () {
+            $('#button').on('click', function () {
+
+                $('.multi').append("<input type='file' name='Picture' id='file' />");
+
+                event.preventDefault();
+            });
+        });
+    </script>
+    }

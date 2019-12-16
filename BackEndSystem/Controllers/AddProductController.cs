@@ -116,23 +116,32 @@ namespace BackEndSystem.Controllers
         }
 
         // 新增產品圖片的方法
-        public string upload(string trail,HttpPostedFileBase photo)
+        public string upload(string trail,HttpPostedFileBase[]photo)
         {
             string path = "";
             string fileName = string.Empty;
 
             if (photo != null)
             {
-                if (photo.ContentLength > 0)
-                {
+                foreach(var file in photo)
+                { 
+                    if (file!=null)
+                //if (photo.ContentLength > 0)
+                  {
                     //取得檔案名稱
-                    fileName = Path.GetFileName(photo.FileName);
+                    fileName = Path.GetFileName(file.FileName);
                     path = Path.Combine(Server.MapPath(trail), fileName);
-                    photo.SaveAs(path);
+                    file.SaveAs(path);
+                    TempData["message"] = "上傳成功";
 
                     //刪除上傳的圖檔
                     //string filePath = Server.MapPath("~/Photos" + PathDB);
                     //System.IO.File.Delete(filePath);
+                  }
+                    else
+                    {
+                        TempData["message"] = "請先選擇檔案";
+                    }
                 }
             }
             return (fileName);

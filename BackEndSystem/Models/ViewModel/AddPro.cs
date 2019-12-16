@@ -30,7 +30,7 @@ namespace BackEndSystem.Models.ViewModel
         public decimal PPrice { get; set; }
 
         [Display(Name = "產品圖片")]
-        public HttpPostedFileBase Picture { get; set; }
+        public HttpPostedFileBase[] Picture { get; set; }
 
         [Display(Name = "產品描述")]
         [Required]
