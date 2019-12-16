@@ -357,7 +357,6 @@
     <Content Include="Content\bootstrap-datepicker3.css.map" />
     <Content Include="Content\bootstrap-datepicker.standalone.css.map" />
     <Content Include="Content\bootstrap-datepicker.css.map" />
-    <Content Include="Assets\fonts\flaticon\.DS_Store" />
     <Content Include="Assets\fonts\flaticon\font\Flaticon.eot" />
     <Content Include="Assets\fonts\flaticon\font\Flaticon.ttf" />
     <Content Include="Assets\fonts\flaticon\font\Flaticon.woff" />
@@ -368,7 +367,6 @@
     <Content Include="Assets\fonts\icomoon\icomoon.ttf" />
     <Content Include="Assets\fonts\icomoon\icomoon.woff" />
     <Content Include="Assets\fonts\ionicons\css\_ionicons.scss" />
-    <Content Include="Assets\fonts\ionicons\fonts\.DS_Store" />
     <Content Include="Assets\fonts\ionicons\fonts\ionicons.eot" />
     <Content Include="Assets\fonts\ionicons\fonts\ionicons.ttf" />
     <Content Include="Assets\fonts\ionicons\fonts\ionicons.woff" />
@@ -397,6 +395,7 @@
     <Content Include="Scripts\esm\popper-utils.js.map" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <None Include="Properties\PublishProfiles\CustomProfile.pubxml" />
+    <None Include="Properties\PublishProfiles\DotrAWebsite - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />

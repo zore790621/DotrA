@@ -26,7 +26,7 @@ namespace DotrA_001
                       "~/Content/bootstrap.css",
                       "~/Content/site.css"));
             //Assets/css
-            bundles.Add(new StyleBundle("~/Assets/css").Include(
+            bundles.Add(new StyleBundle("~/Asset/css").Include(
                 "~/Assets/css/animate.css",
                 "~/Assets/css/aos.css",
                 "~/Assets/css/bootstrap-datepicker.css",
@@ -47,7 +47,7 @@ namespace DotrA_001
                 ));
 
             //Assets/js
-            bundles.Add(new ScriptBundle("~/Assets/js").Include(
+            bundles.Add(new ScriptBundle("~/Asset/js").Include(
                 "~/Assets/js/jquery-migrate-3.0.1.min.js",
                 "~/Assets/js/popper.min.js",
                 //"~/Assets/js/bootstrap.min.js",
@@ -62,6 +62,7 @@ namespace DotrA_001
                 "~/Assets/js/scrollax.min.js",
                 "~/Assets/js/main.js"
            ));
+            BundleTable.EnableOptimizations = false;
         }
     }
 }
