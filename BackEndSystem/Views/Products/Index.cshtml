@@ -65,16 +65,24 @@
                                         <td>
                                             @if (item.Picture != null)
                                             {
-                                                if (item.Picture.Substring(item.Picture.Length - 3, 3) == "jpg")
+                                                <img src="@item.Picture.Split(',')[0]" alt="Alternate Text" style="width:100px;height:100px;" />
+
+                                                @*foreach (var address in item.Picture.Split(','))
                                                 {
-                                                    <img src="@Url.Content("~/Photo/Product/" + item.Picture)" alt="Alternate Text" style="width:100px;height:100px;" />
+                                                    // 這個是多張圖片顯示foreach
                                                 }
-                                                else
-                                                {
-                                                    <video width="300" height="300" controls>
-                                                        <source src="@Url.Content("~/Photo/Product/" + item.Picture)" type=video/mp4 />
-                                                    </video>
-                                                }
+
+                                                  // 上傳單張圖片單張 方法1.本機端
+                                                  if (item.Picture.Substring(item.Picture.Length - 3, 3) == "jpg")
+                                                       {
+                                                        <img src="@item.Picture" alt="Alternate Text" style="width:100px;height:100px;" />
+                                                       }
+                                                  else
+                                                       {
+                                                         <video width="300" height="300" controls>
+                                                         <source src="@Url.Content("~/Photo/Product/" + item.Picture)" type=video/mp4 />
+                                                         </video>
+                                                       }*@
                                             }
                                             else
                                             {

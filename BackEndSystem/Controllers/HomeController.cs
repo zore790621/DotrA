@@ -5,10 +5,11 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Database.Models;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace BackEndSystem.Controllers
 {
-    [Authorize]
+    //[Authorize]
     public class HomeController : Controller
     {
     
@@ -32,6 +33,13 @@ namespace BackEndSystem.Controllers
             ViewBag.OrdCount = db.Orders.Count();
             ViewBag.MemCount = db.Members.Count();
             ViewBag.Selltotal = db.Orders.Where(x => x.OrderDate.Month == DateTime.Now.Month).Sum(x => x.OrderDetails.Sum(y => y.SubTotal));
+
+            //方法4. 透過這樣的方式效能比較好
+            //if(Application["TotalRow"]==null)
+            //{
+            //    Application["TotalRow"] = db.Products.Count();
+                  
+            //}
 
 
 
@@ -81,6 +89,16 @@ namespace BackEndSystem.Controllers
             return View();
         }
 
-
+        [HttpPost]
+        public JsonResult GetProductTop5()
+        {
+            var result = db.OrderDetails.GroupBy(x => x.ProductID).Select(x => new
+            {
+                ProductName = x.FirstOrDefault().Product.ProductName,
+                Quantity = x.Sum(y => y.Quantity),
+                Amount = x.Sum(y => y.SubTotal)
+            }).OrderByDescending(x => x.Quantity).Take(1);
+            return Json(result);
+        }
     }
 }
