@@ -146,8 +146,8 @@ namespace DotrA_001.Controllers
                     #region ===驗證票證===
                     //為所提供的使用者名稱建立驗證票證，並將該票證加入至回應的Cookie,或加入至URL
                     //FormsAuthentication.SetAuthCookie(member.MemberAccount, false);// createPersistentCookie:false(不要記住我)
-                    Session["MemberID"] = user.MemberID.ToString();//為了修改會員資料
                     //Session["MemberAccount"] = user.MemberAccount.ToString();
+                    Session["MemberID"] = user.MemberID;//為了修改會員資料
 
                     int timeout = login.RememberMe ? 1440 : 10; // 525600 min = 1 year
                     var ticket = new FormsAuthenticationTicket(login.MemberAccount, login.RememberMe, timeout);
@@ -204,7 +204,7 @@ namespace DotrA_001.Controllers
             var verifyUrl = "/Members/" + emailFor + "/" + activationCode;
             var link = Request.Url.AbsoluteUri.Replace(Request.Url.PathAndQuery, verifyUrl);
 
-            var fromEmail = new MailAddress("minishopbs@gmail.com", "MiniShop");
+            var fromEmail = new MailAddress("minishopbs@gmail.com", "DotrA");
             var toEmail = new MailAddress(Email);
             var fromEmailPassword = "edaybsazwbmogabr"; // Replace with actual password
 
@@ -213,7 +213,7 @@ namespace DotrA_001.Controllers
             if (emailFor == "VerifyAccount")
             {
                 subject = "您的會員帳號已成功建立! Your account is successfully created!";
-                body = "親愛的會員您好，很高興告訴您，您的MiniShop帳號已成功建立，請點擊下方連結進行帳號驗證.<br/><br/>" +
+                body = "親愛的會員您好，很高興告訴您，您的DotrA帳號已成功建立，請點擊下方連結進行帳號驗證.<br/><br/>" +
                     "Hi,<br/><br/>We are excited to tell you that your MiniShop account is" +
                     " successfully created. Please click on the below link to verify your account" +
                     " <br/><br/><a href=" + link + ">請點此驗證帳號. Account activation link</a> ";
@@ -344,8 +344,7 @@ namespace DotrA_001.Controllers
         #region ===修改會員資料===
         public ActionResult Edit(int? id)
         {
-            //if(User.IsInRole(admin))
-            if (id == null)
+            if (id == null || Session["MemberId"].ToString() != id.ToString())
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
