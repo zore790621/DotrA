@@ -146,10 +146,10 @@ namespace DotrA_001.Controllers
                     #region ===驗證票證===
                     //為所提供的使用者名稱建立驗證票證，並將該票證加入至回應的Cookie,或加入至URL
                     //FormsAuthentication.SetAuthCookie(member.MemberAccount, false);// createPersistentCookie:false(不要記住我)
-                    //Session["MemberID"] = user.MemberID.ToString();
+                    Session["MemberID"] = user.MemberID.ToString();//為了修改會員資料
                     //Session["MemberAccount"] = user.MemberAccount.ToString();
 
-                    int timeout = login.RememberMe ? 525600 : 20; // 525600 min = 1 year
+                    int timeout = login.RememberMe ? 1440 : 10; // 525600 min = 1 year
                     var ticket = new FormsAuthenticationTicket(login.MemberAccount, login.RememberMe, timeout);
                     string encrypted = FormsAuthentication.Encrypt(ticket);
                     var cookie = new HttpCookie(FormsAuthentication.FormsCookieName, encrypted);
@@ -341,68 +341,57 @@ namespace DotrA_001.Controllers
             return View();
         }
         #endregion
-        #region ===CRUD===
-        public ActionResult Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Member member = db.Members.Find(id);
-            if (member == null)
-            {
-                return HttpNotFound();
-            }
-            return View(member);
-        }
-        //// POST: Members/Create
-        //// 若要免於過量張貼攻擊，請啟用想要繫結的特定屬性，如需
-        //// 詳細資訊，請參閱 https://go.microsoft.com/fwlink/?LinkId=317598。
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public ActionResult Create([Bind(Include = "MemberID,MemberAccount,Password,Name,Email,Address,Phone")] Member member)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        db.Members.Add(member);
-        //        db.SaveChanges();
-        //        return RedirectToAction("Index");
-        //    }
-
-        //    return View(member);
-        //}
-
-        // GET: Members/Edit/5
+        #region ===修改會員資料===
         public ActionResult Edit(int? id)
         {
+            //if(User.IsInRole(admin))
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Member member = db.Members.Find(id);
+
+            EditMemberVM vm = new EditMemberVM()
+            {
+                MemberID = member.MemberID,
+                MemberAccount = member.MemberAccount,
+                MemberName = member.Name,
+                Phone = member.Phone,
+                Address = member.Address,
+                Email = member.Email
+            };
+
             if (member == null)
             {
                 return HttpNotFound();
             }
-            return View(member);
+            return View(vm);
         }
-
-        // POST: Members/Edit/5
-        // 若要免於過量張貼攻擊，請啟用想要繫結的特定屬性，如需
-        // 詳細資訊，請參閱 https://go.microsoft.com/fwlink/?LinkId=317598。
+        
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Exclude = "EmailVerified")] Member member)
+        public ActionResult Edit(EditMemberVM vm)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(member).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            return View(member);
-        }
+                Member member = db.Members.Find(vm.MemberID);
 
+                member.MemberID = vm.MemberID;
+                member.MemberAccount = vm.MemberAccount;
+                member.Name = vm.MemberName;
+                member.Phone = vm.Phone;
+                member.Address = vm.Address;
+                member.Email = vm.Email;
+
+                //db.Entry(member).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Edit");
+            };
+
+            return View(vm);
+        }
+        #endregion
+        #region ===CRUD===
         // GET: Members/Delete/5
         public ActionResult Delete([Bind(Exclude = "EmailVerified")]int? id)
         {

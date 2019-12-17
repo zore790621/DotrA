@@ -18,7 +18,7 @@
                 @if (User.Identity.IsAuthenticated)
                 //是否通過驗證 //User.Identity.IsAuthenticated、Request.IsAuthenticated
                 {                                                        //User.Identity.Name 可擷取目前登入的使用者帳戶資訊
-                    <li class="nav-item">@Html.ActionLink("HiHi!! " + @User.Identity.Name, "Index", "Home", null, htmlAttributes: new { @class = "nav-link" })</li>
+                    <li class="nav-item">@Html.ActionLink("HiHi!! " + @User.Identity.Name, "Edit", "Members", new {id = Session["MemberID"] }, htmlAttributes: new { @class = "nav-link" })</li>
                     <li class="nav-item">@Html.ActionLink("Logout", "Logout", "Members", null, new { @class = "nav-link" })</li>
                 }
                 else

@@ -13,7 +13,7 @@ namespace DotrA_001
             app.SetDefaultSignInAsAuthenticationType(CookieAuthenticationDefaults.AuthenticationType);
             app.UseCookieAuthentication(new CookieAuthenticationOptions
             {
-                LoginPath = new PathString("/Account/Index"),
+                LoginPath = new PathString("/Home/Index"),
                 SlidingExpiration = true
             });
             app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
