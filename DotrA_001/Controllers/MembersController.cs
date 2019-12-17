@@ -23,7 +23,7 @@ namespace DotrA_001.Controllers
         private DotrADb db = new DotrADb();
 
         // GET: Members
-        [Authorize(Users ="admin")]//必須有授權/認證才能進入
+        [Authorize(Users = "admin")]//必須有授權/認證才能進入
         public ActionResult Index()
         {
             return View(db.Members.ToList());
@@ -124,16 +124,16 @@ namespace DotrA_001.Controllers
 
             //var user = db.Members.Where(x => x.MemberAccount == member.MemberAccount && x.Password == member.Password).FirstOrDefault();//密碼未加密規則
             //var user = (from s in db.Members where s.MemberAccount == login.MemberAccount select s).FirstOrDefault();
-            var user = db.Members.Where(x => x.MemberAccount == login.MemberAccount && x.Password!=null).FirstOrDefault();
+            var user = db.Members.Where(x => x.MemberAccount == login.MemberAccount && x.Password != null).FirstOrDefault();
             if (user != null)
             {
-       
+
                 if (!user.EmailVerified)
                 {
                     ViewBag.Message = "請先到信箱啟動驗證. Please verify your email first.";
                     return View();
                 }
-                
+
                 //hash加密
                 var HCode = user.HashCode;
                 var encodingPasswordString = hash.EncodePassword(login.Password, HCode);
@@ -147,17 +147,25 @@ namespace DotrA_001.Controllers
                     //為所提供的使用者名稱建立驗證票證，並將該票證加入至回應的Cookie,或加入至URL
                     //FormsAuthentication.SetAuthCookie(member.MemberAccount, false);// createPersistentCookie:false(不要記住我)
                     //Session["MemberAccount"] = user.MemberAccount.ToString();
-                    Session["MemberID"] = user.MemberID;//為了修改會員資料
+                    //Session["MemberID"] = user.MemberID;//為了修改會員資料
 
                     int timeout = login.RememberMe ? 1440 : 10; // 525600 min = 1 year
-                    var ticket = new FormsAuthenticationTicket(login.MemberAccount, login.RememberMe, timeout);
+                    var ticket = new FormsAuthenticationTicket(
+                        version: 1,
+                        name: login.MemberAccount, //可以放使用者Id
+                        issueDate: DateTime.UtcNow,//現在UTC時間
+                        expiration: DateTime.UtcNow.AddHours(timeout),//Cookie有效時間=現在時間往後+1小時
+                        isPersistent: login.RememberMe,// 是否要記住我 true or false
+                        userData: user.MemberID.ToString(), //可以放使用者角色名稱
+                        cookiePath: FormsAuthentication.FormsCookiePath
+                        );
                     string encrypted = FormsAuthentication.Encrypt(ticket);
                     var cookie = new HttpCookie(FormsAuthentication.FormsCookieName, encrypted);
                     cookie.Expires = DateTime.Now.AddMinutes(timeout);
                     cookie.HttpOnly = true;
                     Response.Cookies.Add(cookie);
                     #endregion
-                    return RedirectToAction("Index","Home");
+                    return RedirectToAction("Index", "Home");
                     //return RedirectToAction("Index", "Members");
                 }
 
@@ -344,9 +352,9 @@ namespace DotrA_001.Controllers
         #region ===修改會員資料===
         public ActionResult Edit(int? id)
         {
-            if (id == null || Session["MemberId"].ToString() != id.ToString())
+            if (id == null || ((FormsIdentity)User.Identity).Ticket.UserData != id.ToString())
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return RedirectToAction("Index", "Home");
             }
             Member member = db.Members.Find(id);
 
@@ -366,7 +374,7 @@ namespace DotrA_001.Controllers
             }
             return View(vm);
         }
-        
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(EditMemberVM vm)

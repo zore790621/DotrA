@@ -18,7 +18,8 @@
                 @if (User.Identity.IsAuthenticated)
                 //是否通過驗證 //User.Identity.IsAuthenticated、Request.IsAuthenticated
                 {                                                        //User.Identity.Name 可擷取目前登入的使用者帳戶資訊
-                    <li class="nav-item">@Html.ActionLink("HiHi!! " + @User.Identity.Name, "Edit", "Members", new {id = Session["MemberID"] }, htmlAttributes: new { @class = "nav-link" })</li>
+                    <li class="nav-item">@Html.ActionLink("HiHi!! " + @User.Identity.Name, "Edit", "Members", new {id = ((FormsIdentity)User.Identity).Ticket.UserData
+                    }, htmlAttributes: new { @class = "nav-link" })</li>
                     <li class="nav-item">@Html.ActionLink("Logout", "Logout", "Members", null, new { @class = "nav-link" })</li>
                 }
                 else
@@ -65,6 +66,7 @@
                 <div class="modal-footer justify-content-center">
                     <a class="btn " href="@Url.Action("Register","Members")"
                        role="button">Click To Register</a>
+                    <a class="btn btn-default btn-block" href="@Url.Action("SignIn","Members", new { type = "Google" })"><i class="fa fa-google"></i>&nbsp;&nbsp;Login using Google</a>
                 </div>
             </div>
         </div>
