@@ -71,6 +71,18 @@ namespace BackEndSystem.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Product products = db.Products.Find(id);
+
+            if (products.Description == "0")
+            {
+                products.Description = "1";
+            }
+            else
+            {
+                products.Description = "0";
+            }
+       
+
+
             if (products == null)
             {
                 return HttpNotFound();
@@ -106,10 +118,12 @@ namespace BackEndSystem.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Product products = db.Products.Find(id);
+
             if (products == null)
             {
                 return HttpNotFound();
-            }
+            }          
+
             return View(products);
         }
 
@@ -131,6 +145,34 @@ namespace BackEndSystem.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+
+
+        public ActionResult recall(int? id)
+        {
+            
+            Product products = db.Products.Find(id);
+
+            if (products.Description == "0")
+            {
+                products.Description = "1";
+
+            }
+            if (products.Description == "1")
+            {
+                products.Description = "0";
+            }
+       
+            return View(products);
+        }
+
+        [HttpPost, ActionName("recall")]
+        public ActionResult recall(int id)
+        {
+            Product products = db.Products.Find(id);
+            db.Products.Remove(products);
+            db.SaveChanges();
+            return RedirectToAction("Index");
         }
     }
 }

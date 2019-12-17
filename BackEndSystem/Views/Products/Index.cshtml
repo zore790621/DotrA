@@ -43,7 +43,8 @@
                                     <th>
                                         @Html.DisplayNameFor(model => model.SalesPrice)
                                     </th>
-                                    <th></th>
+
+                                    <th>列表功能</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -99,8 +100,11 @@
                                             @Html.DisplayFor(modelItem => item.SalesPrice)
                                         </td>
                                         <td>
-                                            @Html.ActionLink("Edit", "Edit", new { id = item.ProductID }, new { @class = "btn-btn-primary" }) |
-                                            @Html.ActionLink("Delete", "Delete", new { id = item.ProductID }, new { @class = "btn-btn-danger" })
+                                            @Html.ActionLink("編輯", "Edit", new { id = item.ProductID }, new { @class = "btn-btn-primary" }) |
+                          
+                                            @Html.ActionLink("刪除", "Delete", new { id = item.ProductID }, new { @class = "btn-btn-danger" })|
+                                         
+                                            @Html.ActionLink("上下架", "recall", new { id = item.ProductID }, new { @class = "btn-btn-danger" })
                                         </td>
                                     </tr>
                                   }

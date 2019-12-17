@@ -131,10 +131,10 @@
                 url:"/Home/GetProductTop5",
                 type:"post",
                 datatype: "json",
-                 success: function (response) {                 
-                     $('#productTop1').text(response[0].ProductName);
-                     $('#productTop2').text(response[0].Quantity);
-                     $('#productTop3').text(response[0].Amount);
+                success: function (response) {                 
+                     $('#productTop1').text(response[1].ProductName);
+                     $('#productTop2').text(response[1].Quantity);
+                     $('#productTop3').text(response[1].Amount);
                                               
                 }
             });
