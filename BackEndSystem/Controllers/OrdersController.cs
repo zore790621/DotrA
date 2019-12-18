@@ -9,7 +9,7 @@ using System.Web.Mvc;
 using Database.Models;
 
 namespace BackEndSystem.Controllers
-{
+{   [Authorize]
     public class OrdersController : Controller
     {
         DotrADb db = new DotrADb();
