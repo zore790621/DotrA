@@ -87,32 +87,35 @@
 <div class="orders">
     <div class="row">
         <div class="col-xl-12">
-            <div class="card">
-                <div class="card-body">
-                    <h4 class="box-title">當月產品總排名</h4>
-                </div>
-                <div class="card-body--">
-                    <div class="table-stats order-table ov-h">
-                        <table class="table ">
-                            <thead>
-                               <tr>                           
-                                    <th>產品編號</th>
-                                    <th>產品名稱</th>
-                                    <th>銷售數量</th>
-                                    <th>銷售金額</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>                                   
-                                    <td >123</td>
-                                    <td><span class="name"id="productTop1">Catherine Dixon</span> </td>
-                                    <td><span class="product"id="productTop2">SSD</span> </td>
-                                    <td><span class="count"id="productTop3">250</span></td>                                  
-                                </tr>
-                            </tbody>
-                        </table>
+            <div class="col-xl-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="box-title">當月產品總排名</h4>
                     </div>
-                </div>
+                    <div class="card-body--">
+                        <div class="table-stats order-table ov-h">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>產品編號</th>
+                                        <th>產品名稱</th>
+                                        <th>銷售數量</th>
+                                        <th>銷售金額</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="tableContent">
+                                    <tr>
+                                        <td>123</td>
+                                        <td><span class="name" id="productTop1">Catherine Dixon</span> </td>
+                                        <td><span class="product" id="productTop2">SSD</span> </td>
+                                        <td><span class="count" id="productTop3">250</span></td>
+                                    </tr>
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>               
             </div>
         </div>
     </div>
@@ -127,15 +130,20 @@
 
     <script type="text/javascript">
         jQuery(document).ready(function () {
+
              jQuery.ajax({
                 url:"/Home/GetProductTop5",
                 type:"post",
                 datatype: "json",
-                success: function (response) {                 
-                     $('#productTop1').text(response[1].ProductName);
-                     $('#productTop2').text(response[1].Quantity);
-                     $('#productTop3').text(response[1].Amount);
-                                              
+                success: function (response) { 
+                    
+                      jQuery('#productTop1').text(response[0].ProductName);
+                      jQuery('#productTop2').text(response[0].Quantity);
+                      jQuery('#productTop3').text(response[0].Amount);
+                                    @*@foreach (var item in response)
+                                    {
+
+                                    }*@
                 }
             });
 

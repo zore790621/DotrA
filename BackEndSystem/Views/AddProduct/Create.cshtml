@@ -75,13 +75,12 @@
                             </div>
                         </div>
 
-
                         <div class="form-group">
                             @Html.LabelFor(model => model.Picture, htmlAttributes: new { @class = "control-label col-md-2" })
                             <div class="col-md-10">
                                 @*<label class="btn btn-light"><input type="file" name="Picture" /></label>*@
                                 <div class="multi">
-                                    <input type="file" name="Picture" id="file" multiple="multiple"/>
+                                    <input type="file" name="Picture" id="file" multiple="multiple" />
                                 </div>
                                 @Html.ValidationMessageFor(model => model.Picture, "", new { @class = "text-danger" })
                             </div>
@@ -89,7 +88,7 @@
 
                         <div class="form-group">
                             <div class="col-md-offset-2 col-md-10">
-                                <input type="submit" value="儲存" class="btn btn-outline-danger" id="button"/>
+                                <input type="submit" value="儲存" class="btn btn-outline-danger" id="button" />
                                 @Html.ActionLink("返回列表", "Index", "Products", null, new { @class = "btn btn-outline-primary" }) @*修改products 那一欄因為多加了後面new物件所以,products那一欄要改成路由得直*@
                             </div>
                         </div>

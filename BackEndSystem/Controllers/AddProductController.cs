@@ -109,6 +109,7 @@ namespace BackEndSystem.Controllers
                 p.Description = addPro.Pdescript;
                 p.Quantity = addPro.PQuantity;
                 p.SalesPrice = addPro.PSalesPrice;
+                p.Status = "未上架";
 
 
                 db.Products.Add(p);

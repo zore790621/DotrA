@@ -45,6 +45,9 @@ namespace BackEndSystem.Models.ViewModel
         [Required]
         public int PSalesPrice { get; set; }
 
+        //[Display(Name = "產品狀態")]
+        //public string PStatus { get; set; }
+
         public virtual Supplier Suppliers { get; set; }
         public virtual Category Categories { get; set; }
         //測試:public virtual Categories Categories { get; set; }
