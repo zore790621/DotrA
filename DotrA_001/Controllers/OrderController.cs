@@ -53,7 +53,7 @@ namespace DotrA_001.Controllers
                 //取得目前登入使用者Id
                 var userId = ((FormsIdentity)User.Identity).Ticket.UserData;
 
-                using (DotrADb db = new DotrADb())
+                try
                 {
                     //建立Order物件
                     var order = new Order()
@@ -70,8 +70,8 @@ namespace DotrA_001.Controllers
                     db.Orders.Add(order);
                     db.SaveChanges();
                     var odtest = (from o in db.Orders
-                                 where o.OrderID == order.OrderID
-                                 select o).ToList().FirstOrDefault();
+                                  where o.OrderID == order.OrderID
+                                  select o).ToList().FirstOrDefault();
 
                     //取得購物車中OrderDetai物件
                     var orderDetails = currentcart.ToOrderDetailList(odtest.OrderID);
@@ -79,8 +79,13 @@ namespace DotrA_001.Controllers
                     //將其加入OrderDetails資料表後，儲存變更
                     db.OrderDetails.AddRange(orderDetails);
                     db.SaveChanges();
+                    currentcart.ClearCart();
+                    return Content("訂購成功");
                 }
-                return Content("訂購成功");
+                catch (Exception)
+                {
+                    return Content("訂購失敗");
+                }
             }
             return View();
         }

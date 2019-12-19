@@ -234,7 +234,6 @@
     <Content Include="Assets\css\ionicons.min.css" />
     <Content Include="Assets\css\jquery.timepicker.css" />
     <Content Include="Assets\css\VerifyAccount.css" />
-    <Content Include="Assets\css\RegisterStyle.css" />
     <Content Include="Assets\css\LoginStyle.css" />
     <Content Include="Assets\css\magnific-popup.css" />
     <Content Include="Assets\css\open-iconic-bootstrap.min.css" />
