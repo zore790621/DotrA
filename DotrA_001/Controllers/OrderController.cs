@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
 using System.Web.Services;
 
 namespace DotrA_001.Controllers
@@ -18,7 +19,7 @@ namespace DotrA_001.Controllers
 
         public ActionResult Index()
         {
-            bool toint = int.TryParse(System.Web.HttpContext.Current.Session["MemberID"].ToString(), out int UID);
+            bool toint = int.TryParse(((FormsIdentity)User.Identity).Ticket.UserData.ToString(), out int UID);
             if (toint == false)
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             var source = db.Members.FirstOrDefault(x => x.MemberID == UID);
@@ -40,7 +41,7 @@ namespace DotrA_001.Controllers
         [HttpPost]
         public ActionResult Index(MemderOrderViewModel Alllist)
         {
-            bool toint = int.TryParse(System.Web.HttpContext.Current.Session["MemberID"].ToString(), out int UID);
+            bool toint = int.TryParse(((FormsIdentity)User.Identity).Ticket.UserData.ToString(), out int UID);
             if (toint == false)
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             var source = db.Members.FirstOrDefault(x => x.MemberID == UID);
@@ -50,7 +51,7 @@ namespace DotrA_001.Controllers
                 var currentcart = Models.Operation.GetCurrentCart();
 
                 //取得目前登入使用者Id
-                var userId = Session["MemberID"];
+                var userId = ((FormsIdentity)User.Identity).Ticket.UserData;
 
                 using (DotrADb db = new DotrADb())
                 {
