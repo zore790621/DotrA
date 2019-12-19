@@ -156,8 +156,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="assets\css\cs-skin-elastic.css" />
-    <Content Include="assets\css\style.css" />
     <Content Include="assets\images\dinosaur.jpg" />
     <Content Include="assets\images\littledinosaur.jpg" />
     <Content Include="assets\js\data-table\buttons.bootstrap.min.js" />
