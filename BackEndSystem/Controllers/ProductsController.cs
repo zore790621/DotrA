@@ -15,9 +15,9 @@ namespace BackEndSystem.Controllers
         private DotrADb db = new DotrADb();
 
         // GET: Products
-        public ActionResult Index(int c)
+        public ActionResult Index()
         {
-            var products = db.Products.Where(x =>x.Status == "上架" || x.CategoryID == c).Include(p => p.Category).Include(p => p.Supplier);
+            var products = db.Products.Include(p => p.Category).Include(p => p.Supplier);
            
             return View(products.ToList());
         }
