@@ -35,6 +35,12 @@ namespace DotrA_001.Controllers
             currentCart.RemoveProduct(id);
             return PartialView("_CartPartial");
         }
-
+        //以id刪除全部Product至購物車，並回傳購物車頁面
+        public ActionResult ClearCart()
+        {
+            var currentCart = Models.Operation.GetCurrentCart();
+            currentCart.ClearCart();
+            return PartialView("_CartPartial");
+        }
     }
 }

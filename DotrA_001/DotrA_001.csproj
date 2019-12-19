@@ -193,8 +193,10 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Areas\minishop\Controllers\minishopController.cs" />
+    <Compile Include="Areas\minishop\minishopAreaRegistration.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\CartTest\TestCartController.cs" />
+    <Compile Include="Controllers\OrderController.cs" />
     <Compile Include="Controllers\ProductsController.cs" />
     <Compile Include="Controllers\SanTestCartController.cs" />
     <Compile Include="Global.asax.cs">
@@ -203,14 +205,12 @@
     <Compile Include="Helper\hash.cs" />
     <Compile Include="Models\CartItem.cs" />
     <Compile Include="Models\CartTestTest.cs" />
-    <Compile Include="Models\CartTest\Cart.cs" />
-    <Compile Include="Models\CartTest\CartProduct.cs" />
-    <Compile Include="Models\CartTest\HandleCart.cs" />
     <Compile Include="Controllers\MembersController.cs" />
     <Compile Include="Controllers\ShopController.cs" />
     <Compile Include="Controllers\ShoppingCarController.cs" />
     <Compile Include="Models\CategoryView.cs" />
     <Compile Include="Models\Member.cs" />
+    <Compile Include="Models\MemderOrderViewModel.cs" />
     <Compile Include="Models\Operation.cs" />
     <Compile Include="Models\ProductView.cs" />
     <Compile Include="Models\ShopView.cs" />
@@ -396,6 +396,19 @@
     <Content Include="Scripts\esm\popper-utils.min.js.map" />
     <Content Include="Scripts\esm\popper-utils.js.map" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Content Include="Areas\minishop\Views\minishop\About.cshtml" />
+    <Content Include="Areas\minishop\Views\minishop\Blog.cshtml" />
+    <Content Include="Areas\minishop\Views\minishop\Blog_Single.cshtml" />
+    <Content Include="Areas\minishop\Views\minishop\Cart.cshtml" />
+    <Content Include="Areas\minishop\Views\minishop\Checkout.cshtml" />
+    <Content Include="Areas\minishop\Views\minishop\Contact.cshtml" />
+    <Content Include="Areas\minishop\Views\minishop\Index.cshtml" />
+    <Content Include="Areas\minishop\Views\minishop\Product_Single.cshtml" />
+    <Content Include="Areas\minishop\Views\minishop\Shop.cshtml" />
+    <Content Include="Areas\minishop\Views\minishop\_ViewStart.cshtml" />
+    <Content Include="Areas\minishop\Views\Shared\_miniShop.cshtml" />
+    <Content Include="Areas\minishop\Views\web.config" />
+    <Content Include="Areas\minishop\Views\_ViewStart.cshtml" />
     <None Include="Properties\PublishProfiles\CustomProfile.pubxml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
@@ -553,6 +566,11 @@
     <Content Include="Views\ShoppingCar\DroedownAccount.cshtml" />
     <Content Include="Views\Shared\LoginModal.cshtml" />
     <Content Include="Views\Shared\_CartPartial.cshtml" />
+    <Content Include="Views\ShoppingCar\Recipient.cshtml" />
+    <Content Include="Views\Order\Index.cshtml" />
+    <Content Include="Views\Order\View.cshtml" />
+    <Content Include="Views\Order\View1.cshtml" />
+    <Content Include="Views\Order\View2.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

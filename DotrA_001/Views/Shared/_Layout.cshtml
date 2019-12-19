@@ -5,8 +5,56 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     @*<link href="https://fonts.googleapis.com/css?family=Dancing+Script&display=swap" rel="stylesheet">*@
+
+        @* 購物車Js *@
+        <script type="text/javascript">
+        //網頁載入完成時執行之function
+        $(document).ready(function () {
+            console.log("ready!");
+        });
+
+        //加入編號為productId的商品進購物車
+        function AddToCart(productId) {
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Action("AddToCart", "SanTestCart")',
+                data: { id: productId }
+            })
+            .done(function (msg) {
+                //將回傳的購物車頁面 填入 li#Cart
+                $('li#Cart').html(msg);
+            });
+        }
+        function RemoveFromCart(productId) {
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Action("RemoveFromCart", "SanTestCart")',
+                data: { id: productId }
+            })
+            .done(function (msg) {
+                //將回傳的購物車頁面 填入 li#Cart
+                $('li#Cart').html(msg);
+            });
+        }
+        function ClearCart() {
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Action("ClearCart", "SanTestCart")',
+                data: {  }
+            })
+            .done(function (msg) {
+                //將回傳的購物車頁面 填入 li#Cart
+                $('li#Cart').html(msg);
+            });
+        }
+
+        </script>
+    
+
+
+
     <style type="text/css">
-        .text-center,body,.hero-wrap {
+        .text-center, body, .hero-wrap {
             font-family: 'Microsoft JhengHei' !important;
             font-weight: 900;
         }
@@ -31,10 +79,89 @@
                     width: 50px;
                 }
         }
-        .imgtag img{
-            width:200px;
-            height:50px;
+
+        .imgtag img {
+            width: 200px;
+            height: 50px;
         }
+        /*結帳按鈕*/
+        .gocart {
+            display: inline-block;
+            border-radius: 15px;
+            background-color: #0be881;
+            border: none;
+            color: #FFFFFF;
+            text-align: center;
+            font-size: 15px;
+            padding: 20px;
+            width: 45%;
+            transition: all 0.5s;
+            cursor: pointer;
+            margin: 5px;
+        }
+
+            .gocart span {
+                cursor: pointer;
+                display: inline-block;
+                position: relative;
+                transition: 0.5s;
+            }
+
+                .gocart span:after {
+                    content: '\00bb';
+                    position: absolute;
+                    opacity: 0;
+                    top: 0;
+                    right: -10px;
+                    transition: 0.5s;
+                }
+
+            .gocart:hover span {
+                padding-right: 15px;
+            }
+
+                .gocart:hover span:after {
+                    opacity: 1;
+                    right: 0;
+                }
+        /*移除購物車全部商品按鈕*/
+        .allremovebtn {
+            background-color: #f4511e;
+            border-radius: 15px;
+            border: none;
+            color: white;
+            padding: 16px 32px;
+            text-align: center;
+            font-size: 16px;
+            margin: 4px 2px;
+            width: 45%;
+            opacity: 0.6;
+            transition: 0.3s;
+            display: inline-block;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+            .allremovebtn:hover {
+                opacity: 1
+            }
+        /*移除購物車商品按鈕*/
+        .removebtn {
+            float:right;
+            background-color: red; /* Green */
+            border-radius: 50px;
+            border: none;
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 12px;
+            cursor: pointer;
+        }
+
+            .removebtn:hover {
+                background-color: #3e8e41;
+            }
     </style>
     <title>@ViewBag.Title</title>
     @Styles.Render("~/Content/css")

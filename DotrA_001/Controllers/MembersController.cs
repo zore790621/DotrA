@@ -146,7 +146,7 @@ namespace DotrA_001.Controllers
                     #region ===驗證票證===
                     //為所提供的使用者名稱建立驗證票證，並將該票證加入至回應的Cookie,或加入至URL
                     //FormsAuthentication.SetAuthCookie(member.MemberAccount, false);// createPersistentCookie:false(不要記住我)
-                    //Session["MemberID"] = user.MemberID.ToString();
+                    Session["MemberID"] = user.MemberID.ToString();
                     //Session["MemberAccount"] = user.MemberAccount.ToString();
 
                     int timeout = login.RememberMe ? 525600 : 20; // 525600 min = 1 year

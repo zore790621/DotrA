@@ -11,5 +11,6 @@ namespace DotrA_001.Models
         public List<ProductView> Product { get; set; }
         public List<SupplierView> Supplier { get; set; }
         public List<CategoryView> Category { get; set; }
+
     }
 }

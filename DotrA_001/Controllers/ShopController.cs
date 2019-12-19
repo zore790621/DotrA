@@ -26,7 +26,7 @@ namespace DotrA_001.Controllers
 
             var pro =
                 from pr in db.Products
-                where (IsInt_PID || pr.ProductID == isint_pid_val)
+                where (pr.Status == "上架" && IsInt_PID || pr.ProductID == isint_pid_val )
                 select new ProductView
                 {
                     CategoryID = pr.CategoryID,
@@ -35,7 +35,8 @@ namespace DotrA_001.Controllers
                     ProductID = pr.ProductID,
                     ProductName = pr.ProductName,
                     SupplierID = pr.SupplierID,
-                    UnitPrice = pr.UnitPrice
+                    UnitPrice = pr.UnitPrice,
+                    Status = pr.Status
                 };
             AllList.Product = pro.ToList();
 

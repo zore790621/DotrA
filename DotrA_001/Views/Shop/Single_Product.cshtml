@@ -3,67 +3,60 @@
 @model IPagedList<ProductView>
 
 @{
-
+    var ststus = new Database.Models.Product();
 }
 
-<div class="row">
-    @foreach (var item in Model)
-    {
-        <div class="col-sm-12 col-md-12 col-lg-4 ftco-animate d-flex fadeInUp ftco-animated">
-            <div class="product d-flex flex-column">
-                <a href="#" class="img-prod">
-                    <img class="img-fluid" src="@Url.Content("~/Assets/images/img1.png")" alt="Colorlib Template">
-                    <div class="overlay"></div>
-                    @*@if (item.Picture != null)
+    <div class="row">
+            @*@if (ststus.Status== "上架")
+            {*@
+        @foreach (var item in Model)
         {
-            if (item.Picture.Substring(item.Picture.Length - 3, 3) == "jpg")
-            {
-                <img src="@Url.Content("~/Photo/Product/" + item.Picture)" alt="Alternate Text" style="width:100px;height:100px;" />
-            }
-            else
-            {
-                <video width="300" height="300" controls>
-                    <source src="@Url.Content("~/Photo/Product/" + item.Picture)" type=video/mp4 />
-                </video>
-            }
-        }
-        else
-        {
-            <img src="@Url.Content("~/Photos/1574835328175.jpg")" alt="Alternate Text" style="width:30px;height:30px;" />
-        }*@
+                <div class="col-sm-12 col-md-12 col-lg-4 ftco-animate d-flex fadeInUp ftco-animated">
+                    <div class="product d-flex flex-column">
+                        <a href="#" class="img-prod">
+                            @if (item.Picture != null)
+                            {
+                                <img class="img-fluid" src="@item.Picture" alt="Colorlib Template">
+                                <div class="overlay"></div>
+                            }
+                            else
+                            {
+                                <img src="@Url.Content("~/Assets/images/img1.png")" alt="Alternate Text" style="width:30px;height:30px;" />
+                            }
 
-                </a>
-                <div class="text py-3 pb-4 px-3">
-                    <div class="d-flex">
-                        <div class="cat">
-                            <span>Evaluation</span>
-                        </div>
-                        <div class="rating">
-                            <p class="text-right mb-0">
-                                <a href="#"><span class="ion-ios-star-outline"></span></a>
-                                <a href="#"><span class="ion-ios-star-outline"></span></a>
-                                <a href="#"><span class="ion-ios-star-outline"></span></a>
-                                <a href="#"><span class="ion-ios-star-outline"></span></a>
-                                <a href="#"><span class="ion-ios-star-outline"></span></a>
+                        </a>
+                        <div class="text py-3 pb-4 px-3">
+                            <div class="d-flex">
+                                <div class="cat">
+                                    <span>Evaluation</span>
+                                </div>
+                                <div class="rating">
+                                    <p class="text-right mb-0">
+                                        <a href="#"><span class="ion-ios-star-outline"></span></a>
+                                        <a href="#"><span class="ion-ios-star-outline"></span></a>
+                                        <a href="#"><span class="ion-ios-star-outline"></span></a>
+                                        <a href="#"><span class="ion-ios-star-outline"></span></a>
+                                        <a href="#"><span class="ion-ios-star-outline"></span></a>
+                                    </p>
+                                </div>
+                            </div>
+                            <h3><a href="#">@item.ProductName</a></h3>
+                            <div class="pricing">
+                                <p class="price"><span>@item.UnitPrice</span></p>
+                            </div>
+                            <p class="bottom-area d-flex px-3">
+                                <a onclick="AddToCart('@item.ProductID')" href="javascript:void(0);" role="button" class="add-to-cart text-center py-2 mr-1"><span>Add to cart <i class="ion-ios-add ml-1"></i></span></a>
+
+                                @*購物車ActionLink*@
+                                @*@Html.ActionLink("Buy now", "index", "ShoppingCar", null, new { @class = "buy-now text-center py-2 ion-ios-cart ml-1" })*@
+                                <a href="@Url.Action( "index","ShoppingCar" ,new {UID= Session["MemberID"],productid = item.ProductID})" class="buy-now text-center py-2">Buy now<span><i class="ion-ios-cart ml-1"></i></span></a>
                             </p>
                         </div>
                     </div>
-                    <h3><a href="#">@item.ProductName</a></h3>
-                    <div class="pricing">
-                        <p class="price"><span>@item.UnitPrice</span></p>
-                    </div>
-                    <p class="bottom-area d-flex px-3">
-                        <a onclick="AddToCart('@item.ProductID')" href="javascript:void(0);" role="button" class="add-to-cart text-center py-2 mr-1"><span>Add to cart <i class="ion-ios-add ml-1"></i></span></a>
-                        
-                        @*購物車ActionLink*@
-                        @*@Html.ActionLink("Buy now", "index", "ShoppingCar", null, new { @class = "buy-now text-center py-2 ion-ios-cart ml-1" })*@
-                        <a href="@Url.Action( "index","ShoppingCar" ,new { UID  = 3, productid = item.ProductID})" class="buy-now text-center py-2">Buy now<span><i class="ion-ios-cart ml-1"></i></span></a>
-                    </p>
                 </div>
-            </div>
-        </div>
-    }
-</div>
+            }
+        
+    </div>
 
 <div class="row mt-5 ">
     <div class="col text-center">
