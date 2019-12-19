@@ -623,7 +623,7 @@ canvas {
     top: 0px;
     height: 37px;
     width: 10px;
-    background: #e8e9ef; }
+    background: red; }
   .order-table:after {
     right: -1px; }
   .order-table:before {

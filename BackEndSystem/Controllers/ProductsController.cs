@@ -18,6 +18,7 @@ namespace BackEndSystem.Controllers
         public ActionResult Index()
         {
             var products = db.Products.Include(p => p.Category).Include(p => p.Supplier);
+           
             return View(products.ToList());
         }
 
@@ -71,6 +72,7 @@ namespace BackEndSystem.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Product products = db.Products.Find(id);
+
             if (products == null)
             {
                 return HttpNotFound();
@@ -106,10 +108,12 @@ namespace BackEndSystem.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Product products = db.Products.Find(id);
+
             if (products == null)
             {
                 return HttpNotFound();
-            }
+            }          
+
             return View(products);
         }
 
@@ -118,7 +122,7 @@ namespace BackEndSystem.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Product products = db.Products.Find(id);
+            Product products = db.Products.Find(id);          
             db.Products.Remove(products);
             db.SaveChanges();
             return RedirectToAction("Index");
@@ -132,5 +136,43 @@ namespace BackEndSystem.Controllers
             }
             base.Dispose(disposing);
         }
+
+
+        public ActionResult recall(int? id)
+        {
+
+            Product products = db.Products.Find(id);
+
+            if (products.Status == "未上架")
+            {
+                products.Status = "上架";
+
+            }
+            else
+            {
+                products.Status = "未上架";
+            }
+            db.SaveChanges();
+
+            return RedirectToAction("Index");
+        }
+
+        //[HttpPost, ActionName("recall")]
+        //public ActionResult recall(int id)
+        //{
+        //    Product products = db.Products.Find(id);
+        //    if (products.Status == "未上架")
+        //    {
+        //        products.Status = "上架";
+
+        //    }
+        //    else
+        //    {
+        //        products.Status = "未上架";
+        //    }
+        //    //db.Products.Remove(products);
+        //    db.SaveChanges();
+        //    return RedirectToAction("Index");
+        //}
     }
 }

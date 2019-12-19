@@ -17,7 +17,7 @@
                             <div class="stat-content">
                                 <div class="text-left dib">
                                     <div class="stat-text">$<span class="count">@ViewBag.Selltotal</span></div>
-                                    <div class="stat-heading">總金額</div>
+                                    <div class="stat-heading">營業額</div>
                                 </div>
                             </div>
                         </div>
@@ -52,8 +52,8 @@
                             </div>
                             <div class="stat-content">
                                 <div class="text-left dib">
-                                    <div class="stat-text"><span class="count">@ViewBag.CatCount</span></div>
-                                    <div class="stat-heading">產品種類</div>
+                                    <div class="stat-text"><span class="count">@ViewBag.OrdCount</span></div>
+                                    <div class="stat-heading">訂單總數</div>
                                 </div>
                             </div>
                         </div>
@@ -70,8 +70,8 @@
                             </div>
                             <div class="stat-content">
                                 <div class="text-left dib">
-                                    <div class="stat-text"><span class="count">@ViewBag.OrdCount</span></div> @*@Model.Prototal*@
-                                    <div class="stat-heading">訂單總數</div>
+                                    <div class="stat-text"><span class="count">@ViewBag.MemCount</span></div> @*@Model.Prototal*@
+                                    <div class="stat-heading">會員總數</div>
                                 </div>
                             </div>
                         </div>
@@ -83,54 +83,78 @@
 </div>
 
 
-@*order*@
+
 <div class="orders">
     <div class="row">
         <div class="col-xl-12">
-            <div class="card">
-                <div class="card-body">
-                    <h4 class="box-title">Orders </h4>
-                </div>
-                <div class="card-body--">
-                    <div class="table-stats order-table ov-h">
-                        <table class="table ">
-                            <thead>
-                                <tr>
-                                    <th class="serial">#</th>
-                                    <th class="avatar">Avatar</th>
-                                    <th>ID</th>
-                                    <th>Name</th>
-                                    <th>Product</th>
-                                    <th>Quantity</th>
-                                    <th>Status</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td class="serial">3.</td>
-                                    <td class="avatar">
-                                        <div class="round-img">
-                                            <a href="#"><img class="rounded-circle" src="images/avatar/3.jpg" alt=""></a>
-                                        </div>
-                                    </td>
-                                    <td> #5467 </td>
-                                    <td>  <span class="name">Catherine Dixon</span> </td>
-                                    <td> <span class="product">SSD</span> </td>
-                                    <td><span class="count">250</span></td>
-                                    <td>
-                                        <span class="badge badge-complete">Complete</span>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div> <!-- /.table-stats -->
-                </div>
-            </div> <!-- /.card -->
-        </div>  <!-- /.col-lg-8 -->
+            <div class="col-xl-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="box-title">當月產品總排名</h4>
+                    </div>
+                    <div class="card-body--">
+                        <div class="table-stats order-table ov-h">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>產品編號</th>
+                                        <th>產品名稱</th>
+                                        <th>銷售數量</th>
+                                        <th>銷售金額</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="tableContent">
+                                    <tr>
+                                        <td>123</td>
+                                        <td><span class="name" id="productTop1">Catherine Dixon</span> </td>
+                                        <td><span class="product" id="productTop2">SSD</span> </td>
+                                        <td><span class="count" id="productTop3">250</span></td>
+                                    </tr>
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>               
+            </div>
+        </div>
     </div>
 </div>
-<!-- /.orders -->
+
 
 @section topCSS{
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pixeden-stroke-7-icon@1.2.3/pe-icon-7-stroke/dist/pe-icon-7-stroke.min.css">
+}
+
+@section scripts{
+
+    <script type="text/javascript">
+        jQuery(document).ready(function () {
+
+             jQuery.ajax({
+                url:"/Home/GetProductTop5",
+                type:"post",
+                datatype: "json",
+                success: function (response) { 
+                    
+                      jQuery('#productTop1').text(response[0].ProductName);
+                      jQuery('#productTop2').text(response[0].Quantity);
+                      jQuery('#productTop3').text(response[0].Amount);
+                                    @*@foreach (var item in response)
+                                    {
+
+                                    }*@
+                }
+            });
+
+        });
+
+       
+
+
+
+
+
+    </script>
+
 }
