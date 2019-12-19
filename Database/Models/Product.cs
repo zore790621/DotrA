@@ -42,7 +42,5 @@ namespace Database.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<OrderDetail> OrderDetails { get; set; }
         public virtual Supplier Supplier { get; set; }
-        [Display(Name = "²£«~ª¬ºA")]
-        public string Status { get; set; }
     }
 }
