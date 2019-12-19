@@ -130,8 +130,8 @@ namespace DotrA_001.Controllers
 
                 if (!user.EmailVerified)
                 {
-                    ViewBag.Message = "請先到信箱啟動驗證. Please verify your email first.";
-                    return View();
+                    TempData["Message"] = "請先到信箱啟動驗證. Please verify your email first.";
+                    return Redirect(Request.UrlReferrer.ToString());
                 }
 
                 //hash加密
