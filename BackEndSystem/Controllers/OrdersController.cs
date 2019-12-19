@@ -9,7 +9,7 @@ using System.Web.Mvc;
 using Database.Models;
 
 namespace BackEndSystem.Controllers
-{
+{   [Authorize]
     public class OrdersController : Controller
     {
         DotrADb db = new DotrADb();
@@ -49,7 +49,12 @@ namespace BackEndSystem.Controllers
                 }),
                 RecipientName = o.RecipientName,
                 RecipientPhone = o.RecipientPhone,
-                RecipientAddress = o.RecipientAddress
+                RecipientAddress = o.RecipientAddress,
+                MemberName = o.Member.Name,
+                OrderDate = o.OrderDate,
+                TotalPrice = o.OrderDetails.Sum(y => y.SubTotal),
+                ShipperName = o.Shipper.ShipperName,
+                PaymentMethod = o.Payment.PaymentMethod
             };
 
             if (vm == null)

@@ -30,7 +30,7 @@ namespace BackEndSystem.Models.ViewModel
         public decimal PPrice { get; set; }
 
         [Display(Name = "產品圖片")]
-        public HttpPostedFileBase Picture { get; set; }
+        public HttpPostedFileBase[] Picture { get; set; }
 
         [Display(Name = "產品描述")]
         [Required]
@@ -44,6 +44,9 @@ namespace BackEndSystem.Models.ViewModel
         [Display(Name = "銷售價格")]
         [Required]
         public int PSalesPrice { get; set; }
+
+        //[Display(Name = "產品狀態")]
+        //public string PStatus { get; set; }
 
         public virtual Supplier Suppliers { get; set; }
         public virtual Category Categories { get; set; }
