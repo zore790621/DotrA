@@ -206,7 +206,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Helper\hash.cs" />
-    <Compile Include="Models\AioCheckOut.aspx.cs">
+    <Compile Include="Controllers\AioCheckOut.aspx.cs">
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Models\CartItem.cs" />
@@ -215,7 +215,7 @@
     <Compile Include="Controllers\ShopController.cs" />
     <Compile Include="Controllers\ShoppingCarController.cs" />
     <Compile Include="Models\CategoryView.cs" />
-    <Compile Include="Models\CheckOutFeedback.aspx.cs">
+    <Compile Include="Controllers\CheckOutFeedback.aspx.cs">
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Models\Member.cs" />
@@ -517,7 +517,6 @@
     <Content Include="Scripts\umd\popper-utils.min.js" />
     <Content Include="Scripts\umd\popper.js" />
     <Content Include="Scripts\umd\popper.min.js" />
-    <Content Include="Views\AioCheckOut.aspx" />
     <Content Include="Views\CheckOutFeedback.aspx" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -571,6 +570,7 @@
     <Content Include="Views\Order\View.cshtml" />
     <Content Include="Views\Order\View1.cshtml" />
     <Content Include="Views\Order\View2.cshtml" />
+    <Content Include="Views\Order\Payment.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

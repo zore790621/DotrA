@@ -75,7 +75,7 @@
                 @Html.ValidationMessageFor(model => model.PaymentID, "", new { @class = "text-danger" })
             </div>
         </div>
-
+        <a href="@Url.Action("Payment")">test</a>
         <div class="form-group">
             <div class="">
                 <input type="submit" value="Save" class="btn btn-default" />
@@ -211,5 +211,13 @@
                 }
             });
         });
+
+        
+        jQuery(document).ready(function () {
+
+       
+
+        });
+ 
     </script>
 }
