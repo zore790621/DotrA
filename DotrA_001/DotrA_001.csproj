@@ -63,6 +63,9 @@
     <Reference Include="Aos.Public.Sdk, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\AOS.Public.SDK.1.1.0\lib\net472\Aos.Public.Sdk.dll</HintPath>
     </Reference>
+    <Reference Include="ECPay.Payment.Integration">
+      <HintPath>.\ECPay.Payment.Integration.dll</HintPath>
+    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
@@ -201,6 +204,9 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Helper\hash.cs" />
+    <Compile Include="Models\AioCheckOut.aspx.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
     <Compile Include="Models\CartItem.cs" />
     <Compile Include="Models\CartTestTest.cs" />
     <Compile Include="Models\CartTest\Cart.cs" />
@@ -210,6 +216,9 @@
     <Compile Include="Controllers\ShopController.cs" />
     <Compile Include="Controllers\ShoppingCarController.cs" />
     <Compile Include="Models\CategoryView.cs" />
+    <Compile Include="Models\CheckOutFeedback.aspx.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
     <Compile Include="Models\Member.cs" />
     <Compile Include="Models\Operation.cs" />
     <Compile Include="Models\ProductView.cs" />
@@ -503,6 +512,8 @@
     <Content Include="Scripts\umd\popper-utils.min.js" />
     <Content Include="Scripts\umd\popper.js" />
     <Content Include="Scripts\umd\popper.min.js" />
+    <Content Include="Views\AioCheckOut.aspx" />
+    <Content Include="Views\CheckOutFeedback.aspx" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
