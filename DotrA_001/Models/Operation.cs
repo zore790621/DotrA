@@ -27,6 +27,8 @@ namespace DotrA_001.Models
             {
                 throw new InvalidOperationException("System.Web.HttpContext.Current為空");
             }
+
         }
     }
+
 }

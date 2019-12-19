@@ -3,7 +3,7 @@
     var currentCart = DotrA_001.Models.Operation.GetCurrentCart();
 }
 
-<a id="CartDropDown" class="dropdown-toggle nav-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+<a id="CartDropDown" class="dropdown-toggle nav-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
     @String.Format("共{0}元 ({1})", currentCart.GetTotal, currentCart.Count)
     <span class="icon-shopping_cart"></span>
 </a>
@@ -13,12 +13,19 @@
         foreach (var cartitem in currentCart)
         {
             //依序輸出 : <li><a>可愛橡皮擦 <span>50元 X 2</span></a></li>
-            <a style="color:lightskyblue; margin:40px">@cartitem.ProductName <span>@cartitem.Price 元 X @cartitem.Quantity </span>
-            <span class=" btn-danger"  onclick="RemoveFromCart('@cartitem.ProductId')">X</span>
+            <a style="color:lightskyblue;"class="row">
+                <div class="col-12">
+                    <span class="col-10">@cartitem.ProductName @cartitem.Price 元 X @cartitem.Quantity </span>
+                    <span class="removebtn col-2" onclick="RemoveFromCart('@cartitem.ProductId')">X</span>
+                </div>
             </a>
-            
+
         }
-        <a class="btn btn-danger text-center">結帳去</a>
+<div style="width:260px">
+    <a class="gocart"  href="@Url.Action("Index","Order",new { })"><span>結帳去</span></a>
+    <a class="allremovebtn" onclick="ClearCart()">清空</a>
+</div>
+
     }
     else
     {

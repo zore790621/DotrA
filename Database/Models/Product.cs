@@ -42,5 +42,7 @@ namespace Database.Models
         public virtual ICollection<OrderDetail> OrderDetails { get; set; }
 
         public virtual Supplier Supplier { get; set; }
+        [Display(Name = "²£«~ª¬ºA")]
+        public string Status { get; set; }
     }
 }

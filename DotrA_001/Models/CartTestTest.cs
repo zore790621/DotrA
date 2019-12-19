@@ -37,7 +37,7 @@ namespace DotrA_001.Models
                 return getTotal;
             }
         }
-
+        
         //新增一筆Product，使用ProductId
         public bool AddProduct(int ProductId)
         {
@@ -75,6 +75,7 @@ namespace DotrA_001.Models
                 ProductId = product.ProductID,
                 ProductName = product.ProductName,
                 Price = product.SalesPrice,
+                Picture = product.Picture,
                 Quantity = 1
             };
 
@@ -102,6 +103,29 @@ namespace DotrA_001.Models
             }
             return true;
         }
+        //清空購物車
+        public bool ClearCart()
+        {
+            this.cartItems.Clear();
+            return true;
+        }
+        //將購物車商品轉成OrderDetail的List
+        public List<OrderDetail> ToOrderDetailList(int orderId)
+        {
+            var result = new List<OrderDetail>();
+            foreach (var cartItem in this.cartItems)
+            {
+                result.Add(new OrderDetail()
+                {
+                    ProductID = cartItem.ProductId,
+                    SubTotal = cartItem.Total,
+                    Quantity = (short)cartItem.Quantity,
+                    OrderID = orderId
+                });
+            }
+            return result;
+        }
+        
         #region IEnumerator
 
         public IEnumerator<CartItem> GetEnumerator()
