@@ -19,7 +19,7 @@ namespace DotrA_001.Controllers
         // GET: Order
         public ActionResult Index()
         {
-            bool toint = int.TryParse(((FormsIdentity)User.Identity).Ticket.UserData.ToString(), out int UID);
+            bool toint = int.TryParse(((FormsIdentity)User.Identity).Ticket.UserData, out int UID);
             if (toint == false)
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             var source = db.Members.FirstOrDefault(x => x.MemberID == UID);
@@ -41,7 +41,7 @@ namespace DotrA_001.Controllers
         [HttpPost]
         public ActionResult Index(MemderOrderViewModel Alllist)
         {
-            bool toint = int.TryParse(((FormsIdentity)User.Identity).Ticket.UserData.ToString(), out int UID);
+            bool toint = int.TryParse(((FormsIdentity)User.Identity).Ticket.UserData, out int UID);
             if (toint == false)
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             var source = db.Members.FirstOrDefault(x => x.MemberID == UID);
@@ -123,20 +123,22 @@ namespace DotrA_001.Controllers
                     oPayment.Send.CustomField3 = "";
                     oPayment.Send.CustomField4 = "";
                     oPayment.Send.EncryptType = 1;
-                    //foreach (var item in o.OrderDetails)
-                    //{
 
-                    //}
-                    //訂單的商品資料
-                    oPayment.Send.Items.Add(new Item()
+                 
+                    foreach (var item in o.OrderDetails)
                     {
-                        Name = "蘋果",//商品名稱
-                        Price = Decimal.Parse("3280"),//商品單價
-                        Currency = "新台幣",//幣別單位
-                        Quantity = Int32.Parse("1"),//購買數量
-                        URL = "http://google.com",//商品的說明網址
+                        oPayment.Send.Items.Add(new Item()
+                        {
+                            Name = item.Product.ProductName,//商品名稱
+                            Price = item.Product.SalesPrice,//商品單價
+                            Currency = "新台幣",//幣別單位
+                            Quantity = item.Quantity,//購買數量
+                            URL = "https://dotrawebsite.azurewebsites.net/Shop",//商品的說明網址
+                        });
 
-                    });
+                    }
+                    //訂單的商品資料
+                    
 
                     /*************************非即時性付款:ATM、CVS 額外功能參數**************/
 

@@ -259,6 +259,7 @@
     <Content Include="Assets\fonts\ionicons\fonts\ionicons.svg" />
     <Content Include="Assets\fonts\open-iconic\open-iconic.svg" />
     <Content Include="Assets\images\about.jpg" />
+    <Content Include="Assets\images\apple-touch-icon.png" />
     <Content Include="Assets\images\bg_1.jpg" />
     <Content Include="Assets\images\bg_1.png" />
     <Content Include="Assets\images\bg_2.png" />
