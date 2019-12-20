@@ -79,6 +79,7 @@
                             <select name="item_value[2][city]" id="city" class="custom-select col-6 offset-3" required>
                                 <option value="" disabled="disabled" selected="selected">請選擇縣市</option>
                             </select>
+                            <br />
                             <select name="item_value[2][area]" id="area" class="custom-select col-6 offset-3" required>
                                 <option value="" disabled="disabled" selected="selected">請選擇區域</option>
                             </select>
@@ -101,14 +102,15 @@
                 <div class="form-group">
                     <div class="">
                         <input type="submit" value="Register" class="btn " />
+                        <a class="btn " href="@Url.Action("Index","Home")"
+                           role="button">Back To Home</a>
                     </div>
                 </div>
             </div>
             <div class="text-center">
-                <a class="btn " href="@Url.Action("Login","Members")"
-                   role="button">Click To Login</a>
-                <a class="btn " href="@Url.Action("Index","Home")"
-                   role="button">Back To Home</a>
+                @*<a class="btn " href="@Url.Action("Login","Members")"
+                    role="button">Click To Login</a>*@
+
             </div>
         </div>
     }
