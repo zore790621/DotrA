@@ -15,6 +15,9 @@ using DotrA_001.Models.ViewModels;
 using System.Net.Mail;
 using System.Web.Helpers;
 using Database.Models;
+using Microsoft.Owin.Security;
+using System.Security.Claims;
+using Microsoft.Owin.Security.Cookies;
 
 namespace DotrA_001.Controllers
 {
@@ -440,6 +443,59 @@ namespace DotrA_001.Controllers
         //    return PartialView("LoginModal");
         //}
         #endregion
+        public void SignIn(string ReturnUrl = "/", string type = "")
+        {
+            if (!Request.IsAuthenticated)
+            {
+                if (type == "Google")
+                {
+                    HttpContext.GetOwinContext().Authentication.Challenge(new AuthenticationProperties { RedirectUri = "Members/GoogleLoginCallback" }, "Google");
+                }
+            }
+        }
+        [AllowAnonymous]
+        public ActionResult GoogleLoginCallback()
+        {
+            var claimsPrincipal = HttpContext.User.Identity as ClaimsIdentity;
+
+            var loginInfo = GoogleLoginViewModel.GetLoginInfo(claimsPrincipal);
+            if (loginInfo == null)
+            {
+                return RedirectToAction("Index");
+            }
+
+            var user = db.Members.FirstOrDefault(x => x.Email == loginInfo.emailaddress);
+
+            if (user == null)
+            {
+                user = new Member
+                {
+                    Email = loginInfo.emailaddress,
+                    Name = loginInfo.name
+                };
+                db.Members.Add(user);
+                db.SaveChanges();
+            }
+
+            var ident = new ClaimsIdentity(
+                    new[] { 
+								// adding following 2 claim just for supporting default antiforgery provider
+								new Claim(ClaimTypes.NameIdentifier, user.Email),
+                                new Claim("http://schemas.microsoft.com/accesscontrolservice/2010/07/claims/identityprovider", "ASP.NET Identity", "http://www.w3.org/2001/XMLSchema#string"),
+
+                                new Claim(ClaimTypes.Name, user.Name),
+                                new Claim(ClaimTypes.Email, user.Email),
+								// optionally you could add roles if any
+								new Claim(ClaimTypes.Role, "User")
+                    },
+                    CookieAuthenticationDefaults.AuthenticationType);
+
+
+            HttpContext.GetOwinContext().Authentication.SignIn(
+                        new AuthenticationProperties { IsPersistent = false }, ident);
+            return Redirect("~/");
+
+        }
     }
 }
 

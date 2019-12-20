@@ -33,11 +33,15 @@
                 </div>
                 <div class="form-group">
                     <input type="submit" value="Login" class="btn" />
+
                     <a class="btn " href="@Url.Action("ForgotPassword","Members")"
                        role="button">Forgot Password</a>
+
                 </div>
             </form>
+            
         </div>
     </div>
 }
+<a class="btn btn-default btn-block" type="button" href="@Url.Action("SignIn","Members", new { type = "Google" })"><i class="fa fa-google"></i>&nbsp;&nbsp;Login using Google</a>
 

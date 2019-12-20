@@ -18,5 +18,6 @@ namespace DotrA_001.Models.ViewModels
         public string Password { get; set; }
         [Display(Name = "記住我")]
         public bool RememberMe { get; set; }
+        public string type { get; set; }
     }
 }

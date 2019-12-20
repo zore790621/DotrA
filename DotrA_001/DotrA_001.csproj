@@ -252,6 +252,8 @@
     <Content Include="Assets\images\bg_1.jpg" />
     <Content Include="Assets\images\bg_1.png" />
     <Content Include="Assets\images\bg_2.png" />
+    <Content Include="Assets\images\bg_3.png" />
+    <Content Include="Assets\images\bg_4.png" />
     <Content Include="Assets\images\bg_6.jpg" />
     <Content Include="Assets\images\choose-1.jpg" />
     <Content Include="Assets\images\choose-2.jpg" />
