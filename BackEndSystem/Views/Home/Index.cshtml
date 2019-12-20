@@ -4,124 +4,125 @@
     ViewBag.Title = "DashBoard";
 }
 
-<div class="content">
-    <div class="animated fadeIn">
-        <div class="row">
-            <div class="col-lg-3 col-md-6">
-                <div class="card">
-                    <div class="card-body">
-                        <div class="stat-widget-five">
-                            <div class="stat-icon dib flat-color-1">
-                                <i class="pe-7s-cash"></i>
+    <div class="content">
+        <div class="animated fadeIn">
+            <div class="row">
+                <div class="col-lg-3 col-md-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="stat-widget-five">
+                                <div class="stat-icon dib flat-color-1">
+                                    <i class="pe-7s-cash"></i>
+                                </div>
+                                <div class="stat-content">
+                                    <div class="text-left dib">
+                                        <div class="stat-text">$<span class="count">@ViewBag.Selltotal</span></div>
+                                        <div class="stat-heading">營業額</div>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="stat-content">
-                                <div class="text-left dib">
-                                    <div class="stat-text">$<span class="count">@ViewBag.Selltotal</span></div>
-                                    <div class="stat-heading">營業額</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="stat-widget-five">
+                                <div class="stat-icon dib flat-color-2">
+                                    <i class="pe-7s-cart"></i>
+                                </div>
+                                <div class="stat-content">
+                                    <div class="text-left dib">
+                                        <div class="stat-text"><span class="count">@ViewBag.ProCount</span></div>
+                                        <div class="stat-heading">產品總數</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="stat-widget-five">
+                                <div class="stat-icon dib flat-color-3">
+                                    <i class="pe-7s-browser"></i>
+                                </div>
+                                <div class="stat-content">
+                                    <div class="text-left dib">
+                                        <div class="stat-text"><span class="count">@ViewBag.OrdCount</span></div>
+                                        <div class="stat-heading">訂單總數</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="stat-widget-five">
+                                <div class="stat-icon dib flat-color-4">
+                                    <i class="pe-7s-users"></i>
+                                </div>
+                                <div class="stat-content">
+                                    <div class="text-left dib">
+                                        <div class="stat-text"><span class="count">@ViewBag.MemCount</span></div> @*@Model.Prototal*@
+                                        <div class="stat-heading">會員總數</div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-
-            <div class="col-lg-3 col-md-6">
-                <div class="card">
-                    <div class="card-body">
-                        <div class="stat-widget-five">
-                            <div class="stat-icon dib flat-color-2">
-                                <i class="pe-7s-cart"></i>
-                            </div>
-                            <div class="stat-content">
-                                <div class="text-left dib">
-                                    <div class="stat-text"><span class="count">@ViewBag.ProCount</span></div>
-                                    <div class="stat-heading">產品總數</div>
+            <div class="orders">
+                <div class="row">
+                    <div class="col-xl-12">
+                        <div class="col-xl-6">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h4 class="box-title">當月產品總排名</h4>
+                                </div>
+                                <div class="card-body--">
+                                    <div class="table-stats order-table ov-h">
+                                        <table class="table">
+                                            <thead>
+                                                <tr>
+                                                    <th>產品編號</th>
+                                                    <th>產品名稱</th>
+                                                    <th>銷售數量</th>
+                                                    <th>銷售金額</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="tableContent">
+                                                <tr>
+                                                    <td>123</td>
+                                                    <td><span class="name" id="productTop1">Catherine Dixon</span> </td>
+                                                    <td><span class="product" id="productTop2">SSD</span> </td>
+                                                    <td><span class="count" id="productTop3">250</span></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </div>
-            </div>
+                        <div class="col-xl-6">
 
-            <div class="col-lg-3 col-md-6">
-                <div class="card">
-                    <div class="card-body">
-                        <div class="stat-widget-five">
-                            <div class="stat-icon dib flat-color-3">
-                                <i class="pe-7s-browser"></i>
-                            </div>
-                            <div class="stat-content">
-                                <div class="text-left dib">
-                                    <div class="stat-text"><span class="count">@ViewBag.OrdCount</span></div>
-                                    <div class="stat-heading">訂單總數</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-lg-3 col-md-6">
-                <div class="card">
-                    <div class="card-body">
-                        <div class="stat-widget-five">
-                            <div class="stat-icon dib flat-color-4">
-                                <i class="pe-7s-users"></i>
-                            </div>
-                            <div class="stat-content">
-                                <div class="text-left dib">
-                                    <div class="stat-text"><span class="count">@ViewBag.MemCount</span></div> @*@Model.Prototal*@
-                                    <div class="stat-heading">會員總數</div>
-                                </div>
-                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 
 
 
-<div class="orders">
-    <div class="row">
-        <div class="col-xl-12">
-            <div class="col-xl-6">
-                <div class="card">
-                    <div class="card-body">
-                        <h4 class="box-title">當月產品總排名</h4>
-                    </div>
-                    <div class="card-body--">
-                        <div class="table-stats order-table ov-h">
-                            <table class="table">
-                                <thead>
-                                    <tr>
-                                        <th>產品編號</th>
-                                        <th>產品名稱</th>
-                                        <th>銷售數量</th>
-                                        <th>銷售金額</th>
-                                    </tr>
-                                </thead>
-                                <tbody id="tableContent">
-                                    <tr>
-                                        <td>123</td>
-                                        <td><span class="name" id="productTop1">Catherine Dixon</span> </td>
-                                        <td><span class="product" id="productTop2">SSD</span> </td>
-                                        <td><span class="count" id="productTop3">250</span></td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>               
-            </div>
-            <div class="col-xl-6">
 
-            </div>
-        </div>
-    </div>
-</div>
 
 
 @section topCSS{
