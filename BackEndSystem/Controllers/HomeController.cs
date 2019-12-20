@@ -36,7 +36,16 @@ namespace BackEndSystem.Controllers
             //};
 
             //ViewBag.List = result;
+            var result = db.OrderDetails.GroupBy(x => x.ProductID).Select(x => new
+            {
+                ProductName = x.FirstOrDefault().Product.ProductName,
+                Quantity = x.Sum(y => y.Quantity),
+                Amount = x.Sum(y => y.SubTotal)
+            }).OrderByDescending(x => x.Quantity).Take(5);
 
+            ViewBag.ProductName = result.Select(x => x.ProductName).ToArray();
+            ViewBag.Quantity = result.Select(x => x.Quantity).ToArray();
+            ViewBag.Amount = result.Select(x => x.Amount).ToArray();
 
             //方法2 透過ViewBag去傳遞
             ViewBag.ProCount = db.Products.Count();
@@ -51,7 +60,8 @@ namespace BackEndSystem.Controllers
             //    Application["TotalRow"] = db.Products.Count();
 
             //}
-
+            string[] pName = { "u", "2", "c", "p" };
+            ViewBag.PName = pName;
 
 
             return View();
@@ -111,5 +121,7 @@ namespace BackEndSystem.Controllers
             }).OrderByDescending(x => x.Quantity).Take(5);
             return Json(result);
         }
+
+
     }
 }
