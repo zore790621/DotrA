@@ -97,27 +97,34 @@
                             <table class="table">
                                 <thead>
                                     <tr>
-                                        <th>產品編號</th>
+                                        <th>產品序列</th>
                                         <th>產品名稱</th>
                                         <th>銷售數量</th>
                                         <th>銷售金額</th>
                                     </tr>
                                 </thead>
                                 <tbody id="tableContent">
-                                    <tr>
-                                        <td>123</td>
-                                        <td><span class="name" id="productTop1">Catherine Dixon</span> </td>
-                                        <td><span class="product" id="productTop2">SSD</span> </td>
-                                        <td><span class="count" id="productTop3">250</span></td>
+
+                                    <tr v-for="item in items">
+
+                                        <td><span class="name"></span></td>
+                                        <td><span class="name">{{item.ProductName}}</span></td>
+                                        <td><span class="product">{{item.Quantity}}</span></td>
+                                        <td><span class="count">{{item.Amount}}</span></td>
                                     </tr>
+                                    @*@foreach (var item in (List<Tuple<int, int, int>>)ViewBag.List)
+                                    {
+                                        <tr>
+                                            <td><span class="name">@item.Item1</span></td>
+                                            <td><span class="name">@item.Item2</span></td>
+                                            <td><span class="name">@item.Item3</span></td>
+                                        </tr>
+                                    }*@                            
                                 </tbody>
                             </table>
                         </div>
                     </div>
-                </div>               
-            </div>
-            <div class="col-xl-6">
-
+                </div>
             </div>
         </div>
     </div>
@@ -129,34 +136,34 @@
 }
 
 @section scripts{
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.10/vue.min.js"></script>
     <script type="text/javascript">
+        var json;
         jQuery(document).ready(function () {
-
-             jQuery.ajax({
-                url:"/Home/GetProductTop5",
-                type:"post",
-                datatype: "json",
-                success: function (response) { 
-                    
-                      jQuery('#productTop1').text(response[0].ProductName);
-                      jQuery('#productTop2').text(response[0].Quantity);
-                      jQuery('#productTop3').text(response[0].Amount);
-                                    @*@foreach (var item in response)
-                                    {
-
-                                    }*@
-                }
-            });
+            binding();
+            timeout();
 
         });
+        function timeout() {
+            jQuery.ajax({
+                url: "/Home/GetProductTop5",
+                type: "post",
+                datatype: "json",
+                success: function (response) {
+                    vm.$data.items = response;
+                }
+            });
+        }
 
-       
 
-
-
-
-
+        function binding() {
+            vm = new Vue(
+                {
+                    el: "#tableContent",
+                    data: { "items": json }
+                }
+            );
+        }
     </script>
 
 }
