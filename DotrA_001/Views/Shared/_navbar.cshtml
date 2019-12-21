@@ -11,16 +11,8 @@
         <div class="collapse navbar-collapse" id="ftco-nav">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item home-tag active">@Html.ActionLink("Home", "Index", "Home", null, new { @class = "nav-link" })</li>
-                @if (User.Identity.IsAuthenticated)
-                {
-                    <li class="nav-item home-tag">@Html.ActionLink("Shop", null, "Shop", null, new { @class = "nav-link" })</li>
-                    @*<li class="nav-item home-tag">@Html.ActionLink("Shop", "Index", "Shop", new { id = ((FormsIdentity)User.Identity).Ticket.UserData }, new { @class = "nav-link" })</li>*@
-                }
-                else
-                {
-                    <li class="nav-item home-tag">@Html.ActionLink("Shop", "Index", "Shop", new { @class = "nav-link" })</li>
-                }
-
+                <li class="nav-item home-tag">@Html.ActionLink("Shop", null, "Shop", null, new { @class = "nav-link" })</li>
+                @*<li class="nav-item home-tag">@Html.ActionLink("Shop", "Index", "Shop", new { id = ((FormsIdentity)User.Identity).Ticket.UserData }, new { @class = "nav-link" })</li>*@
                 <li class="nav-item home-tag">@Html.ActionLink("About", "About", "Home", null, new { @class = "nav-link" })</li>
                 @*<li class="nav-item">@Html.ActionLink("Blog", "Blog", "Home", null, new { @class = "nav-link" })</li>
                     <li class="nav-item">@Html.ActionLink("Contact", "Contact", "Home", null, new { @class = "nav-link" })</li>*@

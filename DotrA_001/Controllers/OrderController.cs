@@ -19,22 +19,34 @@ namespace DotrA_001.Controllers
         // GET: Order
         public ActionResult Index()
         {
-            bool toint = int.TryParse((User.Identity as FormsIdentity).Ticket.UserData, out int UID);
-            if (toint == false)
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            var source = db.Members.FirstOrDefault(x => x.MemberID == UID);
-
-            var result = new MemderOrderViewModel()
+            if (User.Identity.IsAuthenticated)
             {
-                RecipientName = source.Name,
-                RecipientAddress = source.Address,
-                RecipientPhone = source.Phone
-            };
+                if(Operation.GetCurrentCart().Count == 0)
+                {
+                    return RedirectToAction("Index", "Shop");
+                }
+                bool toint = int.TryParse((User.Identity as FormsIdentity).Ticket.UserData, out int UID);
+                if (toint == false)
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                var source = db.Members.FirstOrDefault(x => x.MemberID == UID);
 
-            ViewBag.ShipperID = new SelectList(db.Shippers, "ShipperID", "ShipperName");
-            ViewBag.PaymentID = new SelectList(db.Payments, "PaymentID", "PaymentMethod");
+                var result = new MemderOrderViewModel()
+                {
+                    RecipientName = source.Name,
+                    RecipientAddress = source.Address,
+                    RecipientPhone = source.Phone
+                };
 
-            return View(result);
+                ViewBag.ShipperID = new SelectList(db.Shippers, "ShipperID", "ShipperName");
+                ViewBag.PaymentID = new SelectList(db.Payments, "PaymentID", "PaymentMethod");
+
+                return View(result);
+            }
+            else
+            {
+                return RedirectToAction("Login", "Members");
+            }
+            
         }
 
         [WebMethod(EnableSession = true)]
@@ -45,16 +57,17 @@ namespace DotrA_001.Controllers
             if (toint == false)
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             var source = db.Members.FirstOrDefault(x => x.MemberID == UID);
+            
+            var odtest = new Order();
 
             if (this.ModelState.IsValid)
             {   //取得目前購物車
                 var currentcart = Models.Operation.GetCurrentCart();
 
                 //取得目前登入使用者Id
-                var userId = ((FormsIdentity)User.Identity).Ticket.UserData;
-                Order odtest;
+                var userId = UID;
 
-                using (DotrADb db = new DotrADb())
+                try
                 {
                     //建立Order物件
                     var order = new Order()
@@ -65,14 +78,15 @@ namespace DotrA_001.Controllers
                         RecipientPhone = Alllist.RecipientPhone,
                         ShipperID = Alllist.ShipperID,
                         PaymentID = Alllist.PaymentID,
-                        OrderDate = DateTime.UtcNow
+                        OrderDate = DateTime.Now
                     };
                     //加其入Orders資料表後，儲存變更
                     db.Orders.Add(order);
                     db.SaveChanges();
+
                     odtest = (from o in db.Orders
-                                 where o.OrderID == order.OrderID
-                                 select o).ToList().FirstOrDefault();
+                              where o.OrderID == order.OrderID
+                              select o).ToList().FirstOrDefault();
 
                     //取得購物車中OrderDetai物件
                     var orderDetails = currentcart.ToOrderDetailList(odtest.OrderID);
@@ -80,8 +94,18 @@ namespace DotrA_001.Controllers
                     //將其加入OrderDetails資料表後，儲存變更
                     db.OrderDetails.AddRange(orderDetails);
                     db.SaveChanges();
+                    currentcart.ClearCart();
+                    return RedirectToAction("Payment", new { id = odtest.OrderID });
                 }
-                return RedirectToAction("Payment", new { id = odtest.OrderID });
+                catch (Exception)
+                {
+                    db.Dispose();
+                    if (db.Configuration.ValidateOnSaveEnabled == false)
+                        db.Configuration.ValidateOnSaveEnabled = true;
+                    db.Entry<Order>(odtest).State = System.Data.Entity.EntityState.Deleted;
+                    db.SaveChanges();
+                    return Content("訂購失敗");
+                }
             }
             return View();
         }
@@ -118,7 +142,7 @@ namespace DotrA_001.Controllers
                     oPayment.Send.ReturnURL = "https://dotrabackend.azurewebsites.net/Orders/GetPaymentResult";//付款完成通知回傳的網址
                     oPayment.Send.ClientBackURL = "https://dotrawebsite.azurewebsites.net/";//瀏覽器端返回的廠商網址
                     oPayment.Send.OrderResultURL = "https://dotrawebsite.azurewebsites.net/Order/GetResult";//瀏覽器端回傳付款結果網址
-                    oPayment.Send.MerchantTradeNo = "ECPay" + new Random().Next(0, 99999).ToString();//廠商的交易編號
+                    oPayment.Send.MerchantTradeNo = "Dotra"+ id.ToString();//廠商的交易編號
                     oPayment.Send.MerchantTradeDate = DateTime.Now;//廠商的交易時間
                     oPayment.Send.TotalAmount = Convert.ToInt32(o.OrderDetails.Sum(y => y.SubTotal));//交易總金額
                     oPayment.Send.TradeDesc = "交易描述";//交易描述

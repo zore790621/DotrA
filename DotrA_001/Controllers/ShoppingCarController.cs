@@ -15,9 +15,9 @@ namespace DotrA_001.Controllers
         private DotrADb db = new DotrADb();
         // GET: ShoppingCar
         [WebMethod(EnableSession = true)]
-        public ActionResult Index(int productid)
+        public ActionResult Index(string memberid, int productid)
         {
-            bool toint = int.TryParse(((FormsIdentity)User.Identity).Ticket.UserData, out int UID);
+            bool toint = int.TryParse(memberid, out int UID);
             if (toint == false)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);

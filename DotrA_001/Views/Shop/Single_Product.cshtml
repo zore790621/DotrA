@@ -49,7 +49,10 @@
 
                                 @*購物車ActionLink*@
                                 @*@Html.ActionLink("Buy now", "index", "ShoppingCar", null, new { @class = "buy-now text-center py-2 ion-ios-cart ml-1" })*@
-                                <a href="@Url.Action( "index","ShoppingCar" ,new {UID= ((FormsIdentity)User.Identity).Ticket.UserData,productid = item.ProductID})" class="buy-now text-center py-2">Buy now<span><i class="ion-ios-cart ml-1"></i></span></a>
+                                @if (User.Identity.IsAuthenticated)
+                                {
+                                    <a href="@Url.Action( "index","ShoppingCar" ,new {memberid= ((FormsIdentity)User.Identity).Ticket.UserData, productid = item.ProductID})" class="buy-now text-center py-2">Buy now<span><i class="ion-ios-cart ml-1"></i></span></a>
+                                }
                             </p>
                         </div>
                     </div>
