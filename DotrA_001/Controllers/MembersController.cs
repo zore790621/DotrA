@@ -18,6 +18,7 @@ using Database.Models;
 using Microsoft.Owin.Security;
 using System.Security.Claims;
 using Microsoft.Owin.Security.Cookies;
+using Microsoft.AspNet.Identity;
 
 namespace DotrA_001.Controllers
 {
@@ -401,48 +402,7 @@ namespace DotrA_001.Controllers
             return View(vm);
         }
         #endregion
-        #region ===CRUD===
-        // GET: Members/Delete/5
-        public ActionResult Delete([Bind(Exclude = "EmailVerified")]int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Member member = db.Members.Find(id);
-            if (member == null)
-            {
-                return HttpNotFound();
-            }
-            return View(member);
-        }
-
-        // POST: Members/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed([Bind(Exclude = "EmailVerified")]int id)
-        {
-            Member member = db.Members.Find(id);
-            db.Members.Remove(member);
-            db.SaveChanges();
-            return RedirectToAction("Index");
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
-        }
-        #endregion
-        #region ===LoginModal===
-        //public ActionResult LoginModal()
-        //{
-        //    return PartialView("LoginModal");
-        //}
-        #endregion
+        #region ===Google Login===
         public void SignIn(string ReturnUrl = "/", string type = "")
         {
             if (!Request.IsAuthenticated)
@@ -496,6 +456,48 @@ namespace DotrA_001.Controllers
             return Redirect("~/");
 
         }
+        public ActionResult GoogleLogout()
+        {
+            HttpContext.GetOwinContext().Authentication.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
+            return Redirect("https://www.google.com/accounts/Logout?continue=https://appengine.google.com/_ah/logout?continue=https://localhost:44318/Members/Logout");
+        }
+        #endregion
+        #region ===CRUD===
+        // GET: Members/Delete/5
+        public ActionResult Delete([Bind(Exclude = "EmailVerified")]int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Member member = db.Members.Find(id);
+            if (member == null)
+            {
+                return HttpNotFound();
+            }
+            return View(member);
+        }
+
+        // POST: Members/Delete/5
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteConfirmed([Bind(Exclude = "EmailVerified")]int id)
+        {
+            Member member = db.Members.Find(id);
+            db.Members.Remove(member);
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                db.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+        #endregion
     }
 }
 

@@ -258,6 +258,9 @@
     <Content Include="Assets\images\choose-1.jpg" />
     <Content Include="Assets\images\choose-2.jpg" />
     <Content Include="Assets\images\choose-3.jpg" />
+    <Content Include="Assets\images\choose-4.jpg" />
+    <Content Include="Assets\images\choose-5.png" />
+    <Content Include="Assets\images\choose-6.jpg" />
     <Content Include="Assets\images\gallery-1.jpg" />
     <Content Include="Assets\images\gallery-10.png" />
     <Content Include="Assets\images\gallery-12.png" />
