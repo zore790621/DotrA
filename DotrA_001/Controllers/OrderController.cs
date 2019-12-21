@@ -115,7 +115,7 @@ namespace DotrA_001.Controllers
                     oPayment.MerchantID = "2000132";//ECPay提供的特店編號
 
                     /* 基本參數 */
-                    oPayment.Send.ReturnURL = "http://example.com";//付款完成通知回傳的網址
+                    oPayment.Send.ReturnURL = "https://dotrabackend.azurewebsites.net/Orders/GetPaymentResult";//付款完成通知回傳的網址
                     oPayment.Send.ClientBackURL = "https://dotrawebsite.azurewebsites.net/";//瀏覽器端返回的廠商網址
                     oPayment.Send.OrderResultURL = "https://dotrawebsite.azurewebsites.net/Order/GetResult";//瀏覽器端回傳付款結果網址
                     oPayment.Send.MerchantTradeNo = "ECPay" + new Random().Next(0, 99999).ToString();//廠商的交易編號
