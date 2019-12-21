@@ -10,14 +10,15 @@ using Database.Models;
 using BackEndSystem.Models;
 
 namespace BackEndSystem.Controllers
-{   [Authorize]
+{
+    [Authorize]
     public class OrdersController : Controller
     {
         DotrADb db = new DotrADb();
         // GET: Orders
         public ActionResult Index()
         {
-           
+
             var models = db.Orders.Select(x => new OrderIndex()
             {
                 OrderID = x.OrderID,
@@ -123,9 +124,9 @@ namespace BackEndSystem.Controllers
 
         public void GetPaymentResult(ECPayResult result)
         {
-                var orderID = result.MerchantTradeNo.Remove(0, 5);
-                Order o = db.Orders.Find(orderID);
-            if(result.RtnCode==1)
+            var orderID = int.Parse(result.MerchantTradeNo.Remove(0, 5));
+            Order o = db.Orders.Find(orderID);
+            if (result.RtnCode == 1)
             {
                 o.PaymentStatus = "付款完成";
             }
@@ -133,8 +134,8 @@ namespace BackEndSystem.Controllers
             {
                 o.PaymentStatus = "尚未付款";
             }
-               
-                db.SaveChanges();
+
+            db.SaveChanges();
         }
     }
 }
