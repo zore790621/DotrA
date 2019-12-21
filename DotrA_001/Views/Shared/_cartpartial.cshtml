@@ -1,6 +1,7 @@
 ﻿@{
     //取得當前購物車所有內容
     var currentCart = DotrA_001.Models.Operation.GetCurrentCart();
+    Layout = null;
 }
 
 <a id="CartDropDown" class="dropdown-toggle nav-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
@@ -29,6 +30,7 @@
     }
     else
     {
-        <a class="btn btn-default text-center" href="#">購物車無任何商品</a>
+        @*<a class="btn btn-default text-center" href="#">購物車無任何商品</a>*@
+        @Html.ActionLink("購物車無任何商品","Index","Shop","",new { @class="btn btn-default text-center"})
     }
 </div>

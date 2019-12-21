@@ -46,14 +46,15 @@ namespace DotrA_001.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             var source = db.Members.FirstOrDefault(x => x.MemberID == UID);
 
+            var odtest = new Order();
+
             if (this.ModelState.IsValid)
             {   //取得目前購物車
                 var currentcart = Models.Operation.GetCurrentCart();
 
                 //取得目前登入使用者Id
                 var userId = ((FormsIdentity)User.Identity).Ticket.UserData;
-
-                using (DotrADb db = new DotrADb())
+                try
                 {
                     //建立Order物件
                     var order = new Order()
@@ -69,9 +70,10 @@ namespace DotrA_001.Controllers
                     //加其入Orders資料表後，儲存變更
                     db.Orders.Add(order);
                     db.SaveChanges();
-                    var odtest = (from o in db.Orders
-                                 where o.OrderID == order.OrderID
-                                 select o).ToList().FirstOrDefault();
+
+                    odtest = (from o in db.Orders
+                              where o.OrderID == order.OrderID
+                              select o).ToList().FirstOrDefault();
 
                     //取得購物車中OrderDetai物件
                     var orderDetails = currentcart.ToOrderDetailList(odtest.OrderID);
@@ -79,8 +81,19 @@ namespace DotrA_001.Controllers
                     //將其加入OrderDetails資料表後，儲存變更
                     db.OrderDetails.AddRange(orderDetails);
                     db.SaveChanges();
+                    currentcart.ClearCart();
+                    return Content("訂購成功");
                 }
-                return Content("訂購成功");
+                catch (Exception)
+                {
+                    db.Dispose();
+                    if (db.Configuration.ValidateOnSaveEnabled == false)
+                        db.Configuration.ValidateOnSaveEnabled = true;
+                    db.Entry<Order>(odtest).State = System.Data.Entity.EntityState.Deleted;
+                    db.SaveChanges();
+
+                    return Content("訂購失敗");
+                }
             }
             return View();
         }

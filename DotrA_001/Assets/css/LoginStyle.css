@@ -28,7 +28,7 @@
     text-align: center;
     border: 1px solid #3498db;
     padding: 14px 10px;
-    width: 240px;
+    width: 60%;
     outline: none;
     color: aqua;
     border-radius: 24px;
@@ -36,7 +36,7 @@
 }
 
     .form-group input[type = "text"]:focus, .form-group input[type = "password"]:focus, .form-group input[type = "email"]:focus {
-        width: 320px;
+        width: 90%;
         border: 3px solid;
         animation-name: Glow;
         animation-duration: 6s;

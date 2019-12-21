@@ -126,6 +126,7 @@ namespace DotrA_001.Models
             return result;
         }
         
+        
         #region IEnumerator
 
         public IEnumerator<CartItem> GetEnumerator()

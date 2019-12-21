@@ -556,6 +556,7 @@
     <Content Include="Views\ShoppingCar\DroedownAccount.cshtml" />
     <Content Include="Views\Shared\LoginModal.cshtml" />
     <Content Include="Views\Shared\_CartPartial.cshtml" />
+    <Content Include="Views\Order\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
