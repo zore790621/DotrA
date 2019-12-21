@@ -147,6 +147,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Attributes\AntiForgeryErrorHandlerAttribute.cs" />
+    <Compile Include="Models\ECPayResult.cs" />
     <Compile Include="Models\Home.cs" />
     <Compile Include="Models\ViewModel\AddPro.cs" />
     <Compile Include="Models\ViewModel\LogInRequest.cs" />

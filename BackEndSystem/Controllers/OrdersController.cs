@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Database.Models;
+using BackEndSystem.Models;
 
 namespace BackEndSystem.Controllers
 {   [Authorize]
@@ -24,7 +25,8 @@ namespace BackEndSystem.Controllers
                 OrderDate = x.OrderDate,
                 TotalPrice = x.OrderDetails.Sum(y => y.SubTotal),
                 ShipperName = x.Shipper.ShipperName,
-                PaymentMethod = x.Payment.PaymentMethod
+                PaymentMethod = x.Payment.PaymentMethod,
+                PaymentStatus = x.PaymentStatus
             }).ToList();
             return View(models);
         }
@@ -117,6 +119,22 @@ namespace BackEndSystem.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+
+        public void GetPaymentResult(ECPayResult result)
+        {
+                var orderID = result.MerchantTradeNo.Remove(0, 5);
+                Order o = db.Orders.Find(orderID);
+            if(result.RtnCode==1)
+            {
+                o.PaymentStatus = "付款完成";
+            }
+            else
+            {
+                o.PaymentStatus = "尚未付款";
+            }
+               
+                db.SaveChanges();
         }
     }
 }
