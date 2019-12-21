@@ -19,7 +19,7 @@ namespace DotrA_001.Controllers
         // GET: Order
         public ActionResult Index()
         {
-            bool toint = int.TryParse(((FormsIdentity)User.Identity).Ticket.UserData, out int UID);
+            bool toint = int.TryParse((User.Identity as FormsIdentity).Ticket.UserData, out int UID);
             if (toint == false)
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             var source = db.Members.FirstOrDefault(x => x.MemberID == UID);
@@ -65,7 +65,7 @@ namespace DotrA_001.Controllers
                         RecipientPhone = Alllist.RecipientPhone,
                         ShipperID = Alllist.ShipperID,
                         PaymentID = Alllist.PaymentID,
-                        OrderDate = DateTime.Now
+                        OrderDate = DateTime.UtcNow
                     };
                     //加其入Orders資料表後，儲存變更
                     db.Orders.Add(order);
@@ -85,6 +85,17 @@ namespace DotrA_001.Controllers
             }
             return View();
         }
+
+        public ActionResult GetResult(ECPayModel request)
+        {
+            if (request.RtnCode==1)
+            {
+                TempData["message"] = "您已付款成功，我們會即刻開始準備出貨";
+                return RedirectToAction("Index", "Home");
+            }
+            return RedirectToAction("Index", "Home");
+        }
+
 
         public ActionResult Payment(int? id)
         {
@@ -106,7 +117,7 @@ namespace DotrA_001.Controllers
                     /* 基本參數 */
                     oPayment.Send.ReturnURL = "http://example.com";//付款完成通知回傳的網址
                     oPayment.Send.ClientBackURL = "https://dotrawebsite.azurewebsites.net/";//瀏覽器端返回的廠商網址
-                    oPayment.Send.OrderResultURL = "http://localhost:52413/CheckOutFeedback.aspx";//瀏覽器端回傳付款結果網址
+                    oPayment.Send.OrderResultURL = "https://dotrawebsite.azurewebsites.net/Order/GetResult";//瀏覽器端回傳付款結果網址
                     oPayment.Send.MerchantTradeNo = "ECPay" + new Random().Next(0, 99999).ToString();//廠商的交易編號
                     oPayment.Send.MerchantTradeDate = DateTime.Now;//廠商的交易時間
                     oPayment.Send.TotalAmount = Convert.ToInt32(o.OrderDetails.Sum(y => y.SubTotal));//交易總金額

@@ -218,6 +218,7 @@
     <Compile Include="Controllers\CheckOutFeedback.aspx.cs">
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="Models\ECPayModel.cs" />
     <Compile Include="Models\Member.cs" />
     <Compile Include="Models\MemderOrderViewModel.cs" />
     <Compile Include="Models\Operation.cs" />
