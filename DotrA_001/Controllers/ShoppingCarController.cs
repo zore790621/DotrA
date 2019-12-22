@@ -17,10 +17,10 @@ namespace DotrA_001.Controllers
         private DotrADb db = new DotrADb();
         // GET: Order
 
-        public ActionResult Index(int? PID)
+        
         // GET: ShoppingCar
         [WebMethod(EnableSession = true)]
-        public ActionResult Index(string memberid, int productid)
+        public ActionResult Index(string memberid, int productid ,int? PID)
         {
             bool toint = int.TryParse(memberid, out int UID);
             if (toint == false)
@@ -34,7 +34,7 @@ namespace DotrA_001.Controllers
                 {
                     Picture = pr.Picture,
                     ProductName = pr.ProductName,
-                    Price = pr.UnitPrice,
+                    Price = pr.SalesPrice,
                     Quantity = pr.Quantity,
                     RecipientName = source.Name,
                     RecipientAddress = source.Address,
