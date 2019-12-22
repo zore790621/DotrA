@@ -37,7 +37,7 @@ namespace BackEndSystem.Models.ViewModel
         public string PaymentMethod { get; set; }
 
         [Display(Name = "付款狀態")]
-        public int PaymentStatus { get; set; }
+        public int? PaymentStatus { get; set; }
     }
 
     public class OrderProductVM

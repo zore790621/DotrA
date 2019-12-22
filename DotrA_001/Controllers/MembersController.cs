@@ -415,7 +415,8 @@ namespace DotrA_001.Controllers
                 OrderDate = x.OrderDate,
                 TotalPrice = x.OrderDetails.Sum(y => y.SubTotal),
                 ShipperName = x.Shipper.ShipperName,
-                PaymentMethod = x.Payment.PaymentMethod
+                PaymentMethod = x.Payment.PaymentMethod,
+                PaymentStatus = x.PaymentStatus
             }).ToList();
 
             if(om==null)
@@ -450,7 +451,8 @@ namespace DotrA_001.Controllers
                 OrderDate = o.OrderDate,
                 TotalPrice = o.OrderDetails.Sum(y => y.SubTotal),
                 ShipperName = o.Shipper.ShipperName,
-                PaymentMethod = o.Payment.PaymentMethod
+                PaymentMethod = o.Payment.PaymentMethod,
+                PaymentStatus = o.PaymentStatus
             };
 
             if (vm == null)

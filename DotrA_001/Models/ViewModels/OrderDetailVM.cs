@@ -35,6 +35,10 @@ namespace DotrA_001.Models.ViewModels
 
         [Display(Name = "付款方式")]
         public string PaymentMethod { get; set; }
+
+        [Display(Name = "付款狀態")]
+        public int? PaymentStatus { get; set; }
+
         public int MemberID { get; set; }
     }
 
