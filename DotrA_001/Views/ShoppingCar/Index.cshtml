@@ -1,9 +1,9 @@
-﻿@model Member
+﻿@model IEnumerable<ShopCartOrderView>
+@Html.Partial("_Topimage")
 
 @{
-
+    ViewBag.Title = "單品結帳";
 }
-@Html.Partial("_Topimage")
 <section class="ftco-section ftco-cart">
     <div class="container">
         @*商品結帳圖示區域*@
@@ -13,6 +13,9 @@
         @Html.Partial("PrductCheckButton")
     </div>
 </section>
+
+
+
 @section topCSS{
     <style>
         /*隱藏的DIV*/
@@ -121,6 +124,7 @@
         tablewidth {
             width: 100% !important;
         }
+
         .css-table {
             display: table;
             width: 100%;

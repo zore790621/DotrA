@@ -26,10 +26,13 @@ namespace DotrA_001.Controllers
 
             var pro =
                 from pr in db.Products
+                join c in db.Categories
+                on pr.CategoryID equals c.CategoryID
                 where (pr.Status == "上架" && IsInt_PID || pr.ProductID == isint_pid_val )
                 select new ProductView
                 {
                     CategoryID = pr.CategoryID,
+                    CategoryName = c.CategoryName,
                     Description = pr.Description,
                     Picture = pr.Picture,
                     ProductID = pr.ProductID,
@@ -61,6 +64,8 @@ namespace DotrA_001.Controllers
                 };
             AllList.Supplier = Sup.ToList();
 
+            
+           
             //分頁的內容AllList.Product.ToPagedList(page, 幾個物件)
             ViewBag.MyPageList = AllList.Product.ToPagedList(page, 9);
 

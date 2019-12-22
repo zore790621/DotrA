@@ -3,7 +3,6 @@
 @model IPagedList<ProductView>
 
 @{
-    var ststus = new Database.Models.Product();
 }
 
     <div class="row">
@@ -28,7 +27,7 @@
                         <div class="text py-3 pb-4 px-3">
                             <div class="d-flex">
                                 <div class="cat">
-                                    <span>Evaluation</span>
+                                    <span>@item.CategoryName</span>
                                 </div>
                                 <div class="rating">
                                     <p class="text-right mb-0">

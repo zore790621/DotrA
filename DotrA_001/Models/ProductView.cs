@@ -12,8 +12,8 @@ namespace DotrA_001.Models
         public string ProductName { get; set; }
 
         public int SupplierID { get; set; }
-
-        public int CategoryID { get; set; }
+        public string CategoryName { get; set; }
+        public int CategoryID { get; set; }    
         public decimal UnitPrice { get; set; }
         public string Picture { get; set; }
         public string Description { get; set; }
