@@ -42,14 +42,17 @@
                             </div>
                             <h3><a href="#">@item.ProductName</a></h3>
                             <div class="pricing">
-                                <p class="price"><span>@item.UnitPrice</span></p>
+                                <p class="price"><span>@item.SalesPrice 元</span></p>
                             </div>
                             <p class="bottom-area d-flex px-3">
                                 <a onclick="AddToCart('@item.ProductID')" href="javascript:void(0);" role="button" class="add-to-cart text-center py-2 mr-1"><span>Add to cart <i class="ion-ios-add ml-1"></i></span></a>
 
                                 @*購物車ActionLink*@
                                 @*@Html.ActionLink("Buy now", "index", "ShoppingCar", null, new { @class = "buy-now text-center py-2 ion-ios-cart ml-1" })*@
-                                <a href="@Url.Action( "index","ShoppingCar" ,new {UID= Session["MemberID"],productid = item.ProductID})" class="buy-now text-center py-2">Buy now<span><i class="ion-ios-cart ml-1"></i></span></a>
+                                @if (User.Identity.IsAuthenticated)
+                                {
+                                    <a href="@Url.Action( "index","ShoppingCar" ,new {memberid= ((FormsIdentity)User.Identity).Ticket.UserData, productid = item.ProductID})" class="buy-now text-center py-2">Buy now<span><i class="ion-ios-cart ml-1"></i></span></a>
+                                }
                             </p>
                         </div>
                     </div>

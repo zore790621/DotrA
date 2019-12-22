@@ -63,6 +63,9 @@
     <Reference Include="Aos.Public.Sdk, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\AOS.Public.SDK.1.1.0\lib\net472\Aos.Public.Sdk.dll</HintPath>
     </Reference>
+    <Reference Include="ECPay.Payment.Integration">
+      <HintPath>.\ECPay.Payment.Integration.dll</HintPath>
+    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
@@ -203,12 +206,19 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Helper\hash.cs" />
+    <Compile Include="Controllers\AioCheckOut.aspx.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
     <Compile Include="Models\CartItem.cs" />
     <Compile Include="Models\CartTestTest.cs" />
     <Compile Include="Controllers\MembersController.cs" />
     <Compile Include="Controllers\ShopController.cs" />
     <Compile Include="Controllers\ShoppingCarController.cs" />
     <Compile Include="Models\CategoryView.cs" />
+    <Compile Include="Controllers\CheckOutFeedback.aspx.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Models\ECPayModel.cs" />
     <Compile Include="Models\Member.cs" />
     <Compile Include="Models\MemderOrderViewModel.cs" />
     <Compile Include="Models\Operation.cs" />
@@ -252,6 +262,7 @@
     <Content Include="Assets\fonts\ionicons\fonts\ionicons.svg" />
     <Content Include="Assets\fonts\open-iconic\open-iconic.svg" />
     <Content Include="Assets\images\about.jpg" />
+    <Content Include="Assets\images\apple-touch-icon.png" />
     <Content Include="Assets\images\bg_1.jpg" />
     <Content Include="Assets\images\bg_1.png" />
     <Content Include="Assets\images\bg_2.png" />
@@ -527,6 +538,7 @@
     <Content Include="Scripts\umd\popper-utils.min.js" />
     <Content Include="Scripts\umd\popper.js" />
     <Content Include="Scripts\umd\popper.min.js" />
+    <Content Include="Views\CheckOutFeedback.aspx" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -578,6 +590,11 @@
     <Content Include="Views\Members\LookOrderDetails.cshtml" />
     <Content Include="Views\Members\EditProfile.cshtml" />
     <Content Include="Views\Members\SelfOrder.cshtml" />
+    <Content Include="Views\Order\Index.cshtml" />
+    <Content Include="Views\Order\View.cshtml" />
+    <Content Include="Views\Order\View1.cshtml" />
+    <Content Include="Views\Order\View2.cshtml" />
+    <Content Include="Views\Order\Payment.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

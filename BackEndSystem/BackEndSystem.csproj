@@ -1,7 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props')" />
-  <Import Project="..\packages\EntityFramework.6.3.0\build\EntityFramework.props" Condition="Exists('..\packages\EntityFramework.6.3.0\build\EntityFramework.props')" />
   <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -49,20 +48,26 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.3.0\lib\net45\EntityFramework.dll</HintPath>
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.3.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="Imgur.API, Version=4.0.1.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Imgur.API.4.0.1\lib\net45\Imgur.API.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
+      <HintPath>..\packages\NLog.4.6.8\lib\net45\NLog.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.IO.Compression" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Transactions" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
@@ -147,6 +152,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Attributes\AntiForgeryErrorHandlerAttribute.cs" />
+    <Compile Include="Models\ECPayResult.cs" />
     <Compile Include="Models\Home.cs" />
     <Compile Include="Models\ViewModel\AddPro.cs" />
     <Compile Include="Models\ViewModel\LogInRequest.cs" />
@@ -158,21 +164,21 @@
   <ItemGroup>
     <Content Include="assets\images\dinosaur.jpg" />
     <Content Include="assets\images\littledinosaur.jpg" />
-    <Content Include="assets\js\data-table\buttons.bootstrap.min.js" />
-    <Content Include="assets\js\data-table\buttons.colVis.min.js" />
-    <Content Include="assets\js\data-table\buttons.flash.min.js" />
-    <Content Include="assets\js\data-table\buttons.html5.min.js" />
-    <Content Include="assets\js\data-table\buttons.print.min.js" />
-    <Content Include="assets\js\data-table\dataTables.bootstrap4.min.js" />
-    <Content Include="assets\js\data-table\dataTables.buttons.min.js" />
-    <Content Include="assets\js\data-table\datatables.min.js" />
-    <Content Include="assets\js\data-table\jquery.dataTables.min.js" />
-    <Content Include="assets\js\data-table\jszip.min.js" />
-    <Content Include="assets\js\data-table\pdfmake.min.js" />
-    <Content Include="assets\js\data-table\vfs_fonts.js" />
-    <Content Include="assets\js\init\datatables-init.js" />
-    <Content Include="assets\js\init\fullcalendar-init.js" />
-    <Content Include="assets\js\init\weather-init.js" />
+    <Content Include="Scripts\data-table\buttons.bootstrap.min.js" />
+    <Content Include="Scripts\data-table\buttons.colVis.min.js" />
+    <Content Include="Scripts\data-table\buttons.flash.min.js" />
+    <Content Include="Scripts\data-table\buttons.html5.min.js" />
+    <Content Include="Scripts\data-table\buttons.print.min.js" />
+    <Content Include="Scripts\data-table\dataTables.bootstrap4.min.js" />
+    <Content Include="Scripts\data-table\dataTables.buttons.min.js" />
+    <Content Include="Scripts\data-table\datatables.min.js" />
+    <Content Include="Scripts\data-table\jquery.dataTables.min.js" />
+    <Content Include="Scripts\data-table\jszip.min.js" />
+    <Content Include="Scripts\data-table\pdfmake.min.js" />
+    <Content Include="Scripts\data-table\vfs_fonts.js" />
+    <Content Include="Scripts\init\datatables-init.js" />
+    <Content Include="Scripts\init\fullcalendar-init.js" />
+    <Content Include="Scripts\init\weather-init.js" />
     <Content Include="Content\all.css" />
     <Content Include="Content\bootstrap-grid.css" />
     <Content Include="Content\bootstrap-grid.min.css" />
@@ -193,7 +199,7 @@
     <Content Include="assets\images\avatar\4.jpg" />
     <Content Include="assets\images\logo.png" />
     <Content Include="assets\images\logo2.png" />
-    <Content Include="assets\js\main.js" />
+    <Content Include="Scripts\main.js" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\themify-icons.css" />
     <Content Include="Content\themify-icons.min.css" />
@@ -238,6 +244,12 @@
     <Content Include="Content\bootstrap-reboot.css.map" />
     <Content Include="Content\bootstrap-grid.min.css.map" />
     <Content Include="Content\bootstrap-grid.css.map" />
+    <Content Include="NLog.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <None Include="NLog.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Properties\PublishProfiles\DotraBackend - Web Deploy.pubxml" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -366,10 +378,7 @@
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
     <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
-    <Error Condition="!Exists('..\packages\EntityFramework.6.3.0\build\EntityFramework.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.3.0\build\EntityFramework.props'))" />
-    <Error Condition="!Exists('..\packages\EntityFramework.6.3.0\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.3.0\build\EntityFramework.targets'))" />
   </Target>
-  <Import Project="..\packages\EntityFramework.6.3.0\build\EntityFramework.targets" Condition="Exists('..\packages\EntityFramework.6.3.0\build\EntityFramework.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
