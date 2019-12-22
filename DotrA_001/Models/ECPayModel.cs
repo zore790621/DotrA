@@ -13,6 +13,8 @@ namespace DotrA_001.Models
 
         public string PaymentType { get; set; }
 
+        public string MerchantTradeNo { get; set; }
+
         public string TradeNo { get; set; }
 
         public string PaymentDate { get; set; }

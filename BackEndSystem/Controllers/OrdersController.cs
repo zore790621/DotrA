@@ -8,6 +8,8 @@ using System.Web;
 using System.Web.Mvc;
 using Database.Models;
 using BackEndSystem.Models;
+using NLog;
+using Newtonsoft.Json;
 
 namespace BackEndSystem.Controllers
 {
@@ -29,6 +31,7 @@ namespace BackEndSystem.Controllers
                 PaymentMethod = x.Payment.PaymentMethod,
                 PaymentStatus = x.PaymentStatus
             }).ToList();
+
             return View(models);
         }
 
@@ -121,21 +124,20 @@ namespace BackEndSystem.Controllers
             }
             base.Dispose(disposing);
         }
-
+        private static Logger logger = LogManager.GetCurrentClassLogger();
+        [AllowAnonymous]
+        [HttpPost]
         public void GetPaymentResult(ECPayResult result)
         {
+            logger.Info($"GetPaymentResult start {result.RtnCode} {result.MerchantTradeNo}");
             var orderID = int.Parse(result.MerchantTradeNo.Remove(0, 5));
             Order o = db.Orders.Find(orderID);
-            if (result.RtnCode == 1)
-            {
-                o.PaymentStatus = "付款完成";
-            }
-            else
-            {
-                o.PaymentStatus = "尚未付款";
-            }
-
+            //logger.Info($"Find : {JsonConvert.SerializeObject(o)}");
+            o.PaymentStatus = result.RtnCode;
+            
             db.SaveChanges();
+
+            //logger.Info($"GetPaymentResult end {o.PaymentStatus}");
         }
     }
 }

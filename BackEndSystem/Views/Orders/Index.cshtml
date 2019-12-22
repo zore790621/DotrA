@@ -32,7 +32,15 @@
                                     <td>@Html.DisplayFor(x => m.TotalPrice)</td>
                                     <td>@Html.DisplayFor(x => m.PaymentMethod)</td>
                                     <td>@Html.DisplayFor(x => m.OrderDate)</td>
-                                    <td>@Html.DisplayFor(x => m.PaymentStatus)</td>
+                                    @if (m.PaymentStatus == 1)
+                                    {
+                                        <td><span class="badge badge-success">付款完成</span></td>
+                                    }
+                                    else
+                                    {
+                                        <td><span class="badge badge-secondary">尚未付款</span></td>
+                                    }
+
                                 </tr>
                                 }
                             </tbody>

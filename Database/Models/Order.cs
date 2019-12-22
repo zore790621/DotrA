@@ -36,7 +36,7 @@ namespace Database.Models
 
         public DateTime OrderDate { get; set; }
 
-        public string PaymentStatus { get; set; }
+        public int? PaymentStatus { get; set; }
 
         public virtual Member Member { get; set; }
 

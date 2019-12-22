@@ -7,7 +7,7 @@ namespace BackEndSystem.Models
 {
     public class ECPayResult
     {
-        public int RtnCode { get; set; }
+        public int? RtnCode { get; set; }
 
         public string MerchantTradeNo { get; set; }
     }

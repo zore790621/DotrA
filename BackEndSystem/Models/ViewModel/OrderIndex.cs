@@ -29,6 +29,6 @@ namespace BackEndSystem.Models.ViewModel
         public string PaymentMethod { get; set; }
 
         [Display(Name ="付款狀態")]
-        public string PaymentStatus { get; set; }
+        public int? PaymentStatus { get; set; }
     }
 }

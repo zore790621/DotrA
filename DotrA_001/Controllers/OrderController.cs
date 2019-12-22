@@ -112,11 +112,12 @@ namespace DotrA_001.Controllers
 
         public ActionResult GetResult(ECPayModel request)
         {
-            if (request.RtnCode==1)
+            if (request.RtnCode == 1)
             {
                 TempData["message"] = "您已付款成功，我們會即刻開始準備出貨";
                 return RedirectToAction("Index", "Home");
             }
+           
             return RedirectToAction("Index", "Home");
         }
 
@@ -124,7 +125,7 @@ namespace DotrA_001.Controllers
         public ActionResult Payment(int? id)
         {
             var o = db.Orders.Find(id);
-           
+
             string test = "test";
             List<string> enErrors = new List<string>();
             try
