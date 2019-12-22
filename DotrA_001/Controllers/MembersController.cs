@@ -197,6 +197,7 @@ namespace DotrA_001.Controllers
         public ActionResult Logout()
         {
             FormsAuthentication.SignOut();//登出,移除身份驗證資料cookie 
+            //HttpContext.GetOwinContext().Authentication.SignOut(new AuthenticationProperties { IsPersistent = false });//google登出
             //Session.Abandon();//清除伺服器記憶體中的 Session  
             return RedirectToAction("Index", "Home");
         }
@@ -288,7 +289,7 @@ namespace DotrA_001.Controllers
             }
             else
             {
-                message = "此帳號不存在. Account not found.";
+                message = "此信箱尚未存在. Email not found.";
             }
 
             ViewBag.Message = message;
@@ -354,7 +355,7 @@ namespace DotrA_001.Controllers
         }
         #endregion
         #region ===修改會員資料===
-        public ActionResult Edit(int? id)
+        public ActionResult EditProfile(int? id)
         {
             if (id == null || ((FormsIdentity)User.Identity).Ticket.UserData != id.ToString())
             {
@@ -381,7 +382,7 @@ namespace DotrA_001.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(EditMemberVM vm)
+        public ActionResult EditProfile(EditMemberVM vm)
         {
             if (ModelState.IsValid)
             {
@@ -402,7 +403,65 @@ namespace DotrA_001.Controllers
             return View(vm);
         }
         #endregion
-        #region ===Google Login===
+        #region ===查看會員訂單===
+        public ActionResult SelfOrder(int? id)
+        {
+            var om = db.Orders.Where(x => x.MemberID == id);
+            
+            var models = om.Select(x => new SelfOrderVM()
+            {
+                OrderID = x.OrderID,
+                MemberName = x.Member.Name,
+                OrderDate = x.OrderDate,
+                TotalPrice = x.OrderDetails.Sum(y => y.SubTotal),
+                ShipperName = x.Shipper.ShipperName,
+                PaymentMethod = x.Payment.PaymentMethod
+            }).ToList();
+
+            if(om==null)
+            {
+                TempData["Order"] = "無訂單紀錄";
+            }
+            return View(models);
+        }
+        public ActionResult LookOrderDetails(int? id)
+        {
+            if (id == null )
+            {
+                return RedirectToAction("Index", "Home");
+            }
+            Order o = db.Orders.Find(id);
+            OrderDetailVM vm = new OrderDetailVM()
+            {
+                OrderID = o.OrderID,
+                OrderProducts = o.OrderDetails.Select(x => new OrderProductVM
+                {
+                    Discount = x.Discount,
+                    SalesPrice = x.Product.SalesPrice,
+                    ProductName = x.Product.ProductName,
+                    Quantity = x.Quantity,
+                    SubTotal = x.SubTotal
+                }),
+                MemberID=o.MemberID,
+                RecipientName = o.RecipientName,
+                RecipientPhone = o.RecipientPhone,
+                RecipientAddress = o.RecipientAddress,
+                MemberName = o.Member.Name,
+                OrderDate = o.OrderDate,
+                TotalPrice = o.OrderDetails.Sum(y => y.SubTotal),
+                ShipperName = o.Shipper.ShipperName,
+                PaymentMethod = o.Payment.PaymentMethod
+            };
+
+            if (vm == null)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+            return View(vm);
+        }
+        #endregion
+        #region ===Google Login 未完成===
+        [AllowAnonymous]
         public void SignIn(string ReturnUrl = "/", string type = "")
         {
             if (!Request.IsAuthenticated)
@@ -458,7 +517,7 @@ namespace DotrA_001.Controllers
         }
         public ActionResult GoogleLogout()
         {
-            HttpContext.GetOwinContext().Authentication.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
+            HttpContext.GetOwinContext().Authentication.SignOut(new AuthenticationProperties { IsPersistent = false });
             return Redirect("https://www.google.com/accounts/Logout?continue=https://appengine.google.com/_ah/logout?continue=https://localhost:44318/Members/Logout");
         }
         #endregion
