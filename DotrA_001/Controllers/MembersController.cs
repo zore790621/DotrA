@@ -397,7 +397,7 @@ namespace DotrA_001.Controllers
 
                 //db.Entry(member).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Edit");
+                return RedirectToAction("EditProfile");
             };
 
             return View(vm);
