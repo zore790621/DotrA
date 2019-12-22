@@ -4,7 +4,7 @@
     Layout = null;
 }
 
-<a id="CartDropDown" class="dropdown-toggle nav-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
+<a id="CartDropDown" class="dropdown-toggle nav-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
     @String.Format("共{0}元 ({1})", currentCart.GetTotal, currentCart.Count)
     <span class="icon-shopping_cart"></span>
 </a>
@@ -14,7 +14,7 @@
         foreach (var cartitem in currentCart)
         {
             //依序輸出 : <li><a>可愛橡皮擦 <span>50元 X 2</span></a></li>
-            <a style="color:lightskyblue;"class="row">
+            <a style="color:lightskyblue;" class="row">
                 <div class="col-12">
                     <span class="col-10">@cartitem.ProductName @cartitem.Price 元 X @cartitem.Quantity </span>
                     <span class="removebtn col-2" onclick="RemoveFromCart('@cartitem.ProductId')">X</span>
@@ -22,15 +22,15 @@
             </a>
 
         }
-<div style="width:260px">
-    <a class="gocart"  href="@Url.Action("Index","Order",new { })"><span>結帳去</span></a>
-    <a class="allremovebtn" onclick="ClearCart()">清空</a>
-</div>
+        <div style="width:260px">
+            <a class="gocart" href="@Url.Action("Index","Order",new { })"><span>結帳去</span></a>
+            <a class="allremovebtn" onclick="ClearCart()">清空</a>
+        </div>
 
     }
     else
     {
         @*<a class="btn btn-default text-center" href="#">購物車無任何商品</a>*@
-        @Html.ActionLink("購物車無任何商品","Index","Shop","",new { @class="btn btn-default text-center"})
+        @Html.ActionLink("購物車無任何商品", "Index", "Shop", null, new { @class = "btn btn-default text-center" })
     }
 </div>
