@@ -7,16 +7,20 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Database.Models;
+using BackEndSystem.Models;
+using NLog;
+using Newtonsoft.Json;
 
 namespace BackEndSystem.Controllers
-{   [Authorize]
+{
+    //[Authorize]
     public class OrdersController : Controller
     {
         DotrADb db = new DotrADb();
         // GET: Orders
         public ActionResult Index()
         {
-           
+
             var models = db.Orders.Select(x => new OrderIndex()
             {
                 OrderID = x.OrderID,
@@ -24,8 +28,10 @@ namespace BackEndSystem.Controllers
                 OrderDate = x.OrderDate,
                 TotalPrice = x.OrderDetails.Sum(y => y.SubTotal),
                 ShipperName = x.Shipper.ShipperName,
-                PaymentMethod = x.Payment.PaymentMethod
+                PaymentMethod = x.Payment.PaymentMethod,
+                PaymentStatus = x.PaymentStatus
             }).ToList();
+
             return View(models);
         }
 
@@ -54,6 +60,7 @@ namespace BackEndSystem.Controllers
                 OrderDate = o.OrderDate,
                 TotalPrice = o.OrderDetails.Sum(y => y.SubTotal),
                 ShipperName = o.Shipper.ShipperName,
+                PaymentStatus = o.PaymentStatus,
                 PaymentMethod = o.Payment.PaymentMethod
             };
 
@@ -117,6 +124,21 @@ namespace BackEndSystem.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+        private static Logger logger = LogManager.GetCurrentClassLogger();
+        [AllowAnonymous]
+        [HttpPost]
+        public void GetPaymentResult(ECPayResult result)
+        {
+            logger.Info($"GetPaymentResult start {result.RtnCode} {result.MerchantTradeNo}");
+            var orderID = int.Parse(result.MerchantTradeNo.Remove(0, 5));
+            Order o = db.Orders.Find(orderID);
+            //logger.Info($"Find : {JsonConvert.SerializeObject(o)}");
+            o.PaymentStatus = result.RtnCode;
+            
+            db.SaveChanges();
+
+            //logger.Info($"GetPaymentResult end {o.PaymentStatus}");
         }
     }
 }

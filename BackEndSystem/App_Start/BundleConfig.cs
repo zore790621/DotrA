@@ -16,19 +16,19 @@ namespace BackEndSystem
                  "~/Scripts/popper.min.js",
                  "~/Scripts/bootstrap.min.js",
                  "~/Scripts/jquery.matchHeight.min.js",
-                 "~/assets/js/main.js"));
+                 "~/Scripts/main.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/datatable").Include(
-            "~/assets/js/data-table/datatables.min.js",
-                "~/assets/js/data-table/dataTables.bootstrap4.min.js",
-                "~/assets/js/data-table/dataTables.buttons.min.js",
-                "~/assets/js/data-table/buttons.bootstrap.min.js",
-                "~/assets/js/data-table/jszip.min.js",
-                "~/assets/js/data-table/vfs_fonts.js",
-                "~/assets/js/data-table/buttons.html5.min.js",
-                "~/assets/js/data-table/buttons.print.min.js",
-                "~/assets/js/data-table/buttons.colVis.min.js",
-                "~/assets/js/init/datatables-init.js"
+            "~/Scripts/data-table/datatables.min.js",
+                "~/Scripts/data-table/dataTables.bootstrap4.min.js",
+                "~/Scripts/data-table/dataTables.buttons.min.js",
+                "~/Scripts/data-table/buttons.bootstrap.min.js",
+                "~/Scripts/data-table/jszip.min.js",
+                "~/Scripts/data-table/vfs_fonts.js",
+                "~/Scripts/data-table/buttons.html5.min.js",
+                "~/Scripts/data-table/buttons.print.min.js",
+                "~/Scripts/data-table/buttons.colVis.min.js",
+                "~/Scripts/init/datatables-init.js"
                  ));
 
 

@@ -62,6 +62,18 @@ namespace DotrA_001
                 "~/Assets/js/scrollax.min.js",
                 "~/Assets/js/main.js"
            ));
+            bundles.Add(new ScriptBundle("~/bundles/datatable").Include(
+           "~/assets/js/data-table/datatables.min.js",
+               "~/assets/js/data-table/dataTables.bootstrap4.min.js",
+               "~/assets/js/data-table/dataTables.buttons.min.js",
+               "~/assets/js/data-table/buttons.bootstrap.min.js",
+               "~/assets/js/data-table/jszip.min.js",
+               "~/assets/js/data-table/vfs_fonts.js",
+               "~/assets/js/data-table/buttons.html5.min.js",
+               "~/assets/js/data-table/buttons.print.min.js",
+               "~/assets/js/data-table/buttons.colVis.min.js",
+               "~/assets/js/init/datatables-init.js"
+                ));
             BundleTable.EnableOptimizations = false;
         }
     }

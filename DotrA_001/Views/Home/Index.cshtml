@@ -11,18 +11,21 @@
                 <div class="row d-md-flex no-gutters slider-text align-items-center justify-content-end"
                      data-scrollax-parent="true">
 
-                    <img class="one-third order-md-last img-fluid" src="~/Assets/images/bg_1.png" alt="">
+                    <img class="one-third order-md-last img-fluid" src="~/Assets/images/bg_3.png" alt="">
                     <div class="one-forth d-flex align-items-center ftco-animate"
                          data-scrollax=" properties: { translateY: '70%' }">
                         <div class="text">
-                            <span class="subheading">#New Arrival</span>
+                            <span class="subheading">#全新上市</span>
                             <div class="horizontal">
-                                <h1 class="mb-4 mt-3">Shoes Collection 2019</h1>
+                                <h1 class="mb-4 mt-3">冬季商品搶先上市</h1>
                                 <p class="mb-4">
-                                    A small river named Duden flows by their place and supplies it with
-                                    the necessary regelialia. It is a paradisematic country.
+                                    出遊、上班想要好好休息只有頸枕還不夠！？
+                                    小怪獸聽見您的心聲！推出這款「小怪獸帶帽記憶頸枕」
+                                    不僅外型可愛，更有小怪獸系列一貫的貼心設計
+                                    帶帽的設計不僅讓團友們睡覺不用怕被看見睡臉
+                                    更可以遮光、遮風，讓我們可以安心、舒服的睡個好覺！
                                 </p>
-                                <p><a href="#" class="btn-custom">Discover Now</a></p>
+                                <p><a href="@Url.Action("Index","Shop")" class="btn-custom">Discover Now</a></p>
                             </div>
                         </div>
                     </div>
@@ -34,19 +37,23 @@
             <div class="container-fluid p-0">
                 <div class="row d-flex no-gutters slider-text align-items-center justify-content-end"
                      data-scrollax-parent="true">
-                    <img class="one-third order-md-last img-fluid" src="~/Assets/images/bg_2.png" alt="">
+                    <img class="one-third order-md-last img-fluid" src="~/Assets/images/bg_4.png" alt="">
                     <div class="one-forth d-flex align-items-center ftco-animate"
                          data-scrollax=" properties: { translateY: '70%' }">
                         <div class="text">
-                            <span class="subheading">#New Arrival</span>
+                            <span class="subheading">#全新上市</span>
                             <div class="horizontal">
-                                <h1 class="mb-4 mt-3">New Shoes Winter Collection</h1>
+                                <h1 class="mb-4 mt-3">冬季商品搶先上市</h1>
                                 <p class="mb-4">
-                                    A small river named Duden flows by their place and supplies it with
-                                    the necessary regelialia. It is a paradisematic country.
+                                    「生理痛」是女人這一生中不能避免的苦
+                                    為了生活、家庭我們不去抱怨，勇敢的挺過每一次疼痛
+                                    女性朋友，辛苦了！
+                                    『添糖』看見您的辛苦
+                                    添個好糖吧。在您的健康、在您的心情、在您的生活。
+                                    請慢下來吧,幫您的身、心、靈、補充臺灣特有的黑糖風味與在地的新鮮。
                                 </p>
 
-                                <p><a href="#" class="btn-custom">Discover Now</a></p>
+                                <p><a href="@Url.Action("Index","Shop")" class="btn-custom">Discover Now</a></p>
                             </div>
                         </div>
                     </div>
@@ -105,8 +112,7 @@
     <div class="container">
         <div class="row justify-content-center mb-3 pb-3">
             <div class="col-md-12 heading-section text-center ftco-animate">
-                <h2 class="mb-4">New Shoes Arrival</h2>
-                <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia</p>
+                <h2 class="mb-4">熱銷商品</h2>
             </div>
         </div>
     </div>
@@ -145,7 +151,7 @@
                             </div>
                             <h3><a href="#">@item.ProductName</a></h3>
                             <div class="pricing">
-                                <p class="price"><span>@item.UnitPrice</span></p>
+                                <p class="price"><span>@item.SalesPrice</span></p>
                             </div>
                             <p class="bottom-area d-flex px-3">
                                 <a onclick="AddToCart('@item.ProductID')" href="javascript:void(0);" role="button" class="add-to-cart text-center py-2 mr-1"><span>Add to cart <i class="ion-ios-add ml-1"></i></span></a>
@@ -167,16 +173,10 @@
         <div class="row no-gutters">
             <div class="col-lg-4">
                 <div class="choose-wrap divider-one img p-5 d-flex align-items-end"
-                     style="background-image: url(../../Assets/images/choose-1.jpg);">
-
-                    <div class="text text-center text-white px-2">
-                        <span class="subheading">Men's Shoes</span>
-                        <h2>Men's Collection</h2>
-                        <p>
-                            Separated they live in Bookmarksgrove right at the coast of the Semantics, a large
-                            language ocean.
-                        </p>
-                        <p><a href="@Url.Action("Index","Shop")" class="btn btn-black px-3 py-2">Shop now</a></p>
+                     style="background-image: url(../../Assets/images/choose-4.jpg);">
+                    <div class="text text-center px-2">
+                        <p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p>
+                        <p><a href="@Url.Action("Index","Shop")" class="btn btn-outline-light px-3 py-2">Shop now</a></p>
                     </div>
                 </div>
             </div>
@@ -184,16 +184,11 @@
                 <div class="row no-gutters choose-wrap divider-two align-items-stretch">
                     <div class="col-md-12">
                         <div class="choose-wrap full-wrap img align-self-stretch d-flex align-item-center justify-content-end"
-                             style="background-image: url(../../Assets/images/choose-2.jpg);">
+                             style="background-image: url(../../Assets/images/choose-5.png);">
                             <div class="col-md-7 d-flex align-items-center">
-                                <div class="text text-white px-5">
-                                    <span class="subheading">Women's Shoes</span>
-                                    <h2>Women's Collection</h2>
-                                    <p>
-                                        Separated they live in Bookmarksgrove right at the coast of the Semantics, a
-                                        large language ocean.
-                                    </p>
-                                    <p><a href="@Url.Action("Index","Shop")" class="btn btn-black px-3 py-2">Shop now</a></p>
+                                <div class="text   px-5">
+                                    <p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p>
+                                    <p><a href="@Url.Action("Index","Shop")" class="btn btn-outline-light px-3 py-2">Shop now</a></p>
                                 </div>
                             </div>
                         </div>
@@ -201,29 +196,27 @@
                     <div class="col-md-12">
                         <div class="row no-gutters">
                             <div class="col-md-6">
-                                <div class="choose-wrap wrap img align-self-stretch bg-light d-flex align-items-center">
+                                <div class="choose-wrap wrap img align-self-stretch bg-light d-flex align-items-center" >
                                     <div class="text text-center px-5">
-                                        <span class="subheading">Summer Sale</span>
-                                        <h2>Extra 50% Off</h2>
-                                        <p>
+                                        <span class="subheading">售完不補趕緊手刀搶購!!!</span>
+                                        <h2>冬季商品全新上架</h2>
+                                        @*<p>
                                             Separated they live in Bookmarksgrove right at the coast of the
                                             Semantics, a large language ocean.
-                                        </p>
-                                        <p><a href="@Url.Action("Index","Shop")" class="btn btn-black px-3 py-2">Shop now</a></p>
+                                        </p>*@
+                                        <p><a href="@Url.Action("Index","Shop")" class="btn btn-outline-light px-3 py-2">Shop now</a></p>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="choose-wrap wrap img align-self-stretch d-flex align-items-center"
-                                     style="background-image: url(../../Assets/images/choose-3.jpg);">
-                                    <div class="text text-center text-white px-5">
-                                        <span class="subheading">Shoes</span>
-                                        <h2>Best Sellers</h2>
-                                        <p>
-                                            Separated they live in Bookmarksgrove right at the coast of the
-                                            Semantics, a large language ocean.
-                                        </p>
-                                        <p><a href="@Url.Action("Index","Shop")" class="btn btn-black px-3 py-2">Shop now</a></p>
+                                     style="background-image: url(../../Assets/images/choose-6.jpg);">
+                                    <div class="text text-center   px-5">
+                                        <p>&nbsp;</p>
+                                        <p>&nbsp;</p>
+                                        <p>&nbsp;</p>
+                                        <p>&nbsp;</p>
+                                        <p><a href="@Url.Action("Index","Shop")" class="btn btn-outline-light px-3 py-2">Shop now</a></p>
                                     </div>
                                 </div>
                             </div>
@@ -234,7 +227,7 @@
         </div>
     </div>
 </section>
-<section class="ftco-section ftco-deal bg-primary">
+@*<section class="ftco-section ftco-deal bg-primary">
     <div class="container">
         <div class="row">
             <div class="col-md-6">
@@ -265,7 +258,7 @@
             </div>
         </div>
     </div>
-</section>
+</section>*@
 <section class="ftco-section testimony-section">
     <div class="container">
         <div class="row">
@@ -422,3 +415,11 @@
         </div>
     </div>
 </section>
+@section topCSS{
+    <style>
+        .text {
+            font-family: 'Microsoft JhengHei' !important;
+            font-weight: 900;
+        }
+    </style>
+    }

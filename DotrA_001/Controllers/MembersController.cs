@@ -15,6 +15,10 @@ using DotrA_001.Models.ViewModels;
 using System.Net.Mail;
 using System.Web.Helpers;
 using Database.Models;
+using Microsoft.Owin.Security;
+using System.Security.Claims;
+using Microsoft.Owin.Security.Cookies;
+using Microsoft.AspNet.Identity;
 
 namespace DotrA_001.Controllers
 {
@@ -193,6 +197,7 @@ namespace DotrA_001.Controllers
         public ActionResult Logout()
         {
             FormsAuthentication.SignOut();//登出,移除身份驗證資料cookie 
+            //HttpContext.GetOwinContext().Authentication.SignOut(new AuthenticationProperties { IsPersistent = false });//google登出
             //Session.Abandon();//清除伺服器記憶體中的 Session  
             return RedirectToAction("Index", "Home");
         }
@@ -284,7 +289,7 @@ namespace DotrA_001.Controllers
             }
             else
             {
-                message = "此帳號不存在. Account not found.";
+                message = "此信箱尚未存在. Email not found.";
             }
 
             ViewBag.Message = message;
@@ -350,7 +355,7 @@ namespace DotrA_001.Controllers
         }
         #endregion
         #region ===修改會員資料===
-        public ActionResult Edit(int? id)
+        public ActionResult EditProfile(int? id)
         {
             if (id == null || ((FormsIdentity)User.Identity).Ticket.UserData != id.ToString())
             {
@@ -377,7 +382,7 @@ namespace DotrA_001.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(EditMemberVM vm)
+        public ActionResult EditProfile(EditMemberVM vm)
         {
             if (ModelState.IsValid)
             {
@@ -392,10 +397,130 @@ namespace DotrA_001.Controllers
 
                 //db.Entry(member).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Edit");
+                return RedirectToAction("EditProfile");
             };
 
             return View(vm);
+        }
+        #endregion
+        #region ===查看會員訂單===
+        public ActionResult SelfOrder(int? id)
+        {
+            var om = db.Orders.Where(x => x.MemberID == id);
+            
+            var models = om.Select(x => new SelfOrderVM()
+            {
+                OrderID = x.OrderID,
+                MemberName = x.Member.Name,
+                OrderDate = x.OrderDate,
+                TotalPrice = x.OrderDetails.Sum(y => y.SubTotal),
+                ShipperName = x.Shipper.ShipperName,
+                PaymentMethod = x.Payment.PaymentMethod,
+                PaymentStatus = x.PaymentStatus
+            }).ToList();
+
+            if(om==null)
+            {
+                TempData["Order"] = "無訂單紀錄";
+            }
+            return View(models);
+        }
+        public ActionResult LookOrderDetails(int? id)
+        {
+            if (id == null )
+            {
+                return RedirectToAction("Index", "Home");
+            }
+            Order o = db.Orders.Find(id);
+            OrderDetailVM vm = new OrderDetailVM()
+            {
+                OrderID = o.OrderID,
+                OrderProducts = o.OrderDetails.Select(x => new OrderProductVM
+                {
+                    Discount = x.Discount,
+                    SalesPrice = x.Product.SalesPrice,
+                    ProductName = x.Product.ProductName,
+                    Quantity = x.Quantity,
+                    SubTotal = x.SubTotal
+                }),
+                MemberID=o.MemberID,
+                RecipientName = o.RecipientName,
+                RecipientPhone = o.RecipientPhone,
+                RecipientAddress = o.RecipientAddress,
+                MemberName = o.Member.Name,
+                OrderDate = o.OrderDate,
+                TotalPrice = o.OrderDetails.Sum(y => y.SubTotal),
+                ShipperName = o.Shipper.ShipperName,
+                PaymentMethod = o.Payment.PaymentMethod,
+                PaymentStatus = o.PaymentStatus
+            };
+
+            if (vm == null)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+            return View(vm);
+        }
+        #endregion
+        #region ===Google Login 未完成===
+        [AllowAnonymous]
+        public void SignIn(string ReturnUrl = "/", string type = "")
+        {
+            if (!Request.IsAuthenticated)
+            {
+                if (type == "Google")
+                {
+                    HttpContext.GetOwinContext().Authentication.Challenge(new AuthenticationProperties { RedirectUri = "Members/GoogleLoginCallback" }, "Google");
+                }
+            }
+        }
+        [AllowAnonymous]
+        public ActionResult GoogleLoginCallback()
+        {
+            var claimsPrincipal = HttpContext.User.Identity as ClaimsIdentity;
+
+            var loginInfo = GoogleLoginViewModel.GetLoginInfo(claimsPrincipal);
+            if (loginInfo == null)
+            {
+                return RedirectToAction("Index");
+            }
+
+            var user = db.Members.FirstOrDefault(x => x.Email == loginInfo.emailaddress);
+
+            if (user == null)
+            {
+                user = new Member
+                {
+                    Email = loginInfo.emailaddress,
+                    Name = loginInfo.name
+                };
+                db.Members.Add(user);
+                db.SaveChanges();
+            }
+
+            var ident = new ClaimsIdentity(
+                    new[] { 
+								// adding following 2 claim just for supporting default antiforgery provider
+								new Claim(ClaimTypes.NameIdentifier, user.Email),
+                                new Claim("http://schemas.microsoft.com/accesscontrolservice/2010/07/claims/identityprovider", "ASP.NET Identity", "http://www.w3.org/2001/XMLSchema#string"),
+
+                                new Claim(ClaimTypes.Name, user.Name),
+                                new Claim(ClaimTypes.Email, user.Email),
+								// optionally you could add roles if any
+								new Claim(ClaimTypes.Role, "User")
+                    },
+                    CookieAuthenticationDefaults.AuthenticationType);
+
+
+            HttpContext.GetOwinContext().Authentication.SignIn(
+                        new AuthenticationProperties { IsPersistent = false }, ident);
+            return Redirect("~/");
+
+        }
+        public ActionResult GoogleLogout()
+        {
+            HttpContext.GetOwinContext().Authentication.SignOut(new AuthenticationProperties { IsPersistent = false });
+            return Redirect("https://www.google.com/accounts/Logout?continue=https://appengine.google.com/_ah/logout?continue=https://localhost:44318/Members/Logout");
         }
         #endregion
         #region ===CRUD===
@@ -433,12 +558,6 @@ namespace DotrA_001.Controllers
             }
             base.Dispose(disposing);
         }
-        #endregion
-        #region ===LoginModal===
-        //public ActionResult LoginModal()
-        //{
-        //    return PartialView("LoginModal");
-        //}
         #endregion
     }
 }

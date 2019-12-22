@@ -36,6 +36,8 @@ namespace Database.Models
 
         public DateTime OrderDate { get; set; }
 
+        public int? PaymentStatus { get; set; }
+
         public virtual Member Member { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

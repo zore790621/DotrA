@@ -18,8 +18,11 @@ namespace DotrA_001.Controllers
         // GET: Order
 
         public ActionResult Index(int? PID)
+        // GET: ShoppingCar
+        [WebMethod(EnableSession = true)]
+        public ActionResult Index(string memberid, int productid)
         {
-            bool toint = int.TryParse(((FormsIdentity)User.Identity).Ticket.UserData.ToString(), out int UID);
+            bool toint = int.TryParse(memberid, out int UID);
             if (toint == false)
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             var source = db.Members.FirstOrDefault(x => x.MemberID == UID);

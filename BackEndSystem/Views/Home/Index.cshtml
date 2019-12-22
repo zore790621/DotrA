@@ -4,62 +4,62 @@
     ViewBag.Title = "DashBoard";
 }
 
-<div class="content">
-    <div class="animated fadeIn">
-        <div class="row">
-            <div class="col-lg-3 col-md-6">
-                <div class="card">
-                    <div class="card-body">
-                        <div class="stat-widget-five">
-                            <div class="stat-icon dib flat-color-1">
-                                <i class="pe-7s-cash"></i>
-                            </div>
-                            <div class="stat-content">
-                                <div class="text-left dib">
-                                    <div class="stat-text">$<span class="count">@ViewBag.Selltotal</span></div>
-                                    <div class="stat-heading">營業額</div>
+    <div class="content">
+        <div class="animated fadeIn">
+            <div class="row">
+                <div class="col-lg-3 col-md-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="stat-widget-five">
+                                <div class="stat-icon dib flat-color-1">
+                                    <i class="pe-7s-cash"></i>
+                                </div>
+                                <div class="stat-content">
+                                    <div class="text-left dib">
+                                        <div class="stat-text">$<span class="count">@ViewBag.Selltotal</span></div>
+                                        <div class="stat-heading">營業額</div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
 
-            <div class="col-lg-3 col-md-6">
-                <div class="card">
-                    <div class="card-body">
-                        <div class="stat-widget-five">
-                            <div class="stat-icon dib flat-color-2">
-                                <i class="pe-7s-cart"></i>
-                            </div>
-                            <div class="stat-content">
-                                <div class="text-left dib">
-                                    <div class="stat-text"><span class="count">@ViewBag.ProCount</span></div>
-                                    <div class="stat-heading">產品總數</div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="stat-widget-five">
+                                <div class="stat-icon dib flat-color-2">
+                                    <i class="pe-7s-cart"></i>
+                                </div>
+                                <div class="stat-content">
+                                    <div class="text-left dib">
+                                        <div class="stat-text"><span class="count">@ViewBag.ProCount</span></div>
+                                        <div class="stat-heading">產品總數</div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
 
-            <div class="col-lg-3 col-md-6">
-                <div class="card">
-                    <div class="card-body">
-                        <div class="stat-widget-five">
-                            <div class="stat-icon dib flat-color-3">
-                                <i class="pe-7s-browser"></i>
-                            </div>
-                            <div class="stat-content">
-                                <div class="text-left dib">
-                                    <div class="stat-text"><span class="count">@ViewBag.OrdCount</span></div>
-                                    <div class="stat-heading">訂單總數</div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="stat-widget-five">
+                                <div class="stat-icon dib flat-color-3">
+                                    <i class="pe-7s-browser"></i>
+                                </div>
+                                <div class="stat-content">
+                                    <div class="text-left dib">
+                                        <div class="stat-text"><span class="count">@ViewBag.OrdCount</span></div>
+                                        <div class="stat-heading">訂單總數</div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
 
             <div class="col-lg-3 col-md-6">
                 <div class="card">
@@ -87,6 +87,14 @@
 <div class="orders">
     <div class="row">
         <div class="col-xl-12">
+            <div class="col-lg-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="mb-3">產品統計圖表 </h4>
+                        <canvas id="pieChart"></canvas>
+                    </div>
+                </div>
+            </div>
             <div class="col-xl-6">
                 <div class="card">
                     <div class="card-body">
@@ -97,25 +105,33 @@
                             <table class="table">
                                 <thead>
                                     <tr>
-                                        <th>產品編號</th>
+                                        <th>產品序列</th>
                                         <th>產品名稱</th>
                                         <th>銷售數量</th>
                                         <th>銷售金額</th>
                                     </tr>
                                 </thead>
                                 <tbody id="tableContent">
-                                    <tr>
-                                        <td>123</td>
-                                        <td><span class="name" id="productTop1">Catherine Dixon</span> </td>
-                                        <td><span class="product" id="productTop2">SSD</span> </td>
-                                        <td><span class="count" id="productTop3">250</span></td>
-                                    </tr>
 
+                                    <tr v-for="item in items">
+                                        <td><span class="name"></span></td>
+                                        <td><span class="name">{{item.ProductName}}</span></td>
+                                        <td><span class="product">{{item.Quantity}}</span></td>
+                                        <td><span class="count">{{item.Amount}}</span></td>
+                                    </tr>
+                                    @*@foreach (var item in (List<Tuple<int, int, int>>)ViewBag.List)
+                                {
+                                    <tr>
+                                        <td><span class="name">@item.Item1</span></td>
+                                        <td><span class="name">@item.Item2</span></td>
+                                        <td><span class="name">@item.Item3</span></td>
+                                    </tr>
+                                }*@
                                 </tbody>
                             </table>
                         </div>
                     </div>
-                </div>               
+                </div>
             </div>
         </div>
     </div>
@@ -127,34 +143,73 @@
 }
 
 @section scripts{
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.10/vue.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script>
 
     <script type="text/javascript">
+        var json;
+        var chartjson;
         jQuery(document).ready(function () {
-
-             jQuery.ajax({
-                url:"/Home/GetProductTop5",
-                type:"post",
-                datatype: "json",
-                success: function (response) { 
-                    
-                      jQuery('#productTop1').text(response[0].ProductName);
-                      jQuery('#productTop2').text(response[0].Quantity);
-                      jQuery('#productTop3').text(response[0].Amount);
-                                    @*@foreach (var item in response)
-                                    {
-
-                                    }*@
-                }
-            });
+            binding();
+            timeout();
 
         });
 
-       
+        function timeout() {
+            jQuery.ajax({
+                url: "/Home/GetProductTop5",
+                type: "post",
+                datatype: "json",
+                success: function (response) {
+                    vm.$data.items = response;
+                    chartjson = response;
+                    let a = 1;
+                },
+                complete: function () {
+                    setTimeout(timeout(), 5000000);
+                }
+            });
+        }
 
 
+        function binding() {
+            vm = new Vue(
+                {
+                    el: "#tableContent",
+                    data: { "items": json }
+                }
+            );
+        }
 
+        var ctx = document.getElementById("pieChart");
+        ctx.height = 300; 
+        var myChart = new Chart(ctx, {
+            type: 'pie',
+            data: {
+                datasets: [{
+                    data: @Html.Raw(Json.Encode(ViewBag.Quantity)),
+                    backgroundColor: [
+                        "rgba(0, 194, 146,0.9)",
+                        "rgba(0, 194, 146,0.7)",
+                        "rgba(0, 194, 146,0.5)",                      
+                        "rgba(0,0,0,0.07)",
+                    ],
+                    hoverBackgroundColor: [
+                        "rgba(0, 194, 146,0.9)",
+                        "rgba(0, 194, 146,0.7)",
+                        "rgba(0, 194, 146,0.5)",
+                        "rgba(0,0,0,0.07)",
+                    ]
 
+                }],
+                labels:@Html.Raw(Json.Encode(ViewBag.ProductName))
+                    
 
+            },
+            options: {
+                responsive: true
+            }
+        });
     </script>
 
 }

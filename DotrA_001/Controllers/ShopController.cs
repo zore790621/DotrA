@@ -38,7 +38,7 @@ namespace DotrA_001.Controllers
                     ProductID = pr.ProductID,
                     ProductName = pr.ProductName,
                     SupplierID = pr.SupplierID,
-                    UnitPrice = pr.UnitPrice,
+                    SalesPrice = pr.SalesPrice,
                     Status = pr.Status
                 };
             AllList.Product = pro.ToList();
