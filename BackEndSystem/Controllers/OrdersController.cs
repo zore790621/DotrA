@@ -13,7 +13,7 @@ using Newtonsoft.Json;
 
 namespace BackEndSystem.Controllers
 {
-    [Authorize]
+    //[Authorize]
     public class OrdersController : Controller
     {
         DotrADb db = new DotrADb();
@@ -60,6 +60,7 @@ namespace BackEndSystem.Controllers
                 OrderDate = o.OrderDate,
                 TotalPrice = o.OrderDetails.Sum(y => y.SubTotal),
                 ShipperName = o.Shipper.ShipperName,
+                PaymentStatus = o.PaymentStatus,
                 PaymentMethod = o.Payment.PaymentMethod
             };
 
