@@ -19,6 +19,13 @@ namespace DotrA_001
                 defaults: new { controller = "Shop", action = "Index", page = 1 },
                 constraints: new { page = @"\d" }
             );
+            
+            routes.MapRoute(
+                name: "ShopProduct",
+                url: "ShopProduct/{id}",
+                defaults: new { controller = "Shop", action = "ShopProduct", PID = UrlParameter.Optional },
+                constraints: new { id = @"\d" }
+            );
 
             routes.MapRoute(
                 name: "Default",

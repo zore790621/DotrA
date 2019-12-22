@@ -10,32 +10,39 @@
 <h3>結帳</h3>
 
 @* 列出購物車內商品讓使用者作最後確認 *@
-<table class="table">
-    <thead><tr><td>商品圖</td><td>名稱</td><td>售價</td><td>數量</td><td>小計</td></tr></thead>
-    <tbody>
-        @foreach (var pd in cart) /* 使用foreach將所有商品列出 */
-        {
-            <tr>
-                <td><img src="@pd.Picture" width="50" height="50" /></td>
-                <td>@pd.ProductName</td>
-                <td>@pd.Price</td>
-                <td>@pd.Quantity</td>
-                <td>@pd.Total</td>
+<div class="container">
+    <table class="table"rules=none>
+        <thead>
+        <tr>
+            <td>商品圖</td>
+            <td>名稱</td>
+            <td>售價</td>
+            <td>數量</td>
+            <td>小計</td>
             </tr>
-        }
-        <tr><td colspan="3"></td><td>總計</td><td>@cart.GetTotal</td></tr>
-    </tbody>
-</table>
-
+        </thead>
+        <tbody>
+            @foreach (var pd in cart) /* 使用foreach將所有商品列出 */
+            {
+                <tr>
+                    <td><img src="@pd.Picture" width="50" height="50" /></td>
+                    <td>@pd.ProductName</td>
+                    <td>@pd.Price</td>
+                    <td>@pd.Quantity</td>
+                    <td>@pd.Total</td>
+                </tr>
+            }
+            <tr id="ordertotal"><td colspan="3"></td><td>總計</td><td id="total">@cart.GetTotal</td></tr>
+        </tbody>
+    </table>
+</div>
 @* 讓使用者填入寄送資訊 *@
-
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
 
     <div class="form-horizontal text-center">
-        <h3 class="mb-4 billing-heading">收件人地址</h3>
-        <hr />
+        <h3 class="mb-2 billing-heading">收件人地址</h3>
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
             @Html.LabelFor(model => model.RecipientName, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -61,133 +68,47 @@
             </div>
         </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.ShipperID, "ShipperID", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("ShipperID", (SelectList)ViewBag.ShipperID , htmlAttributes: new { @class = "form-control" })
+   
+        <div class="form-inline justify-content-center"role="form">
+            <div class="form-group" >
+                @Html.LabelFor(model => model.ShipperID, "ShipperID：", htmlAttributes: new { @class = "control-label" })
+                @Html.DropDownList("ShipperID", (SelectList)ViewBag.ShipperID, htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.ShipperID, "", new { @class = "text-danger" })
-            </div>
-        </div>
-        <div class="form-group">
-            @Html.LabelFor(model => model.PaymentID, "PaymentID", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("PaymentID", (SelectList)ViewBag.PaymentID , htmlAttributes: new { @class = "form-control" })
+                </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.PaymentID, "PaymentID：", htmlAttributes: new { @class = "control-label" })
+                @Html.DropDownList("PaymentID", (SelectList)ViewBag.PaymentID, htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.PaymentID, "", new { @class = "text-danger" })
             </div>
         </div>
 
-        <div class="form-group">
-            <div class="">
-                <input type="submit" value="Save" class="btn btn-default" />
+            <div class="form-group">
+                <div class="">
+                    <input type="submit" value="Save" class="btn btn-default" />
+                </div>
             </div>
         </div>
-    </div>
 }
-
-
-
-
 @section topCSS{
     <style>
         /*會員修改*/
         h3 {
             font-family: 'Dancing Script', cursive;
+            text-align:center;
         }
-
         label {
             font-family: 'Dancing Script', cursive;
         }
-
-        .no-border {
-            text-align: center;
-            background: none;
-            border: none !important;
-            outline: none;
-            border-bottom: 1px solid !important;
-            color: #888;
-            padding: 10px 6px;
-            font-size: 14px;
-            margin-bottom: 40px;
-            width: 240px;
-            transition: 0.25s;
+        /*table*/
+        thead{
+            background-color:#ecf0f1;
         }
-
-            .no-border:focus {
-                width: 300px;
-                color: #EA2027;
-            }
-
-        /*table改成DIV+CSS*/
-        tablewidth {
-            width: 100% !important;
+        #total  {
+            color:red;
+            font-size:20px;
+            text-decoration:underline;
         }
-
-        .css-table {
-            display: table;
-            width: 100%;
-        }
-
-        .td img {
-            width: 100px;
-            height: 100px;
-        }
-
-        .td a {
-            background-color: #f39c12;
-        }
-
-            .td a:hover {
-                background-size: 50px;
-                background-color: #e74c3c;
-            }
-
-        /*.ion-ios-close {
-            font-size: 50px;
-        }*/
-
-
-        .css-table .thead {
-            display: table-header-group;
-            background-color: #ecf0f1;
-            text-align: center;
-        }
-
-        .css-table .tbody {
-            display: table-row-group;
-            text-align: center;
-        }
-
-        .css-table .tr {
-            display: table-row;
-        }
-
-        .css-table .th, .css-table .td {
-            display: table-cell;
-        }
-
-        .td:nth-child(1) {
-            width: 5%;
-        }
-
-        .td:nth-child(2) {
-            width: 15%;
-        }
-
-        .td:nth-child(3) {
-            width: 40%;
-        }
-
-        .td:nth-child(4) {
-            width: 10%;
-        }
-
-        .td:nth-child(5) {
-            width: 20%;
-        }
-
-        .td:nth-child(6) {
-            width: 10%;
-        }
+     
     </style>
 }
 @section endJS{

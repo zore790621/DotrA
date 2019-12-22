@@ -46,45 +46,52 @@ namespace DotrA_001.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             var source = db.Members.FirstOrDefault(x => x.MemberID == UID);
 
+            var odtest = new Order();
+
             if (this.ModelState.IsValid)
             {   //取得目前購物車
-                var currentcart = Models.Operation.GetCurrentCart();
-
-                //取得目前登入使用者Id
-                var userId = ((FormsIdentity)User.Identity).Ticket.UserData;
-
-                try
+                using (var transaction = db.Database.BeginTransaction())
                 {
-                    //建立Order物件
-                    var order = new Order()
+                    var currentcart = Models.Operation.GetCurrentCart();
+
+                    //取得目前登入使用者Id
+                    var userId = ((FormsIdentity)User.Identity).Ticket.UserData;
+                    try
                     {
-                        MemberID = source.MemberID,
-                        RecipientName = Alllist.RecipientName,
-                        RecipientAddress = Alllist.RecipientAddress,
-                        RecipientPhone = Alllist.RecipientPhone,
-                        ShipperID = Alllist.ShipperID,
-                        PaymentID = Alllist.PaymentID,
-                        OrderDate = DateTime.Now
-                    };
-                    //加其入Orders資料表後，儲存變更
-                    db.Orders.Add(order);
-                    db.SaveChanges();
-                    var odtest = (from o in db.Orders
+                        //建立Order物件
+                        var order = new Order()
+                        {
+                            MemberID = source.MemberID,
+                            RecipientName = Alllist.RecipientName,
+                            RecipientAddress = Alllist.RecipientAddress,
+                            RecipientPhone = Alllist.RecipientPhone,
+                            ShipperID = Alllist.ShipperID,
+                            PaymentID = Alllist.PaymentID,
+                            OrderDate = DateTime.Now
+                        };
+                        //加其入Orders資料表後，儲存變更
+                        db.Orders.Add(order);
+                        db.SaveChanges();
+
+                        odtest = (from o in db.Orders
                                   where o.OrderID == order.OrderID
                                   select o).ToList().FirstOrDefault();
 
-                    //取得購物車中OrderDetai物件
-                    var orderDetails = currentcart.ToOrderDetailList(odtest.OrderID);
+                        //取得購物車中OrderDetai物件
+                        var orderDetails = currentcart.ToOrderDetailList(odtest.OrderID);
 
-                    //將其加入OrderDetails資料表後，儲存變更
-                    db.OrderDetails.AddRange(orderDetails);
-                    db.SaveChanges();
-                    currentcart.ClearCart();
-                    return Content("訂購成功");
-                }
-                catch (Exception)
-                {
-                    return Content("訂購失敗");
+                        //將其加入OrderDetails資料表後，儲存變更
+                        db.OrderDetails.AddRange(orderDetails);
+                        db.SaveChanges();
+                        currentcart.ClearCart();
+                        transaction.Commit();
+                        return Content("訂購成功");
+                    }
+                    catch (Exception)
+                    {
+                        transaction.Rollback();
+                        return Content("訂購失敗");
+                    }
                 }
             }
             return View();

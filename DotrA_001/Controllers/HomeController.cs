@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Database.Models;
+using DotrA_001.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,9 +10,31 @@ namespace DotrA_001.Controllers
 {
     public class HomeController : Controller
     {
-        public ActionResult Index()
+        private DotrADb db = new DotrADb();
+        public ActionResult Index(int? CID, int? PID)
         {
-            return View();
+            //string.IsNullOrEmpty("");
+
+            //bool IsInt_PID = int.TryParse(PID.ToString(), out int result);
+            bool IsInt_PID = (PID is null);
+            int isint_pid_val = PID.GetValueOrDefault();
+
+            var pro =
+                from pr in db.Products
+                where (pr.Status == "上架" && IsInt_PID || pr.ProductID == isint_pid_val)
+                select new ProductView
+                {
+                    CategoryID = pr.CategoryID,
+                    Description = pr.Description,
+                    Picture = pr.Picture,
+                    ProductID = pr.ProductID,
+                    ProductName = pr.ProductName,
+                    SupplierID = pr.SupplierID,
+                    UnitPrice = pr.UnitPrice,
+                    Status = pr.Status
+                };
+            
+            return View(pro);
         }
 
         public ActionResult About()
