@@ -1,7 +1,6 @@
 ﻿@model IEnumerable<Database.Models.Product>
 
-
-<div class="content">
+<div class="container">
     <div class="animated fadeIn">
         <div class="row">
             <div class="col-md-12">
@@ -34,9 +33,9 @@
                                     <th>
                                         @Html.DisplayNameFor(model => model.Picture)
                                     </th>
-                                    <th>
+                                    @*<th>
                                         @Html.DisplayNameFor(model => model.Description)
-                                    </th>
+                                    </th>*@
                                     <th>
                                         @Html.DisplayNameFor(model => model.Quantity)
                                     </th>
@@ -53,68 +52,70 @@
                             <tbody>
                                 @foreach (var item in Model)
                                 {
-                                <tr onclick="location.href = '@Url.Action("Details", "Products", new { id = item.ProductID })'">
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.Category.CategoryName)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.Supplier.CompanyName)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.ProductName)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.UnitPrice)
-                                    </td>
-                                    <td>
-                                        @if (item.Picture != null)
-                                        {
-                                            <img src="@item.Picture.Split(',')[0]" alt="Alternate Text" style="width:100px;height:100px;" />
+                                    <tr onclick="location.href = '@Url.Action("Details", "Products", new { id = item.ProductID })'">
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Category.CategoryName)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Supplier.CompanyName)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.ProductName)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.UnitPrice)
+                                        </td>
+                                        <td>
+                                            @if (item.Picture != null)
+                                            {
+                                                <img src="@item.Picture.Split(',')[0]" alt="Alternate Text" style="width:50px;height:50px;" />
 
-                                            @*foreach (var address in item.Picture.Split(','))
-                {
-                    // 這個是多張圖片顯示foreach
-                }
+                                                @*foreach (var address in item.Picture.Split(','))
 
-                  // 上傳單張圖片單張 方法1.本機端
-                  if (item.Picture.Substring(item.Picture.Length - 3, 3) == "jpg")
-                       {
-                        <img src="@item.Picture" alt="Alternate Text" style="width:100px;height:100px;" />
-                       }
-                  else
-                       {
-                         <video width="300" height="300" controls>
-                         <source src="@Url.Content("~/Photo/Product/" + item.Picture)" type=video/mp4 />
-                         </video>
-                       }*@
-                                        }
-                                        else
-                                        {
-                                            <img src="@Url.Content("~/Photos/1574835328175.jpg")" alt="Alternate Text" style="width:30px;height:30px;" />
-                                        }
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.Description)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.Quantity)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.SalesPrice)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.Status)
-                                    </td>
-                                    <td>
-                                        @Html.ActionLink("編輯", "Edit", new { id = item.ProductID }, new { @class = "btn-btn-primary" }) |
+                                                    {
+                                                        // 這個是多張圖片顯示foreach
+                                                    }
 
-                                        @Html.ActionLink("刪除", "Delete", new { id = item.ProductID }, new { @class = "btn-btn-danger" })|
+                                                      // 上傳單張圖片單張 方法1.本機端
+                                                      if (item.Picture.Substring(item.Picture.Length - 3, 3) == "jpg")
+                                                           {
+                                                            <img src="@item.Picture" alt="Alternate Text" style="width:100px;height:100px;" />
+                                                           }
+                                                      else
+                                                           {
+                                                             <video width="300" height="300" controls>
+                                                             <source src="@Url.Content("~/Photo/Product/" + item.Picture)" type=video/mp4 />
+                                                             </video>
+                                                           }*@
+                                            }
+                                            else
+                                            {
+                                                <img src="@Url.Content("~/Photos/1574835328175.jpg")" alt="Alternate Text" style="width:90%;height:100px;" />
+                                            }
+                                        </td>
+                                        @*<td>
+                                            @Html.DisplayFor(modelItem => item.Description)
+                                        </td>*@
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Quantity)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.SalesPrice)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Status)
+                                        </td>
+                                        <td>
+                                           
+                                            @Html.ActionLink("編輯", "Edit", new { id = item.ProductID }, new { @class = "" }) 
 
-                                        @Html.ActionLink("上下架", "recall", new { id = item.ProductID }, new { @class = "btn-btn-danger" })
-                                    </td>
-                                </tr>
-                                  }
-                               </tbody>
+                                            @Html.ActionLink("刪除", "Delete", new { id = item.ProductID }, new { @class = "" })
+
+                                            @Html.ActionLink("上下架", "recall", new { id = item.ProductID }, new { @class = "btn-btn-danger" })
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
 
                         </table>
                     </div><!-- .animated -->
@@ -134,4 +135,24 @@
             });
         });
     </script>
+}
+@section topCSS{
+    <style>
+    th{
+    text-align:center;
+    width:10%;
+    }
+    /*td a:nth-child(1){
+        color:
+    }
+     td a:nth-child(2){
+        color:
+    }
+      td a:nth-child(3){
+        color:
+    }
+     .container{
+         background-color:aqua;
+     }*/
+    </style>
 }
