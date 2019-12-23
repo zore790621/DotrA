@@ -576,7 +576,7 @@ namespace DotrA_001.Controllers
         public ActionResult GoogleLogout()
         {
             HttpContext.GetOwinContext().Authentication.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
-            return Redirect("https://www.google.com/accounts/Logout?continue=https://appengine.google.com/_ah/logout?continue=https://localhost:44318/Members/Logout");
+            return Redirect("https://www.google.com/accounts/Logout?continue=https://appengine.google.com/_ah/logout?continue=https://dotrawebsite.azurewebsites.net/Members/Logout");
         }
         #endregion
         #region ===CRUD===
