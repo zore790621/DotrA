@@ -18,17 +18,24 @@
             </div>
         </div>
         <br />
+                @Html.HiddenFor(x => x.ProductId)
         <div class="tbody">
-           
-                <div class="tr">
-                    <div class="td"><a href="#"><span class="ion-ios-close"></span></a></div>
-                    <div class="td"><img src="@Model.Picture" width="50" height="50" /></div>
-                    <div class="td">@pd.ProductName</div>
-                    <div class="td"> @pd.Price</div>
-                    <div class="td">@pd.Quantity</div>
-                    <div class="td"> @pd.Total</div>
+
+            <div class="tr">
+                <div class="td"><a href="#"><span class="ion-ios-close"></span></a></div>
+                <div class="td"><img src="@Model.Picture" width="50" height="50" /></div>
+                <div class="td" id="ProductName">@Model.ProductName</div>
+                <div class="td" id="shopcartprice"> @Model.Price</div>
+                <div class="td">
+                    <div class="onquantity">
+                        <span class="next" onclick="btnNum('next')"></span>
+                        <span class="prev" onclick="btnNum('prev')"></span>
+                        <div id="box"><span>1</span></div>
+                    </div>
                 </div>
-           
+                <div class="td" id="shopcarttotal">金額</div>
+            </div>
+
         </div>
     </div>
 </div>
