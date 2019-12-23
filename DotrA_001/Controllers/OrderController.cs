@@ -19,7 +19,7 @@ namespace DotrA_001.Controllers
 
         public ActionResult Index()
         {
-            bool toint = int.TryParse(((FormsIdentity)User.Identity).Ticket.UserData.ToString(), out int UID);
+            bool toint = int.TryParse(((System.Security.Claims.ClaimsIdentity)User.Identity).RoleClaimType, out int UID);
             if (toint == false)
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             var source = db.Members.FirstOrDefault(x => x.MemberID == UID);
@@ -41,7 +41,7 @@ namespace DotrA_001.Controllers
         [HttpPost]
         public ActionResult Index(MemderOrderViewModel Alllist)
         {
-            bool toint = int.TryParse(((FormsIdentity)User.Identity).Ticket.UserData.ToString(), out int UID);
+            bool toint = int.TryParse(((System.Security.Claims.ClaimsIdentity)User.Identity).RoleClaimType, out int UID);
             if (toint == false)
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             var source = db.Members.FirstOrDefault(x => x.MemberID == UID);
@@ -55,7 +55,7 @@ namespace DotrA_001.Controllers
                     var currentcart = Models.Operation.GetCurrentCart();
 
                     //取得目前登入使用者Id
-                    var userId = ((FormsIdentity)User.Identity).Ticket.UserData;
+                    var userId = ((System.Security.Claims.ClaimsIdentity)User.Identity).RoleClaimType;
                     try
                     {
                         //建立Order物件

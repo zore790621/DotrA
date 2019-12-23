@@ -17,7 +17,7 @@ namespace DotrA_001.Controllers
         [WebMethod(EnableSession = true)]
         public ActionResult Index(int productid)
         {
-            bool toint = int.TryParse(((FormsIdentity)User.Identity).Ticket.UserData.ToString(), out int UID);
+            bool toint = int.TryParse(((System.Security.Claims.ClaimsIdentity)User.Identity).RoleClaimType, out int UID);
             if (toint == false)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);

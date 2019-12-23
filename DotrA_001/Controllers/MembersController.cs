@@ -207,13 +207,13 @@ namespace DotrA_001.Controllers
 								// adding following 2 claim just for supporting default antiforgery provider
 								new Claim(ClaimTypes.NameIdentifier, user.Email),
                                 new Claim("http://schemas.microsoft.com/accesscontrolservice/2010/07/claims/identityprovider", "ASP.NET Identity", "http://www.w3.org/2001/XMLSchema#string"),
-
+                        
                                 new Claim(ClaimTypes.Name, user.Name),
                                 new Claim(ClaimTypes.Email, user.Email),
 								// optionally you could add roles if any
 								new Claim(ClaimTypes.Role, "User")
                     },
-                    CookieAuthenticationDefaults.AuthenticationType, "Local", "456");
+                    CookieAuthenticationDefaults.AuthenticationType, "Local", user.MemberID.ToString());
 
                     HttpContext.GetOwinContext().Authentication.SignIn(
                                 new AuthenticationProperties { AllowRefresh = true, IsPersistent = false }, ident);
@@ -409,7 +409,7 @@ namespace DotrA_001.Controllers
         #region ===修改會員資料===
         public ActionResult EditProfile(int? id)
         {
-            if (id == null || ((FormsIdentity)User.Identity).Ticket.UserData != id.ToString())
+            if (id == null || ((System.Security.Claims.ClaimsIdentity)User.Identity).RoleClaimType != id.ToString())
             {
                 return RedirectToAction("Index", "Home");
             }
