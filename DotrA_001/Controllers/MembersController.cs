@@ -22,6 +22,39 @@ using Microsoft.AspNet.Identity;
 
 namespace DotrA_001.Controllers
 {
+    /*public class IdServer {
+        public void IdentitySignin(AppUserState appUserState, string providerKey = null, bool isPersistent = false)
+        {
+            var claims = new List<Claim>();
+
+            // create required claims
+            claims.Add(new Claim(ClaimTypes.NameIdentifier, appUserState.UserId));
+            claims.Add(new Claim(ClaimTypes.Name, appUserState.Name));
+
+            // custom – my serialized AppUserState object
+            claims.Add(new Claim("userState", appUserState.ToString()));
+
+            var identity = new ClaimsIdentity(claims, DefaultAuthenticationTypes.ApplicationCookie);
+
+            AuthenticationManager.SignIn(new AuthenticationProperties()
+            {
+                AllowRefresh = true,
+                IsPersistent = isPersistent,
+                ExpiresUtc = DateTime.UtcNow.AddDays(7)
+            }, identity);
+        }
+
+        public void IdentitySignout()
+        {
+            AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie,
+                                            DefaultAuthenticationTypes.ExternalCookie);
+        }
+
+        private IAuthenticationManager AuthenticationManager
+        {
+            get { return HttpContext.GetOwinContext().Authentication; }
+        }
+    }*/
     public class MembersController : Controller
     {
         private DotrADb db = new DotrADb();
@@ -148,26 +181,42 @@ namespace DotrA_001.Controllers
                 if (Account != null)
                 {
                     #region ===驗證票證===
-                    //為所提供的使用者名稱建立驗證票證，並將該票證加入至回應的Cookie,或加入至URL
-                    //FormsAuthentication.SetAuthCookie(member.MemberAccount, false);// createPersistentCookie:false(不要記住我)
-                    //Session["MemberAccount"] = user.MemberAccount.ToString();
-                    //Session["MemberID"] = user.MemberID;//為了修改會員資料
+                    ////為所提供的使用者名稱建立驗證票證，並將該票證加入至回應的Cookie,或加入至URL
+                    ////FormsAuthentication.SetAuthCookie(member.MemberAccount, false);// createPersistentCookie:false(不要記住我)
+                    ////Session["MemberAccount"] = user.MemberAccount.ToString();
+                    ////Session["MemberID"] = user.MemberID;//為了修改會員資料
 
-                    int timeout = login.RememberMe ? 1440 : 10; // 525600 min = 1 year
-                    var ticket = new FormsAuthenticationTicket(
-                        version: 1,
-                        name: login.MemberAccount, //可以放使用者Id
-                        issueDate: DateTime.UtcNow,//現在UTC時間
-                        expiration: DateTime.UtcNow.AddHours(timeout),//Cookie有效時間=現在時間往後+1小時
-                        isPersistent: login.RememberMe,// 是否要記住我 true or false
-                        userData: user.MemberID.ToString(), //可以放使用者角色名稱
-                        cookiePath: FormsAuthentication.FormsCookiePath
-                        );
-                    string encrypted = FormsAuthentication.Encrypt(ticket);
-                    var cookie = new HttpCookie(FormsAuthentication.FormsCookieName, encrypted);
-                    cookie.Expires = DateTime.Now.AddMinutes(timeout);
-                    cookie.HttpOnly = true;
-                    Response.Cookies.Add(cookie);
+                    //int timeout = login.RememberMe ? 1440 : 10; // 525600 min = 1 year
+                    //var ticket = new FormsAuthenticationTicket(
+                    //    version: 1,
+                    //    name: login.MemberAccount, //可以放使用者Id
+                    //    issueDate: DateTime.UtcNow,//現在UTC時間
+                    //    expiration: DateTime.UtcNow.AddHours(timeout),//Cookie有效時間=現在時間往後+1小時
+                    //    isPersistent: login.RememberMe,// 是否要記住我 true or false
+                    //    userData: user.MemberID.ToString(), //可以放使用者角色名稱
+                    //    cookiePath: FormsAuthentication.FormsCookiePath
+                    //    );
+                    //string encrypted = FormsAuthentication.Encrypt(ticket);
+                    //var cookie = new HttpCookie(FormsAuthentication.FormsCookieName, encrypted);
+                    //cookie.Expires = DateTime.Now.AddMinutes(timeout);
+                    //cookie.HttpOnly = true;
+                    //Response.Cookies.Add(cookie);
+
+                    var ident = new ClaimsIdentity(
+                    new[] { 
+								// adding following 2 claim just for supporting default antiforgery provider
+								new Claim(ClaimTypes.NameIdentifier, user.Email),
+                                new Claim("http://schemas.microsoft.com/accesscontrolservice/2010/07/claims/identityprovider", "ASP.NET Identity", "http://www.w3.org/2001/XMLSchema#string"),
+
+                                new Claim(ClaimTypes.Name, user.Name),
+                                new Claim(ClaimTypes.Email, user.Email),
+								// optionally you could add roles if any
+								new Claim(ClaimTypes.Role, "User")
+                    },
+                    CookieAuthenticationDefaults.AuthenticationType, "Local", "456");
+
+                    HttpContext.GetOwinContext().Authentication.SignIn(
+                                new AuthenticationProperties { AllowRefresh = true, IsPersistent = false }, ident);
                     #endregion
                     return RedirectToAction("Index", "Home");
                     //return RedirectToAction("Index", "Members");
@@ -196,8 +245,11 @@ namespace DotrA_001.Controllers
         }
         public ActionResult Logout()
         {
-            FormsAuthentication.SignOut();//登出,移除身份驗證資料cookie 
-            //HttpContext.GetOwinContext().Authentication.SignOut(new AuthenticationProperties { IsPersistent = false });//google登出
+            //FormsAuthentication.SignOut();//登出,移除身份驗證資料cookie 
+            HttpContext.GetOwinContext().Authentication.SignOut(
+                        new AuthenticationProperties { IsPersistent = false });
+
+            //HttpContext.GetOwinContext().Authentication.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
             //Session.Abandon();//清除伺服器記憶體中的 Session  
             return RedirectToAction("Index", "Home");
         }
@@ -460,8 +512,7 @@ namespace DotrA_001.Controllers
             return View(vm);
         }
         #endregion
-        #region ===Google Login 未完成===
-        [AllowAnonymous]
+        #region ===Google Login===
         public void SignIn(string ReturnUrl = "/", string type = "")
         {
             if (!Request.IsAuthenticated)
@@ -507,7 +558,7 @@ namespace DotrA_001.Controllers
 								// optionally you could add roles if any
 								new Claim(ClaimTypes.Role, "User")
                     },
-                    CookieAuthenticationDefaults.AuthenticationType);
+                    CookieAuthenticationDefaults.AuthenticationType, "Google", "456");
 
 
             HttpContext.GetOwinContext().Authentication.SignIn(
@@ -517,7 +568,7 @@ namespace DotrA_001.Controllers
         }
         public ActionResult GoogleLogout()
         {
-            HttpContext.GetOwinContext().Authentication.SignOut(new AuthenticationProperties { IsPersistent = false });
+            HttpContext.GetOwinContext().Authentication.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
             return Redirect("https://www.google.com/accounts/Logout?continue=https://appengine.google.com/_ah/logout?continue=https://localhost:44318/Members/Logout");
         }
         #endregion
