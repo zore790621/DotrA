@@ -17,7 +17,7 @@ namespace Database.Models
         public int MemberID { get; set; }
         [Display(Name = "±b¸¹")]
         [Required(ErrorMessage = "¥²¶ñÄæ¦ì")]
-        [StringLength(20)]
+        [StringLength(50)]
         public string MemberAccount { get; set; }
 
         [Display(Name = "±K½X")]
@@ -52,7 +52,7 @@ namespace Database.Models
 
         public bool EmailVerified { get; set; }
 
-        public Guid ActivationCode { get; set; }
+        public Guid? ActivationCode { get; set; }
 
         [StringLength(100)]
         public string ResetPasswordCode { get; set; }

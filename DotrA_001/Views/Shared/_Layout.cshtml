@@ -6,8 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     @*<link href="https://fonts.googleapis.com/css?family=Dancing+Script&display=swap" rel="stylesheet">*@
 
-        @* 購物車Js *@
-        <script type="text/javascript">
+    @* 購物車Js *@
+    <script type="text/javascript">
         //網頁載入完成時執行之function
         $(document).ready(function () {
             console.log("ready!");
@@ -48,8 +48,8 @@
             });
         }
 
-        </script>
-    
+    </script>
+
 
 
 
@@ -147,7 +147,7 @@
             }
         /*移除購物車商品按鈕*/
         .removebtn {
-            float:right;
+            float: right;
             background-color: red; /* Green */
             border-radius: 50px;
             border: none;
@@ -173,6 +173,7 @@
     @RenderSection("topJS", required: false)
     <link href="~/Assets/css/Glow.css" rel="stylesheet" />
     <link href="~/Assets/css/LoginStyle.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css" rel="stylesheet">
 </head>
 <body class="goto-here">
     @Html.Partial("_navbar")

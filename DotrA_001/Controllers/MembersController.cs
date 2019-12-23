@@ -441,7 +441,6 @@ namespace DotrA_001.Controllers
                 Member member = db.Members.Find(vm.MemberID);
 
                 member.MemberID = vm.MemberID;
-                member.MemberAccount = vm.MemberAccount;
                 member.Name = vm.MemberName;
                 member.Phone = vm.Phone;
                 member.Address = vm.Address;
@@ -534,14 +533,20 @@ namespace DotrA_001.Controllers
                 return RedirectToAction("Index");
             }
 
-            var user = db.Members.FirstOrDefault(x => x.Email == loginInfo.emailaddress);
+            var user = db.Members.FirstOrDefault(x => x.MemberAccount == loginInfo.nameidentifier);
 
             if (user == null)
             {
                 user = new Member
                 {
                     Email = loginInfo.emailaddress,
-                    Name = loginInfo.name
+                    Name = loginInfo.givenname + loginInfo.surname,
+                    MemberAccount = loginInfo.nameidentifier,
+                    EmailVerified= true,
+                    Password= "Google",
+                    HashCode=loginInfo.nameidentifier,
+              Address="Google",
+              Phone="Google"
                 };
                 db.Members.Add(user);
                 db.SaveChanges();
@@ -558,7 +563,7 @@ namespace DotrA_001.Controllers
 								// optionally you could add roles if any
 								new Claim(ClaimTypes.Role, "User")
                     },
-                    CookieAuthenticationDefaults.AuthenticationType, "Google", "456");
+                    CookieAuthenticationDefaults.AuthenticationType, "Google", user.MemberID.ToString());
 
 
             HttpContext.GetOwinContext().Authentication.SignIn(
