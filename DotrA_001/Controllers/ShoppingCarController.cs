@@ -48,7 +48,7 @@ namespace DotrA_001.Controllers
         [HttpPost]
         public ActionResult Index(ShopCartOrderView shopcartorder)
         {
-            bool toint = int.TryParse(((FormsIdentity)User.Identity).Ticket.UserData.ToString(), out int UID);
+            bool toint = int.TryParse(((System.Security.Claims.ClaimsIdentity)User.Identity).RoleClaimType, out int UID);
             if (toint == false)
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             var source = db.Members.FirstOrDefault(x => x.MemberID == UID);
@@ -62,7 +62,7 @@ namespace DotrA_001.Controllers
                     //var currentcart = Models.Operation.GetCurrentCart();
 
                     //取得目前登入使用者Id
-                    var userId = ((FormsIdentity)User.Identity).Ticket.UserData;
+                    var userId = UID;
                     try
                     {
                         //建立Order物件
@@ -100,7 +100,10 @@ namespace DotrA_001.Controllers
                         db.SaveChanges();
                         //currentcart.ClearCart();
                         transaction.Commit();
-                        return Content("訂購成功");
+                        //return RedirectToAction("Payment","Order", new { id = odtest.OrderID });
+                        //return Json(new { RedirectUrl = $"/Order/Payment?id={order.OrderID}" });
+                        return Content($"/Order/Payment?id={order.OrderID}");
+                        //return Content("訂購成功");
                     }
                     catch (Exception)
                     {

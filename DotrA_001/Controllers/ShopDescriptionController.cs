@@ -16,11 +16,11 @@ namespace DotrA_001.Controllers
         // GET: ShopDescription
         private DotrADb db = new DotrADb();
         [WebMethod(EnableSession = true)]
-        [Authorize]
+        //[Authorize]
         public ActionResult Index(int productid)
         {
-            bool toint = int.TryParse(((FormsIdentity)User.Identity).Ticket.UserData, out int UID);
-            var source = db.Members.FirstOrDefault(x => x.MemberID == UID);
+            //bool toint = int.TryParse(((System.Security.Claims.ClaimsIdentity)User.Identity).RoleClaimType, out int UID);
+            //var source = db.Members.FirstOrDefault(x => x.MemberID == UID);
             var productorder = db.Products.FirstOrDefault(x => x.ProductID == productid);
 
             var shopcartresult = new ShopCartOrderView()

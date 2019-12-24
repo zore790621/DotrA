@@ -313,9 +313,9 @@
                     ShipperID : $('#ShipperID').val(),
                     PaymentID : $('#PaymentID').val()
                 },
-                dataType: "dataType",
+                //dataType: "dataType",
                 success: function (response) {
-
+                    window.location.href = response;
             }
             });
             //console.log(ProductId);

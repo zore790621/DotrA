@@ -154,7 +154,7 @@
                             </div>
                             <p class="bottom-area d-flex px-3">
                                 <a onclick="AddToCart('@item.ProductID')" href="javascript:void(0);" role="button" class="add-to-cart text-center py-2 mr-1"><span>Add to cart <i class="ion-ios-add ml-1"></i></span></a>
-                                <a href="@Url.Action("index", "ShoppingCar", new { memberid = ((FormsIdentity)User.Identity).Ticket.UserData, productid = item.ProductID })" class="buy-now text-center py-2">Buy now<span><i class="ion-ios-cart ml-1"></i></span></a>
+                                <a href="@Url.Action("index", "ShoppingCar", new { memberid =((System.Security.Claims.ClaimsIdentity)User.Identity).RoleClaimType, productid = item.ProductID })" class="buy-now text-center py-2">Buy now<span><i class="ion-ios-cart ml-1"></i></span></a>
                             </p>
                         </div>
                     </div>

@@ -7,49 +7,6 @@
     <link rel="shortcut icon" href="~/Assets/images/apple-touch-icon.png">
     @*<link href="https://fonts.googleapis.com/css?family=Dancing+Script&display=swap" rel="stylesheet">*@
 
-    @* 購物車Js *@
-    <script type="text/javascript">
-        //網頁載入完成時執行之function
-        $(document).ready(function () {
-            console.log("ready!");
-        });
-
-        //加入編號為productId的商品進購物車
-        function AddToCart(productId) {
-            $.ajax({
-                type: 'POST',
-                url: '@Url.Action("AddToCart", "SanTestCart")',
-                data: { id: productId }
-            })
-            .done(function (msg) {
-                //將回傳的購物車頁面 填入 li#Cart
-                $('li#Cart').html(msg);
-            });
-        }
-        function RemoveFromCart(productId) {
-            $.ajax({
-                type: 'POST',
-                url: '@Url.Action("RemoveFromCart", "SanTestCart")',
-                data: { id: productId }
-            })
-            .done(function (msg) {
-                //將回傳的購物車頁面 填入 li#Cart
-                $('li#Cart').html(msg);
-            });
-        }
-        function ClearCart() {
-            $.ajax({
-                type: 'POST',
-                url: '@Url.Action("ClearCart", "SanTestCart")',
-                data: {  }
-            })
-            .done(function (msg) {
-                //將回傳的購物車頁面 填入 li#Cart
-                $('li#Cart').html(msg);
-            });
-        }
-
-    </script>
 
 
 
@@ -172,6 +129,50 @@
     @Scripts.Render("~/bundles/modernizr")
     @RenderSection("topCSS", required: false)
     @RenderSection("topJS", required: false)
+    @* 購物車Js *@
+    <script type="text/javascript">
+        //網頁載入完成時執行之function
+        //$(document).ready(function () {
+        //    console.log("ready!");
+        //});
+
+        //加入編號為productId的商品進購物車
+        function AddToCart(productId) {
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Action("AddToCart", "SanTestCart")',
+                data: { id: productId }
+            })
+            .done(function (msg) {
+                //將回傳的購物車頁面 填入 li#Cart
+                $('li#Cart').html(msg);
+            });
+        }
+        function RemoveFromCart(productId) {
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Action("RemoveFromCart", "SanTestCart")',
+                data: { id: productId }
+            })
+            .done(function (msg) {
+                //將回傳的購物車頁面 填入 li#Cart
+                $('li#Cart').html(msg);
+            });
+        }
+        function ClearCart() {
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Action("ClearCart", "SanTestCart")',
+                data: {  }
+            })
+            .done(function (msg) {
+                //將回傳的購物車頁面 填入 li#Cart
+                $('li#Cart').html(msg);
+            });
+        }
+
+    </script>
+
     <link href="~/Assets/css/Glow.css" rel="stylesheet" />
     <link href="~/Assets/css/LoginStyle.css" rel="stylesheet" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css" rel="stylesheet">

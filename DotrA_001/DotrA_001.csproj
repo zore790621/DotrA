@@ -391,6 +391,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Areas\minishop\Controllers\minishopController.cs" />
     <Compile Include="Areas\minishop\minishopAreaRegistration.cs" />
+    <Compile Include="Controllers\ApiProductsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\OrderController.cs" />
     <Compile Include="Controllers\ProductsController.cs" />
@@ -543,6 +544,8 @@
     <Content Include="Assets\js\popper.min.js" />
     <Content Include="Assets\js\range.js" />
     <Content Include="Assets\js\scrollax.min.js" />
+    <Content Include="bin\DotrA_001.dll" />
+    <Content Include="bin\DotrA_001.pdb" />
     <Content Include="Content\animate.css" />
     <Content Include="Content\animate.min.css" />
     <Content Include="Content\bootstrap-datepicker.css" />
@@ -564,6 +567,7 @@
     <Content Include="Content\magnific-popup.css" />
     <Content Include="Content\owl.carousel.css" />
     <Content Include="Content\PagedList.css" />
+    <Content Include="ECPay.Payment.Integration.dll" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="Global.asax" />
@@ -624,6 +628,7 @@
     <Content Include="Scripts\esm\popper-utils.min.js.map" />
     <Content Include="Scripts\esm\popper-utils.js.map" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Content Include="bundleconfig.json" />
     <None Include="Properties\PublishProfiles\CustomProfile.pubxml" />
     <None Include="Properties\PublishProfiles\DotrAWebsite - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
@@ -788,12 +793,14 @@
     <Content Include="Views\Order\Index.cshtml" />
     <Content Include="Views\Order\Payment.cshtml" />
     <Content Include="Views\ShopDescription\Index.cshtml" />
+    <Content Include="Views\Shop\PriceRange.cshtml" />
+    <Content Include="Views\Shop\PageSelection.cshtml" />
+    <Content Include="Views\ShoppingCar\Recipient.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Assets\jquery\" />
     <Folder Include="Photo\Product\" />
-    <Folder Include="Views\SanTestCart\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
