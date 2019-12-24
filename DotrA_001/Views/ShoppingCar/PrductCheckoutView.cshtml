@@ -1,9 +1,9 @@
 ﻿@*商品結帳區域*@
 
-@model Member
-    @{ 
-        var currentCart = DotrA_001.Models.Operation.GetCurrentCart();
-    }
+@model DotrA_001.Models.ShopCartOrderView
+@{
+
+}
 
 <div class="container">
     <div id="css-table" class="css-table">
@@ -18,30 +18,24 @@
             </div>
         </div>
         <br />
+                @Html.HiddenFor(x => x.ProductId)
         <div class="tbody">
+
             <div class="tr">
+                <div class="td"><a href="#"><span class="ion-ios-close"></span></a></div>
+                <div class="td"><img src="@Model.Picture" width="50" height="50" /></div>
+                <div class="td" id="ProductName">@Model.ProductName</div>
+                <div class="td" id="shopcartprice"> @Model.Price</div>
                 <div class="td">
-                    <a href="#"><span class="ion-ios-close"></span></a>
-                </div>
-
-                <div class="td">
-                    <img src="~/Assets/images/image1.jpg" />
-                </div>
-
-                <div class="td">
-                    <h3>Nike</h3>
-                    @*<p>Far far away, behind the word mountains, far from the countries</p>*@
-                </div>
-
-                <div class="td">$15.70</div>
-                <div class="td">
-                    <div class="input-group mb-3">
-                        <input type="text" name="quantity"
-                               class="quantity form-control input-number" value="1" min="1" max="100">
+                    <div class="onquantity">
+                        <span class="next" onclick="btnNum('next')"></span>
+                        <span class="prev" onclick="btnNum('prev')"></span>
+                        <div id="box"><span>1</span></div>
                     </div>
                 </div>
-                <div class="td">$15.70</div>
+                <div class="td" id="shopcarttotal">金額</div>
             </div>
+
         </div>
     </div>
 </div>
