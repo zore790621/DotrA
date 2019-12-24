@@ -14,10 +14,7 @@ namespace DotrA_001.Controllers
     public class ShoppingCarController : Controller
     {
 
-        private DotrADb db = new DotrADb();
-        // GET: Order
-
-        
+        private DotrADb db = new DotrADb();   
         // GET: ShoppingCar
         [WebMethod(EnableSession = true)]
         public ActionResult Index(string memberid, int productid)

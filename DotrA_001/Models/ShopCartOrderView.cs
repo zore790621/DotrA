@@ -17,5 +17,7 @@ namespace DotrA_001.Models
         public string RecipientAddress { get; set; }
         public int ShipperID { get; set; }
         public int PaymentID { get; set; }
+
+        public string Description { get; set; }
     }
 }

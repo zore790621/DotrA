@@ -34,7 +34,7 @@ namespace DotrA_001.Controllers
                     CategoryID = pr.CategoryID,
                     CategoryName = c.CategoryName,
                     Description = pr.Description,
-                    Picture = pr.Picture,
+                    Picture = pr.Picture,   
                     ProductID = pr.ProductID,
                     ProductName = pr.ProductName,
                     SupplierID = pr.SupplierID,
