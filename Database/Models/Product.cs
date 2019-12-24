@@ -19,10 +19,13 @@ namespace Database.Models
         [Required]
         [StringLength(50)]
         public string ProductName { get; set; }
+
         [Display(Name = "供應商")]
         public int SupplierID { get; set; }
+
         [Display(Name = "產品種類")]
         public int CategoryID { get; set; }
+
         [Display(Name = "產品進價")]
         [Column(TypeName = "money")]
         public decimal UnitPrice { get; set; }

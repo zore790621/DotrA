@@ -68,7 +68,7 @@
                                         <td>
                                             @if (item.Picture != null)
                                             {
-                                                <img src="@item.Picture.Split(',')[0]" alt="Alternate Text" style="width:50px;height:50px;" />
+                                                <img src="@item.Picture.Split(',')[0]" alt="Alternate Text" style="width:100px;height:100px;" />
 
                                                 @*foreach (var address in item.Picture.Split(','))
 
@@ -90,7 +90,7 @@
                                             }
                                             else
                                             {
-                                                <img src="@Url.Content("~/Photos/1574835328175.jpg")" alt="Alternate Text" style="width:90%;height:100px;" />
+                                                <img src="@Url.Content("~/Photos/1574835328175.jpg")" alt="Alternate Text" style="width:100px;height:100px;" />
                                             }
                                         </td>
                                         @*<td>
@@ -110,6 +110,7 @@
                                             @Html.ActionLink("編輯", "Edit", new { id = item.ProductID }, new { @class = "" }) 
 
                                             @Html.ActionLink("刪除", "Delete", new { id = item.ProductID }, new { @class = "" })
+                                            <br/>
 
                                             @Html.ActionLink("上下架", "recall", new { id = item.ProductID }, new { @class = "btn-btn-danger" })
                                         </td>
