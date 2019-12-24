@@ -60,9 +60,7 @@ namespace BackEndSystem.Controllers
             //    Application["TotalRow"] = db.Products.Count();
 
             //}
-            string[] pName = { "u", "2", "c", "p" };
-            ViewBag.PName = pName;
-
+          
 
             return View();
         }
@@ -118,7 +116,7 @@ namespace BackEndSystem.Controllers
                 ProductName = x.FirstOrDefault().Product.ProductName,
                 Quantity = x.Sum(y => y.Quantity),
                 Amount = x.Sum(y => y.SubTotal)
-            }).OrderByDescending(x => x.Quantity).Take(5);
+            }).OrderByDescending(x => x.Quantity).Take(10);
             return Json(result);
         }
 

@@ -87,7 +87,7 @@ namespace BackEndSystem.Controllers
         // 詳細資訊，請參閱 https://go.microsoft.com/fwlink/?LinkId=317598。
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ProductID,ProductName,SupplierID,CategoryID,UnitPrice,Picture,Description,Quantity,SalesPrice")] Product products)
+        public ActionResult Edit([Bind(Include = "ProductID,ProductName,SupplierID,CategoryID,UnitPrice,Picture,Description,Quantity,SalesPrice,Status")] Product products)
         {
             if (ModelState.IsValid)
             {
