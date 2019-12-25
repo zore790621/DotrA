@@ -130,15 +130,15 @@ namespace BackEndSystem.Controllers
         [HttpPost]
         public void GetPaymentResult(ECPayResult result)
         {
-            logger.Info($"GetPaymentResult start {result.RtnCode} {result.MerchantTradeNo}");
-            var orderID = int.Parse(result.MerchantTradeNo.Remove(0, 5));
+            var orderID = int.Parse(result.CustomField1);
+            logger.Info($"{orderID} {result.CustomField1}");
             Order o = db.Orders.Find(orderID);
             //logger.Info($"Find : {JsonConvert.SerializeObject(o)}");
             o.PaymentStatus = result.RtnCode;
             
             db.SaveChanges();
 
-            //logger.Info($"GetPaymentResult end {o.PaymentStatus}");
+            logger.Info($"GetPaymentResult end {o.PaymentStatus}");
         }
     }
 }

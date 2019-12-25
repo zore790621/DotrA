@@ -54,7 +54,7 @@
                                             }
                                             else
                                             {
-                                                <td><span class="badge badge-secondary">尚未付款</span></td>
+                                                <td><span class="badge badge-secondary"><a href="@Url.Action("Payment","Order", new { id= m.OrderID})">尚未付款</a></span></td>
                                             }
                                             <td>@Html.DisplayFor(x => m.OrderDate)</td>
                                         </tr>

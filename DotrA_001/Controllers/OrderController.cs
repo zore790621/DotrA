@@ -113,7 +113,7 @@ namespace DotrA_001.Controllers
         {
             if (request.RtnCode == 1)
             {
-                TempData["message"] = "您已付款成功，我們會即刻開始準備出貨";
+                TempData["SuccessPayment"] = "您已付款成功，我們會即刻開始準備出貨";
                 return RedirectToAction("Index", "Home");
             }
            
@@ -142,7 +142,7 @@ namespace DotrA_001.Controllers
                     oPayment.Send.ReturnURL = "https://dotrabackend.azurewebsites.net/Orders/GetPaymentResult";//付款完成通知回傳的網址
                     oPayment.Send.ClientBackURL = "https://dotrawebsite.azurewebsites.net/";//瀏覽器端返回的廠商網址
                     oPayment.Send.OrderResultURL = "https://dotrawebsite.azurewebsites.net/Order/GetResult";//瀏覽器端回傳付款結果網址
-                    oPayment.Send.MerchantTradeNo = "Dotra"+ id.ToString();//廠商的交易編號
+                    oPayment.Send.MerchantTradeNo = "Dotra"+new Random().Next(0, 99999).ToString();//廠商的交易編號
                     oPayment.Send.MerchantTradeDate = DateTime.Now;//廠商的交易時間
                     oPayment.Send.TotalAmount = Convert.ToInt32(o.OrderDetails.Sum(y => y.SubTotal));//交易總金額
                     oPayment.Send.TradeDesc = "交易描述";//交易描述
@@ -153,7 +153,7 @@ namespace DotrA_001.Controllers
                     oPayment.Send.DeviceSource = DeviceType.PC;//來源裝置
                     oPayment.Send.IgnorePayment = ""; //不顯示的付款方式
                     oPayment.Send.PlatformID = "";//特約合作平台商代號
-                    oPayment.Send.CustomField1 = "";
+                    oPayment.Send.CustomField1 = id.ToString();
                     oPayment.Send.CustomField2 = "";
                     oPayment.Send.CustomField3 = "";
                     oPayment.Send.CustomField4 = "";
