@@ -20,9 +20,9 @@ namespace DotrA_001.Controllers
             int isint_pid_val = PID.GetValueOrDefault();
 
             var pro =
-                from pr in db.Products
+                (from pr in db.Products
                 join c in db.Categories
-                on pr.CategoryID equals c.CategoryID
+                on pr.CategoryID equals c.CategoryID 
                 where (pr.Status == "上架" && IsInt_PID || pr.ProductID == isint_pid_val)
                 select new ProductView
                 {
@@ -35,7 +35,7 @@ namespace DotrA_001.Controllers
                     SupplierID = pr.SupplierID,
                     SalesPrice = pr.SalesPrice,
                     Status = pr.Status
-                };
+                }).Take(8);
             
             return View(pro);
         }
