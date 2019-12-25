@@ -5,32 +5,38 @@
 }
 
 <h2>購物精選</h2>
-<div class="fancy-collapse-panel">
-    <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
-        @foreach (var cat in Model.Category)
-        {
-            <div class="panel panel-default">
-                <div class="panel-heading" role="tab" id="headingOne">
-                    <h4 class="panel-title">
-                        <a data-toggle="collapse" data-parent="#accordion" href="#@cat.CategoryName" aria-expanded="true" aria-controls="collapseOne">
-                            @cat.CategoryName
-                        </a>
-                    </h4>
-                </div>
-                <div id="@cat.CategoryName" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
-                    <div class="panel-body">
-                        <ul>
-                            @foreach (var pro in Model.Product)
-                            {
-                                if (cat.CategoryID == pro.CategoryID)
+<div class="nav flex-column">
+    @foreach (var cat in Model.Category)
+    {
+        <a style ="line-height:3rem" href="@Url.Action("Index", "Shop", new { CID = cat.CategoryID , Page= 1})">@cat.CategoryName</a>
+    }
+</div>
+@*<div class="fancy-collapse-panel">
+        <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+            @foreach (var cat in Model.Category)
+            {
+                <div class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="headingOne">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#@cat.CategoryName" aria-expanded="true" aria-controls="collapseOne">
+                                @cat.CategoryName
+                            </a>
+                        </h4>
+                    </div>
+                    <div id="@cat.CategoryName" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+                        <div class="panel-body">
+                            <ul>
+                                @foreach (var pro in Model.Product)
                                 {
-                                    <li>@Html.ActionLink(pro.ProductName, "Index", new { CID = cat.CategoryID, PID = pro.ProductID }, null)</li>
+                                    if (cat.CategoryID == pro.CategoryID)
+                                    {
+                                        <li>@Html.ActionLink(pro.ProductName, "Index", new { CID = cat.CategoryID, PID = pro.ProductID }, null)</li>
+                                    }
                                 }
-                            }
-                        </ul>
+                            </ul>
+                        </div>
                     </div>
                 </div>
-            </div>
-        }
-    </div>
-</div>
+            }
+        </div>
+    </div>*@

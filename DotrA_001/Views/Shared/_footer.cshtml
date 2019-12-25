@@ -35,15 +35,13 @@
                     <h2 class="ftco-heading-2">Categories</h2>
                     <div class="d-flex">
                         <ul class="list-unstyled mr-l-5 pr-l-3 mr-4">
-                            <li><a href="#" class="py-2 d-block">親子</a></li>
-                            <li><a href="#" class="py-2 d-block">生活</a></li>
-                            <li><a href="#" class="py-2 d-block">休閒食品</a></li>
-                            <li><a href="#" class="py-2 d-block">3C配件</a></li>
-                            @*<li><a href="#" class="py-2 d-block">授權商品</a></li>*@
+                            <li>@Html.ActionLink("生活", "Index", "Shop", new { CID = 1 ,Page= 1}, new { @class = "py-2 d-block" })</li>
+                            <li>@Html.ActionLink("休閒食品", "Index", "Shop", new { CID = 3 ,Page= 1}, new { @class = "py-2 d-block" })</li>
+                            <li>@Html.ActionLink("授權商品", "Index", "Shop", new { CID = 7 ,Page= 1}, new { @class = "py-2 d-block" })</li>
+                            <li>@Html.ActionLink("親子", "Index", "Shop", new { CID = 8 ,Page= 1}, new { @class = "py-2 d-block" })</li>
                         </ul>
                         <ul class="list-unstyled mr-l-5 pr-l-3 mr-4">
-                            @*<li><a href="#" class="py-2 d-block">3C配件</a></li>*@
-                            <li><a href="#" class="py-2 d-block">授權商品</a></li>
+                            <li>@Html.ActionLink("3C配件", "Index", "Shop", new { CID = 9 ,Page= 1}, new { @class = "py-2 d-block" })</li>
                         </ul>
                         @*<ul class="list-unstyled">
                             <li><a href="#" class="py-2 d-block">FAQs</a></li>

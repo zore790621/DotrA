@@ -7,7 +7,7 @@ namespace DotrA_001.Models
 {
     public class ECPayModel
     {
-        public int RtnCode { get; set; }
+        public int? RtnCode { get; set; }
 
         public string RtnMsg { get; set; }
 
