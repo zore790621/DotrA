@@ -86,7 +86,7 @@
                                     }
                                     else
                                     {
-                                        <dd><span class="badge badge-secondary">尚未付款</span></dd>
+                                        <dd><span class="badge badge-secondary"><a href="@Url.Action("Payment","Order", new { id= Model.OrderID})">尚未付款</a></span></dd>
                                     }
                                 </dl>
                                 <table class="table table-striped table-bordered">
