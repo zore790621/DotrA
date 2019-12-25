@@ -129,6 +129,15 @@
     @Scripts.Render("~/bundles/modernizr")
     @RenderSection("topCSS", required: false)
     @RenderSection("topJS", required: false)
+
+    @if (TempData["SuccessPayment"] != null)
+    {
+        <script type="text/javascript">
+    var message = @Html.Raw(Json.Encode(TempData["SuccessPayment"]));
+    alert(message);
+        </script>
+    }
+
     @* 購物車Js *@
     <script type="text/javascript">
         //網頁載入完成時執行之function

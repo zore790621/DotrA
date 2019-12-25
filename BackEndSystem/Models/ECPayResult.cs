@@ -10,5 +10,9 @@ namespace BackEndSystem.Models
         public int? RtnCode { get; set; }
 
         public string MerchantTradeNo { get; set; }
+
+        public string CustomField1 { get; set; }
+
+        public DateTime PaymentDate { get; set; }
     }
 }
