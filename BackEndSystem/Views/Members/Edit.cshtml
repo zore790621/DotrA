@@ -61,6 +61,7 @@
                                 <div class="col-md-offset-2 col-md-10">
                                     <input type="submit" value="儲存" class="btn btn-light" />
                                     <button type="button" class="btn btn-secondary" onclick="location.href = '@Url.Action("Delete", "Members", new { id = Model.MemberID})'">刪除</button>
+                                    @Html.ActionLink("返回列表", "Index",null,new {@class="btn btn-danger"})
                                 </div>
                             </div>
                         </div>
@@ -73,5 +74,5 @@
     </div>
 }
 <div>
-    @Html.ActionLink("返回列表", "Index")
-</div>
+    
+</

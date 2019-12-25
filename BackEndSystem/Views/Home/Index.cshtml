@@ -7,7 +7,7 @@
     <div class="content">
         <div class="animated fadeIn">
             <div class="row">
-                <div class="col-lg-3 col-md-6">
+                <div class="col-6">
                     <div class="card">
                         <div class="card-body">
                             <div class="stat-widget-five">
@@ -16,8 +16,8 @@
                                 </div>
                                 <div class="stat-content">
                                     <div class="text-left dib">
-                                        <div class="stat-text">$<span class="count">@ViewBag.Selltotal</span></div>
-                                        <div class="stat-heading">營業額</div>
+                                        <div class="stat-text">$<span class="count">@ViewBag.Selltotal</span></div>  @*style="white-space:pre-wrap"*@
+                                        <div class="stat-heading">總營業額</div>
                                     </div>
                                 </div>
                             </div>
@@ -25,7 +25,7 @@
                     </div>
                 </div>
 
-                <div class="col-lg-3 col-md-6">
+                <div class="col-6">
                     <div class="card">
                         <div class="card-body">
                             <div class="stat-widget-five">
@@ -43,7 +43,7 @@
                     </div>
                 </div>
 
-                <div class="col-lg-3 col-md-6">
+                <div class="col-6">
                     <div class="card">
                         <div class="card-body">
                             <div class="stat-widget-five">
@@ -61,7 +61,7 @@
                     </div>
                 </div>
 
-            <div class="col-lg-3 col-md-6">
+            <div class="col-6">
                 <div class="card">
                     <div class="card-body">
                         <div class="stat-widget-five">
@@ -85,27 +85,26 @@
 
 
 <div class="orders">
+        <div class="container">
     <div class="row">
-        <div class="col-xl-12">
-            <div class="col-lg-6">
+            <div class="col-6">
                 <div class="card">
-                    <div class="card-body">
+                    <div class="card-body" >
                         <h4 class="mb-3">產品統計圖表 </h4>
                         <canvas id="pieChart"></canvas>
                     </div>
                 </div>
             </div>
-            <div class="col-xl-6">
+            <div class="col-6">
                 <div class="card">
                     <div class="card-body">
                         <h4 class="box-title">當月產品總排名</h4>
                     </div>
-                    <div class="card-body--">
+                    <div class="card-body">
                         <div class="table-stats order-table ov-h">
                             <table class="table">
                                 <thead>
-                                    <tr>
-                                        <th>產品序列</th>
+                                    <tr>                                      
                                         <th>產品名稱</th>
                                         <th>銷售數量</th>
                                         <th>銷售金額</th>
@@ -114,7 +113,7 @@
                                 <tbody id="tableContent">
 
                                     <tr v-for="item in items">
-                                        <td><span class="name"></span></td>
+                                        
                                         <td><span class="name">{{item.ProductName}}</span></td>
                                         <td><span class="product">{{item.Quantity}}</span></td>
                                         <td><span class="count">{{item.Amount}}</span></td>
@@ -182,7 +181,7 @@
         }
 
         var ctx = document.getElementById("pieChart");
-        ctx.height = 300; 
+        ctx.height = 305; 
         var myChart = new Chart(ctx, {
             type: 'pie',
             data: {
@@ -190,14 +189,22 @@
                     data: @Html.Raw(Json.Encode(ViewBag.Quantity)),
                     backgroundColor: [
                         "rgba(0, 194, 146,0.9)",
+                        "rgba(0, 194, 146,0.8)",
                         "rgba(0, 194, 146,0.7)",
-                        "rgba(0, 194, 146,0.5)",                      
+                        "rgba(0, 194, 146,0.6)",   
+                        "rgba(0, 194, 146,0.5)",   
+                        "rgba(0, 194, 146,0.4)", 
+                        "rgba(0, 194, 146,0.3)",   
                         "rgba(0,0,0,0.07)",
                     ],
                     hoverBackgroundColor: [
                         "rgba(0, 194, 146,0.9)",
+                        "rgba(0, 194, 146,0.8)",
                         "rgba(0, 194, 146,0.7)",
+                        "rgba(0, 194, 146,0.6)",
                         "rgba(0, 194, 146,0.5)",
+                        "rgba(0, 194, 146,0.4)",
+                        "rgba(0, 194, 146,0.3)",
                         "rgba(0,0,0,0.07)",
                     ]
 
