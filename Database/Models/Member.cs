@@ -52,7 +52,7 @@ namespace Database.Models
 
         public bool EmailVerified { get; set; }
 
-        public Guid ActivationCode { get; set; }
+        public Guid? ActivationCode { get; set; }
 
         [StringLength(100)]
         public string ResetPasswordCode { get; set; }

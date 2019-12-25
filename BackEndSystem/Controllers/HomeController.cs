@@ -116,7 +116,7 @@ namespace BackEndSystem.Controllers
                 ProductName = x.FirstOrDefault().Product.ProductName,
                 Quantity = x.Sum(y => y.Quantity),
                 Amount = x.Sum(y => y.SubTotal)
-            }).OrderByDescending(x => x.Quantity).Take(10);
+            }).OrderByDescending(x => x.Quantity).Take(8);
             return Json(result);
         }
 

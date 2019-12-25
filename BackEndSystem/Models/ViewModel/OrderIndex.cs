@@ -23,7 +23,7 @@ namespace BackEndSystem.Models.ViewModel
 
         [Display(Name = "消費總金額")]
         [DisplayFormat(DataFormatString = "{0:C}")]
-        public decimal TotalPrice { get; set; }
+        public decimal? TotalPrice { get; set; }
 
         [Display(Name = "付款方式")]
         public string PaymentMethod { get; set; }

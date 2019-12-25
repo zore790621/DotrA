@@ -87,6 +87,7 @@
                                     <div class="col-md-10">
                                         @Html.EditorFor(model => model.SalesPrice, new { htmlAttributes = new { @class = "form-control" } })
                                         @Html.ValidationMessageFor(model => model.SalesPrice, "", new { @class = "text-danger" })
+                                        @Html.ActionLink("返回列表", "Index")
                                     </div>
                                 </div>
 

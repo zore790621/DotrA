@@ -112,7 +112,7 @@
                                             @Html.ActionLink("刪除", "Delete", new { id = item.ProductID }, new { @class = "" })
                                             <br />
 
-                                            @Html.ActionLink("上下架", "recall", new { id = item.ProductID }, new { @class = "btn-btn-danger" })
+                                            @Html.ActionLink("上下架", "recall", new { id = item.ProductID }, new { @class = "btn-btn-danger" }) @*要寫成btn btn-danger才可以顯示*@
                                         </td>
                                     </tr>
                                 }
