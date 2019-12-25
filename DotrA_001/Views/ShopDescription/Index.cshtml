@@ -64,9 +64,8 @@
                         <img src="@item " style="width:100px;height:100px" />
                     }
                 </div>
-                <div class="col-lg-6 col-md-12 col-sm-12">
-                    <a onclick="AddToCart('@Model.ProductId')" href="javascript:void(0);" class="btn btn-black py-3 px-5 mr-2">Add to Cart</a>
-
+                <div class="col-lg-6 col-md-12 col-sm-12"style="text-align:center">
+                    <a onclick="AddToCart('@Model.ProductId')" href="javascript:void(0);" class="btn btn-black py-3 px-5 ">Add to Cart</a>
                     @if (User.Identity.IsAuthenticated)
                     {
                         @Html.ActionLink("BUY NOW", "Index", "ShoppingCar", new { memberid = ((System.Security.Claims.ClaimsIdentity)User.Identity).RoleClaimType, productid = Model.ProductId }, new { @class = "btn btn-primary py-3 px-5" })
