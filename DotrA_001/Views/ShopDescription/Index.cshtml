@@ -8,7 +8,11 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-6 mb-5 ftco-animate">
-                <a href="#" class=""><img src="@Model.Picture" class="img-fluid" alt="Colorlib Template"></a>
+                <a href="#" class="single-item"><img src="@Model.Picture" class="img-fluid" alt="Colorlib Template"></a>
+                <div id="btn">
+                    <a href="#" id="up">&lt;</a>
+                    <a href="#" id="next">&gt;</a>
+                </div>
             </div>
             <div class="col-lg-6 product-details pl-md-5 ftco-animate">
                 <h3>@Model.ProductName</h3>
@@ -36,8 +40,8 @@
             <div class="row ">
                 <p>
                     <a onclick="AddToCart('@Model.ProductId')" href="javascript:void(0);" class="btn btn-black py-3 px-5 mr-2">Add to Cart</a>
-                    @Html.ActionLink("BUY NOW", "Index","ShoppingCar", new {memberid= ((System.Security.Claims.ClaimsIdentity)User.Identity).RoleClaimType, productid =Model.ProductId}, new { @class = "btn btn-primary py-3 px-5" })
-                    
+                    @Html.ActionLink("BUY NOW", "Index", "ShoppingCar", new { memberid = ((System.Security.Claims.ClaimsIdentity)User.Identity).RoleClaimType, productid = Model.ProductId }, new { @class = "btn btn-primary py-3 px-5" })
+
                 </p>
             </div>
         </div>
@@ -205,4 +209,22 @@
     </div>
 
 </section>
+
+@section  topCSS{
+  
+
+}
+
+@section scripts{
+    <script type="text/javascript" src="slick/slick.min.js"></script>
+    <script>
+
+        jQuery(document).ready(function () {
+            jQuery('.single-item').slick(){
+                rtl: true;
+            };
+        });
+
+    </script>
+    }
 
