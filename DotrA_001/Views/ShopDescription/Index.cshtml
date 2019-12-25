@@ -36,9 +36,11 @@
             <div class="row ">
                 <p>
                     <a onclick="AddToCart('@Model.ProductId')" href="javascript:void(0);" class="btn btn-black py-3 px-5 mr-2">Add to Cart</a>
-                    @Html.ActionLink("BUY NOW", "Index","ShoppingCar", new {memberid= ((System.Security.Claims.ClaimsIdentity)User.Identity).RoleClaimType, productid =Model.ProductId}, new { @class = "btn btn-primary py-3 px-5" })
-                    
-                </p>
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        @Html.ActionLink("BUY NOW", "Index", "ShoppingCar", new { memberid = ((System.Security.Claims.ClaimsIdentity)User.Identity).RoleClaimType, productid = Model.ProductId }, new { @class = "btn btn-primary py-3 px-5" })
+                    }
+                    </p>
             </div>
         </div>
     </div>
