@@ -15,7 +15,7 @@ namespace DotrA_001.Controllers
     {
         private DotrADb db = new DotrADb();
 
-        // GET: Shop
+        //GET: Shop
         public ActionResult Index(int page, int? CID, int? PID)
         {
             //string.IsNullOrEmpty("");
@@ -24,24 +24,45 @@ namespace DotrA_001.Controllers
             bool IsInt_PID = (PID is null);
             int isint_pid_val = PID.GetValueOrDefault();
 
-            var pro =
-                from pr in db.Products
-                join c in db.Categories
-                on pr.CategoryID equals c.CategoryID
-                where (pr.Status == "上架" && IsInt_PID || pr.ProductID == isint_pid_val )
-                select new ProductView
+            if (CID == null)
+            {
+                var pro =
+                    from pr in db.Products
+                    join c in db.Categories
+                    on pr.CategoryID equals c.CategoryID
+                    where (pr.Status == "上架" && IsInt_PID || pr.ProductID == isint_pid_val)
+                    select new ProductView
+                    {
+                        CategoryID = pr.CategoryID,
+                        CategoryName = c.CategoryName,
+                        Description = pr.Description,
+                        Picture = pr.Picture,
+                        ProductID = pr.ProductID,
+                        ProductName = pr.ProductName,
+                        SupplierID = pr.SupplierID,
+                        SalesPrice = pr.SalesPrice,
+                        Status = pr.Status
+                    };
+                AllList.Product = pro.ToList();
+
+            }
+            else
+            {
+                var products = db.Products.Where(c => c.CategoryID == CID & c.Status == "上架").Select(x => new ProductView
                 {
-                    CategoryID = pr.CategoryID,
-                    CategoryName = c.CategoryName,
-                    Description = pr.Description,
-                    Picture = pr.Picture,   
-                    ProductID = pr.ProductID,
-                    ProductName = pr.ProductName,
-                    SupplierID = pr.SupplierID,
-                    SalesPrice = pr.SalesPrice,
-                    Status = pr.Status
-                };
-            AllList.Product = pro.ToList();
+                    CategoryID = x.CategoryID,
+                    CategoryName = x.Category.CategoryName,
+                    Description = x.Description,
+                    Picture = x.Picture,
+                    ProductID = x.ProductID,
+                    ProductName = x.ProductName,
+                    SupplierID = x.SupplierID,
+                    SalesPrice = x.SalesPrice,
+                    Status = x.Status
+                });
+                AllList.Product = products.ToList();
+            }
+          
 
             var cat =
                 from ca in db.Categories
@@ -64,8 +85,8 @@ namespace DotrA_001.Controllers
                 };
             AllList.Supplier = Sup.ToList();
 
-            
-           
+
+
             //分頁的內容AllList.Product.ToPagedList(page, 幾個物件)
             ViewBag.MyPageList = AllList.Product.ToPagedList(page, 9);
 
