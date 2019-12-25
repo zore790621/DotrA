@@ -8,10 +8,10 @@
     <div class="container">
         <div class="row no-gutters slider-text align-items-center justify-content-center">
             <div class="col-md-9 ftco-animate text-center">
-                <p class="breadcrumbs">
+                @*<p class="breadcrumbs">W
                     <span class="mr-2"><a href="@Url.Action("Index","Home")">Home</a></span>
                     <span>Login</span>
-                </p>
+                </p>*@
                 <h1 class="mb-0 bread">Login</h1>
             </div>
         </div>
@@ -65,6 +65,7 @@
                    role="button">Back To Home</a>
                 <a class="btn " href="@Url.Action("ForgotPassword","Members")"
                    role="button">Forgot Password</a>
+                <a class="btn" type="button" href="@Url.Action("SignIn","Members", new { type = "Google" })"><i class="fab fa-google"></i>&nbsp;&nbsp;Login using Google</a>
             </div>
 
         </div>

@@ -22,39 +22,6 @@ using Microsoft.AspNet.Identity;
 
 namespace DotrA_001.Controllers
 {
-    /*public class IdServer {
-        public void IdentitySignin(AppUserState appUserState, string providerKey = null, bool isPersistent = false)
-        {
-            var claims = new List<Claim>();
-
-            // create required claims
-            claims.Add(new Claim(ClaimTypes.NameIdentifier, appUserState.UserId));
-            claims.Add(new Claim(ClaimTypes.Name, appUserState.Name));
-
-            // custom – my serialized AppUserState object
-            claims.Add(new Claim("userState", appUserState.ToString()));
-
-            var identity = new ClaimsIdentity(claims, DefaultAuthenticationTypes.ApplicationCookie);
-
-            AuthenticationManager.SignIn(new AuthenticationProperties()
-            {
-                AllowRefresh = true,
-                IsPersistent = isPersistent,
-                ExpiresUtc = DateTime.UtcNow.AddDays(7)
-            }, identity);
-        }
-
-        public void IdentitySignout()
-        {
-            AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie,
-                                            DefaultAuthenticationTypes.ExternalCookie);
-        }
-
-        private IAuthenticationManager AuthenticationManager
-        {
-            get { return HttpContext.GetOwinContext().Authentication; }
-        }
-    }*/
     public class MembersController : Controller
     {
         private DotrADb db = new DotrADb();
