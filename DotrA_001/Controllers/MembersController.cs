@@ -174,7 +174,7 @@ namespace DotrA_001.Controllers
 								// adding following 2 claim just for supporting default antiforgery provider
 								new Claim(ClaimTypes.NameIdentifier, user.Email),
                                 new Claim("http://schemas.microsoft.com/accesscontrolservice/2010/07/claims/identityprovider", "ASP.NET Identity", "http://www.w3.org/2001/XMLSchema#string"),
-                        
+
                                 new Claim(ClaimTypes.Name, user.Name),
                                 new Claim(ClaimTypes.Email, user.Email),
 								// optionally you could add roles if any
@@ -376,7 +376,7 @@ namespace DotrA_001.Controllers
         #region ===修改會員資料===
         public ActionResult EditProfile(int? id)
         {
-            if (id == null || ((System.Security.Claims.ClaimsIdentity)User.Identity).RoleClaimType != id.ToString())
+            if (id == null || ((ClaimsIdentity)User.Identity).RoleClaimType != id.ToString())
             {
                 return RedirectToAction("Index", "Home");
             }
@@ -425,7 +425,7 @@ namespace DotrA_001.Controllers
         public ActionResult SelfOrder(int? id)
         {
             var om = db.Orders.Where(x => x.MemberID == id);
-            
+
             var models = om.Select(x => new SelfOrderVM()
             {
                 OrderID = x.OrderID,
@@ -437,15 +437,12 @@ namespace DotrA_001.Controllers
                 PaymentStatus = x.PaymentStatus
             }).ToList();
 
-            if(om==null)
-            {
-                TempData["Order"] = "無訂單紀錄";
-            }
+
             return View(models);
         }
         public ActionResult LookOrderDetails(int? id)
         {
-            if (id == null )
+            if (id == null)
             {
                 return RedirectToAction("Index", "Home");
             }
@@ -461,7 +458,7 @@ namespace DotrA_001.Controllers
                     Quantity = x.Quantity,
                     SubTotal = x.SubTotal
                 }),
-                MemberID=o.MemberID,
+                MemberID = o.MemberID,
                 RecipientName = o.RecipientName,
                 RecipientPhone = o.RecipientPhone,
                 RecipientAddress = o.RecipientAddress,
@@ -511,11 +508,11 @@ namespace DotrA_001.Controllers
                     Email = loginInfo.emailaddress,
                     Name = loginInfo.givenname + loginInfo.surname,
                     MemberAccount = loginInfo.nameidentifier,
-                    EmailVerified= true,
-                    Password= "Google",
-                    HashCode=loginInfo.nameidentifier,
-              Address="Google",
-              Phone="Google"
+                    EmailVerified = true,
+                    Password = "Google",
+                    HashCode = loginInfo.nameidentifier,
+                    Address = "Google",
+                    Phone = "Google"
                 };
                 db.Members.Add(user);
                 db.SaveChanges();
