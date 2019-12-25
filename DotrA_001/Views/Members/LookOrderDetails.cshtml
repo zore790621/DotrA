@@ -24,105 +24,99 @@
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-header">
-                            <strong class="card-title">訂單明細</strong>
+                            <strong class="card-title text-center">訂單明細</strong>
                         </div>
-                        <div class="card-body">
-                            <dl class="dl-horizontal">
-                                <dt>
-                                    @Html.DisplayNameFor(model => model.OrderID)
-                                </dt>
-                                <dd>
-                                    @Html.DisplayFor(model => model.OrderID)
-                                </dd>
-                                <dt>
-                                    @Html.DisplayNameFor(model => model.RecipientName)
-                                </dt>
-                                <dd>
-                                    @Html.DisplayFor(model => model.RecipientName)
-                                </dd>
-                                <dt>
-                                    @Html.DisplayNameFor(model => model.RecipientPhone)
-                                </dt>
-                                <dd>
-                                    @Html.DisplayFor(model => model.RecipientPhone)
-                                </dd>
-                                <dt>
-                                    @Html.DisplayNameFor(model => model.RecipientAddress)
-                                </dt>
-                                <dd>
-                                    @Html.DisplayFor(model => model.RecipientAddress)
-                                </dd>
-                                <dt>
-                                    @Html.DisplayNameFor(model => model.OrderDate)
-                                </dt>
-                                <dd>
-                                    @Html.DisplayFor(model => model.OrderDate)
-                                </dd>
-                                <dt>
-                                    @Html.DisplayNameFor(model => model.MemberName)
-                                </dt>
-                                <dd>
-                                    @Html.DisplayFor(model => model.MemberName)
-                                </dd>
-                                <dt>
-                                    @Html.DisplayNameFor(model => model.ShipperName)
-                                </dt>
-                                <dd>
-                                    @Html.DisplayFor(model => model.ShipperName)
-                                </dd>
-                                <dt>
-                                    @Html.DisplayNameFor(model => model.PaymentMethod)
-                                </dt>
-                                <dd>
-                                    @Html.DisplayFor(model => model.PaymentMethod)
-                                </dd>
-                                <dt>
-                                    @Html.DisplayNameFor(model => model.PaymentStatus)
-                                </dt>
-                                @if (Model.PaymentStatus == 1)
-                                {
-                                    <dd><span class="badge badge-success">付款完成</span></dd>
-                                }
-                                else
-                                {
-                                    <dd><span class="badge badge-secondary">尚未付款</span></dd>
-                                }
-                            </dl>
-                            <table class="table table-striped table-bordered">
-                                @*<tr>
-                                        <th>@Html.DisplayNameFor(model => (new BackEndSystem.Models.ViewModel.OrderProductVM()).ProductName)</th>
-                                        <th>@Html.DisplayNameFor(model => (new BackEndSystem.Models.ViewModel.OrderProductVM()).Quantity)</th>
-                                        <th>@Html.DisplayNameFor(model => (new BackEndSystem.Models.ViewModel.OrderProductVM()).SalesPrice)</th>
-                                        <th>@Html.DisplayNameFor(model => (new BackEndSystem.Models.ViewModel.OrderProductVM()).Discount)</th>
-                                        <th>@Html.DisplayNameFor(model => (new BackEndSystem.Models.ViewModel.OrderProductVM()).SubTotal)</th>
-                                    </tr>*@
-                                @foreach (var item in Model.OrderProducts)
-                                {
-                                    <tr>
-                                        <td>@Html.DisplayFor(x => @item.ProductName)</td>
-                                        <td>@Html.DisplayFor(x => @item.Quantity)</td>
-                                        <td>@Html.DisplayFor(x => @item.SalesPrice)</td>
-                                        @if (item.Discount == null)
-                                        {
-                                            <td>無</td>
-                                        }
-                                        else
-                                        {
-                                            <td>@item.Discount</td>
-                                        }
-                                        <td>@Html.DisplayFor(x => @item.SubTotal)</td>
-                                    </tr>
-                                }
-                            </table>
-                            <dt>
-                                @Html.DisplayNameFor(model => model.TotalPrice)
-                            </dt>
-                            <dd>
-                                @Html.DisplayFor(model => model.TotalPrice)
-                            </dd>
+                        <div class="card-body container">
+                            <div class="row">
+                                <dl class="dl-horizontal">
+                                    <dt>
+                                        @Html.DisplayNameFor(model => model.OrderID)
+                                    </dt>
+                                    <dd>
+                                        @Html.DisplayFor(model => model.OrderID)
+                                    </dd>
+                                    <dt>
+                                        @Html.DisplayNameFor(model => model.RecipientName)
+                                    </dt>
+                                    <dd>
+                                        @Html.DisplayFor(model => model.RecipientName)
+                                    </dd>
+                                    <dt>
+                                        @Html.DisplayNameFor(model => model.RecipientPhone)
+                                    </dt>
+                                    <dd>
+                                        @Html.DisplayFor(model => model.RecipientPhone)
+                                    </dd>
+                                    <dt>
+                                        @Html.DisplayNameFor(model => model.RecipientAddress)
+                                    </dt>
+                                    <dd>
+                                        @Html.DisplayFor(model => model.RecipientAddress)
+                                    </dd>
+                                    <dt>
+                                        @Html.DisplayNameFor(model => model.OrderDate)
+                                    </dt>
+                                    <dd>
+                                        @Html.DisplayFor(model => model.OrderDate)
+                                    </dd>
+                                    <dt>
+                                        @Html.DisplayNameFor(model => model.MemberName)
+                                    </dt>
+                                    <dd>
+                                        @Html.DisplayFor(model => model.MemberName)
+                                    </dd>
+                                    <dt>
+                                        @Html.DisplayNameFor(model => model.ShipperName)
+                                    </dt>
+                                    <dd>
+                                        @Html.DisplayFor(model => model.ShipperName)
+                                    </dd>
+                                    <dt>
+                                        @Html.DisplayNameFor(model => model.PaymentMethod)
+                                    </dt>
+                                    <dd>
+                                        @Html.DisplayFor(model => model.PaymentMethod)
+                                    </dd>
+                                    <dt>
+                                        @Html.DisplayNameFor(model => model.PaymentStatus)
+                                    </dt>
+                                    @if (Model.PaymentStatus == 1)
+                                    {
+                                        <dd><span class="badge badge-success">付款完成</span></dd>
+                                    }
+                                    else
+                                    {
+                                        <dd><span class="badge badge-secondary">尚未付款</span></dd>
+                                    }
+                                </dl>
+                                <table class="table table-striped table-bordered">
+                                    @foreach (var item in Model.OrderProducts)
+                                    {
+                                        <tr>
+                                            <td>@Html.DisplayFor(x => @item.ProductName)</td>
+                                            <td>@Html.DisplayFor(x => @item.Quantity)</td>
+                                            <td>@Html.DisplayFor(x => @item.SalesPrice)</td>
+                                            @if (item.Discount == null)
+                                            {
+                                                <td>無</td>
+                                            }
+                                            else
+                                            {
+                                                <td>@item.Discount</td>
+                                            }
+                                            <td>@Html.DisplayFor(x => @item.SubTotal)</td>
+                                        </tr>
+                                    }
+                                </table>
+                                <dl>
+                                    @Html.DisplayNameFor(model => model.TotalPrice)
+                                </dl>
+                                <dl>
+                                    @Html.DisplayFor(model => model.TotalPrice)
+                                </dl>
+                                @*<button type="button" class="btn btn-secondary" onclick="location.href = '@Url.Action("Delete", "Orders", new { id = Model.OrderID})'">刪除</button>*@
+                            </div>
                             <button type="button" class="btn btn-light" onclick="location.href ='@Url.Action("SelfOrder", "Members",new { id = Model.MemberID})'">返回列表</button>
-                            @*<button type="button" class="btn btn-secondary" onclick="location.href = '@Url.Action("Delete", "Orders", new { id = Model.OrderID})'">刪除</button>*@
-
                         </div>
                     </div>
                 </div>
