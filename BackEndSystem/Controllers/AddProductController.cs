@@ -15,6 +15,7 @@ using Imgur.API.Models;
 
 namespace BackEndSystem.Controllers
 {
+    [Authorize]
     public class AddProductController : Controller
     {
         private DotrADb db = new DotrADb();

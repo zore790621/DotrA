@@ -13,7 +13,7 @@ using Newtonsoft.Json;
 
 namespace BackEndSystem.Controllers
 {
-    //[Authorize]
+    [Authorize]
     public class OrdersController : Controller
     {
         DotrADb db = new DotrADb();

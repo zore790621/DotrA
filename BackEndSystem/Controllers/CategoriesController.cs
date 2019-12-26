@@ -10,6 +10,7 @@ using Database.Models;
 
 namespace BackEndSystem.Controllers
 {
+    [Authorize]
     public class CategoriesController : Controller
     {
         private DotrADb db = new DotrADb();

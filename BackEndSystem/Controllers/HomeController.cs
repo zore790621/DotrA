@@ -9,7 +9,7 @@ using static System.Net.Mime.MediaTypeNames;
 
 namespace BackEndSystem.Controllers
 {
-    //[Authorize]
+    [Authorize]
     public class HomeController : Controller
     {
 
