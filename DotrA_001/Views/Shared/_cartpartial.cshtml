@@ -14,7 +14,7 @@
         foreach (var cartitem in currentCart)
         {
             //依序輸出 : <li><a>可愛橡皮擦 <span>50元 X 2</span></a></li>
-            <a style="color:lightskyblue;" class="row">
+            <a style="color:lightskyblue; width:350px" class="row">
                 <div class="col-12">
                     <span class="col-10">@cartitem.ProductName @cartitem.Price 元 X @cartitem.Quantity </span>
                     <span class="removebtn col-2" onclick="RemoveFromCart('@cartitem.ProductId')">X</span>
