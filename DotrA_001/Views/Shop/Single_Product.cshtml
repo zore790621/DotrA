@@ -15,8 +15,12 @@
                 <a href="@Url.Action("Index", "ShopDescription",new {productid = item.ProductID})" class="img-prod">
                     @if (item.Picture != null)
                     {
-                        <img class="img-fluid" src="@item.Picture" alt="Colorlib Template">
+                    <div style="width:100%">
+                        <div style="height: 0;padding-bottom: 100%;">
+                            <img class="img-fluid" src="@item.Picture" alt="Colorlib Template">
+                        </div>
                         <div class="overlay"></div>
+                    </div>
                     }
                     else
                     {
