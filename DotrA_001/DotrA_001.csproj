@@ -392,6 +392,7 @@
     <Compile Include="Areas\minishop\Controllers\minishopController.cs" />
     <Compile Include="Areas\minishop\minishopAreaRegistration.cs" />
     <Compile Include="Controllers\ApiProductsController.cs" />
+    <Compile Include="Controllers\ErrorsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\OrderController.cs" />
     <Compile Include="Controllers\ProductsController.cs" />
@@ -789,6 +790,10 @@
     <Content Include="Views\Shop\PriceRange.cshtml" />
     <Content Include="Views\Shop\PageSelection.cshtml" />
     <Content Include="Views\ShoppingCar\Recipient.cshtml" />
+    <Content Include="Views\Errors\Forbidden.cshtml" />
+    <Content Include="Views\Errors\Index.cshtml" />
+    <Content Include="Views\Errors\NotFound.cshtml" />
+    <Content Include="Views\Errors\Other.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
